@@ -7,7 +7,7 @@
 
 Twenty-eight patterns where Domain-Driven Design meets blackfield mainframe modernization. Some validated inside the Rosetta prototype, some in active construction, some projected from validated principles. None has yet been applied to a real customer engagement — that's the next phase, not yet started.
 
-This is the long version of what I've been writing about on LinkedIn under the [LegacyLabs](https://www.linkedin.com/in/pmiletllobet/) name. The shorter posts and newsletter there were the introduction. This is the working catalog.
+This is the long version of what I've been writing about on LinkedIn under the [LegacyLabs](https://www.linkedin.com/newsletters/legacy-labs-7317839126702055426/) name. The shorter posts and newsletter there were the introduction. This is the working catalog.
 
 ---
 
@@ -75,8 +75,8 @@ The catalog rewards readers from either community — though differently.
 This is a draft published in-progress to gather feedback while review continues. There are three ways to contribute:
 
 - **[GitHub Issues](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/issues)** — for specific corrections, suggestions, or questions about individual patterns
-- **[LinkedIn](https://www.linkedin.com/in/pmiletllobet/)** — for broader discussion under the LegacyLabs name
-- **[LegacyLabs newsletter](https://www.linkedin.com/newsletters/legacylabs-7268528330571538434/)** — where the series that preceded this catalog was developed
+- **[LinkedIn](https://www.linkedin.com/in/pierre-milet-llobet-28827123)** — for broader discussion under the LegacyLabs name
+- **[LegacyLabs newsletter](https://www.linkedin.com/newsletters/legacy-labs-7317839126702055426/)** — where the series that preceded this catalog was developed
 
 If you find patterns I haven't articulated, antipatterns I haven't named, or contradictions I haven't resolved — please open an issue. The catalog is calibrated to what Project Rosetta has surfaced; other practitioners will find other patterns.
 
@@ -86,7 +86,7 @@ If you find patterns I haven't articulated, antipatterns I haven't named, or con
 
 Pierre Milet Llobet is a software architect at Microsoft, with fifteen years of mainframe modernization experience. He came to mainframes as an outsider and learned the COBOL/CICS world the slow way — through migrations done before AI assistance was practical, when modernization was a matter of careful manual work. **Project Rosetta** is the experiment in what becomes possible when AI assistance changes that economics. The patterns here are reports from inside that experiment.
 
-He writes about modernization, AI-assisted software engineering, and Domain-Driven Design under the [LegacyLabs](https://www.linkedin.com/in/pmiletllobet/) name on LinkedIn.
+He writes about modernization, AI-assisted software engineering, and Domain-Driven Design under the [LegacyLabs](https://www.linkedin.com/newsletters/legacy-labs-7317839126702055426/) name on LinkedIn.
 
 ---
 
