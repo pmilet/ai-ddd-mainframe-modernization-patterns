@@ -15,8 +15,8 @@ This is the long version of what I've been writing about on LinkedIn under the [
 
 | Format | Description |
 |--------|-------------|
-| 📄 [**PDF**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/latest) | Full catalog, print-friendly |
-| 📱 [**EPUB**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/latest) | E-reader format (Kindle, Kobo, Apple Books) |
+| 📄 [**PDF**](catalog.pdf) | Full catalog, print-friendly |
+| 📱 [**EPUB**](catalog.epub) | E-reader format (Kindle, Kobo, Apple Books) |
 | 📝 [**Markdown source**](catalog.md) | Read directly on GitHub |
 
 ---

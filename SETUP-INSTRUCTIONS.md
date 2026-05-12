@@ -96,7 +96,7 @@ First public release of the catalog. Draft published in-progress to gather feedb
 
 - **28 patterns** organised across 4 Parts (Strategic Recovery, Tactical Generation, Verification, Governance)
 - **7 antipatterns** naming the failure modes the patterns are built against
-- ~36,000 words of body content
+- ~41,000 words of body content
 
 ## Status distribution
 
