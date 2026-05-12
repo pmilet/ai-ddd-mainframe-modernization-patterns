@@ -15,9 +15,9 @@ This is the long version of what I've been writing about on LinkedIn under the [
 
 | Format | Description |
 |--------|-------------|
-| 📄 [**PDF**](catalog.pdf) | Full catalog, print-friendly |
-| 📱 [**EPUB**](catalog.epub) | E-reader format (Kindle, Kobo, Apple Books) |
-| 📝 [**Markdown source**](catalog.md) | Read directly on GitHub |
+| 📄 [**PDF**](AI-Assisted%20Domain-Driven%20Mainframe%20Modernization.pdf) | Full catalog, print-friendly |
+| 📱 [**EPUB**](AI-Assisted%20Domain-Driven%20Mainframe%20Modernization.epub) | E-reader format (Kindle, Kobo, Apple Books) |
+| 📝 [**Markdown source**](AI-Assisted%20Domain-Driven%20Mainframe%20Modernization.md) | Read directly on GitHub |
 
 ---
 

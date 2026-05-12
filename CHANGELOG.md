@@ -34,7 +34,7 @@ First public release. Twenty-eight patterns and seven antipatterns, articulated 
 These gaps will close in subsequent releases as the visual layer is produced. The textual content is review-ready as it stands.
 
 ### Available formats
-- Markdown source (`catalog.md`)
+- Markdown source (`AI-Assisted Domain-Driven Mainframe Modernization.md`)
 - PDF (attached to this release)
 - EPUB (attached to this release)
 

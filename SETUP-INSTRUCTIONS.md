@@ -11,7 +11,7 @@ Estas instrucciones te guían a través de la creación del repo `pmilet/ai-ddd-
   - `README.md`
   - `LICENSE`
   - `CHANGELOG.md`
-  - `pattern-catalog-v10.md` (renombrar a `catalog.md` al subir)
+  - `pattern-catalog-v10.md` (renombrar a `AI-Assisted Domain-Driven Mainframe Modernization.md` al subir)
   - `AI-Assisted-Domain-Driven-Mainframe-Modernization.pdf`
   - `AI-Assisted-Domain-Driven-Mainframe-Modernization.epub`
 
@@ -42,7 +42,7 @@ En la pantalla del repo recién creado:
    - `README.md`
    - `LICENSE`
    - `CHANGELOG.md`
-   - `catalog.md` (renombrar `pattern-catalog-v10.md` a `catalog.md` antes de subir)
+   - `AI-Assisted Domain-Driven Mainframe Modernization.md` (renombrar `pattern-catalog-v10.md` a `AI-Assisted Domain-Driven Mainframe Modernization.md` antes de subir)
 3. **Commit message:** `Initial repo content: README, LICENSE, CHANGELOG, catalog`
 4. Selecciona **Commit directly to the main branch**
 5. Click **Commit changes**
@@ -60,7 +60,7 @@ Vuelve a la página principal del repo (`github.com/pmilet/ai-ddd-mainframe-mode
 - ✅ Status badge muestra "draft v0.1"
 - ✅ License badge muestra "CC BY 4.0"
 - ✅ Tabla de downloads tiene 3 filas (PDF / EPUB / Markdown)
-- ✅ Links internos a `catalog.md` y `LICENSE` funcionan
+- ✅ Links internos a `AI-Assisted Domain-Driven Mainframe Modernization.md` y `LICENSE` funcionan
 - ✅ Tabla de Status muestra 15 / 9 / 4
 - ✅ Sección "Who this is for" se ve correctamente
 - ✅ Cita en bottom usa formato APA-like
@@ -120,7 +120,7 @@ These gaps will close in subsequent releases. The textual content is review-read
 
 - **PDF** (157 pages, 3.4 MB) — print-friendly, attached below
 - **EPUB** (3.4 MB) — e-reader format, attached below
-- **Markdown source** — `catalog.md` in the repo
+- **Markdown source** — `AI-Assisted Domain-Driven Mainframe Modernization.md` in the repo
 
 ## Feedback welcome
 
@@ -171,7 +171,7 @@ Vuelve a la página principal del repo. En el README, prueba los download links:
 
 - 📄 PDF link → debería abrir la página del release `v0.1`
 - 📱 EPUB link → debería abrir la página del release `v0.1`
-- 📝 Markdown source link → debería abrir `catalog.md` en GitHub viewer
+- 📝 Markdown source link → debería abrir `AI-Assisted Domain-Driven Mainframe Modernization.md` en GitHub viewer
 
 Si los links están broken, edita el README — los URLs apuntan a `/releases/latest`, que GitHub resuelve automáticamente al release más reciente.
 

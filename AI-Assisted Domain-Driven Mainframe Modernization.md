@@ -22,7 +22,7 @@ The catalog is a mix of three kinds of patterns. **Original patterns** describe 
 
 I write for two audiences. **DDD practitioners** will recognise vocabulary they already use — bounded contexts, ubiquitous language, subdomain types, aggregates, domain events, anti-corruption layers — and find them deployed in a domain DDD has rarely entered: mainframe modernization at decade scale. **Mainframe modernization practitioners** less familiar with DDD will encounter the vocabulary deliberately. Where a DDD concept appears for the first time, I provide a brief inline gloss; the glossary at the end gives more complete definitions and pointers to canonical sources. The catalog rewards readers from either community — though differently.
 
-Of the twenty-eight patterns, fifteen are validated inside the Rosetta prototype (status: *working*). Eight are in active construction (status: *in progress*). Four are designed from validated principles but not yet built (status: *next*). None has yet been validated against real customer engagements — that's the next phase, not yet started. I include all three categories deliberately. This catalog records the same kind of evidence traditional pattern catalogs do, but explicitly: each pattern carries a marker showing whether the principle has been validated, is in construction, or is projected from validated foundations. The mix is intentional. The markers are honest. The reader who wants only validated patterns can filter by status; the reader interested in the architectural reasoning can engage with all of them.
+Of the twenty-eight patterns, fifteen are validated inside the Rosetta prototype (status: *working*). Nine are in active construction (status: *in progress*). Four are designed from validated principles but not yet built (status: *next*). None has yet been validated against real customer engagements — that's the next phase, not yet started. I include all three categories deliberately. This catalog records the same kind of evidence traditional pattern catalogs do, but explicitly: each pattern carries a marker showing whether the principle has been validated, is in construction, or is projected from validated foundations. The mix is intentional. The markers are honest. The reader who wants only validated patterns can filter by status; the reader interested in the architectural reasoning can engage with all of them.
 
 Each pattern follows the same shape. **Status** says where the pattern stands in the prototype today. **Context** describes the situation in which the pattern applies. **Problem** describes the tension or difficulty the pattern addresses. **Forces** describes the factors in conflict. **Pattern** is the solution, articulated as principle. **Consequences** describes what applying the pattern produces — both gains and costs. **Related patterns** points to other entries that depend on, support, or are supported by this one.
 
@@ -2106,13 +2106,13 @@ Only patterns with concrete implementations today appear here. Patterns marked *
 - GitHub-native gates: branch protection, required status checks, GitHub Actions, issue templates
 - Persistence layer for state, replay semantics for failed steps
 
-**Pattern 23 — The Harness as State Machine**
+**Pattern 23 — The Harness as Self-Observing State Machine**
 - State machine implementation: typed C# (Microsoft Agent Framework)
 - Hooks: PreToolUse and PostToolUse hooks defined in code
 - Per-project contract: scaffold-meta.json
 - GitHub-native enforcement: branch protection rules, required status checks, GitHub Actions
 
-**Pattern 20 — Harness Self-Observation and Refinement**
+**Pattern 22 — Heuristics as Explicit Artifacts**
 - Status: designed, not yet built
 
 **Pattern 24 — Reasoning Telemetry as First-Class Output**
