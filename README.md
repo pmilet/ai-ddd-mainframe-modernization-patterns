@@ -2,7 +2,7 @@
 
 ## A Pattern Catalog from Project Rosetta
 
-[![Status](https://img.shields.io/badge/status-draft%20v0.3-orange)](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases)
+[![Status](https://img.shields.io/badge/status-draft%20v0.4-orange)](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases)
 [![License](https://img.shields.io/badge/license-CC%20BY%204.0-blue)](LICENSE)
 
 Twenty-eight patterns where Domain-Driven Design meets blackfield mainframe modernization. Some validated inside the Rosetta prototype, some in active construction, some projected from validated principles. None has yet been applied to a real customer engagement — that's the next phase, not yet started.
@@ -15,8 +15,8 @@ This is the long version of what I've been writing about on LinkedIn under the [
 
 | Format | Description |
 |--------|-------------|
-| 📄 [**PDF**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v0.3/AI-Assisted.Domain-Driven.Mainframe.Modernization.pdf) | Full catalog, print-friendly |
-| 📱 [**EPUB**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v0.3/AI-Assisted.Domain-Driven.Mainframe.Modernization.epub) | E-reader format (Kindle, Kobo, Apple Books) |
+| 📄 [**PDF**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v0.4/AI-Assisted.Domain-Driven.Mainframe.Modernization.pdf) | Full catalog, print-friendly |
+| 📱 [**EPUB**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v0.4/AI-Assisted.Domain-Driven.Mainframe.Modernization.epub) | E-reader format (Kindle, Kobo, Apple Books) |
 | 📝 [**Markdown source**](AI-Assisted%20Domain-Driven%20Mainframe%20Modernization.md) | Read directly on GitHub |
 
 ---
