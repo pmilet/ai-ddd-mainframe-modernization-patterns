@@ -6,6 +6,20 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ---
 
+## [v0.3.1] — 2026
+
+### Housekeeping — README and repository hygiene
+
+Updated README to reflect the v0.3 release and improved repository setup.
+
+**Changes:**
+- Updated status badge from `draft v0.1` to `draft v0.3`
+- Updated PDF and EPUB download links to point to v0.3 release assets on GitHub
+- Added Uberto Barbini to the contributors list in the README
+- Added `.gitignore` to exclude `.claude/` directory from version control
+
+---
+
 ## [v0.3] — 2026
 
 ### Uberto Barbini's contributions integrated
