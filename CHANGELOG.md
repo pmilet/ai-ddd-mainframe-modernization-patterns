@@ -6,6 +6,23 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ---
 
+## [v0.4] — 2026
+
+### Architectural Interlude added
+
+Added a new section between Part I and Part II: *Architectural Interlude — The Three-Layer Recovery Architecture (CICS Instantiation)*. This makes explicit the three-layer discipline (L1 Syntactic/Resource Graph, L2 Semantic Intent Graph, L3 Architectural Target Graph) that the catalog has been articulating implicitly across its patterns, including the architect-gated transitions between layers.
+
+**Changes:**
+- Added ~70-line architectural interlude section between Part I and Part II
+- Added introductory paragraph in the reader's guide noting the interlude and its placement
+- L1 (evidence, not interpretation), L2 (specification the original team never produced), L3 (architectural target) described with pattern cross-references
+- Architect-gated transitions documented: L1→L2 via heuristic catalog, L2→L3 via mapping rules, L3→scaffold via scaffold-meta.json
+- Properties table: verifiable, reviewable, governable, constitutional
+- Scoping note clarifying CICS instantiation and substrate-independence question
+- Updated epub and pdf artifacts
+
+---
+
 ## [v0.3.1] — 2026
 
 ### Housekeeping — README and repository hygiene

@@ -35,6 +35,8 @@ The patterns are grouped into four parts that follow the structure of DDD as dis
 
 The grouping is for navigation — patterns interact across groups, and the *Related patterns* sections trace those interactions.
 
+Between Part I and Part II, a short architectural interlude makes explicit the three-layer recovery architecture the catalog operates within. Readers who want the architectural framing before the patterns can read it first; readers who prefer to encounter the patterns first will find the interlude in sequence.
+
 A short section names seven antipatterns this catalog is built against. They're not bad practices in the abstract; they're failure modes the field has encountered, and naming them helps clarify what the patterns are correcting.
 
 After the antipatterns, a glossary defines the DDD and modernization terms used throughout the catalog. After that, a final section maps each pattern to the concrete technology that realises it in Rosetta today. The pattern bodies stay abstract because principles outlive implementations. The reference section names what's currently doing the work, snapshot in time.
@@ -429,6 +431,77 @@ The notion of *vertical slice* as architectural unit comes from Jimmy Bogard and
 ### Related patterns
 
 Pattern 3 (*The Graph as Projection*) provides the structural substrate. Pattern 5 (*Domain Ontology as Independent Substrate*) provides the canonical vocabulary slice boundaries align with — slices are coherent units of domain behaviour, and the ontology says what counts as a unit. Pattern 8 (*The Compiler Principle*) is why the heuristic catalog lives as deterministic infrastructure. Pattern 10 (*Tier-Aware Scaffolding*) consumes slice candidates and produces the appropriate scaffold. Pattern 15 (*Architecture Documentation as Pluggable Emitter*) renders slice candidates into views the architect can validate. Patterns 14 and 15 (*Hypothesis-Driven Verification*, *Behavioural Specifications*) provide the behavioural signal that refines structural slice discovery. Pattern 19 (*Bounded MCP Servers*) is where specialized slice-discovery agents live with explicit access to the heuristic catalog. Pattern 24 (*Reasoning Telemetry as First-Class Output*) makes heuristic application observable.
+
+---
+
+# Architectural Interlude: The Three-Layer Recovery Architecture (CICS Instantiation)
+
+---
+
+Legacy modernization fails when it tries to go from source to scaffold in one hop. Too much semantic loss. Too much implicit knowledge buried in runtime contracts rather than the source text. Too many architectural commitments smuggled in under the appearance of mechanical translation.
+
+The patterns in Part I recover legacy systems from source; the patterns in Part II project them onto modern code. Between recovery and projection lives an architectural discipline this catalog has been articulating implicitly across the patterns above and the patterns ahead. This interlude makes that discipline explicit.
+
+Recovery has to traverse **three distinct substrates**, each at a different abstraction level, with architect-gated transitions between them. None are implicit LLM leaps. The substrates are not a methodology imposed on the work — they emerge from the work itself, once recovery is taken seriously as a multi-stage activity.
+
+## L1 — Syntactic and Resource Graph
+
+The bottom layer is what the legacy *literally says*. Pattern 3 (*The Graph as Projection*) produces it: a property graph of programs, paragraphs, copybooks, CICS resources, control flow, data flow, side effects, predicates, entry points. Source provenance (Pattern 4) is mandatory at every node — every L1 element traces back to specific file coordinates.
+
+L1 is **evidence, not interpretation**. Two runs over the same source must produce the same graph. The graph is diffable against the source; the source is diffable against the graph. No layer above L1 can claim to know something L1 doesn't witness.
+
+L1 is deterministic. No LLMs participate in its construction. The parser produces the graph; the graph is what it is.
+
+## L2 — Semantic Intent Graph
+
+The middle layer is what the legacy *actually does*. This is the territory where legacy idioms get named, codified, and made queryable as patterns — and where most of the catalog's intellectual work lives.
+
+L2 is the **specification the original team never produced**. It is the layer at which Pattern 5 (*Domain Ontology as Independent Substrate*) recovers canonical vocabulary; at which Pattern 7 (*Vertical Slice Discovery*) identifies coherent units of behaviour; at which Pattern 22 (*Heuristics as Explicit Artifacts*) holds the queryable rules that interpret legacy structural cues. The ontology, the heuristic catalog, and the slice working sets are all L2 substrates — different facets of the same intent layer.
+
+L2 is where DDD's strategic design lives in this architecture. Bounded contexts, ubiquitous language, aggregate candidates, command and event boundaries — these are L2 concepts, recovered from L1 evidence and validated against domain understanding. L2 patterns are typed subgraphs over L1 with required structural signatures, disqualifying signatures, and explicit confidence scores. A `LatentSaga` is an L2 pattern: it requires specific L1 evidence (paired write/inverse-write paths, linguistic markers like *refund* or *reverse*) and excludes specific L1 evidence (intermediate writes without inverses, which would make it a different L2 pattern). The pattern is precise enough to be testable; the testability is what makes L2 reviewable.
+
+LLMs enter L2 only for **linguistic disambiguation, and only to propose edges that an architect or oracle verifies**. The agents do not author L2; they propose candidates that the harness (Pattern 23) gates and that humans validate through the cockpit (Pattern 25). L2 is the design document the original team never produced — and it cannot be produced by LLMs alone, because what counts as a valid pattern is a domain question, not a linguistic one.
+
+L2 is what compounds across engagements. Every CICS modernization that passes through this catalog refines the L2 catalog: a `RecoverableSideEffect` pattern caught once sharpens its detection forever; a misclassified `LatentSaga` (Compensation Cargo Cult — see antipatterns) teaches the catalog where its disqualifying signatures need tightening. The L2 catalog is the durable artifact of the modernization team's accumulated CICS expertise, codified.
+
+## L3 — Architectural Target Graph
+
+The top layer is how the legacy *should be expressed* in modern code. This is where projection happens.
+
+L3 is the territory of Pattern 9 (*The Intermediate Representation*) — the typed WolverineIntentModel that encodes architectural commitments: handlers, aggregates, commands, events, sagas, ports. Pattern 10 (*Tier-Aware Scaffolding*) decides which architectural shape each bounded context receives in L3. Pattern 11 (*Pluggable Emitters*) renders L3 into target code.
+
+L2 → L3 is **not 1:1**. It is a mapping function with architect-gated rules. A `DeferredCommitWizard` in L2 does not become a `Saga` in L3 — it becomes a `StatefulFlow + SingleCommand`, because the deferred-commit shape has no compensation semantics to operationalise. A `LatentSaga` in L2 does become a `Saga` in L3, but only after the recovered compensations have been validated as first-class steps. A `SyncConversation` (LINK/XCTL chain inside one task) typically collapses into a single command handler in L3 — the call chain is recovered as evidence, not preserved as structure.
+
+The mapping rules are explicit policy, versioned, and architect-validated. **L3 invariants override L2 shape when they conflict.** The graph holds decisions; the architect validates them; the compiler renders but does not decide. This is the compiler principle (Pattern 8) operating at the layer transition.
+
+## Architect-gated transitions
+
+Each transition has a specific gate.
+
+- **L1 → L2** is gated by the heuristic catalog (Pattern 22). Pattern detectors run as Cypher queries against L1; each match carries its evidence, its confidence, and the heuristics applied. Low-confidence matches surface for review; high-confidence matches proceed; disqualified matches are recorded so the catalog learns from the negative case.
+
+- **L2 → L3** is gated by the mapping rules. Each L2 pattern has explicit projection rules onto L3; each rule carries its rationale and the architectural invariants it must satisfy. Architect overrides are recorded as graph nodes, becoming part of the evidence trail that future projections consult.
+
+- **L3 → scaffold** is gated by `scaffold-meta.json` (Pattern 23). The scaffold defines constitutional boundaries: which fields are immutable, which extension points agents may fill, which invariants generated tests must verify. The agent never breaches these boundaries — the harness (Pattern 23) enforces them as code, not as prompts.
+
+## Why the three layers matter
+
+The architecture earns four properties that single-hop modernization cannot:
+
+| Property | Layer that delivers it |
+|----------|------------------------|
+| **Verifiable** | L1 is diffable against source; two runs produce the same graph |
+| **Reviewable** | L2 patterns are named, evidenced, disputable; each detection cites its L1 evidence |
+| **Governable** | L3 mapping rules are explicit policy, versioned, architect-validated |
+| **Constitutional** | The scaffold enforces L3 boundaries as code, not as prompts |
+
+Without L1, generation has nothing to ground claims in. Without L2, modernization silently inherits legacy structure as if it were legacy intent. Without L3, scaffolding becomes mechanical translation of L2 shapes that should have been transformed. Without architect-gated transitions, the layers collapse into the single-hop failure mode the architecture was designed to prevent.
+
+## Scoping note
+
+This catalog instantiates the three-layer architecture for CICS COBOL modernization. The L1 vocabulary is calibrated to CICS (programs, paragraphs, CICS resources, COMMAREA, TRANSID, syncpoints); the L2 catalog is populated with CICS-specific patterns (the conversational, transactional, domain-shape, and routing patterns the modernization recovers); the L2 → L3 mapping rules encode CICS-specific projection decisions.
+
+Whether the same three-layer structure applies to other legacy substrates — PL/I, RPG, Natural, JADE, Smalltalk — is a question this catalog does not answer. The principle of architect-gated multi-stage recovery is substrate-independent in shape; the specific substrates that populate each layer would need to be developed for each legacy stack. The CICS case is what's been validated inside the Rosetta prototype. Other practitioners working with other stacks may find the architecture applies; that work is not done here.
 
 ---
 
