@@ -6,6 +6,21 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ---
 
+## [v0.3] — 2026
+
+### Uberto Barbini's contributions integrated
+
+Integrated Uberto Barbini's work on agent execution discipline and failure modes into the catalog. Three areas of contribution: the *one prompt, one commit* principle as a unit-of-change discipline for agent-produced work, the taxonomy of agent execution failure modes (*loop of death*, *misunderstanding the requirement*, *desperate changes*) with detection and corrective mechanisms at platform scale, and the idea of deriving heuristic catalog entries from operational history (git history and PR comments as input to agent rules).
+
+**Changes:**
+- Pattern 22 (Heuristics as Explicit Artifacts): added paragraph on deriving catalog entries from operational history, referencing Barbini's experiments with generating rule files from git history and PR comments
+- Pattern 23 (The Harness as Self-Observing State Machine): added paragraph on *one prompt, one commit* principle as unit-of-change discipline; added paragraph on agent execution failure modes with platform-scale detection mechanisms (cycle detection, scaffold-boundary violation, invariant violation)
+- Glossary: added *Agent execution failure modes* entry defining loop of death, misunderstanding the requirement, and desperate changes, with cross-references to Patterns 22 and 23
+- Added Uberto Barbini to the contributors list in the introduction and lineage section
+- Updated epub and pdf artifacts
+
+---
+
 ## [v0.2] — 2026
 
 ### Structural revision — Appendix B removed, migration vocabulary integrated
@@ -59,7 +74,7 @@ These gaps will close in subsequent releases as the visual layer is produced. Th
 - EPUB (attached to this release)
 
 ### Acknowledgements
-The catalog stands on shoulders. Eric Evans, Vaughn Vernon, Martin Fowler, Sam Newman, Alberto Brandolini, Cyrille Martraire, Birgitta Böckeler, Charity Majors, Nick Tune, Kent Beck, Jeremy Miller, Anthony Alcaraz — named throughout the body where their contributions actually shaped the work.
+The catalog stands on shoulders. Eric Evans, Vaughn Vernon, Martin Fowler, Sam Newman, Alberto Brandolini, Cyrille Martraire, Birgitta Böckeler, Charity Majors, Nick Tune, Uberto Barbini, Kent Beck, Jeremy Miller, Anthony Alcaraz — named throughout the body where their contributions actually shaped the work.
 
 ---
 
