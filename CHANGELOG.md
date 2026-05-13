@@ -6,6 +6,26 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ---
 
+## [v0.2] — 2026
+
+### Structural revision — Appendix B removed, migration vocabulary integrated
+
+Removed the standalone Appendix B (Legacy Migration Patterns reference catalog) and redistributed its content. Nick Tune's migration patterns — Bubble, Autonomous Bubble, Expose Legacy Asset, CDC vs Application-level Events, Migrate Reads First / Migrate Writes First, Republishing Legacy Events — are now defined as glossary entries and referenced inline within the patterns where they apply, rather than living in a separate appendix. This tightens the catalog: migration vocabulary appears where the reader needs it, not in a detached reference section.
+
+**Changes:**
+- Removed Appendix B (~4,500 words, 12 entries) and its associated infographic and cross-reference table placeholders
+- Added glossary entries for: Asymmetrical Validation, Autonomous Bubble, Bi-directional Model Sync, Bubble, CDC vs Application-level Events, Drifting Domain Model, Expose Legacy Asset, Migrate Reads First / Migrate Writes First, Republishing Legacy Events, Tri-directional Sync
+- Integrated migration-pattern references inline within Patterns 5, 12, 14, 19, 27, and 28 where the concepts are operationally relevant
+- Consolidated three synchronisation antipatterns (Bi-directional Model Sync, Asymmetrical Validation, Tri-directional Sync) into a new combined antipattern entry in the antipatterns section
+- Updated status count: nine patterns *in progress* → eight patterns *in progress*
+- Renamed Pattern 23 to "The Harness as State Machine" (from "The Harness as Self-Observing State Machine")
+- Renamed Pattern 22 to "Pattern 20 — Harness Self-Observation and Refinement"
+- Updated lineage section to reference Nick Tune inline rather than through Appendix B
+
+**Net effect:** ~270 lines removed, ~40 lines added. The catalog is shorter and more self-contained. All migration vocabulary previously in Appendix B is preserved in the glossary and in the pattern bodies where it matters.
+
+---
+
 ## [v0.1] — 2026
 
 ### Initial draft

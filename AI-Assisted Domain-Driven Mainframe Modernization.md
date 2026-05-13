@@ -22,7 +22,7 @@ The catalog is a mix of three kinds of patterns. **Original patterns** describe 
 
 I write for two audiences. **DDD practitioners** will recognise vocabulary they already use — bounded contexts, ubiquitous language, subdomain types, aggregates, domain events, anti-corruption layers — and find them deployed in a domain DDD has rarely entered: mainframe modernization at decade scale. **Mainframe modernization practitioners** less familiar with DDD will encounter the vocabulary deliberately. Where a DDD concept appears for the first time, I provide a brief inline gloss; the glossary at the end gives more complete definitions and pointers to canonical sources. The catalog rewards readers from either community — though differently.
 
-Of the twenty-eight patterns, fifteen are validated inside the Rosetta prototype (status: *working*). Nine are in active construction (status: *in progress*). Four are designed from validated principles but not yet built (status: *next*). None has yet been validated against real customer engagements — that's the next phase, not yet started. I include all three categories deliberately. This catalog records the same kind of evidence traditional pattern catalogs do, but explicitly: each pattern carries a marker showing whether the principle has been validated, is in construction, or is projected from validated foundations. The mix is intentional. The markers are honest. The reader who wants only validated patterns can filter by status; the reader interested in the architectural reasoning can engage with all of them.
+Of the twenty-eight patterns, fifteen are validated inside the Rosetta prototype (status: *working*). Eight are in active construction (status: *in progress*). Four are designed from validated principles but not yet built (status: *next*). None has yet been validated against real customer engagements — that's the next phase, not yet started. I include all three categories deliberately. This catalog records the same kind of evidence traditional pattern catalogs do, but explicitly: each pattern carries a marker showing whether the principle has been validated, is in construction, or is projected from validated foundations. The mix is intentional. The markers are honest. The reader who wants only validated patterns can filter by status; the reader interested in the architectural reasoning can engage with all of them.
 
 Each pattern follows the same shape. **Status** says where the pattern stands in the prototype today. **Context** describes the situation in which the pattern applies. **Problem** describes the tension or difficulty the pattern addresses. **Forces** describes the factors in conflict. **Pattern** is the solution, articulated as principle. **Consequences** describes what applying the pattern produces — both gains and costs. **Related patterns** points to other entries that depend on, support, or are supported by this one.
 
@@ -37,9 +37,7 @@ The grouping is for navigation — patterns interact across groups, and the *Rel
 
 A short section names seven antipatterns this catalog is built against. They're not bad practices in the abstract; they're failure modes the field has encountered, and naming them helps clarify what the patterns are correcting.
 
-After the antipatterns, Appendix B catalogues the migration patterns the main body of this work builds upon — strangler fig, bubble, autonomous bubble, CDC vs application-level events, migrate-writes-first and migrate-reads-first, and the antipatterns of bi-directional model sync, asymmetrical validation, tri-directional sync, and drifting domain model. These are mostly the work of Nick Tune (legacy-modernization.io) and the broader DDD-and-modernization community; the appendix articulates them briefly and contextualises each to mainframe COBOL/CICS specifically. Where the main body of this catalog says *"the dual-run period operationalises CDC and application-level events"* or *"the modular monolith is the corrective to tri-directional sync"*, Appendix B is where the underlying vocabulary lives.
-
-After the appendix, a glossary defines the DDD and modernization terms used throughout the catalog. After that, a final section maps each pattern to the concrete technology that realises it in Rosetta today. The pattern bodies stay abstract because principles outlive implementations. The reference section names what's currently doing the work, snapshot in time.
+After the antipatterns, a glossary defines the DDD and modernization terms used throughout the catalog. After that, a final section maps each pattern to the concrete technology that realises it in Rosetta today. The pattern bodies stay abstract because principles outlive implementations. The reference section names what's currently doing the work, snapshot in time.
 
 I came to mainframes as an outsider and have spent 15 years on mainframe modernization projects, with a foundation in DDD practice for .NET work. I learned the COBOL/CICS world the slow way — through migrations done before AI assistance was practical, when modernization was a matter of careful manual work. Project Rosetta is the experiment in what becomes possible when AI assistance changes that economics. The patterns here are reports from inside the experiment, not claims about a finished system.
 
@@ -122,8 +120,6 @@ The notion that *modernization is not code translation — it is reconstructing 
 
 Pattern 7 (*Vertical Slice Discovery*) operates within the capabilities this pattern maps — slices are derived only after capabilities are classified. Pattern 10 (*Tier-Aware Scaffolding*) operationalises the strategy per bounded context: core differentiator → full hexagonal; commodity → vertical slice. Pattern 5 (*Domain Ontology as Independent Substrate*) draws its vocabulary primarily from the capabilities this pattern identifies. Pattern 27 (*Rollout and Cutover at Bounded Context Granularity*) sequences the migration in capability-priority order. The *Frozen Architecture* antipattern names what happens when modernization proceeds without this strategic framing — the legacy's accidental architectural decisions are preserved into the modern system because no one questioned whether they should be.
 
-The capability map also classifies domains by data quality, not just business value. Appendix B's *Asymmetrical Validation* (B.10) names the failure mode that emerges when a modernization treats the legacy data as uniformly clean: the canonical ontology rejects records the legacy considered valid, and the migration stalls in per-record reconciliation. Domains with high data drift get explicit remediation workstreams alongside their modernization — sometimes as a prerequisite phase, sometimes as a parallel track. The four-dimensional capability assessment is where this prioritisation lives.
-
 ---
 
 ## Pattern 2: The Legacy as Oracle
@@ -177,8 +173,6 @@ The notion of an "oracle" in software verification has a long history — Willia
 ### Related patterns
 
 Pattern 5 (*Domain Ontology as Independent Substrate*) is the complementary recovery: the legacy is behavioural oracle, but ontology requires independent grounding. Pattern 16 (*Twin Verification*) is the operationalisation of this principle in the inner loop. Pattern 17 (*Hypothesis-Driven Verification*) extends it from dev mode to production mode. Without Pattern 2, neither of those is implementable.
-
-Appendix B's *Expose Legacy Asset* (B.4) is the operational dual of this pattern. Pattern 2 uses the running legacy as ground truth for *verification*; B.4 uses the running legacy as ground truth for *integration* during the dual-run period. Both depend on the same operational property: the legacy is running, observable, and queryable.
 
 ---
 
@@ -306,6 +300,8 @@ Eric Evans named this work *distillation* (Evans, 2003): separating what is esse
 
 The modernization uses the ontology as a reconciliation reference. When the legacy has three definitions of "active customer," the ontology articulates the canonical one and the modernization team decides which legacy paragraphs implement which concept under the canonical definition. Twin Verification (Pattern 16) confirms behavioural equivalence within each canonical concept; the ontology decides which paragraphs belong to which concept in the first place.
 
+Ontology recovery is not a one-shot activity at the start of the modernization. Nick Tune has documented how the target model itself drifts during migration: concepts that began as straightforward renames end up restructured as the team's understanding sharpens through contact with the legacy and with domain experts (see *Drifting Domain Model* in the glossary). Pattern 5 accommodates this: the ontology is a living substrate, versioned and revisable, and the harness (Pattern 23) records each revision as a first-class event in the modernization's audit trail.
+
 ---
 
 **📐 FIGURE 5.1 — *Ontology as independent substrate***
@@ -327,8 +323,6 @@ This pattern is *next* in Rosetta. The principle is articulated; the substrates 
 ### Related patterns
 
 The *Behavioural Equivalence Without Ontology* antipattern names the failure mode this pattern protects against — without Pattern 5, modernization preserves the legacy's confusion under the appearance of fidelity. Pattern 2 (*The Legacy as Oracle*) is what this pattern complements: behavioural fidelity is necessary but not sufficient, and Pattern 5 names the missing piece. Pattern 3 (*The Graph as Projection*) provides structural input that ontology recovery can draw on. Pattern 6 (*The Graph and the Index as Complementary Substrates*) provides semantic input through vocabulary inference and similarity, also a starting point for ontology rather than a substitute. Pattern 9 (*The Intermediate Representation*) consumes the ontology when it is available — IR vocabulary aligns with canonical ontology rather than with whatever the legacy happened to use.
-
-Appendix B catalogues several migration-time phenomena that this pattern addresses directly. *Drifting domain model* (B.12) is what the ontology absorbs as the modernization evolves the canonical model. *Asymmetrical validation* (B.10) is what the ontology names: the canonical entity has rules; the legacy's data does not always conform; the ontology is the reference against which the gap is measured. *Republishing legacy events* (B.8) is operationally enabled by ontology: events can be published in the canonical vocabulary only when the canonical vocabulary itself exists as an artifact. *Bi-directional model sync* (B.9) is the antipattern that arises when two sides own different models for the same entity without an ontology to reconcile them.
 
 ---
 
@@ -572,8 +566,6 @@ The intermediate representation as concept comes from compiler theory — LLVM I
 
 Pattern 8 (*The Compiler Principle*) is what motivates the IR's existence. Pattern 5 (*Domain Ontology as Independent Substrate*) provides the canonical vocabulary the IR uses — without ontology, the IR risks encoding the legacy's confusion in modern syntax. Pattern 11 (*Pluggable Emitters*) is what the IR enables on the generation side: architecture diversity at the rendering layer, with the IR as stable contract. Pattern 15 (*Architecture Documentation as Pluggable Emitter*) is what the IR enables on the documentation side: the same IR feeds both code emitters and documentation emitters. Pattern 4 (*Source Provenance Discipline*) extends through the IR — every IR element carries source coordinates back to the graph nodes that derived it. Pattern 25 (*The Cockpit*) surfaces IR fragments to architects during review, making the architectural commitments visible before generation begins.
 
-The IR also absorbs *drifting domain model* (Appendix B.12) — the canonical model evolves during the modernization as the team discovers what the domain really is, and the IR is the artifact that records the evolution. Versioning the IR is what makes earlier modernization decisions traceable as the canonical model changes; without IR versioning, model drift would silently invalidate earlier work.
-
 ---
 
 ## Pattern 10: Tier-Aware Scaffolding
@@ -746,11 +738,11 @@ The cost is the discipline. Every cross-context interaction must be modeled as a
 
 This pattern is what allows the decomposition flywheel — the post-cutover architectural evolution from modular monolith toward selective service extraction — to work as a continuous process rather than as a major project. The architectural shift is mechanical because the logical boundaries were always there; only the physical boundaries change.
 
+The same logical-boundary discipline supports two transitional techniques Nick Tune has named: *Expose Legacy Asset*, in which the legacy publishes events that modernized subsystems consume as their integration surface; and *Republishing Legacy Events*, in which an autonomous bubble consumes those legacy events and re-emits them in the canonical target vocabulary, allowing downstream consumers to decouple from the legacy model before the migration is complete. Both are forms of the same idea — the logical contract carries across the physical transition — applied at the legacy boundary rather than at the modernized boundary. Definitions and pointers are in the glossary.
+
 ### Related patterns
 
 Pattern 9 (*The Intermediate Representation*) captures commands and events as first-class IR concepts; the IR's vocabulary is what makes this pattern possible at scaffold-rendering time. Pattern 11 (*Pluggable Emitters*) is what allows different physical implementations to be selected — an emitter for in-process Wolverine, an emitter for distributed Wolverine, an emitter for Jade for event-sourced workloads. Pattern 23 (*The Harness as State Machine*) governs the transition from one physical deployment to another, ensuring that extraction or consolidation is auditable and reversible.
-
-The commands and events surface is also what makes most of the migration patterns in Appendix B operational. The bubble (B.2) and autonomous bubble (B.3) communicate with the legacy through commands and events at the anti-corruption layer boundary. *Expose legacy asset* (B.4) typically exposes the legacy as a producer of events, with the commands/events vocabulary being the contract. *CDC vs application-level events* (B.5) is the decision about how to *produce* the events that this pattern then carries. *Migrate reads first* (B.7) and *republishing legacy events* (B.8) both depend on the events being first-class, named, owned by specific contexts. *Bi-directional model sync* (B.9) is the antipattern that emerges when contexts share entities rather than communicating through commands and events.
 
 ---
 
@@ -810,8 +802,6 @@ Vaughn Vernon's *Implementing Domain-Driven Design* (Vernon, 2013) articulates a
 
 Pattern 1 (*Business-Aligned Capability Strategy*) determines which capabilities deserve deep transactional analysis. Pattern 3 (*The Graph as Projection*) captures the transactional cues in the legacy. Pattern 5 (*Domain Ontology as Independent Substrate*) holds the invariants as canonical statements about the business. Pattern 9 (*The Intermediate Representation*) encodes the chosen transactional mechanism per bounded context. Pattern 12 (*Commands and Events as Logical Boundary*) provides the cross-context communication primitives that sagas use. Pattern 16 (*Twin Verification*) verifies transactional behaviour, not just functional behaviour. Pattern 17 (*Hypothesis-Driven Verification*) categorises transactional violations as a specific divergence class. The *Silent Semantics Loss* antipattern names what happens when transactional boundaries are translated implicitly rather than explicitly.
 
-Appendix B's *Migrate Writes First* (B.6) is operationally constrained by this pattern. When writes happen in the modernized C# but reads in CICS still see the legacy substrate, the transactional model is split — the modernized side owns the *new* transactional boundary; the legacy continues to enforce its *old* one; the dual-write that bridges them inherits the weaker guarantee. Pattern 13's explicit classification (preserved strict, relaxed deliberately, replaced with saga compensation) is what makes the *writes first* decision defensible — without it, the migration silently loses transactional guarantees the business depended on.
-
 ---
 
 ## Pattern 14: Transitional Architecture: The Modular Monolith as Migration Vehicle
@@ -859,6 +849,8 @@ When one of these criteria applies, the bounded context is extracted into its ow
 
 The modular monolith is also what the agentic platform (Pattern 19) is. Bounded MCP servers are modules within a single platform, not separate services. The recursion is deliberate: the discipline that works for the modernized business system works for the platform that produces it.
 
+The modular monolith is one transitional shape; other shapes are sometimes appropriate within the same modernization. Nick Tune has documented two complementary forms: the *Bubble*, in which a new subsystem with a clean target model accesses legacy data exclusively through an anti-corruption layer without local persistence; and the *Autonomous Bubble*, in which the new subsystem holds a local data store populated asynchronously from legacy events. The modular monolith is the right default when the modernization owns both code and data; the Bubble forms are useful when the target model can be designed independently but the underlying data must remain in the legacy during the transition. Definitions and pointers are in the glossary.
+
 ### Consequences
 
 Operational complexity during migration is minimised. The team can focus on the modernization work itself — slice discovery, scaffold generation, behavioural verification — without simultaneously absorbing the cost of operating distributed systems. The migration completes faster because fewer things compete for operational attention.
@@ -876,8 +868,6 @@ Sam Newman's *Monolith to Microservices* (Newman, 2019) provides the canonical a
 ### Related patterns
 
 Pattern 1 (*Business-Aligned Capability Strategy*) determines which contexts will eventually need independent extraction. Pattern 10 (*Tier-Aware Scaffolding*) operates within the modular monolith — tier-2 and tier-3 contexts may eventually be extracted; tier-0 and tier-1 may remain modules permanently. Pattern 11 (*Pluggable Emitters*) renders each module's scaffold; extraction changes the deployment target but not the emitter. Pattern 12 (*Commands and Events as Logical Boundary*) is what makes future extraction mechanical — the logical boundary survives the physical change. Pattern 19 (*Bounded MCP Servers*) applies the same discipline to the agentic platform itself. The *Frozen Architecture* antipattern names what happens when modernization adopts the legacy's accidental decomposition rather than designing the right transitional architecture.
-
-The migration patterns in Appendix B compose naturally with this transitional architecture. The strangler fig (B.1) operates *at* the modular monolith — each module is a unit that the strangler progressively replaces. The bubble (B.2) and autonomous bubble (B.3) are architectural shapes a module can take during partial migration: a bubble-as-module has a fresh domain model with an anti-corruption layer to legacy adapters, all within the monolith boundary. *Republishing legacy events* (B.8) is implemented as a dedicated module that translates legacy state changes into events in the canonical ubiquitous language. *Tri-directional sync* (B.11) — the antipattern of multiple legacy substrates competing for authority — is precisely what the modular monolith's explicit decommission schedule corrects.
 
 ---
 
@@ -1021,8 +1011,6 @@ There is also a coverage caveat. Twin Verification confirms behavioural equivale
 
 Pattern 2 (*The Legacy as Oracle*) is the foundational principle this pattern operationalises — the legacy is the source of truth, and the Twin is how the agents access that truth in the inner loop. Pattern 17 (*Hypothesis-Driven Verification*) extends Twin Verification from dev mode to production mode using Witness telemetry. Pattern 23 (*The Harness as Self-Observing State Machine*) treats Twin Verification as a deterministic gate the agents must pass before promotion. Pattern 4 (*Source Provenance Discipline*) is what makes divergence diagnostics traceable back to specific legacy code.
 
-Twin Verification is also what makes *drifting domain model* (Appendix B.12) tractable. When the modernization revises its canonical model mid-flight, Twin Verification provides the behavioural ground truth that lets the team evolve the model without losing what the legacy actually does. The Twin's outputs are anchored to the legacy's running behaviour, not to whatever the team currently thinks the model should be — which is precisely the property the team needs when the model is changing. *Asymmetrical Validation* (B.10) is also surfaced through Twin Verification: when the modernized side rejects records the legacy considered valid, the divergence diagnostic shows exactly which validation rule fired and against which legacy data.
-
 ---
 
 ## Pattern 17: Hypothesis-Driven Verification
@@ -1072,8 +1060,6 @@ Whether Witness works at scale is the prototype's most uncertain bet. The princi
 ### Related patterns
 
 Pattern 2 (*The Legacy as Oracle*) is the foundational principle, now extended into production. Pattern 16 (*Twin Verification*) is the dev-mode counterpart. Pattern 18 (*Behavioural Specifications Grown from Production*) is the next step that builds on the captures Witness produces. Pattern 25 (*The Cockpit*) is where humans review captured divergences and approve action.
-
-Witness is also the implementation of *application-level events* (Appendix B.5) for the modernization team's own purposes — capturing legacy state changes with business intent rather than as raw data diffs. Where CDC captures every row change as a low-level fact, Witness captures hypothesis-driven slices of behaviour as semantic events. The two mechanisms coexist in any serious dual-run (Pattern 28): CDC for coverage, Witness for semantics.
 
 ---
 
@@ -1165,7 +1151,7 @@ Each MCP server has its own ubiquitous language, its own data model, its own con
 
 In Rosetta, four MCP servers structure the agentic platform: a Discovery server owns the graph layer (graph queries, ontology lookups, slice discovery); a Legacy server owns the Legacy Twin (oracle invocation, behavioural verification, divergence diagnostics); a Twin server owns the C# generation pipeline (scaffold rendering, paragraph translation, IR construction); a Witness server owns the verification lifecycle (hypothesis generation, production-mode verification, certification). Each server's implementation is private; agents see only the tools the server exposes.
 
-Cross-server interaction follows the same disciplines DDD applies to bounded contexts. When one capability needs another's data, it goes through the public interface, not through shared databases or back-channel access. The integration patterns are explicit: published events (when one server's work emits state changes others consume), conformist consumers (when one server simply accepts another's output as canonical), anti-corruption layers (when one server needs to translate another's vocabulary into its own internal model).
+Cross-server interaction follows the same disciplines DDD applies to bounded contexts. When one capability needs another's data, it goes through the public interface, not through shared databases or back-channel access. The integration patterns are explicit: published events (when one server's work emits state changes others consume), conformist consumers (when one server simply accepts another's output as canonical), anti-corruption layers (when one server needs to translate another's vocabulary into its own internal model). The Legacy server is itself an instance of what Nick Tune has called *Expose Legacy Asset* (see glossary): the legacy is wrapped in an explicit interface that modernized subsystems consume, rather than being accessed directly through database connections or in-process coupling.
 
 ---
 
@@ -1616,6 +1602,8 @@ Cutover readiness is gate-driven, not calendar-driven. The harness (Pattern 23) 
 
 Rollback is rehearsed before it is needed. The team practices rolling back from cutover to legacy in non-production environments, documents the procedure, and validates that data written to the modernized system during the rollout period can be reconciled with legacy state. A rollback that has not been tested is not a rollback; it is a hope.
 
+Within a bounded context's rollout, the team must also decide the *order* in which capabilities migrate. Nick Tune has named two opposing strategies: *Migrate Reads First*, which unblocks downstream consumers quickly by routing query paths to the modernized system while writes continue against the legacy; and *Migrate Writes First*, which unblocks new use cases that depend on the modernized write model. The choice is strategic — driven by which downstream pressure dominates — not technical. Definitions and pointers are in the glossary.
+
 ### Consequences
 
 Risk distributes across the transition. Each bounded context is a small bet rather than the entire modernization. Problems surface in one context at a time and are addressed without affecting the rest of the rollout. The aggregate risk across the modernization is the sum of per-context risks, which is much smaller than the risk of a single big-bang cutover.
@@ -1630,9 +1618,7 @@ Martin Fowler's *StranglerFigApplication* essay (Fowler, 2004) articulates the c
 
 ### Related patterns
 
-Pattern 1 (*Business-Aligned Capability Strategy*) determines the order in which bounded contexts roll out. Pattern 16 (*Twin Verification*) validates each context before its parallel run begins. Pattern 17 (*Hypothesis-Driven Verification*) operates Witness during the rollout, categorising divergences and surfacing them for review. Pattern 23 (*The Harness as Self-Observing State Machine*) holds rollout and cutover as harness states with explicit gates. Pattern 25 (*The Cockpit*) is where humans observe rollout progress and authorise cutover transitions. Pattern 28 (*Dual-Run Coexistence*) provides the data-layer infrastructure that sustains parallel run across legacy and modernized contexts. Pattern 12 (*Commands and Events as Logical Boundary*) ensures that bounded contexts on opposite sides of the rollout boundary continue to communicate through their established contracts.
-
-The migration mechanisms within which this pattern operates are catalogued in Appendix B. The strangler fig (B.1) is the structural frame; the bubble (B.2) and autonomous bubble (B.3) are the architectural shapes a partially-rolled-out context can take; *expose legacy asset* (B.4) is how the legacy continues to integrate with modernized subsystems during the rollout; *migrate writes first* (B.6) and *migrate reads first* (B.7) are the two starting postures for each bounded context's rollout; *tri-directional sync* (B.11) is the failure mode this pattern's explicit decommission schedule protects against.
+Pattern 1 (*Business-Aligned Capability Strategy*) determines the order in which bounded contexts roll out. Pattern 16 (*Twin Verification*) validates each context before its parallel run begins. Pattern 17 (*Hypothesis-Driven Verification*) operates Witness during the rollout, categorising divergences and surfacing them for review. Pattern 23 (*The Harness as Self-Observing State Machine*) holds rollout and cutover as harness states with explicit gates. Pattern 25 (*The Cockpit*) is where humans observe rollout progress and authorise cutover transitions. Pattern N2 (*Dual-Run Coexistence*) provides the data-layer infrastructure that sustains parallel run across legacy and modernized contexts. Pattern 12 (*Commands and Events as Logical Boundary*) ensures that bounded contexts on opposite sides of the rollout boundary continue to communicate through their established contracts.
 
 ---
 
@@ -1670,6 +1656,8 @@ Treat the dual-run period as a first-class architectural phase with its own infr
 
 **Change Data Capture (CDC)** captures changes in the legacy data stores and replicates them into the modernized system. The mechanism varies by store: DB2 publishes change logs that can be consumed by IBM InfoSphere CDC, Oracle GoldenGate, or Debezium-style readers; VSAM changes are captured through journaling; IMS changes through DPROP or equivalent. The captured stream is transformed and applied to the modernized side's storage — sometimes 1:1, often with reshape (the legacy's denormalised tables become the modern's normalised tables, or vice versa). Latency targets depend on consistency requirements: sub-second for tightly coupled contexts; minutes for reference data; nightly batch for analytical capabilities.
 
+CDC is one of two integration shapes available during dual-run. The alternative, which Nick Tune has called *Application-level Events*, captures changes inside the legacy application code and emits them as semantically rich domain events rather than as storage-layer change records. The trade-off is real: CDC is easier to instrument on legacy and captures every modification, but leaks the legacy's storage model into downstream consumers; application-level events carry richer context and avoid that coupling, but require intervention in legacy code. The choice is per data domain. The glossary entry *CDC vs Application-level Events* gives definitions and pointers.
+
 **Dual-write strategies** apply when modernized writes must reflect into the legacy because the legacy still serves dependent contexts. Three patterns dominate:
 - *Synchronous dual-write* — the modernized code writes to both stores in the same transaction. Strong consistency, but fragile: any failure in the legacy fails the modernized transaction.
 - *Asynchronous dual-write through queue* — the modernized code writes locally and enqueues a propagation message; a consumer applies the change to the legacy. Eventually consistent, more resilient, but introduces propagation lag the consuming contexts must tolerate.
@@ -1699,9 +1687,7 @@ Martin Kleppmann's *Designing Data-Intensive Applications* (Kleppmann, 2017) pro
 
 ### Related patterns
 
-Pattern 27 (*Rollout and Cutover at Bounded Context Granularity*) is the operational frame this pattern serves — dual-run is what sustains the parallel run periods that rollout requires. Pattern 17 (*Hypothesis-Driven Verification*) monitors the dual-run, detecting drift and categorising divergences. Pattern 4 (*Source Provenance Discipline*) extends through CDC — every change in the modernized system traces back to the legacy source that originated it. Pattern 13 (*Transactional Boundaries as First-Class Migration Concern*) determines the consistency model for dual-write per context. Pattern 12 (*Commands and Events as Logical Boundary*) provides the logical contracts that the bridge APIs translate.
-
-This pattern is where most of the migration vocabulary in Appendix B becomes operational. The choice between CDC and application-level events (B.5) is per-domain and per-direction; the choice between *writes first* and *reads first* (B.6, B.7) is per bounded context; *republishing legacy events* (B.8) is what the dual-run infrastructure enables for upstream-of-many domains; *bi-directional model sync* (B.9) is the antipattern this pattern's data-authority schedules prevent; *asymmetrical validation* (B.10) is what the reconciliation discipline surfaces and the data-quality workstream addresses; *tri-directional sync* (B.11) is the failure mode that arises when prior partial migrations left substrate behind, and the corrective is the explicit decommission schedule this pattern operationalises.
+Pattern 27 (*Rollout and Cutover at Bounded Context Granularity*) is the operational frame this pattern serves — dual-run is what sustains the parallel run periods that rollout requires. Pattern 17 (*Hypothesis-Driven Verification*) monitors the dual-run, detecting drift and categorising divergences. Pattern 4 (*Source Provenance Discipline*) extends through CDC — every change in the modernized system traces back to the legacy source that originated it. Pattern A (*Transactional Boundaries as First-Class Migration Concern*) determines the consistency model for dual-write per context. Pattern 12 (*Commands and Events as Logical Boundary*) provides the logical contracts that the bridge APIs translate.
 
 ---
 
@@ -1729,248 +1715,15 @@ A pattern catalog is most useful when it names what it's built against. The anti
 
 **Behavioural equivalence without ontology.** A modernization that achieves perfect behavioural fidelity to the legacy — Twin Verification passes, Hypothesis-Driven Verification confirms, every gate in the harness is green — and yet produces a modernized system that inherits the legacy's ontological confusion. Three definitions of "active customer" survive the cut. Two interpretations of "balance" remain incompatible. Vocabulary that meant one thing in 1992 still means another in 2008, now expressed in clean modern code that makes the confusion harder to detect. The modernization is technically successful and fundamentally broken. In DDD terms, the modernization preserved tactical implementations but never established a ubiquitous language; the result is a modernized polyglot, fluent in three dialects of the same domain, mastering none. Anthony Alcaraz's argument applies with force: the orchestration is fine, the grounding is missing, the output is confidently wrong. The legacy as oracle (Pattern 2) is necessary but not sufficient; *Domain Ontology as Independent Substrate* (Pattern 5) is the corrective. Behavioural equivalence preserves what the legacy does. Ontology decides what the legacy *should have been about* — and the modernization team has to answer that question independently.
 
+**Synchronisation antipatterns during incremental migration.** Three failure modes recur when incremental migration is overlaid on a real legacy landscape, all documented by Nick Tune. *Bi-directional Model Sync* keeps a legacy entity and a modernized entity in continuous round-trip synchronisation, with each side's invariants having to survive translation through the other's model; the arrangement is fragile and resists retirement. *Asymmetrical Validation* compounds the problem: the modernized side enforces stricter rules than the legacy, while the legacy holds years of data that does not satisfy those rules, producing chronic drift the team cannot resolve without amnesty or backfill. *Tri-directional Sync* is the combinatorial form: when the migration is overlaid on a landscape that already contains multiple legacy systems with overlapping data, the team must build and operate not two synchronisation flows but six, twelve, or more. The corrective is structural: define data authority per domain on an explicit schedule (Pattern 28), use anti-corruption layers (Pattern 12) to translate vocabularies rather than synchronise models, and resist the instinct to keep all sides equally authoritative throughout the transition. Definitions and pointers are in the glossary.
+
 **Agent army.** An agentic system that scales by multiplying agents — more specialised agents, more coordination layers, hierarchies, swarms, agentic mesh. The instinct is *if one agent is good, many agents are better*. The operational failure is twofold. First, coordination overhead grows faster than capability — the system spends more compute on agents talking to each other than on doing the work. Second, the army generates vast volumes of output: documentation, code, alternatives, justifications, reasoning records. The volume saturates the reviewers downstream; humans cannot consume at the rate the agents produce. The modernization stalls at the bottleneck of cognitive load, not at any technical limit. The corrective is structural: build a harness (Pattern 23), not an army. The discipline of deterministic constraints, verifiable invariants, and explicit gates produces tractable modernization; more agents do not. Spec deltas (Pattern 26) operationalise the volume discipline at the review surface — fewer artifacts, denser articulation. *More is not better. Less is better.*
 
 ---
 
 **📊 TABLE AP.1 — *Antipatterns and their corrective patterns***
 
-*Two-column reference table. Left column: antipattern name and brief summary (one phrase). Right column: corrective pattern numbers and names with brief explanation of how each pattern protects against the antipattern. Rows: Jobol → Pattern 8, 10; Silent semantics loss → Pattern 2, 16; False clean code → Pattern 17; Frozen architecture → Pattern 10, 11; Vendor oracle → Pattern 2; Behavioural equivalence without ontology → Pattern 2, 5; Agent army → Pattern 23, 26. Style: clean reference table with row banding. Goal: when reviewer encounters an antipattern in practice, they can find the patterns that correct it without re-reading the catalog.*
-
----
-
----
-
-# Appendix B: Legacy Migration Patterns — A Reference Catalog
-
----
-
-**🎨 INFOGRAPHIC B — *The migration-pattern landscape this catalog operates within***
-
-*Style: editorial infographic matching the cover's earth-tone palette. Subject: a landscape of migration patterns arranged as a small atlas — structural patterns (Strangler Fig, Bubble, Autonomous Bubble, Expose Legacy Asset) along the top, data-integration patterns (CDC, App-Level Events, Migrate Writes First, Migrate Reads First) along the middle, antipatterns (Bi-directional Model Sync, Asymmetrical Validation, Tri-directional Sync) along the bottom in muted red. Each pattern depicted as a small schematic with the legacy on one side, the modernized side on the other, and the integration mechanism between them. Goal: reader gets a one-page mental map of the migration vocabulary before reading the entries.*
-
----
-
-The patterns in the main body of this catalog are organised around the question *what does AI-assisted DDD modernization of a mainframe look like end-to-end*. That framing assumes the reader is already operating with the vocabulary the field has accumulated over two decades of legacy modernization work: strangler fig, bubble, anti-corruption layer, CDC, dual-run, application-level events. The patterns of Rosetta build on that vocabulary; they do not replace it.
-
-This appendix is a reference catalog of the migration patterns this work builds upon, mostly as articulated by Nick Tune (legacy-modernization.io) and by the broader DDD-and-modernization community. The articulation is deliberately brief — each pattern in a few paragraphs — because more thorough treatments already exist in canonical sources, and because the point of this appendix is *vocabulary at a glance*, not exhaustive coverage. Each entry includes a short note on how the pattern materialises in mainframe COBOL/CICS modernization specifically — where it applies, where it doesn't, and which patterns in the main body of this catalog it intersects with.
-
-Two kinds of entry appear below. **Structural and data-integration patterns** describe legitimate techniques the modernization team chooses between, each appropriate to specific circumstances. **Antipatterns** describe migration shapes the team encounters often enough to need to name, but that should be recognised as failure modes rather than choices. Patterns and antipatterns are interleaved here rather than separated, because in practice they share enough vocabulary that the line between *legitimate choice* and *failure mode* is one of context — and the catalog is most useful when both sides of that line are visible together.
-
-The lineage is explicit. The articulation of *strangler fig* comes from Martin Fowler (2004). *Bubble* and *Anti-corruption Layer* come from Eric Evans (2003). *CDC*, *dual-write*, *application-level events*, *migrate writes/reads first*, and the antipattern catalog (bi-directional sync, asymmetrical validation, tri-directional sync, drifting domain model) come from Nick Tune's *Legacy Architecture Migration Patterns with DDD & AI* (2025) and the legacy-modernization.io catalog he curates with collaborators. Where this appendix adds anything, it is the contextualisation to mainframe COBOL/CICS modernization — where the underlying source language, the transactional model, and the data substrates differ enough from the SaaS-to-SaaS context Tune's work originates in that the patterns deserve recalibration.
-
-This appendix is not a substitute for those sources. Readers wanting depth on a pattern should follow the references. The appendix exists so that when the main body of the catalog says *"Pattern 28 is the Rosetta materialisation of dual-run with CDC and application-level events"* or *"Asymmetrical Validation is what Pattern 5 protects against"*, the reader has the underlying vocabulary at hand without needing to leave the page.
-
----
-
-## B.1: Strangler Fig
-
-*Origin: Martin Fowler (2004). Mainframe applicability: structural, bounded-context granularity.*
-
-The strangler fig is a metaphor for gradual migration: a router stands in front of the legacy system, and over time more and more traffic is routed to modernized subsystems while the legacy is progressively decommissioned. The metaphor comes from the strangler fig plant that grows around a host tree, gradually replacing it.
-
-The pattern is the most-cited in legacy modernization literature, sometimes to the point of becoming an empty signifier. Tune (2025) points out that as commonly used — *"we'll do strangler fig"* — the term often describes intent rather than mechanism. Without a specified unit of strangulation, the pattern reduces to *"we'll modernize incrementally"* — which is true of every non-big-bang migration.
-
-In mainframe modernization, the unit of strangulation matters. Strangling at endpoint granularity fragments capabilities that share business logic, data, or transactional boundaries; strangling at program granularity is too internal because users don't experience programs. **Pattern 27** in the main body of this catalog argues that the right unit of strangulation is the bounded context — coarse enough to preserve consistency, fine enough to deliver business value incrementally.
-
-The strangler fig is the operational frame within which most of the patterns in this appendix find their role. CDC and dual-run sustain the parallel-run period; bubble and autonomous bubble are forms of the strangled-but-not-yet-replaced state; migrate-writes-first and migrate-reads-first are decisions about *which side of the bounded context* to strangle first.
-
-*Related patterns in the main body: 14 (Modular Monolith), 27 (Rollout and Cutover), 28 (Dual-Run Coexistence).*
-
----
-
-## B.2: Bubble
-
-*Origin: Eric Evans (2003), elaborated by Nick Tune. Mainframe applicability: tier-2 contexts where a new model is feasible but the legacy data cannot yet move.*
-
-The bubble is a new subsystem with a fresh domain model — *designed from a blank canvas, unconstrained by the legacy* — that delegates to the legacy through an anti-corruption layer for data access. The bubble owns its model; the legacy retains the data. The bubble can be displaced into a full bounded context later, or it can remain a bubble indefinitely while the legacy continues to own state.
-
-The pattern is valuable when the modernization team has clear understanding of what the target domain model should be, but the legacy data substrate (VSAM files, DB2 tables with decades of accumulated schema drift) cannot be moved without disproportionate effort. Building a bubble lets the team express the new model in code immediately while deferring the data migration.
-
-In mainframe modernization, the bubble's anti-corruption layer translates between the canonical ubiquitous language of the modernized side and whatever the legacy happened to call things (`CUST-MAST-REC`, `CMR`, `CUSTREC01`). The bubble itself is one of the architectural shapes a tier-2 bounded context can take when full extraction is not yet warranted — the new model exists, the legacy still owns the substrate, the anti-corruption layer mediates.
-
-There is a third architectural shape between *bubble* and *fully extracted bounded context*: the bubble can be expressed as a module inside the modular monolith (Pattern 14), with its anti-corruption layer being a typed boundary against legacy adapters rather than a network boundary. The choice between bubble-as-service and bubble-as-module is the same kind of physical-deployment decision Pattern 12 isolates from the logical model.
-
-*Related patterns in the main body: 12 (Commands and Events as Logical Boundary), 14 (Modular Monolith), 27 (Rollout and Cutover).*
-
----
-
-## B.3: Autonomous Bubble
-
-*Origin: Nick Tune (2025), extending Evans' bubble. Mainframe applicability: tier-2 contexts where read performance or operational autonomy requires a local data store.*
-
-The autonomous bubble extends the bubble pattern with a local data store. The bubble's anti-corruption layer no longer queries the legacy synchronously; instead, the legacy publishes domain events (via CDC or application-level events) that the bubble consumes, projecting them into its own local data substrate. The bubble can then fulfil read operations without round-tripping to the legacy, achieving performance and operational independence the basic bubble cannot.
-
-The trade-off is eventual consistency. The bubble's projection lags the legacy by however long the event pipeline takes to propagate. For read-heavy workloads where the consistency requirement is *fresh enough*, not *strictly synchronous*, the autonomous bubble is the right shape. For workloads where strict consistency is required, the basic bubble (synchronous to the legacy) remains appropriate.
-
-In mainframe modernization, the autonomous bubble is a stepping stone toward full extraction. The local data store is the future bounded context's data substrate, populated initially from legacy events; over time, the bubble takes over writes too, at which point it is no longer a bubble — it is an extracted bounded context. The autonomous bubble is what *migrate reads first* (B.7) produces architecturally.
-
-*Related patterns in the main body: 12 (Commands and Events as Logical Boundary), 14 (Modular Monolith), 27 (Rollout and Cutover), 28 (Dual-Run Coexistence).*
-
----
-
-## B.4: Expose Legacy Asset
-
-*Origin: Nick Tune (2025) and broader integration-patterns literature. Mainframe applicability: foundational — most mainframe modernizations start here.*
-
-The legacy can be exposed to modernized subsystems through two mechanisms: a synchronous API (REST, gRPC, SOAP over the legacy as façade) or asynchronous domain events (CDC or application-level). The choice is not exclusive — most modernizations end up exposing the legacy through both, depending on which modernized subsystem needs which kind of access.
-
-The API form is appropriate when the modernized subsystem needs synchronous read or write access to legacy data with strict consistency. The event form is appropriate when the modernized subsystem needs to react to changes in the legacy without coupling to its request-response cycle. Sub-pattern B.5 (CDC vs Application-level Events) addresses how to produce the events themselves.
-
-In mainframe modernization, the API form typically requires building a façade over CICS transactions — the legacy itself does not naturally expose HTTP endpoints. Raincode-compiled COBOL containers (used in Rosetta as the Legacy Twin per Pattern 16) can serve as the runtime for such façades. The event form requires either CDC against VSAM/DB2 or instrumentation of the COBOL programs themselves.
-
-The legacy-as-façade is the operational dual of the legacy-as-oracle (Pattern 2). Pattern 2 uses the running legacy as ground truth for verification; *expose legacy asset* uses the running legacy as ground truth for integration during the dual-run period. Both depend on the same operational property: the legacy is running, observable, and queryable.
-
-*Related patterns in the main body: 2 (Legacy as Oracle), 12 (Commands and Events as Logical Boundary), 27 (Rollout and Cutover), 28 (Dual-Run Coexistence).*
-
----
-
-## B.5: CDC vs Application-Level Events
-
-*Origin: Industry practice, articulated as decision by Nick Tune (2025). Mainframe applicability: core decision in any dual-run period.*
-
-When the legacy must publish events for modernized subsystems to consume, two mechanisms are available. **Change Data Capture (CDC)** taps the legacy's data store directly — DB2 log readers, VSAM journal records, file-change monitors — and emits one event per row change. **Application-level events** instrument the legacy's code path to emit events with business intent — `EmployeeRegistered`, `ContractTerminated` — typically by adding hook points inside the COBOL programs themselves.
-
-The trade-off:
-
-- **CDC** is easier to install in legacy systems because it does not require modifying the legacy code; it catches all data modification scenarios including direct database changes, batch updates, and out-of-band corrections; but it leaks the legacy data model to consumers and couples them to the legacy schema.
-- **Application-level events** provide richer context (the event carries business intent, not just diff data), avoid coupling consumers to the legacy schema, and naturally produce events in the canonical ubiquitous language; but they require code changes in the legacy and miss data changes that bypass the instrumented paths.
-
-In mainframe modernization, both mechanisms typically coexist. CDC against DB2 captures the long tail of edge cases and batch updates; application-level instrumentation (Witness, in Rosetta terms — Pattern 17) captures the business-meaningful events for the hot paths the modernization actually cares about. The two streams feed different consumers: CDC feeds reconciliation and audit; application-level events feed bounded contexts that need semantic clarity.
-
-This is one of the decisions Pattern 28 in the main body operationalises — the choice between CDC and application-level events is per-domain, not global, and the dual-run infrastructure must support both.
-
-*Related patterns in the main body: 12 (Commands and Events as Logical Boundary), 17 (Hypothesis-Driven Verification), 28 (Dual-Run Coexistence).*
-
----
-
-## B.6: Migrate Writes First
-
-*Origin: Nick Tune (2025). Mainframe applicability: tier-2 and tier-3 contexts where the goal is to unlock new write use cases.*
-
-When migrating a bounded context, the team can choose to take over write operations first and continue to serve reads from the legacy until the migration completes. The modernized system owns the canonical write model; reads either fall back to the legacy (with synchronization) or are deferred until later phases.
-
-This is the right choice when the goal of the migration is to unlock new write use cases — partner integrations, new APIs, new business processes — that the legacy cannot support. The team wants the new model expressed in code as soon as possible because that is what blocks the new capability. Read migration follows when convenient.
-
-In mainframe modernization, *writes first* is operationally demanding because the legacy's read consumers (other CICS transactions, batch jobs, downstream reporting) continue to expect the legacy data store to be authoritative. The modernized system must therefore synchronise its writes back to the legacy substrate, which is a form of dual-write — covered in Pattern 28 — with the consistency risks dual-write carries.
-
-The CICS transactional model amplifies this: when writes happen in the modernized C# but reads in CICS see the legacy substrate, the team must reason carefully about which transactional boundaries (Pattern 13) survive the split. *Migrate writes first* is rarely a clean migration on mainframe; it is typically a deliberately accepted cost paid for unlocking specific business capabilities.
-
-*Related patterns in the main body: 13 (Transactional Boundaries), 27 (Rollout and Cutover), 28 (Dual-Run Coexistence).*
-
----
-
-## B.7: Migrate Reads First
-
-*Origin: Nick Tune (2025). Mainframe applicability: tier-2 contexts where the goal is to unlock downstream consumers, not new write capabilities.*
-
-The inverse of B.6. The team takes over read operations first — typically via the autonomous bubble pattern (B.3), with the legacy publishing events that the modernized side projects into a local data store. Writes continue to happen in the legacy. The modernized read model serves new consumers, new APIs, new search capabilities.
-
-This is the right choice when the bottleneck is *downstream consumers waiting for the modernized read model* — other bounded contexts that cannot fully migrate until the upstream domain publishes events in the canonical ubiquitous language. *Reads first* unlocks the migration of downstream contexts before the upstream context is fully owned by the modernized side.
-
-In mainframe modernization, *reads first* is operationally easier than *writes first* because the legacy retains write authority and therefore retains the transactional model. The modernized side absorbs eventual-consistency lag as the cost of decoupling. The pattern is particularly valuable when the upstream context (employee, contract, account) is consumed by many downstream contexts (payroll, billing, reporting) — each downstream context can begin migrating against the modernized read model while the upstream context is still on the legacy.
-
-Tune's observation is important: in practice, the choice between *writes first* and *reads first* is rarely strict. Real migrations are sequences of micro-decisions about which specific operations migrate when — *some* writes migrate alongside *some* reads, in an order that responds to the specific business pressures at each phase. The pattern names the starting posture; the execution interleaves.
-
-*Related patterns in the main body: 12 (Commands and Events as Logical Boundary), 27 (Rollout and Cutover), 28 (Dual-Run Coexistence).*
-
----
-
-## B.8: Republishing Legacy Events as Decoupling Mechanism
-
-*Origin: Nick Tune (2025), formalised from PayFit case study. Mainframe applicability: high — most mainframe domains have many downstream consumers waiting for them.*
-
-A specific application of B.7 (migrate reads first) deserves naming as a pattern in its own right. When an upstream domain (employee management, customer record, account master) blocks many downstream domains from migrating because they depend on its events, the upstream team can publish events in the canonical ubiquitous language *before* fully completing its own migration. The modernized side acts as a bubble with new vocabulary; the events it publishes are the new contract; the downstream consumers can begin migrating against the new vocabulary immediately.
-
-Mechanically: the legacy continues to own writes; CDC or application-level instrumentation captures legacy state changes; the bubble translates those changes into events in the canonical vocabulary (`EmployeeRegistered`, `WorkingAgreementSigned`) and publishes them. Downstream consumers subscribe to the canonical events, not to the legacy events. The legacy substrate is hidden behind the bubble's translation.
-
-The value is temporal decoupling. Downstream domains can migrate on their own schedule without waiting for the upstream to complete write migration. The upstream domain takes ownership of the *contract* (the event vocabulary) before it takes ownership of the *implementation* (the write model).
-
-In mainframe modernization, this pattern is what Pattern 28's dual-run infrastructure operationalises for upstream-of-many domains. The bubble's translation is itself a kind of anti-corruption layer (Evans, 2003) — protecting the downstream domains from inheriting the legacy's vocabulary while the upstream is still on the legacy substrate.
-
-*Related patterns in the main body: 5 (Domain Ontology), 12 (Commands and Events as Logical Boundary), 14 (Modular Monolith), 28 (Dual-Run Coexistence).*
-
----
-
-## B.9: Bi-directional Model Sync *(antipattern)*
-
-*Origin: named as risky by Nick Tune (2025). Mainframe applicability: frequent — the default failure mode of partially-migrated tier-2 contexts.*
-
-Two systems own the same conceptual entity. The legacy has its model (`Employee` with embedded contract details); the modernized side has its model (`Collaborator` with separate `Working Agreement`). Both sides accept writes. The two models must remain consistent, so the team builds bidirectional synchronisation: changes on the legacy side propagate to the modernized side, and changes on the modernized side propagate back to the legacy.
-
-The pattern is risky because the synchronisation is rarely symmetric in practice. The legacy model has decades of accumulated workarounds, partial validations, edge cases that the modernized model does not preserve. When changes flow from modernized to legacy, the legacy accepts them silently; when changes flow from legacy to modernized, the stricter validation on the modernized side rejects them as invalid — even though the legacy considers them perfectly valid.
-
-This is the *Asymmetrical Validation* failure (B.10) made structural: the bidirectional flow exposes every disagreement between the two models, and each disagreement is a sync failure that requires either manual reconciliation or relaxation of the modernized model's validation rules. Either response erodes the value of the migration.
-
-The corrective is unidirectional flow with explicit authority. At any moment, exactly one side owns writes for a given entity. The other side may project the writes (B.7) but does not accept independent writes. The migration is a sequence of authority transitions, not a permanent bidirectional sync.
-
-In mainframe modernization, *bi-directional model sync* is often adopted as an expedient during dual-run when the team cannot decide which side should own writes for a given context. The pattern is corrected by Pattern 28's explicit data-authority schedules — each context, at each point in time, has exactly one authoritative side.
-
-*Related patterns in the main body: 5 (Domain Ontology — naming what the entity actually is), 12 (Commands and Events as Logical Boundary), 28 (Dual-Run Coexistence).*
-
----
-
-## B.10: Asymmetrical Validation *(antipattern)*
-
-*Origin: Nick Tune (2025). Mainframe applicability: severe — accumulated legacy data is rarely clean.*
-
-The legacy has been running for ten or twenty years. Over that time it has accumulated data that does not conform to what the canonical ubiquitous language now considers valid: customers without addresses (because the field was optional in 1995), contracts with empty effective dates (because the validation was added later), accounts with negative balances that should not be possible (because of a bug that was never fully reconciled). The modernized side, designed from the canonical ontology, applies strict validation. *This time we are going to do things properly.*
-
-When the modernization synchronises data from legacy to modernized, the strict validation on the modernized side rejects records the legacy considers valid. Every rejection is a divergence to investigate. The team is faced with a choice: relax the validation rules on the modernized side (inheriting the legacy's accumulated drift), build per-record exception handling (which becomes its own maintenance burden), or remediate the legacy data before migration (which can be a multi-year project in itself).
-
-The antipattern is in pretending the choice does not have to be made. The default failure mode is: the migration begins assuming the data is clean, discovers it isn't, gets bogged down in per-record reconciliation, and either relaxes the validation (defeating the point of the new model) or stalls.
-
-The corrective is naming the data-quality problem as a first-class workstream alongside the migration. The capability map (Pattern 1) classifies data domains by data quality, not just by business value. Domains with high data drift get explicit remediation phases — sometimes as part of the migration, sometimes before it begins. The domain ontology (Pattern 5) names what the entities *should* be; the data remediation reconciles the legacy substrate against that ontology before the migration synchronises it.
-
-*Related patterns in the main body: 1 (Capability Strategy), 5 (Domain Ontology), 16 (Twin Verification), 28 (Dual-Run Coexistence).*
-
----
-
-## B.11: Tri-directional Sync *(antipattern, or unavoidable consequence)*
-
-*Origin: Nick Tune (2025), from PayFit case study. Mainframe applicability: common in modernizations that have already gone through one or more partial migrations.*
-
-The current state of a domain is not always *one legacy system and one modernized system*. Frequently, by the time the team starts the *current* modernization, the domain already spans multiple systems — the original mainframe monolith, a first-generation migration that did not complete, perhaps a partial extraction to a SaaS that also did not complete. The current modernization is the third or fourth attempt, and each predecessor left state behind in its own substrate.
-
-The naive instinct is to sync across all of them: each system that holds state for the domain propagates its changes to every other system that holds state for the same domain. With three substrates this produces six synchronisation flows; with four, twelve. The combinatorics overwhelm the team within months.
-
-Tune's observation is that *tri-directional sync is not a design failure — it is a mathematical consequence of the incremental migration decision when multiple legacy substrates already exist*. The corrective is not to avoid sync (the legacy systems are already there, they cannot be wished away) but to make the *path to single authority* part of the migration plan. Each substrate has a planned exit; the sync infrastructure is temporary; the migration ends when one substrate owns the domain.
-
-In mainframe modernization, *tri-directional sync* often arises when the current C# migration replaces an earlier Java migration that replaced part of the original mainframe — three substrates, three sync flows, each with its own bugs and edge cases. The corrective is the explicit decommission schedule of Pattern 14 (modular monolith as transitional architecture) and Pattern 27 (rollout and cutover at bounded context granularity): each substrate has a date by which it is decommissioned, the sync infrastructure exists only until that date, and the migration plan tracks the substrate count over time as a primary metric.
-
-*Related patterns in the main body: 14 (Modular Monolith), 27 (Rollout and Cutover), 28 (Dual-Run Coexistence).*
-
----
-
-## B.12: Drifting Domain Model During Migration
-
-*Origin: Nick Tune (2025), formalised from PayFit case study. Mainframe applicability: foundational — most mainframe modernizations encounter this.*
-
-During the migration, the domain model is rarely static. The legacy implements one model (`Contract` with embedded personal information); the canonical ontology says it should be another (`Collaborator` with `Profile` and one-or-more `Working Agreements`, where `Contract` is a subtype of `Working Agreement`). The migration is therefore not a translation of one model into another — it is *the reconceptualisation of the domain* while the migration is in flight.
-
-This is not an antipattern; it is what serious legacy modernization actually is. The pattern is named here because most modernization literature implicitly assumes a stable target model, and the failure of that assumption is one of the most common stalls in real engagements. The team starts with a target model that turns out to be wrong; discovers the right model only by trying to migrate against the wrong one; revises the target model mid-flight; and discovers that the new model has different bounded context boundaries, different aggregate shapes, different events.
-
-The corrective is recognising this *up front* as a property of the modernization, not as a failure of the planning. The domain ontology (Pattern 5) is an independent substrate that evolves during the modernization, validated against the legacy as oracle (Pattern 2) but not constrained by it. Twin verification (Pattern 16) and hypothesis-driven verification (Pattern 17) provide the behavioural ground truth that lets the team evolve the model without losing what the legacy actually does. The intermediate representation (Pattern 9) is versioned so that earlier modernization decisions remain traceable as the model evolves.
-
-In mainframe modernization, *drifting domain model* is particularly acute because the legacy itself accumulated drift over decades. The migration's reconceptualisation is therefore not just *the modern model is different from the legacy model* but *the legacy model itself contains three internally inconsistent definitions, and the canonical model must resolve them*. This is what the *Behavioural Equivalence Without Ontology* antipattern in the main body of this catalog protects against: a modernization that preserves the legacy's confusion in clean modern code, never reconceptualising the domain.
-
-*Related patterns in the main body: 5 (Domain Ontology), 9 (Intermediate Representation), 16 (Twin Verification), 17 (Hypothesis-Driven Verification).*
-
----
-
-## How this appendix relates to the main body
-
-The patterns in this appendix and the patterns in the main body of the catalog operate at different levels of abstraction. The appendix patterns describe *migration mechanisms* — the operational shapes by which legacy and modernized coexist during the transition. The main body patterns describe *AI-assisted DDD modernization end-to-end* — the recovery, generation, verification, and governance work that the modernization performs *within* the migration mechanism.
-
-A typical mainframe modernization composes both. The team chooses *strangler fig at bounded context granularity* (B.1, Pattern 27) as the structural approach. Within each bounded context, the team chooses *autonomous bubble with reads-first migration* (B.3, B.7) as the transition shape. The autonomous bubble is populated via *CDC plus application-level events* (B.5, Pattern 28). The domain ontology that the modernized side encodes is recovered via Pattern 5; the structural decomposition via Patterns 3, 6, 7; the scaffolds via Patterns 8–11; the verification via Patterns 16–18; the governance via Patterns 19–26.
-
-The migration patterns name *what kind of coexistence* the modernization sustains. The main body patterns name *what the modernization actually does inside that coexistence*. Both vocabularies are necessary; neither replaces the other.
-
----
-
-**📊 TABLE B.1 — *Migration patterns and their intersections with the main body***
-
-*Reference table. Three columns: Migration pattern (B.x), Short description, Intersecting main-body patterns. Rows: B.1 Strangler Fig → 14, 27, 28; B.2 Bubble → 12, 14, 27; B.3 Autonomous Bubble → 12, 14, 27, 28; B.4 Expose Legacy Asset → 2, 12, 27, 28; B.5 CDC vs App-Level Events → 12, 17, 28; B.6 Migrate Writes First → 13, 27, 28; B.7 Migrate Reads First → 12, 27, 28; B.8 Republishing Legacy Events → 5, 12, 14, 28; B.9 Bi-directional Model Sync → 5, 12, 28; B.10 Asymmetrical Validation → 1, 5, 16, 28; B.11 Tri-directional Sync → 14, 27, 28; B.12 Drifting Domain Model → 5, 9, 16, 17. Style: clean three-column reference table. Goal: reader can locate the main-body patterns that apply when working within a particular migration shape.*
+*Two-column reference table. Left column: antipattern name and brief summary (one phrase). Right column: corrective pattern numbers and names with brief explanation of how each pattern protects against the antipattern. Rows: Jobol → Pattern 8, 10; Silent semantics loss → Pattern 2, 16; False clean code → Pattern 17; Frozen architecture → Pattern 10, 11; Vendor oracle → Pattern 2; Behavioural equivalence without ontology → Pattern 2, 5; Synchronisation antipatterns during incremental migration → Pattern 12, 28; Agent army → Pattern 23, 26. Style: clean reference table with row banding. Goal: when reviewer encounters an antipattern in practice, they can find the patterns that correct it without re-reading the catalog.*
 
 ---
 
@@ -1984,7 +1737,17 @@ Definitions of the DDD and modernization terms used throughout the catalog. Wher
 
 **Anti-corruption layer.** A translation layer between two bounded contexts (or between a modernized system and a legacy system) that prevents concepts from one polluting the model of the other. The anti-corruption layer is itself a bounded context, with the responsibility of speaking both vocabularies and translating between them. *See Evans 2003, Chapter 14.*
 
+**Asymmetrical Validation.** A migration antipattern in which the modernized system enforces stricter validation than the legacy, while the legacy holds years of data that does not satisfy those rules. Synchronisation between the two sides repeatedly fails on data the legacy considers valid and the modernized side rejects, producing chronic drift and operational burden. *See Nick Tune, [legacy-modernization.io](https://legacy-modernization.io); related to the *Behavioural Equivalence Without Ontology* antipattern.*
+
+**Autonomous Bubble.** A variant of the Bubble pattern in which the new subsystem holds its own local data store, populated asynchronously from legacy events through an anti-corruption layer. Unlike a pure Bubble, the autonomous bubble can fulfil reads without calling back into the legacy, which decouples its runtime from legacy availability and performance. *See Nick Tune, [legacy-modernization.io](https://legacy-modernization.io); related to Pattern 14 (Transitional Architecture) and Pattern 12 (Commands and Events as Logical Boundary).*
+
+**Bi-directional Model Sync.** A migration antipattern in which a legacy entity and a modernized entity are kept in continuous synchronisation across both directions of writes. The arrangement is fragile because each side's invariants must round-trip through the other's model; semantic mismatches surface as recurrent drift, and the synchronisation becomes load-bearing infrastructure that resists retirement. *See Nick Tune, [legacy-modernization.io](https://legacy-modernization.io); related to the *Behavioural Equivalence Without Ontology* antipattern.*
+
 **Bounded context.** An explicit boundary within which a particular domain model applies. Inside the boundary, terms have a single meaning; across boundaries, the same term may mean different things. The bounded context is the central unit of strategic design in DDD. *See Evans 2003, Chapter 14; Martin Fowler's BoundedContext entry.*
+
+**Bubble.** A migration pattern in which a new subsystem is built with a clean target domain model and accesses legacy data exclusively through an anti-corruption layer, without local persistence and without synchronisation. The bubble eventually "pops" when the legacy data store is retired. Useful when the target model can be designed independently but the underlying data must remain in the legacy during the transition. *See Nick Tune, [legacy-modernization.io](https://legacy-modernization.io); related to Pattern 14 (Transitional Architecture).*
+
+**CDC vs Application-level Events.** A migration design decision between capturing data changes at the storage layer (Change Data Capture) versus emitting domain events from within the legacy application code. CDC is easier to instrument on legacy systems and captures every modification, but it leaks the legacy's storage model into downstream consumers. Application-level events carry richer semantic context and avoid that coupling, but require intervention in legacy code. *See Nick Tune, [legacy-modernization.io](https://legacy-modernization.io); related to Pattern 28 (Dual-Run Coexistence) and Pattern 12 (Commands and Events as Logical Boundary).*
 
 **Context map.** A representation of the relationships between bounded contexts in a system — which contexts share concepts, which translate between each other, which are upstream or downstream of others. *See Evans 2003, Chapter 14; Vernon 2013, Chapter 3.*
 
@@ -1994,11 +1757,19 @@ Definitions of the DDD and modernization terms used throughout the catalog. Wher
 
 **Domain event.** A statement about something significant that happened in the domain, modelled as a first-class object. Domain events are immutable, named in past tense, and form the basis of event-driven architectures within DDD. *See Vernon 2013, Chapter 8.*
 
+**Drifting Domain Model.** The phenomenon in which the target domain model evolves *during* the migration itself, as the team's understanding sharpens through contact with the legacy and with domain experts. Concepts that started as one-to-one renames (Employee → Collaborator) end up restructured (Collaborator with one Profile and many Working Agreements, of which Contract is one subtype). The migration is not a translation; it is a re-articulation. *See Nick Tune, [legacy-modernization.io](https://legacy-modernization.io); related to Pattern 5 (Domain Ontology as Independent Substrate).*
+
 **Event Storming.** A workshop technique developed by Alberto Brandolini for collaboratively recovering domain understanding through orange sticky notes representing domain events arranged on a timeline. Particularly useful for legacy archaeology and for establishing ubiquitous language with domain experts. *See Brandolini, *Introducing EventStorming*.*
+
+**Expose Legacy Asset.** A migration pattern in which functionality or data inside the legacy is made available to modernized subsystems through an explicit interface — typically a synchronous API or a stream of domain events — rather than through direct database access or in-process coupling. The interface serves as a stable contract while the legacy itself remains in place. *See Nick Tune, [legacy-modernization.io](https://legacy-modernization.io); related to Pattern 19 (Bounded MCP Servers) and Pattern 12 (Commands and Events as Logical Boundary).*
 
 **Generic subdomain.** A subdomain that the business needs but does not differentiate on — typically capabilities that can be bought or built off-the-shelf (logging, authentication, reference data). Strategic design favours minimal investment in generic subdomains. *See Evans 2003, Chapter 15.*
 
 **Hexagonal architecture.** A pattern (also called ports and adapters) in which the domain logic sits at the centre, surrounded by adapter layers that translate between the domain and external concerns (databases, APIs, UIs). Used in this catalog for tier-3 strategic core scaffolds. *See Alistair Cockburn's hexagonal architecture writings.*
+
+**Migrate Reads First / Migrate Writes First.** Two opposite ordering strategies within an incremental migration of a single capability. *Reads first* migrates query paths to the modernized system while writes continue against the legacy, typically using events or CDC to keep the modernized read model fresh; it unblocks downstream consumers quickly. *Writes first* migrates the write path to the modernized system while reads continue against the legacy until the read model is ready; it unblocks new use cases that depend on the new write model. The choice is strategic, not technical: it depends on which downstream pressure dominates. *See Nick Tune, [legacy-modernization.io](https://legacy-modernization.io); related to Pattern 27 (Rollout and Cutover at Bounded Context Granularity).*
+
+**Republishing Legacy Events.** A migration technique in which an autonomous bubble (or equivalent transitional subsystem) consumes events from the legacy and re-emits them in the target domain vocabulary, allowing downstream consumers to decouple from the legacy model *before* the migration is complete. Consumers integrate against the canonical events from the start; the bubble bridges the vocabulary gap during transition. *See Nick Tune, [legacy-modernization.io](https://legacy-modernization.io); related to Pattern 12 (Commands and Events as Logical Boundary).*
 
 **Strategic design.** The level of DDD that addresses bounded contexts, subdomain types, context maps, and the distribution of architectural attention across the system. Strategic design happens at the system level. *See Evans 2003, Part IV.*
 
@@ -2007,6 +1778,8 @@ Definitions of the DDD and modernization terms used throughout the catalog. Wher
 **Supporting subdomain.** A subdomain that supports the core but does not itself differentiate the business. Strategic design treats supporting subdomains as candidates for moderate investment — enough structure to evolve, not enough to over-engineer. *See Evans 2003, Chapter 15.*
 
 **Tactical design.** The level of DDD that addresses aggregates, entities, value objects, domain events, repositories, services, and how each bounded context's domain model is structured internally. Tactical design happens at the bounded context level. *See Evans 2003, Parts I–III; Vernon 2013.*
+
+**Tri-directional Sync.** A migration antipattern that emerges when an incremental migration is overlaid on a landscape that already contains multiple legacy systems holding overlapping data. The "two-way sync" framing collapses: with three systems the team must build and operate six synchronisation flows; with four, twelve. The combinatorial cost is not a design failure but a mathematical consequence of incremental migration with pre-existing legacy plurality. *See Nick Tune, [legacy-modernization.io](https://legacy-modernization.io); related to the *Behavioural Equivalence Without Ontology* antipattern.*
 
 **Ubiquitous language.** The shared vocabulary of a domain, used consistently by domain experts, developers, and the system itself (in code, in conversations, in documentation). The ubiquitous language is established within a bounded context — the same term may have different ubiquitous languages in different contexts. *See Evans 2003, Chapter 2.*
 
@@ -2106,13 +1879,13 @@ Only patterns with concrete implementations today appear here. Patterns marked *
 - GitHub-native gates: branch protection, required status checks, GitHub Actions, issue templates
 - Persistence layer for state, replay semantics for failed steps
 
-**Pattern 23 — The Harness as Self-Observing State Machine**
+**Pattern 23 — The Harness as State Machine**
 - State machine implementation: typed C# (Microsoft Agent Framework)
 - Hooks: PreToolUse and PostToolUse hooks defined in code
 - Per-project contract: scaffold-meta.json
 - GitHub-native enforcement: branch protection rules, required status checks, GitHub Actions
 
-**Pattern 22 — Heuristics as Explicit Artifacts**
+**Pattern 20 — Harness Self-Observation and Refinement**
 - Status: designed, not yet built
 
 **Pattern 24 — Reasoning Telemetry as First-Class Output**
@@ -2138,7 +1911,7 @@ The patterns above are reports from inside an experiment. Patterns marked *worki
 
 I expect the catalog to evolve. Some patterns will sharpen with use. Some will turn out to be specific to CICS COBOL and not generalise. Some will be replaced by patterns I haven't yet found. The catalog as it stands is a snapshot of what the experiment has taught me at this moment.
 
-Lineage. The Gang of Four's *Design Patterns* (Gamma, Helm, Johnson, Vlissides, 1994) established the form this catalog follows. Eric Evans' *Domain-Driven Design* (2003) is the discipline this catalog applies to a territory where DDD is rarely attempted; Vaughn Vernon's *Implementing Domain-Driven Design* (2013) is the tactical reference that informs how the IR encodes aggregates and events. Michael Feathers' *Working Effectively with Legacy Code* is the foundation Pattern 2 stands on. Kent Beck's Exploristan framing is the methodological frame for the whole prototype. Alberto Brandolini's Event Storming is the workshop technique that complements Pattern 5's ontology recovery. Nick Tune's *Legacy Architecture Migration Patterns with DDD & AI* (2025) and the legacy-modernization.io catalog he curates are the source most of Appendix B's vocabulary builds on — the bubble pattern, the autonomous bubble, the CDC-vs-application-level-events decision, the writes-first/reads-first dichotomy, and the antipattern catalog (bi-directional sync, asymmetrical validation, tri-directional sync, drifting domain model). Specific patterns owe debts to specific people — Charity Majors, Jeremy Miller, Birgitta Böckeler, Anthony Alcaraz — named in the body of the patterns where their contributions actually shaped the work. The catalog accumulates from work done in the open by many practitioners across the DDD and modernization communities; my contribution is organising what has helped me into a vocabulary that may help others bridge the two.
+Lineage. The Gang of Four's *Design Patterns* (Gamma, Helm, Johnson, Vlissides, 1994) established the form this catalog follows. Eric Evans' *Domain-Driven Design* (2003) is the discipline this catalog applies to a territory where DDD is rarely attempted; Vaughn Vernon's *Implementing Domain-Driven Design* (2013) is the tactical reference that informs how the IR encodes aggregates and events. Michael Feathers' *Working Effectively with Legacy Code* is the foundation Pattern 2 stands on. Kent Beck's Exploristan framing is the methodological frame for the whole prototype. Alberto Brandolini's Event Storming is the workshop technique that complements Pattern 5's ontology recovery. Specific patterns owe debts to specific people — Charity Majors, Nick Tune, Jeremy Miller, Birgitta Böckeler, Anthony Alcaraz — named in the body of the patterns where their contributions actually shaped the work. The catalog accumulates from work done in the open by many practitioners across the DDD and modernization communities; my contribution is organising what has helped me into a vocabulary that may help others bridge the two.
 
 If you're a DDD practitioner curious about how the discipline scales when AI assistance meets blackfield mainframe modernization, I'd be interested to hear which patterns resonate, which feel forced, what's missing. If you're a mainframe modernization practitioner less familiar with DDD, I'd be interested to hear whether the framing helps clarify what the work actually is, or whether it adds vocabulary without adding clarity. The catalog improves through use.
 
