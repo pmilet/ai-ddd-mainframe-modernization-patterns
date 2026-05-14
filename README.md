@@ -2,10 +2,10 @@
 
 ## A Pattern Catalog from Project Rosetta
 
-[![Status](https://img.shields.io/badge/status-draft%20v0.4-orange)](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases)
+[![Status](https://img.shields.io/badge/status-draft%20v0.5-orange)](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases)
 [![License](https://img.shields.io/badge/license-CC%20BY%204.0-blue)](LICENSE)
 
-Twenty-eight patterns where Domain-Driven Design meets blackfield mainframe modernization. Some validated inside the Rosetta prototype, some in active construction, some projected from validated principles. None has yet been applied to a real customer engagement — that's the next phase, not yet started.
+Twenty-two patterns where Domain-Driven Design meets blackfield mainframe modernization. Some validated inside the Rosetta prototype, some in active construction, some projected from validated principles. None has yet been applied to a real customer engagement — that's the next phase, not yet started.
 
 This is the long version of what I've been writing about on LinkedIn under the [LegacyLabs](https://www.linkedin.com/newsletters/legacy-labs-7317839126702055426/) name. The shorter posts and newsletter there were the introduction. This is the working catalog.
 
@@ -15,8 +15,8 @@ This is the long version of what I've been writing about on LinkedIn under the [
 
 | Format | Description |
 |--------|-------------|
-| 📄 [**PDF**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v0.4/AI-Assisted.Domain-Driven.Mainframe.Modernization.pdf) | Full catalog, print-friendly |
-| 📱 [**EPUB**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v0.4/AI-Assisted.Domain-Driven.Mainframe.Modernization.epub) | E-reader format (Kindle, Kobo, Apple Books) |
+| 📄 [**PDF**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v0.5/AI-Assisted.Domain-Driven.Mainframe.Modernization.pdf) | Full catalog, print-friendly |
+| 📱 [**EPUB**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v0.5/AI-Assisted.Domain-Driven.Mainframe.Modernization.epub) | E-reader format (Kindle, Kobo, Apple Books) |
 | 📝 [**Markdown source**](AI-Assisted%20Domain-Driven%20Mainframe%20Modernization.md) | Read directly on GitHub |
 
 ---
@@ -31,7 +31,7 @@ The catalog is a mix of three kinds of patterns:
 - **Adapted patterns** — established practices applied to mainframe modernization with explicit recalibration
 - **DDD re-articulations** — canonical DDD patterns recast through the lens of legacy mainframe modernization
 
-It stands on shoulders — Eric Evans, Vaughn Vernon, Martin Fowler, Sam Newman, Alberto Brandolini, Cyrille Martraire, Birgitta Böckeler, Charity Majors, Nick Tune, Uberto Barbini, Kent Beck — and names them as it builds.
+It stands on shoulders — Eric Evans, Vaughn Vernon, Martin Fowler, Sam Newman, Alberto Brandolini, Cyrille Martraire, Birgitta Böckeler, Charity Majors, Nick Tune, Uberto Barbini, Kent Beck, Matthew Skelton, Manuel Pais — and names them as it builds.
 
 ---
 
@@ -39,9 +39,9 @@ It stands on shoulders — Eric Evans, Vaughn Vernon, Martin Fowler, Sam Newman,
 
 | Status | Count | Meaning |
 |--------|-------|---------|
-| **working** | 15 | Validated inside the Rosetta prototype |
-| **in progress** | 9 | In active construction |
-| **next** | 4 | Designed from validated principles but not yet built |
+| **prototype-validated** | 15 | Validated inside the Rosetta prototype |
+| **in construction** | 6 | In active construction |
+| **designed** | 1 | Designed from validated principles but not yet built |
 
 Each pattern carries a status marker. The reader who wants only validated patterns can filter by status; the reader interested in the architectural reasoning can engage with all of them.
 
@@ -52,11 +52,11 @@ Each pattern carries a status marker. The reader who wants only validated patter
 The catalog is organised in four Parts:
 
 - **Part I — Strategic Recovery** (Patterns 1–7): recovering the domain, identifying bounded contexts, establishing ubiquitous language
-- **Part II — Tactical Generation** (Patterns 8–15): how each bounded context materialises in modern code
-- **Part III — Verification** (Patterns 16–18): how the modernization knows the generated code is right
-- **Part IV — Governance** (Patterns 19–28): how the modernization stays coherent across the agentic system
+- **Part II — Tactical Generation** (Patterns 6–12): how each bounded context materialises in modern code
+- **Part III — Verification** (Patterns 13–14): how the modernization knows the generated code is right
+- **Part IV — Governance** (Patterns 15–22): how the modernization stays coherent across the agentic system and the teams that operate around it
 
-Plus seven antipatterns naming the failure modes the patterns are built against.
+Plus nine antipatterns naming the failure modes the patterns are built against.
 
 ---
 
@@ -106,4 +106,4 @@ If you reference this catalog in academic, professional, or commercial work, ple
 
 ---
 
-*Twenty-eight patterns. More is not better. Less is better.*
+*Twenty-two patterns. More is not better. Less is better.*

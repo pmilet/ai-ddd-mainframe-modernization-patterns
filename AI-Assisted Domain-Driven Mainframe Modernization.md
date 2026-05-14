@@ -2,27 +2,31 @@
 
 ## A Pattern Catalog from Project Rosetta
 
-*Twenty-eight patterns where Domain-Driven Design meets blackfield mainframe modernization.*
+*Twenty-two patterns where Domain-Driven Design meets blackfield mainframe modernization.*
 
----
+-----
 
 ## How to read this catalog
 
-This catalog documents twenty-eight patterns I've encountered building Project Rosetta, a research prototype for AI-assisted modernization of COBOL/CICS mainframe systems. It follows the structure popularised in software engineering by the Gang of Four's *Design Patterns* (Gamma, Helm, Johnson, Vlissides, 1994) — each pattern named, situated in its context, articulated as a solution to a recurring problem with its forces, consequences, and relationships to other patterns. The form is established; what's specific here is the territory.
+This catalog documents twenty-two patterns I've encountered building Project Rosetta, a research prototype for AI-assisted modernization of COBOL/CICS mainframe systems. It follows the structure popularised in software engineering by the Gang of Four's *Design Patterns* (Gamma, Helm, Johnson, Vlissides, 1994) — each pattern named, situated in its context, articulated as a solution to a recurring problem with its forces, consequences, and relationships to other patterns. The form is established; what's specific here is the territory.
 
-The name *Project Rosetta* is deliberate. The Rosetta Stone made ancient Egyptian readable by presenting the same decree in three scripts — hieroglyphic, demotic, Greek — and allowing meaning to be recovered through triangulation between representations. Project Rosetta does the same with legacy mainframe systems: the COBOL source, the structural graph (Pattern 3), the domain ontology (Pattern 5), and the intermediate representation (Pattern 9) are different representations of the same system, and meaning is recovered through triangulation between them. The legacy is not abandoned and rewritten; it is read, understood, and translated — with the running system as oracle (Pattern 2) and the substrates as the parallel inscriptions that let understanding survive the translation.
+The name *Project Rosetta* is deliberate. The Rosetta Stone made ancient Egyptian readable by presenting the same decree in three scripts — hieroglyphic, demotic, Greek — and allowing meaning to be recovered through triangulation between representations. Project Rosetta does the same with legacy mainframe systems: the COBOL source, the structural graph, the domain ontology, and the intermediate representation are different representations of the same system, and meaning is recovered through triangulation between them. The legacy is not abandoned and rewritten; it is read, understood, and translated — with the running system as oracle and the substrates as the parallel inscriptions that let understanding survive the translation.
 
-The catalog has a thesis: **AI-assisted mainframe modernization is, at its core, a Domain-Driven Design activity at scale**. The scale is what makes the work hard — and what makes AI assistance necessary. Strategic design (recovering the domain, identifying bounded contexts, establishing ubiquitous language) and tactical design (modelling aggregates, domain events, handlers) are the work the modernization actually performs. AI agents accelerate the mechanical parts; humans direct the strategic ones; the boundary between agentic and human work is itself an architectural commitment that needs explicit design. These are the patterns I've discovered while building Project Rosetta — the ones I think make sense for treating true blackfield legacy modernization through a DDD lens. Some are validated; some are in active construction; some are projected from validated principles. None is definitive. Other practitioners will find other patterns. This is mine. And one operational note: fewer patterns, denser articulation. More is not better. Less is better.
+The catalog has a thesis: **AI-assisted mainframe modernization is, at its core, a Domain-Driven Design activity at scale**. The scale is what makes the work hard — and what makes AI assistance necessary. Strategic design (recovering the domain, identifying bounded contexts, establishing ubiquitous language) and tactical design (modelling aggregates, domain events, handlers) are the work the modernization actually performs. AI agents accelerate the mechanical parts; humans direct the strategic ones; the boundary between agentic and human work is itself an architectural commitment that needs explicit design.
+
+These are the patterns I've discovered while building Project Rosetta — the ones I think make sense for treating true blackfield legacy modernization through a DDD lens. Some are validated; some are in active construction; some are projected from validated principles. None is definitive. Other practitioners will find other patterns. This is mine. And one operational note: fewer patterns, denser articulation. More is not better. Less is better.
 
 DDD has been applied extensively to greenfield development and to incremental refactoring of in-life systems. It has been applied less systematically to the territory where it is most needed: legacy mainframe systems decades old, written in languages whose original specifications were never written down, where the domain has drifted from whatever it once was and accumulated three definitions of every important concept. *Brownfield* is the established term for software work on existing systems; this catalog uses **blackfield** for the harder case — systems where the original engineers have moved on, the documentation is lost, and the domain knowledge has decayed into operational dialect, fragmented across modules. Brownfield is "existing systems you understand." Blackfield is "existing systems where understanding itself has to be recovered." Mainframe modernization is blackfield at its hardest: COBOL written in the eighties and nineties, CICS transactions evolved across decades, JCL and copybooks woven through millions of lines of code that the original team has long since left. AI assistance changes the economics of this work — what was previously infeasible at scale becomes tractable. This catalog is a contribution to that practice.
 
 The patterns are calibrated to mainframe COBOL/CICS modernization, where Rosetta has been validated. Many patterns generalise — the compiler principle, the IR contract, twin verification, the harness state machine, the cockpit — apply to any AI-assisted modernization where deterministic and probabilistic work need clear separation. Other patterns are mainframe-specific in their implementation — the linguistic cues for slice discovery (`XCTL`, `START TRANSID`, `EXEC CICS LINK`), the Raincode-compiled COBOL container as oracle, the CICS pseudo-conversational boundaries — and would need adaptation for other legacy stacks (PL/I, RPG, Adabas Natural, Java legacy). Each pattern body indicates where the underlying principle is universal versus where the implementation is mainframe-specific.
 
-The catalog is a mix of three kinds of patterns. **Original patterns** describe practices that emerged from building Project Rosetta and that the field has not yet articulated as patterns in their own right — the compiler principle for agentic workflows, the intermediate representation as contract between analysis and generation, the heuristic catalog as queryable infrastructure, architecture documentation as pluggable emitter. **Adapted patterns** apply established practices to mainframe modernization with explicit recalibration — Martin Fowler's strangler fig at bounded context granularity, Eric Evans' anti-corruption layer as migration infrastructure, the modular monolith as transitional architecture. **DDD re-articulations** recast canonical DDD patterns through the lens of legacy mainframe modernization — the domain ontology as substrate, commands and events as logical boundaries, source provenance as audit infrastructure. Each pattern indicates its lineage explicitly: where the principle originates, what this catalog adds, what's calibrated to mainframe specifically. The catalog stands on shoulders — Eric Evans, Vaughn Vernon, Martin Fowler, Sam Newman, Alberto Brandolini, Cyrille Martraire, Birgitta Böckeler, Charity Majors, Nick Tune, Uberto Barbini, Kent Beck — and names them as it builds.
+The catalog is a mix of three kinds of patterns. **Original patterns** describe practices that emerged from building Project Rosetta and that the field has not yet articulated as patterns in their own right — the compiler principle for agentic workflows, the intermediate representation as contract between analysis and generation, the heuristic catalog as queryable infrastructure, architecture documentation as pluggable emitter. **Adapted patterns** apply established practices to mainframe modernization with explicit recalibration — Martin Fowler's strangler fig at bounded context granularity, Eric Evans' anti-corruption layer as migration infrastructure, the modular monolith as transitional architecture. **DDD re-articulations** recast canonical DDD patterns through the lens of legacy mainframe modernization — the domain ontology as substrate, commands and events as logical boundaries, aggregate boundaries recovered from structural and data-layer evidence. Each pattern indicates its lineage explicitly: where the principle originates, what this catalog adds, what's calibrated to mainframe specifically. The catalog stands on shoulders — Eric Evans, Vaughn Vernon, Martin Fowler, Sam Newman, Alberto Brandolini, Cyrille Martraire, Birgitta Böckeler, Charity Majors, Nick Tune, Uberto Barbini, Kent Beck, Matthew Skelton, Manuel Pais — and names them as it builds.
 
 I write for two audiences. **DDD practitioners** will recognise vocabulary they already use — bounded contexts, ubiquitous language, subdomain types, aggregates, domain events, anti-corruption layers — and find them deployed in a domain DDD has rarely entered: mainframe modernization at decade scale. **Mainframe modernization practitioners** less familiar with DDD will encounter the vocabulary deliberately. Where a DDD concept appears for the first time, I provide a brief inline gloss; the glossary at the end gives more complete definitions and pointers to canonical sources. The catalog rewards readers from either community — though differently.
 
-Of the twenty-eight patterns, fifteen are validated inside the Rosetta prototype (status: *working*). Eight are in active construction (status: *in progress*). Four are designed from validated principles but not yet built (status: *next*). None has yet been validated against real customer engagements — that's the next phase, not yet started. I include all three categories deliberately. This catalog records the same kind of evidence traditional pattern catalogs do, but explicitly: each pattern carries a marker showing whether the principle has been validated, is in construction, or is projected from validated foundations. The mix is intentional. The markers are honest. The reader who wants only validated patterns can filter by status; the reader interested in the architectural reasoning can engage with all of them.
+Of the twenty-two patterns, fifteen are validated inside the Rosetta prototype (status: *prototype-validated*). Six are in active construction (status: *in construction*). One is designed from validated principles but not yet built (status: *designed*). The single *designed* pattern is the most distinctive contribution of the catalog (Pattern 4 — *Domain Ontology as Independent Substrate*), and its current status reflects the order in which the prototype's substrates have been built rather than uncertainty about the underlying principle. None has yet been validated against real customer engagements — that's the next phase, not yet started. I include all three categories deliberately. The reader who wants only validated patterns can filter by status; the reader interested in the architectural reasoning can engage with all of them.
+
+A note on what "prototype-validated" means and doesn't mean. The pattern works inside Rosetta. The pattern has been exercised against representative legacy code. The pattern has not yet been put under load by a real customer engagement at production scale. When the engagements come, some prototype-validated patterns will turn out to need revision; that revision is part of the work the catalog signs up for. The catalog improves through use.
 
 Each pattern follows the same shape. **Status** says where the pattern stands in the prototype today. **Context** describes the situation in which the pattern applies. **Problem** describes the tension or difficulty the pattern addresses. **Forces** describes the factors in conflict. **Pattern** is the solution, articulated as principle. **Consequences** describes what applying the pattern produces — both gains and costs. **Related patterns** points to other entries that depend on, support, or are supported by this one.
 
@@ -31,13 +35,15 @@ The patterns are grouped into four parts that follow the structure of DDD as dis
 - **Part I — Strategic Recovery.** What is the domain, what bounded contexts exist, what is the ubiquitous language. The patterns that recover what the legacy *is* and what it *should be about*.
 - **Part II — Tactical Generation.** How each bounded context materialises in modern code. Aggregates, domain events, handlers, scaffolds matched to subdomain type.
 - **Part III — Verification.** Validating that strategic and tactical designs preserve behavioural equivalence to the legacy.
-- **Part IV — Governance.** Governing the agentic system that performs the recovery, generation, and verification work.
+- **Part IV — Governance.** Governing the agentic system that performs the recovery, generation, and verification work, and the team structures that operate around it.
 
 The grouping is for navigation — patterns interact across groups, and the *Related patterns* sections trace those interactions.
 
-Between Part I and Part II, a short architectural interlude makes explicit the three-layer recovery architecture the catalog operates within. Readers who want the architectural framing before the patterns can read it first; readers who prefer to encounter the patterns first will find the interlude in sequence.
+Between Part I and Part II, a short architectural interlude makes explicit two pieces of foundation that operate across the entire catalog: the three-layer recovery architecture, and the source provenance discipline that holds the layers honest. Readers who want the architectural framing before the patterns can read it first; readers who prefer to encounter the patterns first will find the interlude in sequence.
 
-A short section names seven antipatterns this catalog is built against. They're not bad practices in the abstract; they're failure modes the field has encountered, and naming them helps clarify what the patterns are correcting.
+The three-layer architecture (L1 syntactic, L2 semantic intent, L3 architectural target) is a perpendicular lens to the DDD arc. The DDD arc organises the catalog by *what the modernization is doing* — recovering strategy, generating tactics, verifying behaviour, governing the agents. The three-layer architecture organises the substrates the work operates on — what the legacy literally says, what it actually does, how it should be expressed. The same pattern can be located in both schemes: Pattern 3 (The Graph as Projection) lives in Part I's strategic recovery and produces an L1 substrate; Pattern 4 (Domain Ontology) lives in Part I and produces an L2 substrate; Pattern 6 (The Compiler Principle) lives in Part II and operates the L2 → L3 transition. The DDD arc is the primary spine of the catalog; the three-layer architecture is the cross-cutting lens that makes the substrate work visible.
+
+A short section names nine antipatterns this catalog is built against. They're not bad practices in the abstract; they're failure modes the field has encountered, and naming them helps clarify what the patterns are correcting.
 
 After the antipatterns, a glossary defines the DDD and modernization terms used throughout the catalog. After that, a final section maps each pattern to the concrete technology that realises it in Rosetta today. The pattern bodies stay abstract because principles outlive implementations. The reference section names what's currently doing the work, snapshot in time.
 
@@ -45,27 +51,21 @@ I came to mainframes as an outsider and have spent 15 years on mainframe moderni
 
 This is the long version of what I've been writing about on LinkedIn under the LegacyLabs name. The shorter posts and newsletter there were the introduction. This is the working catalog.
 
----
+-----
 
 # Part I: Strategic Recovery
 
----
-
-**🎨 ILLUSTRATION P1 — *Strategic Recovery: archaeology of the running system***
-
-*Style: editorial illustration, drawn or watercolour quality, in keeping with the cover's earth-tone palette. Subject: an archaeologist's brush gently uncovering a fragment of stone with overlapping inscriptions in different scripts (cuneiform, hieroglyphic, modern code) — visual metaphor for recovering what the legacy is and what the domain it implements is. The overlapping scripts hint at the ontological drift the patterns address. Format: full-page or two-thirds page opener for Part I.*
-
----
+-----
 
 The patterns in this group address the strategic question that opens any DDD engagement: *what is the domain, and what bounded contexts compose it?* In a greenfield context, strategic design starts from a clean slate; in legacy modernization, it starts from a system that has been running for decades and has its own answers — partial, contradictory, and frequently undocumented. The patterns here recover those answers from the legacy as evidence, and ground them against canonical domain understanding that the legacy alone cannot provide.
 
 Without strategic recovery, generation has nothing to work from and verification has nothing to compare against. Without honest distinction between behavioural recovery (what the legacy does) and ontological grounding (what the domain really is), strategic recovery silently inherits the legacy's accumulated drift.
 
----
+-----
 
 ## Pattern 1: Business-Aligned Capability Strategy
 
-*Status: working.*
+*Status: prototype-validated.*
 
 ### Context
 
@@ -87,14 +87,16 @@ Investment must be distributed unevenly. Treating all bounded contexts as equal 
 
 ### Pattern
 
-Before any technical work begins — before identifying feature slices to extract, before deciding which contexts deserve which architecture, before generating any scaffold — map the business capabilities the legacy implements and classify each along four dimensions:
+Before any technical work begins — before identifying feature slices to extract, before deciding which contexts deserve which architecture, before generating any scaffold — map the business capabilities the legacy implements. For each capability, consider four dimensions:
 
 - **Strategic value** — is this capability a differentiator (something the business does better than competitors, where investment compounds) or commodity (something everyone in the industry does, where parity is sufficient)?
 - **Functional volatility** — does the business logic for this capability change frequently (regulatory updates, market shifts, product evolution) or has it been stable for years?
 - **Operational criticality** — what is the cost of failure? A real-time payment authoriser failing is catastrophic; an internal reporting batch failing is recoverable.
 - **Current maintenance cost** — how much does this capability cost to maintain today, in developer hours, infrastructure, and operational incidents?
 
-The cross-product of these dimensions produces five distinct modernization strategies — not one playbook:
+These dimensions are the vocabulary for a conversation between business and architecture. They are not the inputs to a decision tree. There is no fixed mapping from the four dimensions to a single recommended strategy; the dimensions inform judgment, not algorithm.
+
+Five strategies recur across engagements as anchoring options. An architect classifying a specific capability considers all four dimensions and selects the strategy that fits — sometimes cleanly, often with trade-offs that have to be made deliberately:
 
 - **Core differentiator + volatile** → cloud-native rewrite, deep DDD investment, full hexagonal architecture, dedicated team. This is where the modernization must excel.
 - **Core differentiator + stable** → AI-assisted migration with semantic preservation. The behaviour matters; the architecture can stay conservative. Twin Verification (Pattern 13) is critical here.
@@ -102,9 +104,13 @@ The cross-product of these dimensions produces five distinct modernization strat
 - **Commodity + high maintenance** → retire, consolidate with another capability, or externalize. The maintenance cost itself signals that this capability is overdue for elimination.
 - **Obsolete / no real usage** → turn off. This is more frequent than expected. Systems running for decades accumulate code paths that no one exercises but no one has authorised retiring. Identifying and shutting these down is often the highest-ROI work of the modernization.
 
-The classification is not done by the technical team alone. It requires business stakeholders — product owners, capability leads, finance partners — collaborating with architects to map the capabilities, validate the four-dimensional assessment, and agree on the strategy per cell. Workshop techniques apply: Event Storming (Brandolini) for capability discovery, Wardley Mapping for value/commodity classification, Domain Storytelling (Hofer & Schwentner) for behavioural understanding.
+Some capabilities will fit cleanly into one strategy. Many will sit between strategies, and the architect must decide which trade-offs to prioritize for that capability. A capability might be commodity in business terms but have maintenance cost high enough to justify retiring it rather than replacing it with SaaS. A capability might be a core differentiator with stable volatility but operational criticality high enough to justify the deeper DDD investment of the volatile cell. The criticality dimension in particular rarely selects a strategy on its own; it determines the rigor of the chosen strategy's execution. A critical capability in the lift & shift cell gets a more careful lift & shift than a non-critical one.
 
-The output is a capability map: every business capability in scope, with its four-dimensional profile, its chosen modernization strategy, and the rationale that connects business strategy to technical decision. This map is the primary input to every subsequent pattern. Slice discovery (Pattern 7) derives slices within capabilities, prioritised by strategic value. Tier-aware scaffolding (Pattern 10) operationalises the chosen strategy per bounded context. Rollout and cutover (Pattern 27) sequences the migration to deliver business value early.
+The classification is not done by the technical team alone. It requires business stakeholders — product owners, capability leads, finance partners — collaborating with architects to map the capabilities, consider the four-dimensional profile, and agree on the strategy per capability. Workshop techniques apply: Event Storming (Brandolini) for capability discovery, Wardley Mapping for value/commodity classification, Domain Storytelling (Hofer & Schwentner) for behavioural understanding.
+
+The output is a capability map: every business capability in scope, with its four-dimensional profile, its chosen modernization strategy, and the rationale that connects business strategy to technical decision. This map is the primary input to every subsequent pattern. Slice discovery (Pattern 5) derives slices within capabilities, prioritised by strategic value. Tier-aware scaffolding (Pattern 8) operationalises the chosen strategy per bounded context. Rollout and cutover (Pattern 21) sequences the migration to deliver business value early.
+
+The capability map and the team topology that owns it are inseparable. Which team owns which capability shapes how the capability is recovered, modernized, and operated; Conway's Law applies whether the modernization acknowledges it or not. Pattern 20 (*Team Topology and Bounded Context Alignment*) addresses this directly, and the capability mapping work described here should be done with team-ownership questions visible alongside the four dimensions.
 
 ### Consequences
 
@@ -116,17 +122,19 @@ The cost is the discipline of doing the strategic work before the technical work
 
 The capability map also exposes uncomfortable truths. Some capabilities that the business has been treating as strategic differentiators turn out to be commodity. Some that have been ignored as commodity turn out to be where genuine differentiation lives. The four-dimensional classification surfaces these mismatches and forces conversations the organization may have been avoiding.
 
+The framing here is deliberately judgment-based rather than algorithmic. A more rigid mapping — sixteen cells from four binary dimensions, one strategy per cell — would look more rigorous but would mislead. Real capabilities don't fall into binary buckets. The strategic value of a capability is rarely a clean yes-or-no; volatility comes in degrees; criticality has thresholds the architect has to define for the engagement. A decision tree would force false precision; the dimensional vocabulary lets the conversation stay honest about where the judgment actually lives. The architect is equipped, not constrained.
+
 The notion that *modernization is not code translation — it is reconstructing the business, segmenting capabilities by value and volatility, and designing the transition path* is what this pattern operationalises. Wardley Mapping (Wardley, 2018) provides the conceptual foundation for the strategic-value dimension. Eric Evans' subdomain classification (Evans, 2003) — core, supporting, generic — is the canonical DDD anchor; this pattern extends Evans by adding the volatility, criticality, and maintenance-cost dimensions, and by making *retirement* an explicit option, which standard DDD treatments do not.
 
 ### Related patterns
 
-Pattern 7 (*Vertical Slice Discovery*) operates within the capabilities this pattern maps — slices are derived only after capabilities are classified. Pattern 10 (*Tier-Aware Scaffolding*) operationalises the strategy per bounded context: core differentiator → full hexagonal; commodity → vertical slice. Pattern 5 (*Domain Ontology as Independent Substrate*) draws its vocabulary primarily from the capabilities this pattern identifies. Pattern 27 (*Rollout and Cutover at Bounded Context Granularity*) sequences the migration in capability-priority order. The *Frozen Architecture* antipattern names what happens when modernization proceeds without this strategic framing — the legacy's accidental architectural decisions are preserved into the modern system because no one questioned whether they should be.
+Pattern 5 (*Vertical Slice Discovery*) operates within the capabilities this pattern maps — slices are derived only after capabilities are classified. Pattern 8 (*Tier-Aware Scaffolding*) operationalises the strategy per bounded context: core differentiator → full hexagonal; commodity → vertical slice. Pattern 4 (*Domain Ontology as Independent Substrate*) draws its vocabulary primarily from the capabilities this pattern identifies. Pattern 20 (*Team Topology and Bounded Context Alignment*) is the organisational counterpart: capabilities map to bounded contexts; bounded contexts map (or fail to map) to teams. Pattern 21 (*Rollout and Cutover at Bounded Context Granularity*) sequences the migration in capability-priority order. The *Frozen Architecture* antipattern names what happens when modernization proceeds without this strategic framing — the legacy's accidental architectural decisions are preserved into the modern system because no one questioned whether they should be.
 
----
+-----
 
 ## Pattern 2: The Legacy as Oracle
 
-*Status: working.*
+*Status: prototype-validated.*
 
 ### Context
 
@@ -150,15 +158,7 @@ The legacy is more useful running than off. Decommissioning is the last step, no
 
 A precision worth stating explicitly: *the legacy is a behavioural oracle, not an ontological one*. The legacy reliably tells you what the system does. It does not reliably tell you what the domain really is. A system that has been running for thirty years has often accumulated ontological drift — three definitions of "active customer" across billing, support, and product modules; two incompatible interpretations of "balance" depending on which paragraph computes it; vocabulary that meant one thing in 1992 and another by 2008. Behavioural equivalence to such a legacy preserves the drift. The legacy answers *what happens*; the modernization team still has to answer *what should be true* about the domain.
 
-> *For the complementary recovery this pattern does not perform — establishing what the domain itself is, independent of what the legacy happens to do — see Pattern 5: Domain Ontology as Independent Substrate.*
-
----
-
-**📐 FIGURE 2.1 — *The legacy as oracle: inner-loop architecture***
-
-*Diagram showing the agentic inner loop with the legacy as live verification target. Components to depict: (a) the agent generating a candidate C# translation of a COBOL paragraph; (b) the Raincode-compiled COBOL legacy running in a Docker container locally; (c) parallel execution of both candidate and legacy against the same input; (d) semantic comparison of outputs; (e) verdict returning to the agent within milliseconds. Arrows indicate data flow. Annotation at the legacy container reads "behavioural oracle — what the system does." A second annotation near the agent reads "ontology lives elsewhere — see Pattern 5." Style: clean architectural diagram, accent color for the verdict path, labels in serif. Suggested width: full page or two-thirds page.*
-
----
+> *For the complementary recovery this pattern does not perform — establishing what the domain itself is, independent of what the legacy happens to do — see Pattern 4: Domain Ontology as Independent Substrate.*
 
 ### Consequences
 
@@ -166,7 +166,7 @@ The agents iterate against evidence rather than against assumptions. Verificatio
 
 The cost is structural. The legacy must be packageable for local execution, which requires tooling that compiles the legacy runtime to a portable form (in the COBOL/CICS case, Raincode does this; for other legacy stacks the equivalent tooling may or may not exist). The legacy must remain observable throughout the modernization, which means the modernization platform has to integrate with it operationally, not just textually.
 
-There is also a cost that the pattern alone does not pay: behavioural fidelity is necessary but not sufficient. The complementary discipline lives in Pattern 5 and the *Behavioural Equivalence Without Ontology* antipattern; without them, this pattern protects against the wrong thing.
+There is also a cost that the pattern alone does not pay: behavioural fidelity is necessary but not sufficient. The complementary discipline lives in Pattern 4 and the *Behavioural Equivalence Without Ontology* antipattern; without them, this pattern protects against the wrong thing.
 
 I have only tested this pattern for COBOL/CICS. For that case, it has earned its place in Rosetta. The principle that legacy systems are more useful running than off is what generalises; the specific implementation is calibrated to CICS.
 
@@ -174,109 +174,77 @@ The notion of an "oracle" in software verification has a long history — Willia
 
 ### Related patterns
 
-Pattern 5 (*Domain Ontology as Independent Substrate*) is the complementary recovery: the legacy is behavioural oracle, but ontology requires independent grounding. Pattern 16 (*Twin Verification*) is the operationalisation of this principle in the inner loop. Pattern 17 (*Hypothesis-Driven Verification*) extends it from dev mode to production mode. Without Pattern 2, neither of those is implementable.
+Pattern 4 (*Domain Ontology as Independent Substrate*) is the complementary recovery: the legacy is behavioural oracle, but ontology requires independent grounding. Pattern 13 (*Twin Verification*) is the operationalisation of this principle in the inner loop. Pattern 14 (*Hypothesis-Driven Verification*) extends it from dev mode to production mode. Without Pattern 2, neither of those is implementable.
 
----
+-----
 
 ## Pattern 3: The Graph as Projection
 
-*Status: working.*
+*Status: prototype-validated.*
 
 ### Context
 
 A legacy codebase consisting of thousands of source files in a language that LLMs read poorly. The architectural concepts that matter — bounded contexts (DDD's term for explicit boundaries within which a particular domain model applies), candidate slices for modernization, the side-effect surfaces of programs — are not stated explicitly anywhere. They must be derived from structural relationships within the code.
 
+Agents reasoning over the legacy need two distinct kinds of access. They need to traverse explicit relationships (this program calls that one, this paragraph accesses that resource) with certainty. They need to find similarity (these paragraphs are doing similar things even though no edge connects them) with proximity. The two kinds of access answer different questions and have different epistemologies.
+
 ### Problem
 
 Asking an LLM to reason about COBOL directly produces poor results. COBOL is verbose, full of historical idioms, and structurally unlike anything in the modern training corpus. The LLM pattern-matches to surface features and misses architectural intent. Multiple passes don't help because the underlying obstacle is representational: the LLM is trying to extract architecture from a representation that obscures it.
+
+The instinct to give the agents a single unified representation also fails. A representation that is both discrete-and-exact (so it can answer "which programs call this one") and continuous-and-approximate (so it can answer "which paragraphs are semantically similar to this one") flattens one shape into the other. Forcing similarity into typed edges loses the gradient; forcing typed relationships into vector space loses the precision. Both shapes are necessary, and they have to coexist.
 
 ### Forces
 
 Architectural recovery requires understanding relationships across the codebase: which programs call which, which data structures flow through which paragraphs, which CICS commands access which resources. This information exists in the source but is distributed and implicit. Capturing it as a queryable representation is expensive but unlocks downstream analysis. Doing so naively (as raw abstract syntax tree, capturing every token) produces a representation too large to query usefully and too detailed to be informative.
 
+Semantic similarity is a different shape of query. Two paragraphs with no structural connection can be near-duplicates in what they do; a single `CALL` edge between programs is structurally explicit but semantically obscure (calling another program looks similar to many other operations in vector space). The two kinds of query want different infrastructures.
+
+Operating two representations is more complex than operating one. Synchronisation across them adds engineering cost. But forcing them into a single representation loses the value of having either shape natively.
+
 ### Pattern
 
 Parse the legacy source into a property graph. Capture programs, paragraphs, data structures, control flow, side effects, predicates, and entry points as nodes. Connect them with typed edges. Make the graph the queryable architectural projection of the source.
 
-Keep ingestion deterministic and idempotent. Two runs over the same source must produce the same graph. Put semantic interpretations (bounded contexts, slice candidates, discriminator fields) in a separate derived layer computed by analysis passes. The agents reason about the graph, not the source.
+Maintain a semantic index over the same source as a complementary substrate. The index captures what is semantically similar and queryable through proximity: vocabulary alignment, code-shape similarity, intent matching, naming convergence. Where the graph holds discrete-and-exact relationships, the index holds continuous-and-approximate proximity.
 
----
+Define explicitly what information lives in each substrate. The graph holds what is structurally explicit and queryable through traversal: containment, calls, accesses, predicates, entry points. The index holds what is semantically similar and queryable through proximity. The boundary between them is part of the architecture: when in doubt, ask which kind of question would the operator pose, and put the answer in the substrate that answers that kind of question naturally.
 
-**📐 FIGURE 3.1 — *The structural property graph schema for COBOL/CICS***
+Keep ingestion deterministic and idempotent. Two runs over the same source must produce the same graph and the same index. Synchronise the two substrates through a shared ingestion pipeline. When source changes, both substrates update from the same input. Put semantic interpretations (bounded contexts, slice candidates, discriminator fields) in a separate derived layer computed by analysis passes. The agents reason about the graph and the index together, not about the source.
 
-*Diagram showing the graph schema as a node-and-edge model. Nodes to depict: Program, Paragraph, DataStructure, CICSCommand, Resource, EntryPoint, Predicate. Edges to depict: CONTAINS (Program → Paragraph), USES (Paragraph → DataStructure), INVOKES (Paragraph → CICSCommand), ACCESSES (CICSCommand → Resource), PERFORMS (Paragraph → Paragraph), CALLS (Program → Program). Annotations near key edges explain semantic meaning. Style: clean ER-style diagram with colored node types, accent color for entry points and side-effect surfaces. Suggested width: full page. Goal: reader can see the schema at a glance and understand what graph queries can express.*
+Agent queries combine the two substrates by composition. A typical hybrid query starts in the graph (find the entry point for a specific transaction), expands structurally (follow PERFORMs and CALLs to depth N), then expands semantically (find paragraphs similar to those reached, even if not structurally connected). The reverse also works — start with semantic similarity, anchor the matches structurally — and complex queries iterate between the two. The result, regardless of direction, is a richer working set than either substrate alone would produce.
 
----
-
-### Consequences
-
-The agents reason about something LLMs handle well — graph relationships, named concepts, queryable structure — while the underlying COBOL stays in its place as the source of truth. Architectural concepts emerge through analysis rather than through interpretation. Community detection surfaces bounded contexts. Entry-point reachability and pseudo-conversational boundaries surface candidate slices for modernization. Predicate analysis at low depth surfaces discriminator fields. Each technique becomes a reusable lens over the graph.
-
-The cost is the ingestion pipeline. Building a parser that captures the right level of structure (summarised, not full AST) requires careful schema design. Schema versioning becomes a discipline because the graph is the long-lived artifact; ingestion can be re-run, but the graph schema needs to evolve coherently.
-
-Anthony Alcaraz has written about agentic GraphRAG as a general pattern. This catalog applies it to mainframe spec recovery, where the legacy's representational distance from modern code makes the graph projection essential. The intellectual lineage extends to program comprehension research (Storey 2005; Müller and Klashinsky's earlier work on software architecture recovery) which has long argued that source code alone is insufficient for understanding large legacy systems — derived representations are necessary. What this catalog adds is the framing of the graph as substrate for *agentic* reasoning specifically, not just for human comprehension.
-
-### Related patterns
-
-Pattern 4 (*Source Provenance Discipline*) is what makes the graph trustworthy as a foundation for downstream work. Pattern 5 (*Domain Ontology as Independent Substrate*) is what the structural graph alone cannot provide — recovering what entities exist in the domain and how they relate, beyond what the legacy artifacts encode. Pattern 6 (*The Graph and the Index as Complementary Substrates*) addresses how structural and semantic representations coexist. Pattern 9 (*The Intermediate Representation*) is how the graph crosses over into deterministic generation.
-
----
-
-## Pattern 4: Source Provenance Discipline
-
-*Status: working.*
-
-### Context
-
-A modernization pipeline that derives multiple representations from the original source: a graph (Pattern 3), an intermediate representation (Pattern 9), a generated C# scaffold, a translated handler body, a semantic index entry (Pattern 6). Reviewers and operators eventually need to trace any given artifact back to the source it derives from. Audit trails, diff views, debugging in production, regulatory compliance review — all depend on this. In regulated industries, traceability is not nice-to-have; it is what makes the modernization auditable.
-
-The context also includes agentic systems that reason over derived representations. Agents propose translations, generate test cases, identify slice boundaries — and each proposal carries evidence drawn from the derived representations. Without provenance, the evidence cannot be defended back to source, and the agent's reasoning becomes opaque the moment any artifact crosses a transformation boundary.
-
-### Problem
-
-Without source coordinates carried through every layer of the pipeline, traceability breaks at the first transformation. A generated handler exists; the COBOL paragraph it derived from is somewhere; nobody knows the connection without re-deriving it. This may seem acceptable during development but becomes operationally untenable in production.
-
-The failure modes are operationally severe. A bug surfaces in production: which legacy paragraph implements this behaviour? Without provenance, the team re-derives the answer from scratch — re-reading legacy code, re-running grep against thousands of files, hoping to find the right one. A regulator asks how a particular decision was reached: without provenance, the answer is "the agent decided" rather than "the agent reasoned from these specific lines of COBOL with these specific transformations applied." A behavioural test fails: without provenance, distinguishing real divergence from artifact requires manual investigation rather than automated cross-reference.
-
-### Forces
-
-Carrying source coordinates through every transformation adds discipline to the schema design. Every node in every representation must include file path, start line, end line. Every transformation must preserve them. This is a tax paid during ingestion and analysis — every developer working on a new analysis pass must remember to thread provenance through, every emitter must carry it forward, every transformation must validate it.
-
-The benefit is invisible until something goes wrong — at which point the absence of provenance is catastrophic. By the time you need it, it's too late to add. This temporal asymmetry is what makes provenance discipline so frequently neglected: the cost is paid daily by everyone building the pipeline; the benefit accrues to a future operator who isn't in the room when the schema is designed.
-
-### Pattern
-
-Make source coordinates a non-negotiable part of every representation in the pipeline. Every graph node carries source coordinates (`source_file`, `start_line`, `end_line` in Rosetta — naming is implementation-specific, the discipline is not). Every IR element carries the same, plus references to the graph nodes it derived from. Every generated C# artifact carries comments or metadata pointing back to the IR element that produced it.
-
-Treat this as infrastructure, not as nice-to-have. The provenance enables every downstream capability that requires traceability: diff views in the cockpit, audit trails for compliance, reverse-lookup from a production exception in the C# back to the original COBOL paragraph. Schema validators enforce provenance presence — a graph node without source coordinates is rejected at ingestion, an IR element without graph references is rejected at construction, a generated artifact without metadata pointers fails the build.
-
-This discipline extends to the semantic index (Pattern 6). Every vector entry must carry the same source coordinates as the graph nodes it derives from. When the agent queries the index for "paragraphs semantically similar to this," each match traces back to specific COBOL lines. Without this, semantic relationships become evidence the agent uses but cannot defend — and the audit trail breaks at the index boundary.
-
-The discipline extends further to agent reasoning records (Pattern 24). Every agent decision cites the substrates it consulted; those citations carry provenance forward. A modernization decision can be traced from the agent's reasoning back through the substrates the agent queried back to the specific legacy code those substrates derived from. The audit trail is end-to-end.
+Source provenance (introduced in the architectural interlude) is what makes the dual substrate auditable. Every graph node has `source_file`, `start_line`, `end_line`; every index entry carries the same. When a hybrid query finds "paragraphs structurally connected to entry point X and semantically similar to paragraph Y," the result set is traceable on both axes. The agent doesn't just produce a working set — it produces a working set whose every member can be defended back to source.
 
 ### Consequences
 
-The cockpit (Pattern 25) can show side-by-side comparisons between original COBOL and generated C# at any granularity — paragraph, slice, bounded context, whole system. Audit trails are reproducible: given any artifact and any moment in the pipeline, the reviewer can reconstruct what evidence the system had when it produced that artifact. Production debugging traces from the modernized C# back through the IR back through the graph back to the source COBOL. Compliance reviewers can verify any decision the system made — agent or human — by following the provenance chain.
+Each substrate stays simple in what it does. The graph remains deterministic, reproducible, and exactly queryable. The index remains rich, semantic, and approximately queryable. Neither has to compromise to accommodate the other.
 
-The cost is schema rigour. Provenance fields can't be optional, can't be approximate, can't be lost in transformations. The pipeline becomes more expensive to build but more durable to operate. Engineers building new analysis passes must thread provenance through every step; emitters must preserve it; validators must enforce it. The discipline is mechanical and tedious — and necessary.
+The agents reason about something LLMs handle well — graph relationships, named concepts, queryable structure, semantic proximity — while the underlying COBOL stays in its place as the source of truth. Architectural concepts emerge through analysis rather than through interpretation. Community detection on the graph surfaces bounded contexts. Entry-point reachability and pseudo-conversational boundaries surface candidate slices for modernization. Predicate analysis at low depth surfaces discriminator fields. Semantic clustering surfaces concept candidates the structural graph alone wouldn't see. Each technique becomes a reusable lens.
 
-This pattern looks like good practice. It's actually infrastructure. Without it, every other capability that depends on traceability collapses. With it, those capabilities become tractable.
+Hybrid queries become a first-class capability of the modernization pipeline. The agents have access to both kinds of relationships, and the platform doesn't prejudge which kind matters for a given query. The graph and index together render something the legacy modernization rarely produces directly: a context map. In DDD terms, a context map articulates how bounded contexts relate — which integrate, which translate, which conflict. Here, that map emerges from the legacy as it actually is rather than as someone once described it.
 
-Provenance as discipline is well-established in compilers (debug symbols, source maps), build systems (Bazel's deterministic dependency tracking), and audit infrastructure (signed transaction logs in regulated systems). What this catalog contributes is the framing of provenance as architectural commitment of an *agentic modernization pipeline* — every representation the agents reason over carries source coordinates, not just the artifacts humans inspect. The discipline has to extend into the substrates the agents themselves use, or the audit trail breaks at the agent boundary.
+The cost is the ingestion pipeline and the dual-substrate discipline. Building a parser that captures the right level of structure (summarised, not full AST) requires careful schema design. Schema versioning becomes a discipline because the substrates are the long-lived artifacts; ingestion can be re-run, but the schemas need to evolve coherently across both. Two substrates require two query interfaces and two consistency disciplines. When one substrate updates, the other must follow. The dual maintenance is real.
+
+The benefit pays back over time. Modernization queries get richer, more nuanced, more capable of handling the messy reality of legacy code. The two substrates together approximate observations a domain expert with deep knowledge of the codebase would surface from intuition: "these unconnected paragraphs are doing the same thing," "this CALL is incidental, not semantic," "these similar-looking blocks implement different intents." That's not the totality of what an expert sees, but it is the part that scales with the codebase.
+
+Anthony Alcaraz has written about agentic GraphRAG as a general pattern, and combining knowledge graphs with vector indices is an emerging practice in retrieval-augmented generation systems generally — Microsoft's GraphRAG work and the broader hybrid-retrieval literature have articulated the value. The intellectual lineage extends to program comprehension research (Storey 2005; Müller and Klashinsky's earlier work on software architecture recovery) which has long argued that source code alone is insufficient for understanding large legacy systems — derived representations are necessary.
+
+What this catalog contributes is two things. First, the application of the graph-plus-index pattern to mainframe spec recovery, where the legacy's representational distance from modern code makes the dual projection essential. Second, the framing of the two substrates as *complementary representations with different epistemologies* — discrete and exact versus continuous and approximate — and the discipline of preserving both shapes rather than flattening them into a single representation. The boundary between them is part of the architecture, not an implementation detail.
 
 ### Related patterns
 
-Pattern 3 (*The Graph as Projection*) is where source coordinates first appear — the graph schema is where provenance becomes mandatory. Pattern 6 (*The Graph and the Index as Complementary Substrates*) is where the discipline extends to the semantic index. Pattern 9 (*The Intermediate Representation*) extends the discipline into the IR — every IR element references graph nodes by source coordinates. Pattern 24 (*Reasoning Telemetry as First-Class Output*) is where agent decisions cite the provenance of their evidence. Pattern 25 (*The Cockpit*) is the operational surface that consumes the provenance, surfacing side-by-side comparisons and audit traces to humans.
+Pattern 4 (*Domain Ontology as Independent Substrate*) is what the structural graph and semantic index alone cannot provide — recovering what entities exist in the domain and how they relate, beyond what the legacy artifacts encode. The ontology consumes both substrates as inputs (semantic clustering surfaces concept candidates; structural graph reveals containment and relationship) but lives independently of either. Pattern 5 (*Vertical Slice Discovery*) consumes the dual substrate to identify slice candidates through hybrid queries. Pattern 7 (*The Intermediate Representation*) is how the graph and the index cross over into deterministic generation. The source provenance discipline (architectural interlude) extends through both substrates — every node and every index entry carries source coordinates.
 
----
+-----
 
-## Pattern 5: Domain Ontology as Independent Substrate
+## Pattern 4: Domain Ontology as Independent Substrate
 
-*Status: next.*
+*Status: designed.*
 
 ### Context
 
-A modernization with structural graph (Pattern 3) and source provenance (Pattern 4) in place. The legacy is being treated as behavioural oracle (Pattern 2). The agents are reasoning over real artifacts of the legacy system. But the modernization team eventually has to answer a question that the legacy alone cannot answer: *what is the domain this system is supposed to be about*. In DDD vocabulary, this is the question of establishing the **ubiquitous language** — the shared vocabulary of the domain that the team and the system both speak — and articulating the **strategic design** that organises bounded contexts within that language.
+A modernization with structural graph and semantic index (Pattern 3) in place. The legacy is being treated as behavioural oracle (Pattern 2). The agents are reasoning over real artifacts of the legacy system. But the modernization team eventually has to answer a question that the legacy alone cannot answer: *what is the domain this system is supposed to be about*. In DDD vocabulary, this is the question of establishing the **ubiquitous language** — the shared vocabulary of the domain that the team and the system both speak — and articulating the **strategic design** that organises bounded contexts within that language.
 
 ### Problem
 
@@ -292,25 +260,17 @@ Skipping ontological recovery is cheaper in the short run and catastrophic in th
 
 ### Pattern
 
-Treat the domain ontology — the formal articulation of what entities exist in the domain and how they relate — as an independent substrate of the modernization, separate from the structural graph (Pattern 3), separate from the semantic index (Pattern 6), separate from the implementation artifacts of the legacy. The ontology specifies what entities exist in the domain, how they relate, what the canonical vocabulary is, where the boundaries between concepts lie. It is the foundation of the ubiquitous language. It is not derived from the legacy; it is *grounded* in conversations with the people who understand the domain, validated against business sources, and reconciled where the legacy disagrees with itself.
+Treat the domain ontology — the formal articulation of what entities exist in the domain and how they relate — as an independent substrate of the modernization, separate from the structural graph and semantic index (Pattern 3), separate from the implementation artifacts of the legacy. The ontology specifies what entities exist in the domain, how they relate, what the canonical vocabulary is, where the boundaries between concepts lie. It is the foundation of the ubiquitous language. It is not derived from the legacy; it is *grounded* in conversations with the people who understand the domain, validated against business sources, and reconciled where the legacy disagrees with itself.
 
-Recovery of the ontology is partial from the legacy. Vocabulary inference from comments, display literals, naming conventions, the intermediate representation, and the data layer's DDL — DB2 schemas, VSAM definitions, DCLGEN copybooks — provides candidate terms. The data layer often preserves domain vocabulary better than the procedural code does: column names in DDL frequently retain canonical business terms that working-storage variables in COBOL paragraphs have abbreviated, prefixed, or renamed for technical convenience. Semantic similarity over code units (Pattern 6) surfaces clusters that may correspond to ontological concepts. These are starting points, not conclusions.
+Recovery of the ontology is partial from the legacy. Vocabulary inference from comments, display literals, naming conventions, the intermediate representation, and the data layer's DDL — DB2 schemas, VSAM definitions, DCLGEN copybooks — provides candidate terms. The data layer often preserves domain vocabulary better than the procedural code does: column names in DDL frequently retain canonical business terms that working-storage variables in COBOL paragraphs have abbreviated, prefixed, or renamed for technical convenience. Semantic similarity over code units (the semantic index discussed in Pattern 3) surfaces clusters that may correspond to ontological concepts. These are starting points, not conclusions.
 
 Workshop techniques like Event Storming (developed by Alberto Brandolini for collaboratively recovering domain understanding from systems and people) accelerate the human side of this work — domain experts, developers, and operators in a room mapping events, commands, and aggregates against shared vocabulary. The architect or domain expert validates each candidate against domain understanding, refines vocabulary, reconciles drift, articulates the canonical ontology that the modernized system should encode.
 
 Eric Evans named this work *distillation* (Evans, 2003): separating what is essential about the business from what is incidental about how the legacy happened to express it. Vaughn Vernon (2013) elaborated the operational mechanics for in-life systems. What this catalog adds is the framing of ontology as a substrate of the modernization architecture — not just a mental model the team carries, but a queryable, versionable artifact independently rendered from the legacy substrates that fed it. The ontology lives independently of any implementation substrate. It does not change when the schema changes, when the architecture changes, when the framework changes. It changes only when the domain changes — when the business itself adopts new concepts or retires old ones. This independence is what makes ontology durable across modernizations and across the system's lifetime.
 
-The modernization uses the ontology as a reconciliation reference. When the legacy has three definitions of "active customer," the ontology articulates the canonical one and the modernization team decides which legacy paragraphs implement which concept under the canonical definition. Twin Verification (Pattern 16) confirms behavioural equivalence within each canonical concept; the ontology decides which paragraphs belong to which concept in the first place.
+The modernization uses the ontology as a reconciliation reference. When the legacy has three definitions of "active customer," the ontology articulates the canonical one and the modernization team decides which legacy paragraphs implement which concept under the canonical definition. Twin Verification (Pattern 13) confirms behavioural equivalence within each canonical concept; the ontology decides which paragraphs belong to which concept in the first place.
 
-Ontology recovery is not a one-shot activity at the start of the modernization. Nick Tune has documented how the target model itself drifts during migration: concepts that began as straightforward renames end up restructured as the team's understanding sharpens through contact with the legacy and with domain experts (see *Drifting Domain Model* in the glossary). Pattern 5 accommodates this: the ontology is a living substrate, versioned and revisable, and the harness (Pattern 23) records each revision as a first-class event in the modernization's audit trail.
-
----
-
-**📐 FIGURE 5.1 — *Ontology as independent substrate***
-
-*Diagram showing the layered relationship between substrates. Bottom layer (implementation artifacts): legacy COBOL paragraphs, current schema, current architecture — labelled "what is built today." Middle layer: structural graph (Pattern 3) and semantic index (Pattern 6) — labelled "what the legacy is." Top layer (independent, separately rendered): domain ontology — labelled "what the domain really is" with a thin connection back showing it is informed by but not derived from the lower layers. To the side: a panel showing "active customer" with three legacy definitions converging into one canonical ontology entry. Style: layered architecture diagram with the ontology layer visually elevated and lighter background to convey its independence. Annotations call out the directional flow: ontology informs implementation, but implementation does not author ontology.*
-
----
+Ontology recovery is not a one-shot activity at the start of the modernization. Nick Tune has documented how the target model itself drifts during migration: concepts that began as straightforward renames end up restructured as the team's understanding sharpens through contact with the legacy and with domain experts (see *Drifting Domain Model* in the glossary). Pattern 4 accommodates this: the ontology is a living substrate, versioned and revisable, and the harness (Pattern 18) records each revision as a first-class event in the modernization's audit trail.
 
 ### Consequences
 
@@ -320,75 +280,21 @@ The ontology also functions as a defence against the *Behavioural Equivalence Wi
 
 The cost is that ontology recovery is genuinely hard work. It requires access to domain experts whose time is scarce. It requires reconciling sources that disagree. It requires judgement calls that are not derivable from the legacy and not obvious from any single domain artifact. Most modernizations do not do this work, which is why most modernizations inherit the ontological drift of their predecessors.
 
-This pattern is *next* in Rosetta. The principle is articulated; the substrates that feed ontology recovery (vocabulary inference, semantic clustering) are operational; what remains is the ontology substrate itself as a first-class artifact — the operational machinery to validate, refine, and maintain canonical ontology independently of the structural and semantic substrates. The work is in design; the foundation it builds on is in place.
+This pattern is *designed* in Rosetta. The principle is articulated; the substrates that feed ontology recovery (vocabulary inference, semantic clustering) are operational; what remains is the ontology substrate itself as a first-class artifact — the operational machinery to validate, refine, and maintain canonical ontology independently of the structural and semantic substrates. The work is in design; the foundation it builds on is in place.
 
 ### Related patterns
 
-The *Behavioural Equivalence Without Ontology* antipattern names the failure mode this pattern protects against — without Pattern 5, modernization preserves the legacy's confusion under the appearance of fidelity. Pattern 2 (*The Legacy as Oracle*) is what this pattern complements: behavioural fidelity is necessary but not sufficient, and Pattern 5 names the missing piece. Pattern 3 (*The Graph as Projection*) provides structural input that ontology recovery can draw on. Pattern 6 (*The Graph and the Index as Complementary Substrates*) provides semantic input through vocabulary inference and similarity, also a starting point for ontology rather than a substitute. Pattern 9 (*The Intermediate Representation*) consumes the ontology when it is available — IR vocabulary aligns with canonical ontology rather than with whatever the legacy happened to use.
+The *Behavioural Equivalence Without Ontology* antipattern names the failure mode this pattern protects against — without Pattern 4, modernization preserves the legacy's confusion under the appearance of fidelity. Pattern 2 (*The Legacy as Oracle*) is what this pattern complements: behavioural fidelity is necessary but not sufficient, and Pattern 4 names the missing piece. Pattern 3 (*The Graph as Projection*) provides structural and semantic input that ontology recovery can draw on — vocabulary inference from comments and naming and similarity clustering from the semantic index are starting points for ontology rather than substitutes. Pattern 7 (*The Intermediate Representation*) consumes the ontology when it is available — IR vocabulary aligns with canonical ontology rather than with whatever the legacy happened to use.
 
----
+-----
 
-## Pattern 6: The Graph and the Index as Complementary Substrates
+## Pattern 5: Vertical Slice Discovery from Structural and Behavioural Signals
 
-*Status: in progress.*
-
-### Context
-
-A modernization pipeline with both a structural graph (typed relationships, deterministic ingestion) and a semantic index (vector representations, similarity search). The two representations are derived from the same source but answer different questions. Agents need to query across both. Operators need to maintain both as the source evolves.
-
-### Problem
-
-The instinct is to choose one substrate as canonical and treat the other as derived. Either the graph is the canonical representation and the index is computed from it, or the index is the canonical representation and the graph is a structural projection. Both choices create asymmetry: one substrate is authoritative, the other is secondary.
-
-In practice, neither is fully derivable from the other. The graph captures relationships the index can't: a `CALL` edge between programs is structurally explicit but semantically obscure (calling another program looks similar to many other operations in vector space). The index captures similarities the graph can't: two paragraphs with no structural connection can be semantically near-duplicates. Treating either as canonical loses the value of the other.
-
-### Forces
-
-Operating two substrates is more complex than operating one. Synchronisation across them adds engineering cost. But forcing them into a single representation flattens what makes each useful.
-
-The deeper issue is epistemological. The structural graph wants to be discrete, typed, exact — it answers questions with certainty: this program calls that one, this paragraph accesses that resource. The semantic index wants to be continuous, contextual, approximate — it answers questions with proximity: these paragraphs are near each other in meaning, with these confidence scores. These are different shapes for different reasons. Forcing similarity into typed edges loses the gradient; forcing typed relationships into vector space loses the precision.
-
-### Pattern
-
-Maintain the graph and the semantic index as complementary substrates over the same source. Define explicitly what information lives in each. The graph holds what is structurally explicit and queryable through traversal: containment, calls, accesses, predicates, entry points. The index holds what is semantically similar and queryable through proximity: vocabulary alignment, code-shape similarity, intent matching, naming convergence. The boundary between them is part of the architecture: when in doubt, ask which kind of question would the operator pose, and put the answer in the substrate that answers that kind of question naturally.
-
-Synchronise the two through a shared ingestion pipeline. When source changes, both substrates update from the same input. Source provenance (Pattern 4) is what makes the dual substrate auditable. Every graph node has `source_file`, `start_line`, `end_line`; every index entry carries the same. When a hybrid query finds "paragraphs structurally connected to entry point X and semantically similar to paragraph Y," the result set is traceable on both axes. The agent doesn't just produce a working set — it produces a working set whose every member can be defended back to source.
-
-Agent queries combine the two substrates by composition. A typical hybrid query starts in the graph (find the entry point for a specific transaction), expands structurally (follow PERFORMs and CALLs to depth N), then expands semantically (find paragraphs similar to those reached, even if not structurally connected). The reverse also works — start with semantic similarity, anchor the matches structurally — and complex queries iterate between the two. The result, regardless of direction, is a richer working set than either substrate alone would produce.
-
----
-
-**📐 FIGURE 6.1 — *Hybrid query: graph traversal meets semantic expansion***
-
-*Diagram showing a hybrid query unfolding across both substrates. Left side: graph traversal — starting node (entry point) shown highlighted; arrows expand outward following PERFORM and CALL edges to a working set of structurally-connected paragraphs. Right side: semantic index — same paragraphs shown projected into vector space; nearest neighbors highlighted as "semantically similar but not structurally connected" — these are added to the working set. Bottom: combined working set rendered as a single bounded region. Annotations: "structural expansion: explicit relationships" and "semantic expansion: contextual similarity." Style: side-by-side layout with subtle visual contrast between the discrete graph (nodes and edges) and continuous index (point cloud). Goal: reader understands how the two substrates compose without forcing one into the other.*
-
----
-
-### Consequences
-
-Each substrate stays simple in what it does. The graph remains deterministic, reproducible, and exactly queryable. The index remains rich, semantic, and approximately queryable. Neither has to compromise to accommodate the other.
-
-Hybrid queries become a first-class capability of the modernization pipeline. The agents have access to both kinds of relationships, and the platform doesn't prejudge which kind matters for a given query. The graph and index together render something the legacy modernization rarely produces directly: a context map. In DDD terms, a context map articulates how bounded contexts relate — which integrate, which translate, which conflict. Here, that map emerges from the legacy as it actually is rather than as someone once described it.
-
-The cost is operational. Two substrates require two ingestion pipelines (or one pipeline with two output paths), two query interfaces, two consistency disciplines. When one substrate updates, the other must follow. Schema changes ripple across both. The dual maintenance is real.
-
-The benefit pays back over time. Modernization queries get richer, more nuanced, more capable of handling the messy reality of legacy code. The two substrates together approximate observations a domain expert with deep knowledge of the codebase would surface from intuition: "these unconnected paragraphs are doing the same thing," "this CALL is incidental, not semantic," "these similar-looking blocks implement different intents." That's not the totality of what an expert sees, but it is the part that scales with the codebase.
-
-Combining knowledge graphs with vector indices is an emerging practice in retrieval-augmented generation systems generally — Microsoft's GraphRAG work, Anthony Alcaraz's writing on agentic GraphRAG, and the broader hybrid-retrieval literature have all articulated the value. What this catalog contributes is the framing of these as *complementary substrates with different epistemologies* — discrete and exact versus continuous and approximate — and the discipline of preserving both shapes rather than flattening them into a single representation. The boundary between them is part of the architecture, not an implementation detail.
-
-### Related patterns
-
-Pattern 3 (*The Graph as Projection*) defines the structural substrate. Pattern 5 (*Domain Ontology as Independent Substrate*) consumes the semantic substrate as one of its inputs — vocabulary inference and similarity clustering are starting points for ontology recovery, even though the ontology itself lives independently of the index. Pattern 4 (*Source Provenance Discipline*) is what enables cross-referencing between graph and index.
-
----
-
-## Pattern 7: Vertical Slice Discovery from Structural and Behavioural Signals
-
-*Status: in progress.*
+*Status: in construction.*
 
 ### Context
 
-A legacy codebase parsed as a graph (Pattern 3) and enriched with semantic signal (Patterns 4, 5). The graph contains thousands of paragraphs, hundreds of programs, dozens of bounded contexts. The modernization effort needs to identify *vertical slices* — coherent feature units that can be extracted, scaffolded, translated, and verified as a working whole. Each slice represents one user-visible behaviour from input through processing through output. In DDD vocabulary, slices map to use cases within bounded contexts; the aggregates a slice touches — aggregates are DDD's term for clusters of domain objects treated as a single unit for state changes, with invariants that hold across the cluster — define its consistency boundary.
+A legacy codebase parsed as a graph (Pattern 3) and enriched with semantic signal. The graph contains thousands of paragraphs, hundreds of programs, dozens of bounded contexts. The modernization effort needs to identify *vertical slices* — coherent feature units that can be extracted, scaffolded, translated, and verified as a working whole. Each slice represents one user-visible behaviour from input through processing through output. In DDD vocabulary, slices map to use cases within bounded contexts; the aggregates a slice touches — aggregates are DDD's term for clusters of domain objects treated as a single unit for state changes, with invariants that hold across the cluster — define its consistency boundary.
 
 ### Problem
 
@@ -410,92 +316,155 @@ Derive slice candidates from a multi-signal pipeline. Five signal sources contri
 - **Operational observation when available** — paragraphs exercised together by real transactions, with shared inputs and shared outputs.
 - **Synthetic execution when production telemetry is not available** — the Legacy Twin (Pattern 2) is already runnable locally; synthetic test inputs exercise candidate slice boundaries and reveal which paragraphs activate together. The synthetic signal is not equivalent to production observation — it reflects test design, not real usage — but it catches many divergences between structural intuition and operational reality.
 
-The heuristics that map signals to slice boundary candidates live as first-class artifacts, not as implicit knowledge in agent prompts. A heuristic catalog declares: "XCTL between paragraphs in different bounded contexts is strong evidence of slice transition; weight: 0.8." Specialized agents query the catalog when they need to interpret a cue in context. The catalog is queryable, versionable, and observable — when an agent proposes a slice boundary, the reasoning record (Pattern 24) cites the heuristics applied and the evidence supporting each.
+The heuristics that map signals to slice boundary candidates live as first-class artifacts, not as implicit knowledge in agent prompts. A heuristic catalog declares: "XCTL between paragraphs in different bounded contexts is strong evidence of slice transition; weight: 0.8." Specialized agents query the catalog when they need to interpret a cue in context. The catalog is queryable, versionable, and observable — when an agent proposes a slice boundary, the reasoning record (Pattern 18) cites the heuristics applied and the evidence supporting each.
 
 For CICS specifically, pseudo-conversational boundaries (`RETURN TRANSID`/`COMMAREA` cycles) provide strong structural evidence: the system itself signals where one user-visible interaction ends and the next begins. Use this as the primary structural anchor.
 
-The output is a set of candidate slices, each with: an entry point, a set of paragraphs that participate, a side-effect surface, an estimated tier classification (Pattern 10), and a confidence signal indicating how strongly the signals agree. Treat low-confidence slices as needing human validation; treat high-confidence slices as ready for scaffolding. The discovery process is not "find all slices automatically" — it is "propose slices with evidence and let architects validate or refine."
+The output is a set of candidate slices, each with: an entry point, a set of paragraphs that participate, a side-effect surface, an estimated tier classification (Pattern 8), and a confidence signal indicating how strongly the signals agree. Treat low-confidence slices as needing human validation; treat high-confidence slices as ready for scaffolding. The discovery process is not "find all slices automatically" — it is "propose slices with evidence and let architects validate or refine."
 
 ### Consequences
 
-The modernization gets units of work that are operationally meaningful, not just syntactically coherent. The agents work on real features; architects validate slice boundaries based on combined evidence. Each slice carries its own provenance — traces back to the graph nodes, DDL fragments, and observation traces (production or synthetic) that grounded it. This makes the slice a queryable artifact: the cockpit (Pattern 25) shows why a slice was proposed and where signals diverge.
+The modernization gets units of work that are operationally meaningful, not just syntactically coherent. The agents work on real features; architects validate slice boundaries based on combined evidence. Each slice carries its own provenance — traces back to the graph nodes, DDL fragments, and observation traces (production or synthetic) that grounded it. This makes the slice a queryable artifact: the cockpit (Pattern 19) shows why a slice was proposed and where signals diverge.
 
 Slices are not the unit of business value — capabilities are. A business capability ("process insurance claim," "underwrite policy renewal," "reconcile end-of-day") typically composes multiple slices. Slice discovery should produce slices that aggregate naturally into recognisable capabilities. When proposed slices do not compose into capabilities the business recognises, the discovery has fragmented something unitary or conflated something separable. Capability mapping is a validation lens for slice quality, not a substitute for slice discovery.
 
-The cost is the multi-signal pipeline. Each signal has its own engineering cost; when a source is unavailable, slice discovery falls back to remaining signals with explicit confidence reduction. The audit trail records which signals validated each slice. Pattern 15 (*Architecture Documentation as Pluggable Emitter*) can render slices into specific views — slice maps showing the working set, communication maps showing queues and CALLs between slices, dependency diagrams showing the side-effect surface.
+The cost is the multi-signal pipeline. Each signal has its own engineering cost; when a source is unavailable, slice discovery falls back to remaining signals with explicit confidence reduction. The audit trail records which signals validated each slice. Pattern 9 (*Pluggable Emitters*) can render slices into specific views — slice maps showing the working set, communication maps showing queues and CALLs between slices, dependency diagrams showing the side-effect surface.
 
-The pattern is in active development. Structural slice discovery is implemented and validated inside the Rosetta prototype. Behavioural integration is being built alongside the production-mode verification work in Patterns 14 and 15.
+The pattern is in active development. Structural slice discovery is implemented and validated inside the Rosetta prototype. Behavioural integration is being built alongside the production-mode verification work in Pattern 14.
 
 The notion of *vertical slice* as architectural unit comes from Jimmy Bogard and Steven Smith's articulation of vertical slice architecture (Bogard, 2018; Smith, 2018). Alberto Brandolini's Event Storming (Brandolini, 2013) provides the workshop technique for collaborative slice discovery with domain experts. What this catalog contributes is the methodology for slice discovery in legacy mainframe systems — the linguistic cues, the multi-signal pipeline (structural, linguistic, DDL, observational, synthetic), the heuristic catalog as queryable artifact — applied at codebase scale where Event Storming alone wouldn't reach.
 
 ### Related patterns
 
-Pattern 3 (*The Graph as Projection*) provides the structural substrate. Pattern 5 (*Domain Ontology as Independent Substrate*) provides the canonical vocabulary slice boundaries align with — slices are coherent units of domain behaviour, and the ontology says what counts as a unit. Pattern 8 (*The Compiler Principle*) is why the heuristic catalog lives as deterministic infrastructure. Pattern 10 (*Tier-Aware Scaffolding*) consumes slice candidates and produces the appropriate scaffold. Pattern 15 (*Architecture Documentation as Pluggable Emitter*) renders slice candidates into views the architect can validate. Patterns 14 and 15 (*Hypothesis-Driven Verification*, *Behavioural Specifications*) provide the behavioural signal that refines structural slice discovery. Pattern 19 (*Bounded MCP Servers*) is where specialized slice-discovery agents live with explicit access to the heuristic catalog. Pattern 24 (*Reasoning Telemetry as First-Class Output*) makes heuristic application observable.
+Pattern 3 (*The Graph as Projection*) provides the structural and semantic substrate. Pattern 4 (*Domain Ontology as Independent Substrate*) provides the canonical vocabulary slice boundaries align with — slices are coherent units of domain behaviour, and the ontology says what counts as a unit. Pattern 6 (*The Compiler Principle*) is why the heuristic catalog lives as deterministic infrastructure. Pattern 8 (*Tier-Aware Scaffolding*) consumes slice candidates and produces the appropriate scaffold. Pattern 9 (*Pluggable Emitters*) renders slice candidates into views the architect can validate, since documentation emitters live there. Pattern 14 (*Hypothesis-Driven Verification*) provides the behavioural signal that refines structural slice discovery. Pattern 15 (*Bounded MCP Servers*) is where specialized slice-discovery agents live with explicit access to the heuristic catalog. Pattern 17 (*Heuristics as Explicit Artifacts*) holds the catalog this pattern consumes. Pattern 18 (*The Harness as Self-Observing State Machine*) makes heuristic application observable through its reasoning telemetry.
 
----
+-----
 
-# Architectural Interlude: The Three-Layer Recovery Architecture (CICS Instantiation)
-
----
+# Architectural Interlude: Foundations Across the Catalog
 
 Legacy modernization fails when it tries to go from source to scaffold in one hop. Too much semantic loss. Too much implicit knowledge buried in runtime contracts rather than the source text. Too many architectural commitments smuggled in under the appearance of mechanical translation.
 
-The patterns in Part I recover legacy systems from source; the patterns in Part II project them onto modern code. Between recovery and projection lives an architectural discipline this catalog has been articulating implicitly across the patterns above and the patterns ahead. This interlude makes that discipline explicit.
+The patterns in Part I recover legacy systems from source; the patterns in Part II project them onto modern code. Between recovery and projection lives an architectural discipline this catalog has been articulating implicitly across the patterns above and the patterns ahead. Two pieces of that discipline operate across the whole catalog rather than belonging to any single pattern. They are the foundations every pattern presupposes.
+
+The first foundation is the three-layer recovery architecture. The second is the source provenance discipline that holds the layers honest. Both are introduced here so the patterns that follow can refer to them without re-establishing the ground each time.
+
+## The three-layer recovery architecture
 
 Recovery has to traverse **three distinct substrates**, each at a different abstraction level, with architect-gated transitions between them. None are implicit LLM leaps. The substrates are not a methodology imposed on the work — they emerge from the work itself, once recovery is taken seriously as a multi-stage activity.
 
-## L1 — Syntactic and Resource Graph
+### L1 — Syntactic and Resource Graph
 
-The bottom layer is what the legacy *literally says*. Pattern 3 (*The Graph as Projection*) produces it: a property graph of programs, paragraphs, copybooks, CICS resources, control flow, data flow, side effects, predicates, entry points. Source provenance (Pattern 4) is mandatory at every node — every L1 element traces back to specific file coordinates.
+The bottom layer is what the legacy *literally says*. Pattern 3 (*The Graph as Projection*) produces it: a property graph of programs, paragraphs, copybooks, CICS resources, control flow, data flow, side effects, predicates, entry points. Provenance discipline (see below) is mandatory at every node — every L1 element traces back to specific file coordinates.
 
 L1 is **evidence, not interpretation**. Two runs over the same source must produce the same graph. The graph is diffable against the source; the source is diffable against the graph. No layer above L1 can claim to know something L1 doesn't witness.
 
 L1 is deterministic. No LLMs participate in its construction. The parser produces the graph; the graph is what it is.
 
-## L2 — Semantic Intent Graph
+### L2 — Semantic Intent Graph
 
 The middle layer is what the legacy *actually does*. This is the territory where legacy idioms get named, codified, and made queryable as patterns — and where most of the catalog's intellectual work lives.
 
-L2 is the **specification the original team never produced**. It is the layer at which Pattern 5 (*Domain Ontology as Independent Substrate*) recovers canonical vocabulary; at which Pattern 7 (*Vertical Slice Discovery*) identifies coherent units of behaviour; at which Pattern 22 (*Heuristics as Explicit Artifacts*) holds the queryable rules that interpret legacy structural cues. The ontology, the heuristic catalog, and the slice working sets are all L2 substrates — different facets of the same intent layer.
+L2 is the **specification the original team never produced**. It is the layer at which Pattern 4 (*Domain Ontology as Independent Substrate*) recovers canonical vocabulary; at which Pattern 5 (*Vertical Slice Discovery*) identifies coherent units of behaviour; at which Pattern 17 (*Heuristics as Explicit Artifacts*) holds the queryable rules that interpret legacy structural cues. The ontology, the heuristic catalog, and the slice working sets are all L2 substrates — different facets of the same intent layer.
 
 L2 is where DDD's strategic design lives in this architecture. Bounded contexts, ubiquitous language, aggregate candidates, command and event boundaries — these are L2 concepts, recovered from L1 evidence and validated against domain understanding. L2 patterns are typed subgraphs over L1 with required structural signatures, disqualifying signatures, and explicit confidence scores. A `LatentSaga` is an L2 pattern: it requires specific L1 evidence (paired write/inverse-write paths, linguistic markers like *refund* or *reverse*) and excludes specific L1 evidence (intermediate writes without inverses, which would make it a different L2 pattern). The pattern is precise enough to be testable; the testability is what makes L2 reviewable.
 
-LLMs enter L2 only for **linguistic disambiguation, and only to propose edges that an architect or oracle verifies**. The agents do not author L2; they propose candidates that the harness (Pattern 23) gates and that humans validate through the cockpit (Pattern 25). L2 is the design document the original team never produced — and it cannot be produced by LLMs alone, because what counts as a valid pattern is a domain question, not a linguistic one.
+LLMs enter L2 only for **linguistic disambiguation, and only to propose edges that an architect or oracle verifies**. The agents do not author L2; they propose candidates that the harness (Pattern 18) gates and that humans validate through the cockpit (Pattern 19). L2 is the design document the original team never produced — and it cannot be produced by LLMs alone, because what counts as a valid pattern is a domain question, not a linguistic one.
 
 L2 is what compounds across engagements. Every CICS modernization that passes through this catalog refines the L2 catalog: a `RecoverableSideEffect` pattern caught once sharpens its detection forever; a misclassified `LatentSaga` (Compensation Cargo Cult — see antipatterns) teaches the catalog where its disqualifying signatures need tightening. The L2 catalog is the durable artifact of the modernization team's accumulated CICS expertise, codified.
 
-## L3 — Architectural Target Graph
+### L3 — Architectural Target Graph
 
 The top layer is how the legacy *should be expressed* in modern code. This is where projection happens.
 
-L3 is the territory of Pattern 9 (*The Intermediate Representation*) — the typed WolverineIntentModel that encodes architectural commitments: handlers, aggregates, commands, events, sagas, ports. Pattern 10 (*Tier-Aware Scaffolding*) decides which architectural shape each bounded context receives in L3. Pattern 11 (*Pluggable Emitters*) renders L3 into target code.
+L3 is the territory of Pattern 7 (*The Intermediate Representation*) — the typed WolverineIntentModel that encodes architectural commitments: handlers, aggregates, commands, events, sagas, ports. Pattern 8 (*Tier-Aware Scaffolding*) decides which architectural shape each bounded context receives in L3. Pattern 9 (*Pluggable Emitters*) renders L3 into target code.
 
 L2 → L3 is **not 1:1**. It is a mapping function with architect-gated rules. A `DeferredCommitWizard` in L2 does not become a `Saga` in L3 — it becomes a `StatefulFlow + SingleCommand`, because the deferred-commit shape has no compensation semantics to operationalise. A `LatentSaga` in L2 does become a `Saga` in L3, but only after the recovered compensations have been validated as first-class steps. A `SyncConversation` (LINK/XCTL chain inside one task) typically collapses into a single command handler in L3 — the call chain is recovered as evidence, not preserved as structure.
 
-The mapping rules are explicit policy, versioned, and architect-validated. **L3 invariants override L2 shape when they conflict.** The graph holds decisions; the architect validates them; the compiler renders but does not decide. This is the compiler principle (Pattern 8) operating at the layer transition.
+The mapping rules are explicit policy, versioned, and architect-validated. **L3 invariants override L2 shape when they conflict.** The graph holds decisions; the architect validates them; the compiler renders but does not decide. This is the compiler principle (Pattern 6) operating at the layer transition.
 
-## Architect-gated transitions
+### Architect-gated transitions
 
 Each transition has a specific gate.
 
-- **L1 → L2** is gated by the heuristic catalog (Pattern 22). Pattern detectors run as Cypher queries against L1; each match carries its evidence, its confidence, and the heuristics applied. Low-confidence matches surface for review; high-confidence matches proceed; disqualified matches are recorded so the catalog learns from the negative case.
-
+- **L1 → L2** is gated by the heuristic catalog (Pattern 17). Pattern detectors run as Cypher queries against L1; each match carries its evidence, its confidence, and the heuristics applied. Low-confidence matches surface for review; high-confidence matches proceed; disqualified matches are recorded so the catalog learns from the negative case.
 - **L2 → L3** is gated by the mapping rules. Each L2 pattern has explicit projection rules onto L3; each rule carries its rationale and the architectural invariants it must satisfy. Architect overrides are recorded as graph nodes, becoming part of the evidence trail that future projections consult.
+- **L3 → scaffold** is gated by `scaffold-meta.json` (Pattern 18). The scaffold defines constitutional boundaries: which fields are immutable, which extension points agents may fill, which invariants generated tests must verify. The agent never breaches these boundaries — the harness (Pattern 18) enforces them as code, not as prompts.
 
-- **L3 → scaffold** is gated by `scaffold-meta.json` (Pattern 23). The scaffold defines constitutional boundaries: which fields are immutable, which extension points agents may fill, which invariants generated tests must verify. The agent never breaches these boundaries — the harness (Pattern 23) enforces them as code, not as prompts.
-
-## Why the three layers matter
+### Why the three layers matter
 
 The architecture earns four properties that single-hop modernization cannot:
 
-| Property | Layer that delivers it |
-|----------|------------------------|
-| **Verifiable** | L1 is diffable against source; two runs produce the same graph |
-| **Reviewable** | L2 patterns are named, evidenced, disputable; each detection cites its L1 evidence |
-| **Governable** | L3 mapping rules are explicit policy, versioned, architect-validated |
-| **Constitutional** | The scaffold enforces L3 boundaries as code, not as prompts |
+|Property          |Layer that delivers it                                                            |
+|------------------|----------------------------------------------------------------------------------|
+|**Verifiable**    |L1 is diffable against source; two runs produce the same graph                    |
+|**Reviewable**    |L2 patterns are named, evidenced, disputable; each detection cites its L1 evidence|
+|**Governable**    |L3 mapping rules are explicit policy, versioned, architect-validated              |
+|**Constitutional**|The scaffold enforces L3 boundaries as code, not as prompts                       |
 
 Without L1, generation has nothing to ground claims in. Without L2, modernization silently inherits legacy structure as if it were legacy intent. Without L3, scaffolding becomes mechanical translation of L2 shapes that should have been transformed. Without architect-gated transitions, the layers collapse into the single-hop failure mode the architecture was designed to prevent.
+
+### How the three layers map to the DDD arc
+
+The three-layer architecture is a cross-cutting lens, not a competing organization. Every pattern in the catalog lives in one of the four DDD-arc parts (strategic recovery, tactical generation, verification, governance) and operates on or between substrates of the three-layer architecture. Some examples:
+
+- Pattern 3 (*The Graph as Projection*) lives in Part I and produces the L1 substrate.
+- Pattern 4 (*Domain Ontology*) lives in Part I and produces an L2 substrate.
+- Pattern 6 (*The Compiler Principle*) lives in Part II and operates the L2 → L3 transition.
+- Pattern 7 (*The Intermediate Representation*) lives in Part II and is the L3 substrate.
+- Pattern 13 (*Twin Verification*) lives in Part III and verifies L3 outputs against L1 evidence through the legacy oracle.
+- Pattern 18 (*The Harness as Self-Observing State Machine*) lives in Part IV and governs all the transitions.
+
+When a pattern is rooted in one part of the DDD arc but operates across multiple layers, the pattern body says so. The reader does not need to track both schemes in parallel — the patterns make their position in both visible where it matters.
+
+## Source provenance as cross-cutting discipline
+
+The second foundation is not a pattern; it is a discipline every pattern presupposes. **Every artifact at every layer carries source coordinates back to the legacy code it derives from.**
+
+The discipline is mechanical and unglamorous. It is also load-bearing: without it, every capability that depends on traceability collapses; with it, those capabilities become tractable. Compilers have always done this through debug symbols and source maps. Build systems do it through deterministic dependency tracking. Audit infrastructure in regulated industries does it through signed transaction logs. What this catalog adds is the framing of provenance as the architectural commitment of an *agentic modernization pipeline*: every representation the agents reason over carries source coordinates, not just the artifacts humans inspect.
+
+### What the discipline requires
+
+Every graph node carries source coordinates (`source_file`, `start_line`, `end_line` in Rosetta — naming is implementation-specific, the discipline is not). Every IR element carries the same, plus references to the graph nodes it derived from. Every generated C# artifact carries comments or metadata pointing back to the IR element that produced it. Every semantic index entry carries the same source coordinates as the graph nodes it derives from. Every agent reasoning record carries citations to the substrates it consulted; those citations carry provenance forward.
+
+Schema validators enforce provenance presence — a graph node without source coordinates is rejected at ingestion, an IR element without graph references is rejected at construction, a generated artifact without metadata pointers fails the build. The discipline is enforced by the substrates themselves, not by reviewer attention.
+
+The audit trail is end-to-end. A modernization decision can be traced from the agent's reasoning back through the substrates the agent queried back to the specific legacy code those substrates derived from. A production exception in the modernized C# traces back through the IR back through the graph back to the source COBOL. A regulator asking how a particular decision was reached gets an answer of the form "the agent reasoned from these specific lines of COBOL, with these specific transformations applied, validated against these specific heuristics" — not "the agent decided."
+
+### Why the discipline must be cross-cutting
+
+Provenance fails the moment any link in the chain is optional. A graph that mostly has source coordinates is not provenance-enabled; it is provenance-vulnerable. The audit trail breaks at the first node that lacks them, and the reviewer has to do manual archaeology from that point. Cross-cutting discipline means every layer of the pipeline enforces provenance locally, so that the chain holds globally.
+
+The temporal asymmetry is what makes provenance discipline so frequently neglected. The cost is paid daily by everyone building the pipeline — every developer working on a new analysis pass must remember to thread provenance through, every emitter must carry it forward, every transformation must validate it. The benefit accrues to a future operator, regulator, or debugging session that isn't in the room when the schema is designed. By the time you need provenance, it's too late to add. This is why the discipline must be enforced as code, not as convention.
+
+### Where provenance shows up in the patterns
+
+Several patterns refer to provenance discipline because they consume or produce it. Pattern 3 (*The Graph as Projection*) is where source coordinates first appear — the graph schema is where provenance becomes mandatory. Pattern 7 (*The Intermediate Representation*) extends it into the IR. Pattern 18 (*The Harness as Self-Observing State Machine*) requires agent reasoning records to cite the provenance of their evidence. Pattern 19 (*The Cockpit*) is the operational surface that consumes provenance, surfacing side-by-side comparisons and audit traces to humans.
+
+But these are local callouts to a global discipline. Provenance is not what any single pattern does; it is what every pattern respects.
+
+## The AsIs/ToBe ownership discipline
+
+The third foundation across the catalog is not a substrate. It is a discipline about *who owns what kind of artifact*.
+
+Recovery and projection produce two qualitatively different things, and the patterns above presuppose that the difference is held explicitly.
+
+**AsIs** is the recovered specification — evidence about what the system actually does. Where the parser produced an L1 graph, where the heuristic catalog (Pattern 17) detected an L2 pattern with cited evidence, where a use case was recovered with structural anchors and linguistic vocabulary, the result is AsIs. No design decisions live in AsIs. Two runs over the same source produce the same AsIs. When the legacy changes, AsIs re-derives mechanically.
+
+**ToBe** is the target design — judgment about how the legacy *should be expressed* in the modernized architecture. Where the tier is decided (Pattern 8), where the architectural pattern is selected (Pattern 9), where the seam between bounded contexts is drawn, where commands and events shape the logical boundary (Pattern 10) — the result is ToBe. ToBe is not derivable from AsIs alone. The same AsIs can ground multiple defensible ToBe designs; the choice between them is architectural judgment, validated by humans, recorded as decision.
+
+The dichotomy is what makes the rest of the catalog tractable. Pattern 6 (the compiler principle) only holds if it is clear which substrates hold decisions and which substrates hold evidence. Pattern 13 (Twin Verification) only verifies meaningfully if what it tests against (AsIs behaviour, captured through the legacy oracle) is distinguishable from what it produces (ToBe artifacts, candidate translations). Pattern 18 (the harness) only governs coherently if its gates separate decisions from evidence rather than treating all artifacts as equally subject to revision.
+
+The ownership pattern is the discipline:
+
+- **AsIs artifacts are owned by deterministic infrastructure** — the parser, the pattern detectors, the heuristic catalog, the semantic index. Humans review the *infrastructure that produces AsIs*, not the AsIs itself, because AsIs is mechanical output.
+
+- **ToBe artifacts are owned jointly by agents, the ontology, and humans** — agents propose, the ontology constrains, humans approve. Every ToBe artifact carries a decision record: which ontology version constrained it, which agent proposed it, which human approved it, what evidence from AsIs grounded the proposal.
+
+- **The Intermediate Representation (Pattern 7) is the bridge contract.** It is not where decisions are made. It is what the scaffold renders from, after ToBe is finalized.
+
+Where the dichotomy collapses, the catalog collapses with it. If agents are permitted to revise AsIs to make their ToBe proposals fit, evidence becomes negotiable and the pipeline degrades into rationalisation. If humans are asked to validate AsIs line by line, they exhaust their attention on mechanical output and have nothing left for the strategic decisions in ToBe. If ToBe is treated as derivable from AsIs without judgment, modernization becomes mechanical translation — and the antipatterns this catalog is built against (*Jobol*, *Frozen architecture*, *Behavioural equivalence without ontology*) re-emerge under the appearance of rigour.
+
+The three foundations interact. The three-layer recovery architecture says *what substrates exist* (L1, L2, L3). Source provenance discipline says *how the substrates trace back to legacy code*. The AsIs/ToBe ownership discipline says *who owns which substrate, in what mode of authority, with what governance*. None of the three is sufficient alone; together they hold the catalog's structural commitments.
 
 ## Scoping note
 
@@ -503,27 +472,23 @@ This catalog instantiates the three-layer architecture for CICS COBOL modernizat
 
 Whether the same three-layer structure applies to other legacy substrates — PL/I, RPG, Natural, JADE, Smalltalk — is a question this catalog does not answer. The principle of architect-gated multi-stage recovery is substrate-independent in shape; the specific substrates that populate each layer would need to be developed for each legacy stack. The CICS case is what's been validated inside the Rosetta prototype. Other practitioners working with other stacks may find the architecture applies; that work is not done here.
 
----
+The provenance discipline is substrate-independent. Any legacy modernization, regardless of stack, can apply it. The cost is the same; the benefit is the same; the discipline is mechanical.
+
+-----
 
 # Part II: Tactical Generation
 
----
-
-**🎨 ILLUSTRATION P2 — *Tactical Generation: from substrate to scaffold***
-
-*Style: editorial illustration matching the cover's aesthetic. Subject: a craftsperson's hands operating an old mechanical printing press, but the press itself is partially abstract — the type sets being composed are rendered as code structures (curly braces, class names, method signatures) rather than letters. Pages emerging from the press show fully formed C# classes. The metaphor: deterministic mechanism faithfully rendering structured intent into code, with the human craft visible at the input side. Format: full-page or two-thirds page opener for Part II.*
-
----
+-----
 
 The patterns in this group address tactical design as DDD uses the term: how each bounded context materialises in modern code. Aggregates, domain events, handlers, the architecture chosen for each context. They presuppose strategic recovery from Part I — without bounded contexts identified and ubiquitous language established, generation produces structurally plausible code that doesn't reflect the domain.
 
 The tactical patterns here are calibrated to AI-assisted generation. They specify what humans decide, what agents produce, what deterministic infrastructure renders, and how the boundaries between these stay clean.
 
----
+-----
 
-## Pattern 8: The Compiler Principle
+## Pattern 6: The Compiler Principle
 
-*Status: working.*
+*Status: prototype-validated.*
 
 ### Context
 
@@ -549,20 +514,6 @@ The deterministic side is itself made of explicit artifacts. The graph schema is
 
 In DDD terms, this is the boundary between strategic design (which the human architect performs, with agent assistance for analysis) and tactical execution (which agents perform, within the scaffold that strategic decisions produced). Strategic decisions about bounded contexts, subdomain types, and aggregate boundaries are not LLM decisions. Tactical decisions about how a particular paragraph translates to a method body, given the scaffold, are.
 
----
-
-**📐 FIGURE 8.1 — *The compiler principle: deterministic / probabilistic boundary***
-
-*Diagram showing the architectural boundary between deterministic and probabilistic work. Left half (deterministic, cool tones): the structural graph (Pattern 3) feeds the IR (Pattern 9); the IR feeds the Roslyn-based emitter; the emitter renders C# scaffolds with all class structures, handler signatures, dependency wiring already determined. Right half (probabilistic, warm tones): the rendered scaffold contains explicit "method body" placeholders; agents work inside these constrained spaces translating COBOL paragraphs into C# logic. Vertical line down the middle labelled "the boundary the architecture defends." Annotations on the deterministic side: "graph holds decisions, compiler renders, architect validates." Annotations on the probabilistic side: "agents fill constrained space — cannot choose architecture." Style: split-panel diagram with strong visual contrast between sides. Goal: reader understands at a glance which work is mechanical and which is generative.*
-
----
-
-**💻 CODE 8.1 — *Roslyn SyntaxFactory rendering a deterministic handler scaffold***
-
-*Code sample (~25 lines, C#) showing the emitter rendering a Wolverine handler class from IR data. The sample should depict: (1) reading a HandlerIntent from the IR; (2) using SyntaxFactory to construct the class declaration with name, namespace, dependencies; (3) generating the Handle method signature with command and event parameters typed; (4) leaving an explicit `// AGENT-FILL: method body` comment marker where the probabilistic work goes. The contrast between the deterministic structure (every line generated by code) and the explicit hand-off to the agent (the marker) makes the principle concrete. Include short prose introduction (~2 sentences) framing what the reader should notice.*
-
----
-
 ### Consequences
 
 The system becomes reproducible at the architectural level. The same graph produces the same scaffold every time. The same scaffold constrains agents to the same kinds of work. Failures are localised: when something goes wrong, it's clear whether the failure is in the architectural decision (wrong bounded context) or the agentic translation (wrong handler body). Each can be debugged independently. For regulated industries this matters operationally — auditors can review architectural decisions separately from generated code, and the audit trail at each layer is independently inspectable.
@@ -573,13 +524,13 @@ The principle isn't novel in absolute terms — compilers have always been deter
 
 ### Related patterns
 
-Pattern 9 (*The Intermediate Representation*) is the contract between the deterministic and probabilistic sides. Pattern 10 (*Tier-Aware Scaffolding*) operates entirely on the deterministic side. Pattern 11 (*Pluggable Emitters*) is a corollary: if the principle is correct, the deterministic side should be replaceable without disturbing the probabilistic side.
+Pattern 7 (*The Intermediate Representation*) is the contract between the deterministic and probabilistic sides. Pattern 8 (*Tier-Aware Scaffolding*) operates entirely on the deterministic side. Pattern 9 (*Pluggable Emitters*) is a corollary: if the principle is correct, the deterministic side should be replaceable without disturbing the probabilistic side.
 
----
+-----
 
-## Pattern 9: The Intermediate Representation
+## Pattern 7: The Intermediate Representation
 
-*Status: working.*
+*Status: prototype-validated.*
 
 ### Context
 
@@ -597,53 +548,45 @@ A second tension: the IR's vocabulary must be stable enough that downstream emit
 
 ### Pattern
 
-Place a typed intermediate representation between the graph and the emitter. The IR captures architectural intent — commands, events, handlers, sagas, aggregates, side-effect surfaces — in data structures the emitter can render. Each IR element is grounded back to the graph nodes that derived it.
+Place a typed intermediate representation between the graph and the rendered scaffold. The IR is not one substrate — it is two, separated by the same compiler discipline that governs the boundary between agentic and deterministic work.
 
-This vocabulary is not arbitrary. It is the tactical design vocabulary of DDD as articulated by Eric Evans (2003) and elaborated by Vaughn Vernon (*Implementing Domain-Driven Design*, 2013): aggregates as consistency boundaries, domain events as observable facts about the past, commands as expressions of intent, sagas as long-running processes that span aggregates. The IR encodes the modernized system's tactical design in the same vocabulary the team uses to discuss the domain — closing the gap between what the architecture says and what the code expresses.
+**IR-Domain holds architectural intent.** It captures commands, events, handlers, sagas, aggregates, side-effect surfaces — the tactical-design vocabulary of DDD as articulated by Eric Evans (2003) and elaborated by Vaughn Vernon (*Implementing Domain-Driven Design*, 2013). Each IR-Domain element is grounded back to the graph nodes that derived it. It is the machine-readable form of the modernization's architectural commitments: what aggregates exist, what consistency boundaries they enforce, what events they emit, what commands they accept, what sagas coordinate them.
 
-The IR draws its vocabulary from the domain ontology (Pattern 5), not from the legacy's accidental naming. When the IR captures an aggregate as `Customer`, that name comes from the canonical ubiquitous language the modernization team has validated — not from whatever the legacy happened to call it (`CUST-MAST-REC`, `CMR`, `CUSTREC01`). Where the ontology is not yet established, the IR carries provisional names from vocabulary inference, marked explicitly as provisional, awaiting validation. The data layer's DDL — schemas, foreign keys, constraints — also informs aggregate boundary discovery: foreign keys reveal containment relationships, NOT NULL and CHECK constraints capture invariants of the aggregate. The IR is one of the principal consumers of ontology recovery — without it, the IR encodes the legacy's confusion in modern syntax.
+IR-Domain is the substrate agents reason about. When an agent proposes a translation, it is grounding its proposal in IR-Domain elements — citing the aggregate this paragraph touches, the command this CICS transaction expresses, the events that follow from successful processing. IR-Domain is queryable, inspectable, reviewable; humans validate architectural commitments at the IR-Domain layer before any scaffold is rendered.
 
-The IR is not a structurally neutral intermediate. It encodes architectural commitments: when the IR captures a `HandlerIntent` with typed commands and events, it has committed to Vertical Slice Architecture for that bounded context; when it captures a `PortIntent` with adapter slots, it has committed to Hexagonal Architecture; when it captures a `SagaIntent` with choreography steps, it has committed to event-driven coordination. These are hard decisions — they structure the important constructs of the generated code. They are not LLM-mutable; they are validated by the architect during strategic recovery (Part I) and frozen into the IR before generation begins.
+**IR-Scaffold holds the structural blueprint.** It captures class layouts, file paths, project structure, namespace organisation, interface definitions, test stub locations, the `scaffold-meta.json` constitutional contracts that the harness (Pattern 18) enforces. IR-Scaffold is a deterministic projection from finalized IR-Domain plus target conventions. There are no decisions in IR-Scaffold; given the IR-Domain and the chosen emitter (Pattern 9), the scaffold is what it is.
 
-The IR represents the hard decisions that structure the important constructs of the generated code. Everything that is structural — what gets generated, how it composes, which architecture style applies — lives in the IR. Everything that is creative — how a specific paragraph translates to a specific method body — lives in the agent's space within the scaffold the IR defined.
+Agents do not reason about IR-Scaffold and do not modify it. They receive its output — the rendered C# files, the project layout, the test stubs — and fill the bodies the scaffold has carved out for them. The boundary between IR-Domain (where architectural intent lives) and IR-Scaffold (where structural rendering lives) is the boundary between deliberative work and compilation. Collapsing the two is the most common way the compiler principle (Pattern 6) silently fails: when agents can revise scaffold structure to accommodate their translations, architectural commitments stop being commitments.
 
-The IR is the contract. If the analysis can produce a valid IR, the emitter can render it. If the analysis can't, the analysis isn't done yet. New analysis patterns extend the IR; new generation targets consume the IR.
+The vocabulary of IR-Domain draws from the domain ontology (Pattern 4), not from the legacy's accidental naming. When IR-Domain captures an aggregate as `Customer`, that name comes from the canonical ubiquitous language the modernization team has validated — not from whatever the legacy happened to call it (`CUST-MAST-REC`, `CMR`, `CUSTREC01`). Where the ontology is not yet established, IR-Domain carries provisional names from vocabulary inference, marked explicitly as provisional and awaiting validation. The data layer's DDL informs aggregate boundary discovery: foreign keys reveal containment relationships, NOT NULL and CHECK constraints capture invariants. IR-Domain is one of the principal consumers of ontology recovery — without it, the architecture encodes the legacy's confusion in modern syntax.
 
-The rendering is deterministic and explicit. The emitter is implemented as Roslyn code generators — Roslyn is Microsoft's open-source C# and VB compiler platform, which exposes the compiler as a service: parsers, syntax trees, semantic models, and code generators are all addressable as APIs. Where traditional compilers are black boxes, Roslyn lets you treat the compiler itself as programmable infrastructure. Each architectural commitment in the IR has a corresponding Roslyn code generator that knows how to render it. Changing architecture style — moving a bounded context from VSA to hexagonal, or from hexagonal to layered clean architecture — is not a prompt change. It is writing new Roslyn code generators that consume the same IR types and emit the new style. The IR stays stable; the rendering changes. This is what makes Pattern 11 (*Pluggable Emitters*) tractable: architecture diversity at the rendering layer, not at the analysis layer.
+IR-Domain is not a structurally neutral intermediate. It encodes architectural commitments: when IR-Domain captures a `HandlerIntent` with typed commands and events, it has committed to Vertical Slice Architecture for that bounded context; when it captures a `PortIntent` with adapter slots, it has committed to Hexagonal Architecture; when it captures a `SagaIntent` with choreography steps, it has committed to event-driven coordination. These are hard decisions — they structure the important constructs of the generated code. They are not LLM-mutable; they are validated by the architect during strategic recovery (Part I) and frozen into IR-Domain before IR-Scaffold is rendered.
 
-In Rosetta, the IR is called WolverineIntentModel because the target it most directly serves is Wolverine handlers. The naming is specific to the implementation; the principle is not.
+The rendering from IR-Domain to IR-Scaffold to C# is deterministic and explicit. The emitter is implemented as Roslyn code generators — Roslyn is Microsoft's open-source C# and VB compiler platform, which exposes the compiler as a service: parsers, syntax trees, semantic models, and code generators are all addressable as APIs. Each architectural commitment in IR-Domain has a corresponding Roslyn code generator that knows how to render it into IR-Scaffold, which in turn drives the rendered files. Changing architecture style — moving a bounded context from VSA to hexagonal, or from hexagonal to layered clean architecture — is not a prompt change. It is writing new Roslyn code generators that consume the same IR-Domain types and emit different IR-Scaffold shapes. IR-Domain stays stable; the rendering changes. This is what makes Pattern 9 (*Pluggable Emitters*) tractable: architecture diversity at the rendering layer, not at the analysis layer.
 
----
+The split extends beyond code. The same IR-Domain feeds documentation emitters (Pattern 9) — C4 model views, aggregate maps, context maps, ubiquitous language glossaries — through their own deterministic emitter chains. Each documentation view is its own deterministic projection from IR-Domain. The vocabulary of IR-Domain, once stable, supports code generation, documentation rendering, and architecture-decision records from the same substrate.
 
-**📐 FIGURE 9.1 — *The IR as contract between analysis and generation***
-
-*Diagram showing the IR as the central contract layer. Top of diagram: multiple analysis passes (graph community detection, slice discovery, predicate analysis, ontology recovery) all producing IR fragments. Center of diagram: the typed IR — depicted as a structured tree showing key types (BoundedContext → Aggregate → Handler, with Commands and Events as leaves). Bottom of diagram: multiple emitters (vertical-slice scaffold, hexagonal scaffold, hybrid scaffold, documentation emitter) all consuming the same IR. Side annotations: "analysis side: extensible — new patterns add IR fragments" and "generation side: strict — emitter requires complete IR." The IR sits visually elevated as the pivot. Style: hub-and-spoke layout. Goal: reader sees that the IR is what allows the system to evolve in two directions independently.*
-
----
-
-**💻 CODE 9.1 — *The WolverineIntentModel IR in C#***
-
-*Code sample (~30 lines, C#) showing the IR as typed C# classes. Depict the key types: `BoundedContextIntent` (with name, tier, child aggregates), `AggregateIntent` (with name, root entity, invariants), `HandlerIntent` (with name, command, events emitted), `CommandIntent` and `EventIntent` (with typed payloads). Include `SourceProvenance` field on each type linking back to graph nodes (Pattern 4). The sample should make concrete that the IR is real C# — typed, validated, discoverable through tooling — not configuration in YAML. Brief prose introduction (~2 sentences) noting that this is what analysis populates and what emitters consume.*
-
----
+In Rosetta, IR-Domain is called WolverineIntentModel because the code-emission target it most directly serves is Wolverine handlers. IR-Scaffold is materialized through Roslyn SyntaxFactory operating on WolverineIntentModel inputs and producing the rendered C# project. The naming is specific to the implementation; the principle — IR-Domain as architectural-intent substrate, IR-Scaffold as deterministic structural projection, neither one elidable into the other — is not.
 
 ### Consequences
 
-Analysis and generation evolve independently. New patterns extend the IR without touching the emitter; new targets add emitters without touching the analysis. The IR itself becomes the durable artifact of what the modernization understands about the legacy. For audit purposes, the IR is the bridge: any generated artifact traces back through its IR origin to the graph nodes and ontology terms that grounded it. Auditors can inspect architectural decisions at the IR layer separately from the rendered code; each layer is independently inspectable.
+Analysis and generation evolve independently. New patterns extend IR-Domain without touching the emitter; new targets add emitters without touching the analysis. IR-Domain itself becomes the durable artifact of what the modernization understands about the legacy. For audit purposes, IR-Domain is the bridge: any generated artifact traces back through its IR-Domain origin to the graph nodes and ontology terms that grounded it. Auditors can inspect architectural decisions at the IR-Domain layer separately from the rendered code; each layer is independently inspectable.
 
-The cost is a layer that looks dull but isn't. The IR has to actually be typed, which means real schema with real validation. The grounding back to graph nodes has to be maintained through all transformations. The IR's vocabulary has to stay aligned with the architectural intent the analysis is trying to capture, which means the IR's design is itself an ongoing concern.
+The split between IR-Domain and IR-Scaffold makes the agentic / deterministic boundary visible at the IR layer itself, not just at the prompt-to-scaffold transition. When something goes wrong, it is clear which substrate is implicated. Architectural confusion shows up in IR-Domain (wrong aggregate boundaries, missing events, malformed sagas) where it can be debugged at the level of commitments. Rendering errors show up in IR-Scaffold (wrong file structure, missing test stubs, malformed scaffold metadata) where they can be debugged at the level of emission. Conflating the two would force every diagnostic to traverse both concerns simultaneously, which is what makes monolithic IRs hard to maintain.
+
+The cost is a layer that looks dull but isn't. The IR has to actually be typed, which means real schema with real validation on both sides of the split. The grounding back to graph nodes has to be maintained through all transformations. IR-Domain's vocabulary has to stay aligned with the architectural intent the analysis is trying to capture, which means the IR's design is itself an ongoing concern.
 
 The intermediate representation as concept comes from compiler theory — LLVM IR (Lattner & Adve, 2004), GCC GIMPLE, and earlier compiler IRs articulated decades ago that separating front-end analysis from back-end generation requires a typed intermediate. What this catalog contributes is the framing of IR as the contract between agentic analysis and deterministic generation specifically: the surface where heuristic-driven recovery and rule-driven scaffolding meet, with each side enforcing its own discipline at the boundary. The naming WolverineIntentModel reflects the target this IR most directly serves; the principle generalises to any agentic modernization where what's discovered must be rendered into something compilable.
 
 ### Related patterns
 
-Pattern 8 (*The Compiler Principle*) is what motivates the IR's existence. Pattern 5 (*Domain Ontology as Independent Substrate*) provides the canonical vocabulary the IR uses — without ontology, the IR risks encoding the legacy's confusion in modern syntax. Pattern 11 (*Pluggable Emitters*) is what the IR enables on the generation side: architecture diversity at the rendering layer, with the IR as stable contract. Pattern 15 (*Architecture Documentation as Pluggable Emitter*) is what the IR enables on the documentation side: the same IR feeds both code emitters and documentation emitters. Pattern 4 (*Source Provenance Discipline*) extends through the IR — every IR element carries source coordinates back to the graph nodes that derived it. Pattern 25 (*The Cockpit*) surfaces IR fragments to architects during review, making the architectural commitments visible before generation begins.
+Pattern 6 (*The Compiler Principle*) is what motivates the IR's existence. Pattern 4 (*Domain Ontology as Independent Substrate*) provides the canonical vocabulary the IR uses — without ontology, the IR risks encoding the legacy's confusion in modern syntax. Pattern 9 (*Pluggable Emitters*) is what the IR enables on the generation side: architecture diversity at the rendering layer and documentation diversity at the view layer, with the IR as stable contract for both. Pattern 19 (*The Cockpit*) surfaces IR fragments to architects during review, making the architectural commitments visible before generation begins. The source provenance discipline (architectural interlude) extends through the IR — every IR element carries source coordinates back to the graph nodes that derived it.
 
----
+-----
 
-## Pattern 10: Tier-Aware Scaffolding
+## Pattern 8: Tier-Aware Scaffolding
 
-*Status: working.*
+*Status: prototype-validated.*
 
 ### Context
 
@@ -671,14 +614,6 @@ In Rosetta, this maps to three scaffold tiers:
 
 The tier classification lives in the graph as an annotation on each bounded context. It can be derived heuristically (cyclomatic complexity, coupling, change frequency from version control if available) and validated by an architect. It is not an LLM decision.
 
----
-
-**📊 TABLE 10.1 — *Tier-aware scaffolding: subdomain types, scaffolds, and trade-offs***
-
-*Three-column table comparing the three tiers along multiple dimensions. Columns: Tier 0–1 (Generic/Supporting), Tier 2 (Core, moderate), Tier 3 (Strategic Core). Rows to include: DDD subdomain type; example legacy capability (reference-data lookup; pricing logic; underwriting engine); scaffold architecture (vertical slice; hybrid; full hexagonal); typical investment ratio (low; medium; high); evolution rate (low; moderate; high); review depth (light; standard; deep); ratio of code expected at this tier in CICS engagements (~30%; ~55%; ~15%). Style: clean three-column layout with subtle row banding. Goal: reader gets one-glance reference for the tier system.*
-
----
-
 ### Consequences
 
 The architecture earns its complexity. Where complexity is justified, you pay for it. Where it isn't, you don't. Generic supporting code stays simple and cheap to maintain. Core code gets the structural investment it deserves.
@@ -689,17 +624,19 @@ In the engagements I've examined, tier 2 dominates. Most code is moderately impo
 
 ### Related patterns
 
-Pattern 8 (*The Compiler Principle*) is what makes tier-based scaffolding tractable: the deterministic emitter can select scaffolds based on tier annotations without LLM involvement. Pattern 11 (*Pluggable Emitters*) is what makes the scaffold variants implementable as separate emitters.
+Pattern 6 (*The Compiler Principle*) is what makes tier-based scaffolding tractable: the deterministic emitter can select scaffolds based on tier annotations without LLM involvement. Pattern 9 (*Pluggable Emitters*) is what makes the scaffold variants implementable as separate emitters.
 
----
+-----
 
-## Pattern 11: Pluggable Emitters
+## Pattern 9: Pluggable Emitters
 
-*Status: working.*
+*Status: prototype-validated.*
 
 ### Context
 
 A modernization pipeline whose target architecture is one of multiple possible architectures. The choice of target depends on the engagement — some teams want vertical slice architecture (VSA) with Wolverine handlers, others want hexagonal architecture with explicit ports and adapters, others want a Java target instead of C#, others may want a hybrid approach for tier-2 bounded contexts that balances VSA velocity with hexagonal protection. The target may evolve as understanding of the legacy improves, or as the team's priorities shift across the lifetime of the modernization.
+
+The same pipeline must also serve constituencies that consume something other than code. Architects reviewing strategic design need C4 model views. Data engineers validating ER models need entity-relationship diagrams. DDD practitioners checking aggregate boundaries need aggregate maps and context maps. Business analysts reading workflows need data flow diagrams. Operators tracing state need event maps. Regulators auditing decisions need architecture decision records. Each constituency wants a different view of the same architecture.
 
 ### Problem
 
@@ -709,53 +646,75 @@ If the target architecture is configured but the configuration is shallow — a 
 
 The deeper issue is that target architecture is a first-class decision that should live somewhere identifiable in the pipeline's design, not as a side effect of how the pipeline was constructed.
 
+The same problem applies to documentation. Hand-authored documentation drifts. The diagrams produced for kickoff are inaccurate by month three; the wiki page that explained the architecture is stale by month six; the C4 model the architect drew on the whiteboard exists only in someone's screenshot folder. When the system changes — and it always changes — the documentation lags or fragments until the gap between system and documentation becomes unbridgeable, and the team gives up.
+
+Auto-generated documentation from code has a different problem: it produces documentation at the wrong level of abstraction. Class diagrams that mirror code structure are useless for strategic understanding. Sequence diagrams generated from method calls capture mechanics but not intent. The strategic constituencies need views that exist *above* the code, not below it.
+
 ### Forces
 
-Different engagements have different correct targets. The same legacy may be modernized for different audiences with different architectural preferences — a bank's risk-engine team may want hexagonal for strategic-core contexts; the same bank's commodity reporting team may want lift-and-shift to VSA. Forcing a single target across all uses limits the pipeline's reach.
+Different engagements have different correct targets for code. The same legacy may be modernized for different audiences with different architectural preferences — a bank's risk-engine team may want hexagonal for strategic-core contexts; the same bank's commodity reporting team may want lift-and-shift to VSA. Forcing a single target across all uses limits the pipeline's reach.
 
-But supporting multiple targets requires architectural discipline: the pipeline must factor cleanly enough that the target-specific logic is replaceable. Every concession to target-agnosticism in the analysis side is a constraint on what the IR can express. Every concession to target-specificity in the emitter side is duplication when targets share structure.
+Multiple constituencies each want a different view of the architecture. Each view changes when the architecture changes. Manual maintenance is unsustainable across constituencies and over time. Auto-generation from code produces views at the wrong abstraction level for most constituencies.
+
+But supporting multiple targets — code or documentation — requires architectural discipline: the pipeline must factor cleanly enough that the target-specific logic is replaceable. Every concession to target-agnosticism in the analysis side is a constraint on what the IR can express. Every concession to target-specificity in the emitter side is duplication when targets share structure.
+
+The substrates that produced the code (graph, IR, ontology) already encode the strategic and tactical decisions — but they encode them as data, not as visual or narrative documentation. The same substrates that feed code generation can feed documentation generation if the architecture allows it.
 
 ### Pattern
 
-Make the emitter pluggable. The graph and the IR (Pattern 9) are target-agnostic; they describe the legacy and its architectural intent without committing to a specific output shape. The emitter is target-specific; it consumes the IR and produces a scaffold in whatever target architecture is appropriate.
+Make the emitter pluggable. The graph and the IR (Pattern 7) are target-agnostic; they describe the legacy and its architectural intent without committing to a specific output shape. The emitter is target-specific; it consumes the IR and produces an output in whatever target form is appropriate.
 
-A new target requires a new emitter, not a new pipeline. The same graph, fed to the same IR, fed to a different emitter, produces a different scaffold. The architectural decision lives in the choice of emitter — a deliberate, visible, replaceable choice — not in the pipeline's foundations.
+A new target requires a new emitter, not a new pipeline. The same graph, fed to the same IR, fed to a different emitter, produces a different output. The architectural decision lives in the choice of emitter — a deliberate, visible, replaceable choice — not in the pipeline's foundations.
 
-Emitters do more than generate code. An emitter is responsible for the whole shape of the scaffold: directory structure, project files, dependency wiring, test scaffolds, build configuration, deployment metadata, even the documentation skeleton. A VSA emitter generates one shape; a hexagonal emitter generates another; a hybrid emitter generates a third. Each is its own Roslyn code generator (Pattern 9) — or, for non-C# targets, its own equivalent in the target language's tooling.
+Emitters fall into two categories that share the same compiler discipline.
 
-In Rosetta today, emitters exist for vertical slice architecture (Wolverine, C#) and for hexagonal architecture (Wolverine + explicit ports, C#), with a hybrid emitter for tier-2 contexts that combines VSA velocity with hexagonal protection at specific seams. Future emitters could target Java with Spring Boot for organizations standardised on JVM stacks; or Jeremy Miller's Jade for event-sourced workloads where Wolverine isn't the best fit; or even non-handler architectures like CQRS-with-separate-read-models for analytical bounded contexts.
+**Code emitters** generate the modernized system itself. An emitter is responsible for the whole shape of the scaffold: directory structure, project files, dependency wiring, test scaffolds, build configuration, deployment metadata. A VSA emitter generates one shape; a hexagonal emitter generates another; a hybrid emitter generates a third. Each is its own Roslyn code generator — or, for non-C# targets, its own equivalent in the target language's tooling.
 
-The IR's job is to remain stable across emitter additions. When a new emitter is added, the IR shouldn't need new types — the existing IR types (HandlerIntent, AggregateIntent, CommandIntent, EventIntent) should be expressive enough that the new emitter can interpret them in its own architectural idiom. If a new emitter requires new IR types, that's a signal the IR was implicitly biased toward existing targets.
+In Rosetta today, code emitters exist for vertical slice architecture (Wolverine, C#) and for hexagonal architecture (Wolverine + explicit ports, C#), with a hybrid emitter for tier-2 contexts that combines VSA velocity with hexagonal protection at specific seams. Future emitters could target Java with Spring Boot for organizations standardised on JVM stacks; or Jeremy Miller's Jade for event-sourced workloads where Wolverine isn't the best fit; or even non-handler architectures like CQRS-with-separate-read-models for analytical bounded contexts.
 
----
+**Documentation emitters** render architectural views from the same substrates. The principle generalises: the same compiler architecture that allows a vertical-slice emitter and a hexagonal emitter to consume the same IR allows a C4-diagram emitter and an ER-diagram emitter to consume the same substrates. The emitters are different; the substrates are the same. Documentation is not authored in parallel with the system; it is rendered as a view of the system.
 
-**📐 FIGURE 11.1 — *Pluggable emitters: one IR, many targets***
+Specific views the catalog of documentation emitters can produce:
 
-*Diagram showing a single IR feeding multiple emitters in parallel. Center: the IR (Pattern 9) shown as a structured artifact. Radiating outward: multiple emitter boxes labelled "Vertical Slice (Wolverine, C#)," "Hexagonal (Wolverine, C#)," "Hybrid (tier-2)," "Event-sourced (Jade, C#)," and a faded/future box "Java Spring Boot." Each emitter produces a different scaffold, depicted as a small thumbnail of code structure. The diagram makes visible that the IR commits to architectural intent (aggregates, handlers, events) but not to target architecture. Annotations: "IR target-agnostic" near the center, "emitter target-specific" near each emitter. Style: hub-and-spoke with the IR as visual anchor. Goal: reader sees that the architectural decision lives in emitter selection, replaceable without disturbing analysis.*
+- **C4 model views** — rendered from bounded-context boundaries (graph community detection), deployment intent (IR), and external system relationships.
+- **Entity-relationship diagrams** — rendered from data structures in the graph and aggregate boundaries in the IR; one ER diagram per bounded context.
+- **Aggregate maps** (DDD-specific) — rendered from IR aggregate definitions and graph relationships; shows aggregate roots, contained entities, value objects, emitted events.
+- **Context maps** (DDD-specific, Evans 2003) — rendered from bounded-context relationships in the graph and command/event flows in the IR; shows upstream/downstream relationships, anti-corruption layers, shared kernels, integration patterns.
+- **Data flow diagrams** — rendered from side-effect surfaces in the graph and command flows in the IR.
+- **Ubiquitous language glossaries** — rendered from the domain ontology (Pattern 4) and IR vocabulary; one glossary per bounded context.
+- **Architecture Decision Records (ADRs)** — linked from spec deltas (Pattern 19); when a spec delta articulates an architectural change, an ADR is produced as part of the change.
 
----
+The documentation lives in markdown and standard diagram formats (PlantUML, Mermaid, SVG) so it integrates with the engineering workflow — versioned in Git alongside the code, viewable in pull requests, included in pipelines. Each view is a file generated by its emitter; regenerating is idempotent and fast.
+
+The IR's job is to remain stable across emitter additions, code or documentation. When a new emitter is added, the IR shouldn't need new types — the existing IR types (HandlerIntent, AggregateIntent, CommandIntent, EventIntent, BoundedContextIntent) should be expressive enough that the new emitter can interpret them in its own architectural or documentation idiom. If a new emitter requires new IR types, that's a signal the IR was implicitly biased toward existing targets.
+
+When humans need to *change* the architecture, they don't edit the documentation directly. They edit the substrates — refining the ontology, updating the IR, adjusting the graph annotations — and the documentation re-renders to reflect the change. This is what Cyrille Martraire (*Living Documentation*, 2019) called the discipline of making documentation a byproduct of doing the work. This pattern operationalises that discipline through the same compiler architecture that produces the code.
 
 ### Consequences
 
 The architectural decision lives in the choice of emitter, not in the graph or the IR or the agents. That decision becomes explicit, reviewable, replaceable. Teams modernize their codebase against the architecture they want, not against the one the pipeline imposed by accident.
 
-Emitters compose into a library that grows over time. The first engagement contributes the first emitter; the second engagement may reuse it or add a variant. After several engagements, the catalog of emitters covers the most common target shapes, and new engagements typically need to extend an existing emitter rather than write a new one from scratch. The investment compounds across the engagement portfolio.
+Documentation never goes stale relative to the system it describes. Reviewers validate decisions at the abstraction level appropriate to them: architects check the C4 model, data engineers check the ER diagrams, DDD practitioners check aggregate and context maps. Each constituency engages with documentation that is canonical for them, generated from the same source of truth that produced the code. The substrates themselves become the canonical "documentation" — diagrams and markdown documents are convenience views rendered for human consumption. This inverts the traditional relationship: substrates are not artifacts derived from documentation; documentation is artifacts derived from substrates.
 
-The cost is the discipline of keeping the IR target-agnostic. Every IR concept must be expressible in any reasonable target architecture, which constrains the IR's vocabulary. Adding a new target may reveal that the IR has been quietly target-specific in places, requiring refactoring. The IR's stability across emitter additions is something to maintain deliberately, not assume.
+Emitters compose into a library that grows over time. The first engagement contributes the first emitter; the second engagement may reuse it or add a variant. After several engagements, the catalog of emitters covers the most common code targets and documentation views, and new engagements typically need to extend an existing emitter rather than write a new one from scratch. The investment compounds across the engagement portfolio.
 
-There is also a documentation parallel: Pattern 15 (*Architecture Documentation as Pluggable Emitter*) extends this same compiler architecture from code targets to documentation targets. The same IR that feeds the VSA emitter feeds the C4-diagram emitter; the same IR that feeds the hexagonal emitter feeds the aggregate-map emitter. The emitter abstraction is general — code is one kind of output, documentation is another.
+The cost is the discipline of keeping the IR target-agnostic. Every IR concept must be expressible in any reasonable target architecture and renderable in any reasonable documentation view, which constrains the IR's vocabulary. Adding a new target may reveal that the IR has been quietly target-specific in places, requiring refactoring. The IR's stability across emitter additions is something to maintain deliberately, not assume.
 
-Pluggable target architectures are a long-established practice in compiler back-ends — LLVM (Lattner & Adve, 2004) is the canonical modern example, with a single front-end feeding multiple architecture-specific back-ends for x86, ARM, RISC-V, and so on. What this catalog contributes is the application of the back-end pluggability principle to *architectural styles* rather than to *machine architectures*: the back-end isn't a CPU instruction set, it's an architectural pattern (VSA, hexagonal, event-sourced). The compiler discipline transfers; the granularity of the choice changes.
+Reviewers in the cockpit (Pattern 19) can request a specific view to validate a decision. Spec deltas (Pattern 19) include the documentation re-renders as part of the change package; reviewers see what the architecture looked like before, what it looks like after, and which substrate changes produced the difference.
+
+The status of documentation emitters specifically is *designed*. Code emitters are *prototype-validated* in Rosetta — the VSA and hexagonal emitters work today. The documentation emitter library is the natural extension of the same architecture but has not been built yet. The principle follows directly from the code emitter discipline; the gap is in the catalog of emitter implementations, not in the underlying approach. The combined pattern is reported as *prototype-validated* because the architectural principle has been validated through the code emitter side; the documentation emitter side is implementation work that the principle authorises.
+
+Pluggable target architectures are a long-established practice in compiler back-ends — LLVM (Lattner & Adve, 2004) is the canonical modern example, with a single front-end feeding multiple architecture-specific back-ends for x86, ARM, RISC-V, and so on. What this catalog contributes is two things. First, the application of the back-end pluggability principle to *architectural styles* rather than to *machine architectures*: the back-end isn't a CPU instruction set, it's an architectural pattern (VSA, hexagonal, event-sourced). Second, the extension of the same compiler discipline to *documentation* as another emitter target: the principle that what gets emitted is replaceable, code or documentation, as long as the substrates upstream stay stable.
 
 ### Related patterns
 
-Pattern 8 (*The Compiler Principle*) is what makes pluggable emitters possible: deterministic emission is what's being plugged in. Pattern 9 (*The Intermediate Representation*) is what the emitters consume — and is what must remain target-agnostic for pluggability to work. Pattern 10 (*Tier-Aware Scaffolding*) is one application of the pluggable-emitter pattern: tier policy is implemented as emitter selection (tier-0/1 uses VSA emitter; tier-3 uses hexagonal emitter; tier-2 uses hybrid). Pattern 15 (*Architecture Documentation as Pluggable Emitter*) extends the principle from code to documentation, using the same architectural mechanism.
+Pattern 6 (*The Compiler Principle*) is what makes pluggable emitters possible: deterministic emission is what's being plugged in. Pattern 7 (*The Intermediate Representation*) is what the emitters consume — and is what must remain target-agnostic for pluggability to work. Pattern 8 (*Tier-Aware Scaffolding*) is one application of the pluggable-emitter pattern: tier policy is implemented as emitter selection (tier-0/1 uses VSA emitter; tier-3 uses hexagonal emitter; tier-2 uses hybrid). Pattern 3 (*The Graph as Projection*) and Pattern 4 (*Domain Ontology as Independent Substrate*) are the substrates documentation emitters consume alongside the IR. Pattern 19 (*The Cockpit*) is where rendered documentation surfaces for human consumption and where spec deltas integrate documentation re-renders into change packages.
 
----
+-----
 
-## Pattern 12: Commands and Events as Logical Boundary, Independent of Physical Deployment
+## Pattern 10: Commands and Events as Logical Boundary, Independent of Physical Deployment
 
-*Status: working.*
+*Status: prototype-validated.*
 
 ### Context
 
@@ -783,20 +742,6 @@ When operational pressure justifies extraction — scaling demands, team-boundar
 
 The discipline: never let method-level coupling sneak in between contexts. Every cross-context interaction must go through a command or an event. The framework enforces this by making cross-context method calls inconvenient or impossible. Bounded contexts communicate only through their command/event surface.
 
----
-
-**📐 FIGURE 12.1 — *Commands and events: same logical boundary, different physical deployments***
-
-*Diagram in two horizontal bands showing the same bounded contexts (e.g., Pricing, Billing, Notifications) under two physical deployments. Top band: "Modular monolith" — three bounded contexts within a single process boundary, with commands and events depicted as in-process arrows; one transactional boundary encompasses the cross-context flow. Bottom band: "Distributed services" — same three contexts now in separate process boundaries, with commands and events depicted as messages flowing through a message broker; multiple transactional boundaries with the transactional outbox pattern visible at each context. Vertical line connecting the two bands labelled "the logical boundary stays the same — only the transport changes." Style: parallel architectural diagrams with shared vocabulary across bands. Goal: reader sees that decomposition is mechanical, not architectural — the commands and events are the contract.*
-
----
-
-**💻 CODE 12.1 — *A Wolverine handler with command, event, and transactional outbox***
-
-*Code sample (~25 lines, C#) showing a Wolverine handler that receives a command, performs work, emits an event, and uses the transactional outbox pattern. Depict: (1) command class definition with typed properties; (2) event class definition; (3) handler class with the Handle method receiving the command, the IDocumentSession (Marten) for persistence, and IMessageBus for emission; (4) the handler's body showing the transactional pattern — load aggregate, mutate, emit event, save — all within the implicit Wolverine transaction. The same handler code works whether the recipient lives in-process or out-of-process; that point is highlighted in the introductory prose (~2 sentences).*
-
----
-
 ### Consequences
 
 The architectural decision of *what to deploy where* becomes operational and reversible. Teams can extract a context to its own service when operations justify it, without rewriting the consumer code. Teams can pull a struggling service back into the monolith if the operational complexity isn't paying for itself. The decomposition is a flywheel, not a one-way ratchet.
@@ -815,13 +760,21 @@ The same logical-boundary discipline supports two transitional techniques Nick T
 
 ### Related patterns
 
-Pattern 9 (*The Intermediate Representation*) captures commands and events as first-class IR concepts; the IR's vocabulary is what makes this pattern possible at scaffold-rendering time. Pattern 11 (*Pluggable Emitters*) is what allows different physical implementations to be selected — an emitter for in-process Wolverine, an emitter for distributed Wolverine, an emitter for Jade for event-sourced workloads. Pattern 23 (*The Harness as State Machine*) governs the transition from one physical deployment to another, ensuring that extraction or consolidation is auditable and reversible.
+Pattern 7 (*The Intermediate Representation*) captures commands and events as first-class IR concepts; the IR's vocabulary is what makes this pattern possible at scaffold-rendering time. Pattern 9 (*Pluggable Emitters*) is what allows different physical implementations to be selected — an emitter for in-process Wolverine, an emitter for distributed Wolverine, an emitter for Jade for event-sourced workloads. Pattern 18 (*The Harness as Self-Observing State Machine*) governs the transition from one physical deployment to another, ensuring that extraction or consolidation is auditable and reversible.
 
----
+-----
 
-## Pattern 13: Transactional Boundaries as First-Class Migration Concern
+# Part III: Verification
 
-*Status: in progress.*
+-----
+
+The patterns in this group address how the modernization knows the generated code is right. They presuppose Pattern 2 (*The Legacy as Oracle*) — without a live ground truth to compare against, verification reduces to test suites that the agents wrote.
+
+-----
+
+## Pattern 11: Transactional Boundaries as First-Class Migration Concern
+
+*Status: in construction.*
 
 ### Context
 
@@ -849,7 +802,7 @@ There is also a regulatory force. Banks, insurers, and government systems often 
 
 Treat transactional boundaries as first-class migration artifacts. During strategic recovery (Part I), identify every transactional boundary in scope: CICS units of work, IMS transactions, batch JCL job steps, `EXEC CICS SYNCPOINT` commit points, database transactional scopes. The graph (Pattern 3) captures these as annotated edges and nodes; analysis surfaces them as candidate boundaries for review.
 
-For each transactional boundary, document the invariants it preserves: which writes commit together, which reads see consistent snapshots, what rolls back together when a failure occurs. These invariants are part of the domain ontology (Pattern 5) — they are statements about what the business considers atomic, not statements about how the implementation happens to enforce atomicity.
+For each transactional boundary, document the invariants it preserves: which writes commit together, which reads see consistent snapshots, what rolls back together when a failure occurs. These invariants are part of the domain ontology (Pattern 4) — they are statements about what the business considers atomic, not statements about how the implementation happens to enforce atomicity.
 
 Decide explicitly how each boundary maps in the modernized system. Three categories of decision:
 
@@ -857,7 +810,7 @@ Decide explicitly how each boundary maps in the modernized system. Three categor
 - **Relaxed deliberately** — the modern system intentionally loosens the guarantee, with explicit documentation of what's been relaxed and why. For example, eventual consistency across two bounded contexts where the legacy had distributed transactions. Used when analysis shows the strict guarantee was unnecessary and the relaxation enables better scaling.
 - **Replaced with saga compensation** — the modern system implements the legacy's atomicity through saga choreography: each step is locally atomic, with explicit compensating actions if a later step fails. Used when distributed transactions are not viable and the business requires effective atomicity.
 
-The decision is documented in the IR (Pattern 9) as part of the architectural commitment for each bounded context. Generated code includes the chosen mechanism — Wolverine's transactional outbox, MartenDB's session-scoped transactions, saga state machines. Twin Verification (Pattern 16) specifically tests transactional behaviour: simulate failures at every commit point, verify that the modernized system's recovery matches the legacy's.
+The decision is documented in the IR (Pattern 7) as part of the architectural commitment for each bounded context. Generated code includes the chosen mechanism — Wolverine's transactional outbox, MartenDB's session-scoped transactions, saga state machines. Twin Verification (Pattern 13) specifically tests transactional behaviour: simulate failures at every commit point, verify that the modernized system's recovery matches the legacy's.
 
 CICS-specific cues guide the analysis. `EXEC CICS SYNCPOINT` marks a commit point; `EXEC CICS ROLLBACK` marks an explicit abort; `EXEC CICS START TRANSID` marks the beginning of a new transactional unit; pseudo-conversational boundaries (`RETURN TRANSID` / `COMMAREA`) mark transitions between transactional contexts. Each is a decision the original programmer made about what should be atomic. The modernization team must consciously confirm or revise each decision.
 
@@ -873,13 +826,13 @@ Vaughn Vernon's *Implementing Domain-Driven Design* (Vernon, 2013) articulates a
 
 ### Related patterns
 
-Pattern 1 (*Business-Aligned Capability Strategy*) determines which capabilities deserve deep transactional analysis. Pattern 3 (*The Graph as Projection*) captures the transactional cues in the legacy. Pattern 5 (*Domain Ontology as Independent Substrate*) holds the invariants as canonical statements about the business. Pattern 9 (*The Intermediate Representation*) encodes the chosen transactional mechanism per bounded context. Pattern 12 (*Commands and Events as Logical Boundary*) provides the cross-context communication primitives that sagas use. Pattern 16 (*Twin Verification*) verifies transactional behaviour, not just functional behaviour. Pattern 17 (*Hypothesis-Driven Verification*) categorises transactional violations as a specific divergence class. The *Silent Semantics Loss* antipattern names what happens when transactional boundaries are translated implicitly rather than explicitly.
+Pattern 1 (*Business-Aligned Capability Strategy*) determines which capabilities deserve deep transactional analysis. Pattern 3 (*The Graph as Projection*) captures the transactional cues in the legacy. Pattern 4 (*Domain Ontology as Independent Substrate*) holds the invariants as canonical statements about the business. Pattern 7 (*The Intermediate Representation*) encodes the chosen transactional mechanism per bounded context. Pattern 10 (*Commands and Events as Logical Boundary*) provides the cross-context communication primitives that sagas use. Pattern 13 (*Twin Verification*) verifies transactional behaviour, not just functional behaviour. Pattern 14 (*Hypothesis-Driven Verification*) categorises transactional violations as a specific divergence class. The *Silent Semantics Loss* antipattern names what happens when transactional boundaries are translated implicitly rather than explicitly.
 
----
+-----
 
-## Pattern 14: Transitional Architecture: The Modular Monolith as Migration Vehicle
+## Pattern 12: Transitional Architecture: The Modular Monolith as Migration Vehicle
 
-*Status: working.*
+*Status: prototype-validated.*
 
 ### Context
 
@@ -905,9 +858,9 @@ When a bounded context's boundary stabilises and its scaling/deployment/ownershi
 
 ### Pattern
 
-Default to the modular monolith as the transitional architecture for mainframe modernization. Bounded contexts are first-class within the monolith — each has its own module, its own ubiquitous language, its own data ownership (enforced through schema separation or row-level ownership rules), its own aggregate roots. Communication between contexts happens through commands and events (Pattern 12), with the same logical contracts that a distributed system would use. The contracts survive any future extraction.
+Default to the modular monolith as the transitional architecture for mainframe modernization. Bounded contexts are first-class within the monolith — each has its own module, its own ubiquitous language, its own data ownership (enforced through schema separation or row-level ownership rules), its own aggregate roots. Communication between contexts happens through commands and events (Pattern 10), with the same logical contracts that a distributed system would use. The contracts survive any future extraction.
 
-Within the monolith, the boundaries are enforced at compile time: modules declare their public interfaces; cross-module access goes through these interfaces; direct access to another module's internals is impossible. This compile-time enforcement is stronger than runtime enforcement (which can be bypassed through reflection or workarounds) and lighter than network enforcement (which requires actual services).
+Within the monolith, the boundaries are enforced through deliberate mechanism, not through hope. .NET's `internal` access modifier combined with assembly boundaries provides one level of enforcement: each bounded context is its own assembly; cross-context access goes through public interfaces; internals are invisible across the boundary. ArchUnit-style architecture tests (NetArchTest in the .NET ecosystem) provide a second level: rules that fail the build when a forbidden dependency is introduced. Custom Roslyn analyzers provide a third level: source-level enforcement that surfaces violations as compile-time errors with specific diagnostics. The three layers together approximate the compile-time enforcement that a language with stronger module systems (Rust crates, Java's JPMS, Swift modules) would provide natively. The discipline is mechanical and the enforcement is real, but the engineering cost of building it is real too.
 
 Operational concerns are unified during the migration. One deployment pipeline, one observability stack, one database (with schema separation), one set of integration tests. The team's operational attention is spent keeping the legacy mainframe running and learning what the modern stack actually requires — not on managing 30 services.
 
@@ -918,9 +871,9 @@ Extraction comes later, when specific bounded contexts have earned their indepen
 - **Team ownership diverges** — this bounded context belongs to a team that wants independent deployment authority, separate from the modernization team's release cycle.
 - **Compliance boundary diverges** — this bounded context has regulatory or security requirements distinct from the rest, and shared deployment confuses the audit boundary.
 
-When one of these criteria applies, the bounded context is extracted into its own service. The extraction is straightforward because the contracts already exist — commands and events flow over network instead of through in-process method calls, but the logical boundary is unchanged. Pattern 12 (*Commands and Events as Logical Boundary*) makes this extraction mechanical, not architectural.
+When one of these criteria applies, the bounded context is extracted into its own service. The extraction is straightforward because the contracts already exist — commands and events flow over network instead of through in-process method calls, but the logical boundary is unchanged. Pattern 10 (*Commands and Events as Logical Boundary*) makes this extraction mechanical, not architectural.
 
-The modular monolith is also what the agentic platform (Pattern 19) is. Bounded MCP servers are modules within a single platform, not separate services. The recursion is deliberate: the discipline that works for the modernized business system works for the platform that produces it.
+The modular monolith is also what the agentic platform (Pattern 15) is. Bounded MCP servers are modules within a single platform, not separate services. The recursion is deliberate: the discipline that works for the modernized business system works for the platform that produces it.
 
 The modular monolith is one transitional shape; other shapes are sometimes appropriate within the same modernization. Nick Tune has documented two complementary forms: the *Bubble*, in which a new subsystem with a clean target model accesses legacy data exclusively through an anti-corruption layer without local persistence; and the *Autonomous Bubble*, in which the new subsystem holds a local data store populated asynchronously from legacy events. The modular monolith is the right default when the modernization owns both code and data; the Bubble forms are useful when the target model can be designed independently but the underlying data must remain in the legacy during the transition. Definitions and pointers are in the glossary.
 
@@ -940,97 +893,13 @@ Sam Newman's *Monolith to Microservices* (Newman, 2019) provides the canonical a
 
 ### Related patterns
 
-Pattern 1 (*Business-Aligned Capability Strategy*) determines which contexts will eventually need independent extraction. Pattern 10 (*Tier-Aware Scaffolding*) operates within the modular monolith — tier-2 and tier-3 contexts may eventually be extracted; tier-0 and tier-1 may remain modules permanently. Pattern 11 (*Pluggable Emitters*) renders each module's scaffold; extraction changes the deployment target but not the emitter. Pattern 12 (*Commands and Events as Logical Boundary*) is what makes future extraction mechanical — the logical boundary survives the physical change. Pattern 19 (*Bounded MCP Servers*) applies the same discipline to the agentic platform itself. The *Frozen Architecture* antipattern names what happens when modernization adopts the legacy's accidental decomposition rather than designing the right transitional architecture.
+Pattern 1 (*Business-Aligned Capability Strategy*) determines which contexts will eventually need independent extraction. Pattern 8 (*Tier-Aware Scaffolding*) operates within the modular monolith — tier-2 and tier-3 contexts may eventually be extracted; tier-0 and tier-1 may remain modules permanently. Pattern 9 (*Pluggable Emitters*) renders each module's scaffold; extraction changes the deployment target but not the emitter. Pattern 10 (*Commands and Events as Logical Boundary*) is what makes future extraction mechanical — the logical boundary survives the physical change. Pattern 15 (*Bounded MCP Servers*) applies the same discipline to the agentic platform itself. The *Frozen Architecture* antipattern names what happens when modernization adopts the legacy's accidental decomposition rather than designing the right transitional architecture.
 
----
+-----
 
-## Pattern 15: Architecture Documentation as Pluggable Emitter
+## Pattern 13: Twin Verification
 
-*Status: next.*
-
-### Context
-
-A modernization that has produced a working system from canonical substrates: the structural graph (Pattern 3), the intermediate representation (Pattern 9), the domain ontology (Pattern 5), the source provenance discipline (Pattern 4) that ties everything back to legacy code. The agents have done their work. But humans — architects reviewing strategic design, data engineers validating ER models, DDD practitioners checking aggregate boundaries, business analysts reading context maps, operators tracing data flows, regulators auditing decisions — need to *understand* the system at multiple levels of abstraction. Each constituency wants a different view of the same architecture.
-
-### Problem
-
-Hand-authored documentation drifts. The diagrams produced for kickoff are inaccurate by month three; the wiki page that explained the architecture is stale by month six; the C4 model the architect drew on the whiteboard exists only in someone's screenshot folder. When the system changes — and it always changes — the documentation lags or fragments until the gap between system and documentation becomes unbridgeable, and the team gives up.
-
-Auto-generated documentation from code has a different problem: it produces documentation at the wrong level of abstraction. Class diagrams that mirror code structure are useless for strategic understanding. Sequence diagrams generated from method calls capture mechanics but not intent. The strategic constituencies need views that exist *above* the code, not below it.
-
-The deeper issue is treating documentation as a separate artifact from the system. As long as documentation lives in a parallel track — written by hand, stored separately, maintained through discipline alone — it will drift. The only sustainable answer is for documentation to share its source of truth with the system itself.
-
-### Forces
-
-Multiple constituencies each want a different view of the architecture. Each view changes when the architecture changes. Manual maintenance is unsustainable across constituencies and over time. Auto-generation from code produces views at the wrong abstraction level for most constituencies. The substrates that produced the code (graph, IR, ontology) already encode the strategic and tactical decisions — but they encode them as data, not as visual or narrative documentation.
-
-Each constituency has canonical formats they expect: C4 for software architects (Simon Brown's notation), ER diagrams for data engineers, aggregate maps and context maps for DDD practitioners (Eric Evans, Vaughn Vernon), data flow diagrams for systems analysts. Documentation that doesn't speak the constituency's standard format adds friction even when the content is correct.
-
-### Pattern
-
-Treat architectural documentation as a rendered view of the canonical substrates, not as an authored artifact maintained in parallel. Each documentation view has its own emitter that consumes some combination of graph, IR, and ontology, and produces the appropriate representation. Documentation regenerates from substrates the same way scaffolds regenerate from the IR. The documentation is always current because it is never authored — it is always rendered.
-
-The principle generalises Pattern 11 (*Pluggable Emitters*) from code targets to documentation targets. The same compiler architecture that allows a vertical-slice emitter and a hexagonal emitter to consume the same IR allows a C4-diagram emitter and an ER-diagram emitter to consume the same substrates. The emitters are different; the substrates are the same.
-
-Specific views the catalog of documentation emitters can produce:
-
-- **C4 model views** — rendered from bounded-context boundaries (graph community detection), deployment intent (IR), and external system relationships.
-- **Entity-relationship diagrams** — rendered from data structures in the graph and aggregate boundaries in the IR; one ER diagram per bounded context.
-- **Aggregate maps** (DDD-specific) — rendered from IR aggregate definitions and graph relationships; shows aggregate roots, contained entities, value objects, emitted events.
-- **Context maps** (DDD-specific, Evans 2003) — rendered from bounded-context relationships in the graph and command/event flows in the IR; shows upstream/downstream relationships, anti-corruption layers, shared kernels, integration patterns.
-- **Data flow diagrams** — rendered from side-effect surfaces in the graph and command flows in the IR.
-- **Ubiquitous language glossaries** — rendered from the domain ontology (Pattern 5) and IR vocabulary; one glossary per bounded context.
-- **Architecture Decision Records (ADRs)** — linked from spec deltas (Pattern 26); when a spec delta articulates an architectural change, an ADR is produced as part of the change.
-
-The documentation lives in markdown and standard diagram formats (PlantUML, Mermaid, SVG) so it integrates with the engineering workflow — versioned in Git alongside the code, viewable in pull requests, included in pipelines. Each view is a file generated by its emitter; regenerating is idempotent and fast.
-
-When humans need to *change* the architecture, they don't edit the documentation directly. They edit the substrates — refining the ontology, updating the IR, adjusting the graph annotations — and the documentation re-renders to reflect the change. This is what Cyrille Martraire (*Living Documentation*, 2019) called the discipline of making documentation a byproduct of doing the work. The catalog operationalises that discipline through the same compiler architecture that produces the code.
-
----
-
-**📐 FIGURE 15.1 — *Documentation as rendered view: many constituencies, one source of truth***
-
-*Diagram showing the substrates at the center feeding multiple documentation emitters in parallel. Center: three substrates — graph (Pattern 3), IR (Pattern 9), ontology (Pattern 5) — depicted as a unified canonical core. Radiating outward: documentation emitter boxes, each producing its own view: "C4 model" (architects), "ER diagrams" (data engineers), "Aggregate map" (DDD practitioners), "Context map" (DDD practitioners), "Data flow" (systems analysts), "Ubiquitous language glossary" (everyone), "ADRs" (governance). Each emitter shows a small thumbnail of its output style. Annotations: "documentation never authored — always rendered" near the center, and small annotations near each constituency reading "wants this view." Style: hub-and-spoke matching FIGURE 11.1 to make the parallel between code emitters and documentation emitters visible. Goal: reader sees that the same compiler discipline applies to both.*
-
----
-
-### Consequences
-
-Documentation never goes stale relative to the system it describes. Reviewers validate decisions at the abstraction level appropriate to them: architects check the C4 model, data engineers check the ER diagrams, DDD practitioners check aggregate and context maps. Each constituency engages with documentation that is canonical for them, generated from the same source of truth that produced the code.
-
-The substrates themselves become the canonical "documentation" — diagrams and markdown documents are convenience views rendered for human consumption. This inverts the traditional relationship: substrates are not artifacts derived from documentation; documentation is artifacts derived from substrates.
-
-Documentation produced for one engagement becomes reusable across engagements. The catalog of emitters compounds across customers and bounded contexts.
-
-Reviewers in the cockpit (Pattern 25) can request a specific view to validate a decision. Spec deltas (Pattern 26) include the documentation re-renders as part of the change package; reviewers see what the architecture looked like before, what it looks like after, and which substrate changes produced the difference.
-
-The cost is the emitter library. Each view type requires its own emitter; emitters need maintenance as substrate schemas evolve. Some emitters are straightforward (ubiquitous language glossary from ontology); others are subtle (C4 component-level views require heuristics about what counts as a component versus a container). The engineering effort amortises across engagements in a way that hand-authored documentation does not.
-
-This pattern is *next* in Rosetta. The substrates exist; what's missing is the documentation emitter library. The principle follows directly from Pattern 11 extended from code targets to documentation targets — the architecture supports it, and the gap is in the catalog of emitters, not in the underlying approach.
-
-### Related patterns
-
-Pattern 3 (*The Graph as Projection*), Pattern 5 (*Domain Ontology as Independent Substrate*), and Pattern 9 (*The Intermediate Representation*) are the substrates this pattern's emitters consume. Pattern 11 (*Pluggable Emitters*) is the architectural principle this pattern extends from code to documentation — same compiler discipline, different output. Pattern 25 (*The Cockpit*) is where rendered documentation surfaces for human consumption. Pattern 26 (*Spec Deltas as the Unit of Review*) integrates documentation re-renders into change packages.
-
----
-
-# Part III: Verification
-
----
-
-**🎨 ILLUSTRATION P3 — *Verification: the twin in the lab***
-
-*Style: editorial illustration matching the cover's aesthetic. Subject: a watchmaker's workbench with two identical mechanical timepieces side by side, one labelled with subtle "legacy" markings (older brass, more wear), the other "modernized" (cleaner finish but identical movement). Both being checked against a single chronograph. The chronograph's needle is steady — they match. Visual metaphor: two systems, identical behaviour, one source of truth. A magnifying glass reveals that the underlying mechanisms are different but the output is the same. Format: full-page or two-thirds page opener for Part III.*
-
----
-
-The patterns in this group address how the modernization knows the generated code is right. They presuppose Pattern 2 (*The Legacy as Oracle*) — without a live ground truth to compare against, verification reduces to test suites that the agents wrote.
-
----
-
-## Pattern 16: Twin Verification
-
-*Status: working.*
+*Status: prototype-validated.*
 
 ### Context
 
@@ -1058,17 +927,9 @@ Make the loop fast — milliseconds, not minutes — by keeping everything local
 
 The Twin's faithfulness is non-negotiable. The compilation from legacy to portable form must preserve the legacy's exact semantics — every edge case, every error path, every transactional guarantee, every type coercion. The Twin is not an emulation; it is the legacy code running in a different runtime environment. Its outputs are the legacy's outputs.
 
-Divergence diagnostics are first-class. When the candidate's output differs from the Twin's, the system doesn't just report "FAIL" — it reports a structured diff: which field diverged, what the candidate produced, what the Twin produced, what input caused the divergence, what provenance trail (Pattern 4) leads back to the legacy code that defines the expected behaviour. The agent uses the diagnostic to refine the candidate; the diagnostic becomes the next input to the inner loop.
+Divergence diagnostics are first-class. When the candidate's output differs from the Twin's, the system doesn't just report "FAIL" — it reports a structured diff: which field diverged, what the candidate produced, what the Twin produced, what input caused the divergence, what provenance trail (architectural interlude) leads back to the legacy code that defines the expected behaviour. The agent uses the diagnostic to refine the candidate; the diagnostic becomes the next input to the inner loop.
 
 In Rosetta, the Twin is Raincode-compiled COBOL packaged as a Docker container. Raincode is one of the few tools that compiles COBOL to .NET IL with sufficient fidelity to make this approach practical. The implementation is specific to CICS COBOL; the principle (local containerised oracle in the inner loop) is more general — any legacy stack with a faithful-enough portable compilation target can apply it.
-
----
-
-**📐 FIGURE 16.1 — *Twin Verification: the inner-loop comparison cycle***
-
-*Diagram showing the Twin Verification cycle as a fast, tight loop. Components: (1) candidate C# code emitted by agent; (2) Legacy Twin (Raincode-compiled COBOL container); (3) shared input fixture feeding both; (4) parallel execution boxes; (5) outputs converging into a comparison node; (6) verdict (PASS/FAIL with diff details) returning to the agent. Time annotation: "milliseconds" near the verdict path. Inset showing what divergence detection produces — a structured diff showing field-by-field mismatch with source provenance. Style: tight cyclical flow diagram, accent color for the verdict. Goal: reader sees the inner-loop economics — fast verification changes how aggressively the agent can explore.*
-
----
 
 ### Consequences
 
@@ -1078,21 +939,23 @@ Behavioural equivalence becomes the verification standard. Tests check what we t
 
 The cost is the Twin itself. Raincode is one of the few tools that can compile COBOL to .NET IL well enough to make this practical. For other legacy stacks, equivalent tooling may or may not exist; without faithful compilation, the pattern doesn't apply. The Twin must be kept in sync with the legacy if the legacy evolves during the modernization. The container must be packaged, distributed, and maintained — operational concerns that don't exist if verification runs only against the original mainframe.
 
-There is also a coverage caveat. Twin Verification confirms behavioural equivalence for inputs the agents exercise; it does not exhaustively prove equivalence for all possible inputs. Production traffic includes inputs no dev-time corpus anticipated. This is why Pattern 17 (*Hypothesis-Driven Verification*) extends Twin Verification from dev mode into production — production becomes the corpus that catches what dev-time exercise missed.
+There is also a coverage caveat. Twin Verification confirms behavioural equivalence for inputs the agents exercise; it does not exhaustively prove equivalence for all possible inputs. Production traffic includes inputs no dev-time corpus anticipated. This is why Pattern 14 (*Hypothesis-Driven Verification*) extends Twin Verification from dev mode into production — production becomes the corpus that catches what dev-time exercise missed.
 
 ### Related patterns
 
-Pattern 2 (*The Legacy as Oracle*) is the foundational principle this pattern operationalises — the legacy is the source of truth, and the Twin is how the agents access that truth in the inner loop. Pattern 17 (*Hypothesis-Driven Verification*) extends Twin Verification from dev mode to production mode using Witness telemetry. Pattern 23 (*The Harness as Self-Observing State Machine*) treats Twin Verification as a deterministic gate the agents must pass before promotion. Pattern 4 (*Source Provenance Discipline*) is what makes divergence diagnostics traceable back to specific legacy code.
+Pattern 2 (*The Legacy as Oracle*) is the foundational principle this pattern operationalises — the legacy is the source of truth, and the Twin is how the agents access that truth in the inner loop. Pattern 14 (*Hypothesis-Driven Verification*) extends Twin Verification from dev mode to production mode using Witness telemetry. Pattern 18 (*The Harness as Self-Observing State Machine*) treats Twin Verification as a deterministic gate the agents must pass before promotion. The source provenance discipline (architectural interlude) is what makes divergence diagnostics traceable back to specific legacy code.
 
----
+-----
 
-## Pattern 17: Hypothesis-Driven Verification
+## Pattern 14: Hypothesis-Driven Verification
 
-*Status: in progress.*
+*Status: in construction.*
 
 ### Context
 
-A modernization that has succeeded against dev-time verification (Pattern 16) and is moving to production. In dev mode, the candidate C# matches the Legacy Twin's behaviour over the test corpus. The question is whether it will match in production, where the corpus expands to whatever traffic the system actually receives.
+A modernization that has succeeded against dev-time verification (Pattern 13) and is moving to production. In dev mode, the candidate C# matches the Legacy Twin's behaviour over the test corpus. The question is whether it will match in production, where the corpus expands to whatever traffic the system actually receives.
+
+The dual-run period — during which legacy and modernized C# both process real traffic — is finite. Eventually one is decommissioned. Whatever the modernization learns about production must be captured during this window or it's lost. And the captures, once accumulated, become an artifact in their own right: a corpus of how the system actually behaves under real workloads, potentially valuable beyond the immediate question of behavioural equivalence.
 
 ### Problem
 
@@ -1100,57 +963,13 @@ Dev-mode verification covers what was exercised. Production reveals what the dev
 
 Charity Majors has argued for years that you can't stage your way to production knowledge. Distributed systems are hostile to mirroring. What production reveals isn't in the tests or the spec — it's in the running system itself.
 
-### Forces
+A second problem appears once production verification is operational. The captured behaviour is rich evidence, but it's not yet a specification. It's traffic patterns, request-response pairs, scenarios. The traditional approach to specifications is to write them before development: someone articulates what the system should do, and developers implement it. In legacy modernization this is doubly broken. The original specification was never written; whatever specs exist are reconstructions. And the modernized system is replacing something that already runs, which means the running system itself is more authoritative than any reconstruction.
 
-Production verification needs the same tight feedback as dev-time verification but operates on a different scale and at different stakes. The dual-run period — during which legacy and modernized C# both process real traffic — is finite; eventually one is decommissioned. Whatever the modernization learns about production must be captured before that decommissioning, or it's lost.
-
-The traditional approach (write more tests after production reveals issues) is reactive. By the time tests are written, the divergence has already happened in production.
-
-### Pattern
-
-Deploy a verification framework alongside the modernized C# in production. Capture legacy behaviour on real traffic. Compare it to the modernized C#'s behaviour on the same inputs. Record divergences as evidence. Replay captured scenarios in dev mode to refine the modernized code.
-
-Distinguish three kinds of drift: *semantic drift* (the modernized C# produces a genuinely different result), *architectural artifact* (the new architecture handles something differently than the legacy did, but the result is equivalent in business terms), and *temporal artifact* (the test fixture in dev mode didn't capture a time-dependent input). Each kind requires different action.
-
-In Rosetta, this framework is called Witness. Witness is the production-mode counterpart to Twin Verification. Specialist observer agents deploy alongside the modernized C# as part of Witness, watching, surfacing anomalies, capturing scenarios. The capture-replay lineage extends from a project I built in 2016 (pmilet/playback, an open-source HTTP capture-replay middleware), now reframed for the agentic era.
-
----
-
-**📐 FIGURE 17.1 — *Witness: production-mode verification across the dual-run period***
-
-*Diagram showing the dual-run architecture during cutover. Top: production traffic flowing in. Middle, side-by-side: the legacy system (still authoritative) and the modernized C# (running alongside). Both process the same traffic. Outputs flow to a comparison layer (Witness). Witness surfaces three kinds of divergence to a feedback panel: "semantic drift" (red), "architectural artifact" (yellow), "temporal artifact" (blue). Captured scenarios feed a fixture library that flows back to dev-mode (Twin Verification, Pattern 16) for replay. Annotation: "production teaches what dev-time corpus couldn't anticipate." Style: production-deployment diagram with the comparison layer visually elevated. Goal: reader sees the Witness/Twin pairing and how production knowledge re-enters the dev loop.*
-
----
-
-### Consequences
-
-Production becomes a source of evidence rather than a source of incidents. The modernization continues learning past the cutover. SME knowledge that was tacit becomes documented as a byproduct of verification.
-
-The cost is operational complexity. Witness must be deployed in production, which requires the platform engineering to support it (described in Patterns 14 and 16). The drift typology must be operationalised — distinguishing semantic from architectural from temporal drift requires discipline that the verification framework can't fully automate. Some divergences will always require human judgement.
-
-Whether Witness works at scale is the prototype's most uncertain bet. The principle (production reveals what dev mode hides, and that revelation should feed back into the modernization) is sound; whether the operational machinery to capture it efficiently can be built is what's being tested.
-
-### Related patterns
-
-Pattern 2 (*The Legacy as Oracle*) is the foundational principle, now extended into production. Pattern 16 (*Twin Verification*) is the dev-mode counterpart. Pattern 18 (*Behavioural Specifications Grown from Production*) is the next step that builds on the captures Witness produces. Pattern 25 (*The Cockpit*) is where humans review captured divergences and approve action.
-
----
-
-## Pattern 18: Behavioural Specifications Grown from Production
-
-*Status: next.*
-
-### Context
-
-A modernization where production-mode verification (Pattern 17) is capturing real legacy behaviour as evidence. The captures accumulate over time, building a corpus of how the system actually behaves under real workloads. The modernized system inherits this corpus; the legacy will eventually be decommissioned. The question becomes what to do with the captured evidence as a long-term artifact.
-
-### Problem
-
-The traditional approach to specifications is to write them before development: someone (an analyst, a domain expert, a product manager) articulates what the system should do, and developers implement it. In legacy modernization this is doubly broken. The original specification was never written; whatever specs exist are reconstructions. And the modernized system is replacing something that already runs, which means the running system itself is more authoritative than any reconstruction.
-
-The captured production behaviour is rich evidence, but it's not yet a specification. It's traffic patterns, request-response pairs, scenarios. To become a specification it needs to be articulated in a form that can drive ongoing engineering — readable by humans, executable as tests, traceable to the requirements they encode.
+What to do with the captures as a long-term artifact becomes its own question. They are evidence during the dual-run. They could become specifications afterwards. The modernization team has to decide whether to extract that value or leave the captures as transient logs.
 
 ### Forces
+
+Production verification needs the same tight feedback as dev-time verification but operates on a different scale and at different stakes. The dual-run period is finite; eventually one system is decommissioned. The traditional approach (write more tests after production reveals issues) is reactive. By the time tests are written, the divergence has already happened in production.
 
 Manually translating production captures into specifications is expensive and arbitrary — different humans would produce different specs from the same captures. Skipping the translation altogether leaves the captures as evidence but not as contracts; they don't survive as a specification once the legacy is gone. Asking an LLM to generate specifications from raw captures produces inconsistent results because the captures themselves don't carry intent.
 
@@ -1158,43 +977,55 @@ The captured behaviour does carry intent implicitly — recurring traffic shapes
 
 ### Pattern
 
-Process the captured behaviour to produce executable behavioural specifications. Pattern-match recurring traffic shapes across captures. Extract the preconditions that lead to each shape. Extract the outcomes that follow. Generate Given-When-Then specifications grounded in what the system actually did, not in what someone wrote in a planning meeting.
+Deploy a verification framework alongside the modernized C# in production. Capture legacy behaviour on real traffic. Compare it to the modernized C#'s behaviour on the same inputs. Record divergences as evidence. Replay captured scenarios in dev mode to refine the modernized code.
 
-The specifications are executable: they become a regression suite that the modernized system runs against. They are traceable: each specification points back to the captures that grounded it. They are reviewable: humans can read them, validate them against domain understanding, refine them where the captures were ambiguous.
+Distinguish three kinds of drift: *semantic drift* (the modernized C# produces a genuinely different result), *architectural artifact* (the new architecture handles something differently than the legacy did, but the result is equivalent in business terms), and *temporal artifact* (the test fixture in dev mode didn't capture a time-dependent input). Each kind requires different action. Semantic drift is a defect — fix it. Architectural artifact is a recorded difference — document it as intentional and update the comparison rules. Temporal artifact is a corpus gap — extract the new input pattern into the dev-mode fixture library so future runs catch it.
 
-The regression suite grows from what the system actually does. Tacit SME knowledge — the kind that lives in domain experts' heads and is never formally written down — becomes externalised as a byproduct of verification.
+The drift typology is not exhaustive. Other categories appear: *data drift* (the input distribution shifted between dev and production), *clock drift* (timing-dependent behaviour the test fixture didn't reproduce), *infrastructure drift* (failure handling that differs between mainframe and cloud stack). The three named above are the most common; the framework should be extensible to others as engagement experience teaches them.
+
+In Rosetta, this framework is called Witness. Witness is the production-mode counterpart to Twin Verification. Specialist observer agents deploy alongside the modernized C# as part of Witness, watching, surfacing anomalies, capturing scenarios. The capture-replay lineage extends from a project I built in 2016 (pmilet/playback, an open-source HTTP capture-replay middleware), now reframed for the agentic era.
+
+### Captures as future specifications
+
+The captured behaviour, once accumulated, is evidence that the modernized system can build on after the legacy is decommissioned. The accumulation can be processed into executable behavioural specifications — Given-When-Then statements grounded in what the system actually did rather than in what someone wrote in a planning meeting.
+
+The process is not automated end-to-end. Captures are pattern-matched to surface recurring traffic shapes across the corpus. The preconditions that lead to each shape are extracted. The outcomes that follow are extracted. Candidate specifications are generated and surfaced to a human reviewer through the cockpit (Pattern 19) for validation against domain understanding — the captures may include noise, errors, or behaviour that shouldn't survive into the modernized system.
+
+Validated specifications become executable: they form a regression suite the modernized system runs against. They are traceable: each specification points back to the captures that grounded it, which trace back through source provenance (architectural interlude) to the legacy code that produced the observed behaviour. They are reviewable: humans can read them, validate them against domain understanding, refine them where the captures were ambiguous.
+
+The regression suite grows from what the system actually does. Tacit SME knowledge — the kind that lives in domain experts' heads and is never formally written down — becomes externalised as a byproduct of verification. The modernization produces a durable artifact that survives the legacy decommissioning: a behavioural specification grounded in production reality.
+
+This extension is *designed*, not *prototype-validated*. The verification framework itself is in construction; the capture-to-specification machinery is the natural follow-on but has not been built. The principle (specifications can grow from production rather than precede it) is consistent with the prototype's broader posture (the legacy is the spec). What remains to be tested is whether the operational machinery to make this efficient can be built, and whether the resulting specifications are useful enough to justify the engineering cost.
 
 ### Consequences
 
-The modernization produces a durable artifact that survives the legacy decommissioning: a behavioural specification grounded in production reality. Future development against the modernized system has executable contracts to validate against. Future modernizations of adjacent systems have a precedent to follow.
+Production becomes a source of evidence rather than a source of incidents. The modernization continues learning past the cutover. The drift typology gives the operations team a vocabulary for triaging divergences — not every difference between legacy and modernized output is a bug, and the typology makes the right response visible.
 
-The cost is the disciplined processing of captures. Pattern-matching at scale requires technique — naive grouping produces too many specifications or too few, and the threshold isn't obvious. Generated specifications need human review because the captures may include noise, errors, or behaviour that shouldn't survive into the modernized system. The quality of the resulting specification depends on the quality of the capture corpus, which depends on Witness running long enough across enough traffic shapes.
+Captures accumulate into a corpus that has value beyond immediate divergence detection. When the legacy is decommissioned, the modernization is not left without a reference point — the captured behaviour, processed into specifications, is the modernization's testimony about what the legacy did. Future development against the modernized system has executable contracts to validate against. Future modernizations of adjacent systems have a precedent to follow.
 
-This is a direction designed but not yet built. The principle (specifications can grow from production rather than precede it) is consistent with the prototype's broader posture (the legacy is the spec). What remains to be tested is whether the operational machinery to make this efficient can be built, and whether the resulting specifications are useful enough to justify the engineering cost.
+The cost is operational complexity. Witness must be deployed in production, which requires the platform engineering to support it. The drift typology must be operationalised — distinguishing semantic from architectural from temporal drift requires discipline that the verification framework can't fully automate. Some divergences will always require human judgement.
+
+The specification-generation path adds further engineering cost. Pattern-matching at scale requires technique — naive grouping produces too many specifications or too few, and the threshold isn't obvious. The quality of the resulting specification depends on the quality of the capture corpus, which depends on Witness running long enough across enough traffic shapes. Teams that want the specification artifact must budget for both the capture infrastructure and the processing pipeline.
+
+Whether Witness works at scale is the prototype's most uncertain bet. The principle (production reveals what dev mode hides, and that revelation should feed back into the modernization) is sound; whether the operational machinery to capture it efficiently can be built is what's being tested. The follow-on (captures become specifications) depends on Witness working first; that follow-on is even less validated.
 
 ### Related patterns
 
-Pattern 17 (*Hypothesis-Driven Verification*) is what produces the captures this pattern processes. Pattern 26 (*Spec Deltas as the Unit of Review*) is what consumes the resulting specifications when they change. Pattern 2 (*The Legacy as Oracle*) is the foundational principle this pattern extends — the spec doesn't precede the system; it emerges from it.
+Pattern 2 (*The Legacy as Oracle*) is the foundational principle, now extended into production. Pattern 13 (*Twin Verification*) is the dev-mode counterpart and the receiver of replayed captures. Pattern 19 (*The Cockpit*) is where humans review captured divergences and approve action, and where candidate specifications surface for validation. Pattern 21 (*Rollout and Cutover at Bounded Context Granularity*) is the operational frame this pattern serves during dual-run — Witness watches for divergences as bounded contexts cut over progressively. Pattern 22 (*Dual-Run Coexistence*) is where Witness sits in the dual-run architecture, monitoring across the bridge period.
 
----
+-----
 
 # Part IV: Governance
 
----
-
-**🎨 ILLUSTRATION P4 — *Governance: the harness, not the leash***
-
-*Style: editorial illustration matching the cover's aesthetic. Subject: a horse-drawn carriage where the horse (powerful, fast, capable) is depicted with elaborate harness — guides on the bridle, traces connecting to the carriage, blinkers framing the field of view. The driver's hands hold the reins lightly. The harness shapes the horse's path without restricting its capacity for work. Visual metaphor: agentic systems thrive within structured constraints, not loose framing or restrictive control. The harness is the architecture that makes intelligent power directable. Format: full-page or two-thirds page opener for Part IV.*
-
----
+-----
 
 The patterns in this group address how the modernization stays coherent across the agentic system. They presuppose verification (Part III) and generation (Part II) — without a working pipeline, governance has nothing to govern.
 
----
+-----
 
-## Pattern 19: Bounded MCP Servers
+## Pattern 15: Bounded MCP Servers
 
-*Status: working.*
+*Status: prototype-validated.*
 
 ### Context
 
@@ -1226,21 +1057,13 @@ In Rosetta, four MCP servers structure the agentic platform: a Discovery server 
 
 Cross-server interaction follows the same disciplines DDD applies to bounded contexts. When one capability needs another's data, it goes through the public interface, not through shared databases or back-channel access. The integration patterns are explicit: published events (when one server's work emits state changes others consume), conformist consumers (when one server simply accepts another's output as canonical), anti-corruption layers (when one server needs to translate another's vocabulary into its own internal model). The Legacy server is itself an instance of what Nick Tune has called *Expose Legacy Asset* (see glossary): the legacy is wrapped in an explicit interface that modernized subsystems consume, rather than being accessed directly through database connections or in-process coupling.
 
----
-
-**📐 FIGURE 19.1 — *Bounded MCP servers: bounded contexts for the agentic system***
-
-*Diagram showing the four MCP servers as bounded contexts, each with its own boundary. Each server depicted as a box containing: server name, owned capability, owned data, exposed tools. Specifically: Discovery server (owns graph + ontology, exposes graph queries and slice discovery); Legacy server (owns Legacy Twin container, exposes oracle invocation); Twin server (owns scaffold + agent translation pipeline, exposes scaffold generation and code production); Witness server (owns verification lifecycle, exposes hypothesis generation and certification). Above the servers: the orchestrating Cortex agent (Pattern 20) reaches across servers via their MCP interfaces. Below the servers: implementations stay private. Annotations: "interface = contract" at each server boundary. Style: bounded-context diagram with strong visual boundaries between servers. Goal: reader sees the agentic system as a domain composed of bounded contexts, not a monolith with broad agent access.*
-
----
-
 ### Consequences
 
 Implementations evolve independently — a new graph analysis pass changes the Discovery server without disturbing Twin or Witness. Audit trails are clean because every agent action goes through a server boundary and is recorded with structured input/output. Failures localise: when something goes wrong, the audit shows which server saw which inputs and produced which outputs, and the investigation starts at the relevant boundary instead of tracing through unbounded agent activity.
 
 Security becomes per-capability: an agent that needs graph queries gets credentials to the Discovery server only, not blanket access. Cost attribution becomes possible: each server reports its own resource usage, and the cost of a modernization can be decomposed by capability. Performance debugging becomes tractable: latency profiles are localised to specific servers, and bottlenecks are identifiable.
 
-The cost is contract design. Each server's interface must be expressive enough to support the agents' needs without exposing internals. Cross-cutting concerns — orchestration, policy enforcement, end-to-end telemetry — live above the servers (Pattern 20), not within them. The servers themselves can't bypass each other's contracts, even when bypassing would be convenient.
+The cost is contract design. Each server's interface must be expressive enough to support the agents' needs without exposing internals. Cross-cutting concerns — orchestration, policy enforcement, end-to-end telemetry — live above the servers (Pattern 16), not within them. The servers themselves can't bypass each other's contracts, even when bypassing would be convenient.
 
 The agentic system, structurally, is a modular monolith of bounded servers — same DDD discipline applied to the agentic platform itself that this catalog applies to the modernized business system. The recursion is not coincidental: bounded contexts are how complex systems remain comprehensible, whether the system is a bank's core ledger or an AI platform for legacy modernization.
 
@@ -1248,111 +1071,89 @@ My guess is that this pattern will become more common as the field matures. The 
 
 ### Related patterns
 
-Pattern 20 (*The Orchestration Layer Above Bounded Capabilities*) is what coordinates across the bounded servers. Pattern 23 (*The Harness as Self-Observing State Machine*) governs *what* agents do; this pattern governs *how* they do it — which capabilities they can reach and through which interfaces. Pattern 25 (*The Cockpit*) is the human-experience surface above the MCP layer, surfacing what each server has done and what's pending. Pattern 24 (*Reasoning Telemetry as First-Class Output*) is what each server emits about its own decisions, which makes the audit trail end-to-end.
+Pattern 16 (*Durable Orchestration Above Bounded Capabilities*) is what coordinates across the bounded servers. Pattern 18 (*The Harness as Self-Observing State Machine*) governs *what* agents do; this pattern governs *how* they do it — which capabilities they can reach and through which interfaces. The reasoning telemetry layer of Pattern 18 is what each server emits about its own decisions, which makes the audit trail end-to-end. Pattern 19 (*The Cockpit*) is the human-experience surface above the MCP layer, surfacing what each server has done and what's pending. Pattern 20 (*Team Topology and Bounded Context Alignment*) determines which team has authority over which server's evolution.
 
----
+-----
 
-## Pattern 20: The Orchestration Layer Above Bounded Capabilities
+## Pattern 16: Durable Orchestration Above Bounded Capabilities
 
-*Status: working.*
+*Status: prototype-validated.*
 
 ### Context
 
-An agentic system structured around bounded capabilities (Pattern 19), where each capability has a coherent responsibility and a defined interface. The agents need to accomplish goals that span capabilities — discovering bounded contexts in the graph, then using those contexts to scaffold C#, then verifying the scaffolds against the Legacy Twin, then refining based on the verdict. No single capability owns this end-to-end work.
+An agentic system structured around bounded capabilities (Pattern 15), where each capability has a coherent responsibility and a defined interface. The agents need to accomplish goals that span capabilities — discovering bounded contexts in the graph, then using those contexts to scaffold C#, then verifying the scaffolds against the Legacy Twin, then refining based on the verdict. No single capability owns this end-to-end work.
 
-The end-to-end work is itself a domain — the workflow of modernization. The workflow has its own ubiquitous language (slices proposed, scaffolds rendered, candidates verified, gates passed, decisions escalated), its own state, its own evolution over time. It is not part of any single capability's responsibility, but it touches all of them.
+The end-to-end work runs across weeks or months. Agents work asynchronously, humans intervene at gates, decisions get revisited as evidence accumulates. The platform must keep state across this entire span — across infrastructure restarts, across human absences, across deployment changes, across model upgrades.
+
+The cross-cutting work has both a logical shape (what gets coordinated, in what order, with what authority) and a physical shape (how that coordination survives the realities of long-running operation). Both shapes are first-class concerns and they have to be designed together.
 
 ### Problem
 
 Without an explicit orchestration layer, the agents themselves end up coordinating across capabilities. This produces brittle behaviour: every agent has to know which capabilities exist, which order to invoke them in, what to do when one capability's output needs to be reshaped before another can consume it. Cross-capability coordination becomes scattered through the agent population, which makes the overall flow opaque and hard to govern.
 
-The instinct to fold orchestration into one of the bounded capabilities — making the Discovery server, say, responsible for invoking Twin and Witness — violates the bounded-context principle. The capability that orchestrates is no longer a bounded context; it's a god object dressed up as a server. Its vocabulary expands to include other capabilities' vocabularies; its state expands to track other capabilities' states; its responsibility expands to include other capabilities' decisions. The bounded discipline that Pattern 19 establishes collapses if any single server absorbs orchestration.
+The instinct to fold orchestration into one of the bounded capabilities — making the Discovery server, say, responsible for invoking Twin and Witness — violates the bounded-context principle. The capability that orchestrates is no longer a bounded context; it's a god object dressed up as a server. Its vocabulary expands to include other capabilities' vocabularies; its state expands to track other capabilities' states; its responsibility expands to include other capabilities' decisions. The bounded discipline that Pattern 15 establishes collapses if any single server absorbs orchestration.
 
-There is also a choice between orchestration and choreography that the catalog needs to make. Choreography (capabilities reacting to events from each other without a central coordinator) is appealing because it preserves bounded discipline, but it makes the overall flow harder to reason about and harder to gate with human approval. Orchestration (a coordinating agent that drives the workflow) is more legible and more governable, at the cost of introducing a coordinator that must be carefully constrained.
+There is a choice between orchestration and choreography that the catalog needs to make. Choreography (capabilities reacting to events from each other without a central coordinator) is appealing because it preserves bounded discipline, but it makes the overall flow harder to reason about and harder to gate with human approval. Orchestration (a coordinating agent that drives the workflow) is more legible and more governable, at the cost of introducing a coordinator that must be carefully constrained.
+
+A separate but inseparable problem: agentic workflows that exist only in process memory don't survive the realities of long-running work. A platform restart loses the workflow state. A model upgrade mid-flight loses context. A human reviewer who steps away for a week returns to find the workflow expired. The traditional approach — checkpoint everything to a database periodically and reconstruct on resume — is fragile because the workflow has rich state (open agent conversations, in-flight tool calls, accumulated reasoning) that doesn't reduce cleanly to database rows.
+
+The problem compounds with replay. When an agent's tool call fails partway through, the workflow needs to recover without redoing the work that already succeeded. Without replay-aware infrastructure, partial failures cascade — every tool call that succeeded before the failure has to be redone, every decision that was reached has to be re-derived.
+
+The two problems are facets of one larger problem: cross-cutting coordination that survives the operational realities of multi-month agentic work.
 
 ### Forces
 
 Coordination is inherently cross-cutting. It can't be eliminated. But where it lives matters: scattered across agents, it's chaotic; folded into a bounded server, it corrupts that server's coherence. There needs to be a place for cross-cutting work that doesn't compromise either the agents or the bounded servers.
 
-The orchestrator must coordinate without bypassing. If it accesses capabilities directly — through database connections, through internal APIs — the bounded discipline of Pattern 19 collapses. The orchestrator's power must come from broader scope, not from privileged access. It sees the whole workflow but it interacts with capabilities through the same MCP interfaces other agents use.
+The orchestrator must coordinate without bypassing. If it accesses capabilities directly — through database connections, through internal APIs — the bounded discipline of Pattern 15 collapses. The orchestrator's power must come from broader scope, not from privileged access. It sees the whole workflow but it interacts with capabilities through the same MCP interfaces other agents use.
 
-The orchestrator must also accommodate human-in-the-loop gates. Not every cross-cutting decision is automatable — some require human judgment (validating a hypothesis, approving a scaffold, accepting a divergence as intentional). The orchestrator routes work to humans through the cockpit (Pattern 25) and waits for the response, the same way it routes work to capabilities and waits for their response.
-
-### Pattern
-
-Place an orchestrating agent above the bounded capabilities, with explicit responsibility for cross-cutting decisions. The orchestrator coordinates without bypassing — it accesses bounded capabilities only through the same interfaces other agents use, but it has the broader view that lets it make decisions about sequencing, escalation, and revision.
-
-In Rosetta, this orchestrator is called Cortex. Cortex makes decisions like: when to escalate to a human, when to switch focus from one bounded context to another, when to revisit prior decisions in light of new evidence, when one capability's output needs reshaping before another can consume it. Cortex runs a retrospective sub-agent that learns across modernization sessions, accumulating patterns about which sequences work well and which often produce escalation, feeding those patterns back into future workflow decisions.
-
-Cortex maintains the workflow state — what slice is currently being worked on, what stage it's at, what gates remain, what humans are waiting for. The state lives in durable workflow infrastructure (Pattern 21), surviving process restarts and human absences. Other agents query Cortex about workflow state; Cortex queries them about capability state.
-
-The orchestrator is itself an agent, not a service. Its behaviour is bounded by the harness (Pattern 23), observed through the cockpit (Pattern 25), and emits reasoning telemetry like any other agent (Pattern 24). It coordinates the others, but it doesn't escape the governance that applies to the whole system. The orchestrator's authority comes from its scope, not from privileged status.
-
-### Consequences
-
-Cross-cutting decisions have a place. Agents working in bounded capabilities focus on their own work; the orchestrator handles the coordination. The system as a whole becomes legible — there's a specific place to look for "why did the work move from this bounded context to that one," and the answer is in the orchestrator's decision log.
-
-Workflow coherence becomes a queryable property. At any moment, the orchestrator can answer: which slices are in flight, which have stalled, which are blocked on humans, which are blocked on capabilities. This visibility makes the cockpit's job tractable — the cockpit doesn't have to reconstruct the workflow from scattered evidence; it queries the orchestrator.
-
-The cost is the orchestrator's own complexity. It has to know enough about every bounded capability to coordinate them, but it must not duplicate their internals. This is a delicate balance — orchestrators that grow too smart start to absorb logic that belongs in the capabilities; orchestrators that stay too simple end up unable to coordinate effectively. Maintaining the right level of abstraction in the orchestrator is ongoing work, often informed by what the harness's self-observation (Pattern 23) surfaces about which decisions the orchestrator gets right and which it doesn't.
-
-Whether to also use a hosted orchestration framework — to handle long-running coordination, persistence across restarts, replay semantics for the workflow — is a separate question that depends on engagement scale. Pattern 21 (*Durable Agentic Workflows*) addresses this question explicitly; for now the principle stands regardless of how durability is implemented: orchestrate above, don't fold into.
-
-There is a choreography alternative that this pattern explicitly rejects for modernization contexts. Choreography — bounded capabilities reacting to each other's events without a coordinator — works well when the workflow shape is stable and the participants are autonomous. Modernization workflows are exploratory, human-gated, and reshape as engagements teach what works. Orchestration's central coordination is the right tradeoff for that context.
-
-### Related patterns
-
-Pattern 19 (*Bounded MCP Servers*) is what the orchestrator coordinates across. Pattern 21 (*Durable Agentic Workflows*) is what keeps the orchestrator's state across the engagement's duration. Pattern 23 (*The Harness as Self-Observing State Machine*) governs the orchestrator's behaviour the same way it governs other agents — and watches its decisions for refinement opportunities. Pattern 24 (*Reasoning Telemetry as First-Class Output*) is what the orchestrator emits about its coordination decisions. Pattern 25 (*The Cockpit*) is where humans observe and intervene in the orchestrator's decisions.
-
----
-
-## Pattern 21: Durable Agentic Workflows
-
-*Status: in progress.*
-
-### Context
-
-A modernization that runs across weeks or months. Agents work asynchronously, humans intervene at gates, decisions get revisited as evidence accumulates. The platform must keep state across this entire span — across infrastructure restarts, across human absences, across deployment changes, across model upgrades.
-
-### Problem
-
-Agentic workflows that exist only in process memory don't survive the realities of long-running work. A platform restart loses the workflow state. A model upgrade mid-flight loses context. A human reviewer who steps away for a week returns to find the workflow expired. The traditional approach — checkpoint everything to a database periodically and reconstruct on resume — is fragile because the workflow has rich state (open agent conversations, in-flight tool calls, accumulated reasoning) that doesn't reduce cleanly to database rows.
-
-The problem compounds with replay. When an agent's tool call fails partway through, the workflow needs to recover without redoing the work that already succeeded. Without replay-aware infrastructure, partial failures cascade — every tool call that succeeded before the failure has to be redone, every decision that was reached has to be re-derived.
-
-### Forces
+The orchestrator must also accommodate human-in-the-loop gates. Not every cross-cutting decision is automatable — some require human judgment (validating a hypothesis, approving a scaffold, accepting a divergence as intentional). The orchestrator routes work to humans through the cockpit (Pattern 19) and waits for the response, the same way it routes work to capabilities and waits for their response.
 
 The workflow's logical model wants to be simple: states, transitions, gates, with agents operating inside steps. The workflow's physical reality is complex: long durations, partial failures, infrastructure restarts, version skew between models and tools, human intervention timing that the system can't predict. The simple logical model needs to survive the complex physical reality, which requires infrastructure designed for the complexity, not retrofitted to it.
 
 ### Pattern
 
-Run the workflow on infrastructure designed for durability: durable workflow infrastructure that persists state automatically, supports replay semantics for failed steps, recovers cleanly from restarts, and tolerates the time scales the work actually requires. The infrastructure handles state persistence, replay, and recovery; the workflow code expresses the logical model and stays close to the harness definition.
+Place an orchestrating agent above the bounded capabilities, with explicit responsibility for cross-cutting decisions. The orchestrator coordinates without bypassing — it accesses bounded capabilities only through the same interfaces other agents use, but it has the broader view that lets it make decisions about sequencing, escalation, and revision.
 
-The harness (Pattern 23) is the workflow's *definition* — what states exist, what transitions are valid, what gates apply. The durable workflow infrastructure is the *execution substrate* that runs the harness across time. The two are separable: the same harness can run on different durable infrastructures depending on the engagement scale and operational constraints.
+Run the orchestrator on infrastructure designed for durability: durable workflow infrastructure that persists state automatically, supports replay semantics for failed steps, recovers cleanly from restarts, and tolerates the time scales the work actually requires. The infrastructure handles state persistence, replay, and recovery; the orchestration code expresses the logical model and stays close to the harness definition.
 
-GitHub-native primitives (branch protection, required status checks, GitHub Actions, issue templates) materialize a subset of gates as enforceable mechanisms in the development workflow. These are useful where they apply — code review gates, deployment gates, scaffold validation gates. They're not the durable execution substrate; they're a complementary layer for gates that happen to align with version-control workflow.
+The harness (Pattern 18) is the workflow's *definition* — what states exist, what transitions are valid, what gates apply. The durable workflow infrastructure is the *execution substrate* that runs the harness across time. The orchestrating agent is the *coordinator* that drives transitions through the harness on top of the durable substrate. The three concerns are separable: the same harness can run on different durable infrastructures depending on the engagement scale and operational constraints; the orchestrator's policies can evolve without changing the harness definition.
 
-For longer-running coordination — the actual modernization workflow that spans weeks — the platform needs explicit durable workflow infrastructure (in Rosetta, this is Azure Durable Functions for the coordination layer). The workflow code is written as if it were synchronous and short-lived; the infrastructure handles persistence and replay underneath.
+In Rosetta, this orchestrator is called Cortex. Cortex makes decisions like: when to escalate to a human, when to switch focus from one bounded context to another, when to revisit prior decisions in light of new evidence, when one capability's output needs reshaping before another can consume it. Cortex runs a retrospective sub-agent that learns across modernization sessions, accumulating patterns about which sequences work well and which often produce escalation, feeding those patterns back into future workflow decisions.
+
+Cortex maintains the workflow state — what slice is currently being worked on, what stage it's at, what gates remain, what humans are waiting for. The state lives in durable workflow infrastructure (Azure Durable Functions in the current Rosetta implementation), surviving process restarts and human absences. Other agents query Cortex about workflow state; Cortex queries them about capability state.
+
+GitHub-native primitives (branch protection, required status checks, GitHub Actions, issue templates) materialize a subset of gates as enforceable mechanisms in the development workflow. These are useful where they apply — code review gates, deployment gates, scaffold validation gates. They're not the durable execution substrate; they're a complementary layer for gates that happen to align with version-control workflow. The orchestrator coordinates *across* the GitHub-native gates and the durable infrastructure rather than choosing one over the other.
+
+The orchestrator is itself an agent, not a service. Its behaviour is bounded by the harness (Pattern 18), observed through the cockpit (Pattern 19), and emits reasoning telemetry like any other agent. It coordinates the others, but it doesn't escape the governance that applies to the whole system. The orchestrator's authority comes from its scope, not from privileged status.
 
 ### Consequences
 
+Cross-cutting decisions have a place. Agents working in bounded capabilities focus on their own work; the orchestrator handles the coordination. The system as a whole becomes legible — there's a specific place to look for "why did the work move from this bounded context to that one," and the answer is in the orchestrator's decision log.
+
+Workflow coherence becomes a queryable property. At any moment, the orchestrator can answer: which slices are in flight, which have stalled, which are blocked on humans, which are blocked on capabilities. This visibility makes the cockpit's role tractable — the cockpit doesn't have to reconstruct the workflow from scattered evidence; it queries the orchestrator.
+
 Workflows survive infrastructure realities. Restarts don't lose state. Long human absences don't expire workflows. Tool-call failures don't cascade. Model upgrades during a workflow don't corrupt prior decisions. The platform becomes operationally credible at the time scales real engagements require.
 
-The audit trail becomes durable too. Every state transition is recorded by the infrastructure, available for retrospective analysis. Compliance reviewers in regulated industries have explicit records of the workflow's progression — not just the final state, but every intermediate decision and the conditions under which it was reached.
+The audit trail becomes durable. Every state transition is recorded by the infrastructure, available for retrospective analysis. Compliance reviewers in regulated industries have explicit records of the workflow's progression — not just the final state, but every intermediate decision and the conditions under which it was reached.
 
-The cost is the infrastructure dependency itself. Running on durable workflow infrastructure adds operational complexity: it has to be hosted, maintained, monitored, scaled. The workflow code has constraints — certain operations don't replay cleanly, certain patterns don't survive serialization — that pure in-memory workflows don't have. Developers must learn the infrastructure's semantics and design within them.
+The cost is twofold. The orchestrator's complexity is the first. It has to know enough about every bounded capability to coordinate them, but it must not duplicate their internals. This is a delicate balance — orchestrators that grow too smart start to absorb logic that belongs in the capabilities; orchestrators that stay too simple end up unable to coordinate effectively. Maintaining the right level of abstraction in the orchestrator is ongoing work, often informed by what the harness's self-observation (Pattern 18) surfaces about which decisions the orchestrator gets right and which it doesn't.
+
+The durable infrastructure dependency is the second cost. Running on durable workflow infrastructure adds operational complexity: it has to be hosted, maintained, monitored, scaled. The workflow code has constraints — certain operations don't replay cleanly, certain patterns don't survive serialization — that pure in-memory workflows don't have. Developers must learn the infrastructure's semantics and design within them.
 
 Whether the durable infrastructure is hosted (a cloud platform's managed service) or self-hosted is a separate operational decision that depends on the engagement's compliance posture, scale, and integration requirements. The pattern is agnostic to that choice; what matters is that the substrate is designed for durability, not retrofitted for it.
 
+There is a choreography alternative this pattern explicitly rejects for modernization contexts. Choreography — bounded capabilities reacting to each other's events without a coordinator — works well when the workflow shape is stable and the participants are autonomous. Modernization workflows are exploratory, human-gated, and reshape as engagements teach what works. Orchestration's central coordination is the right tradeoff for that context. The durable substrate makes the orchestration tractable; without it, central coordination would be too brittle to operate at the time scales the work requires.
+
 ### Related patterns
 
-Pattern 23 (*The Harness as State Machine*) is the workflow definition that runs on the durable substrate. Pattern 19 (*Bounded MCP Servers*) and Pattern 20 (*The Orchestration Layer Above Bounded Capabilities*) are coordinated through the durable workflow's execution. Pattern 20 (*Harness Self-Observation and Refinement*) consumes the durable trace as input to its analysis.
+Pattern 15 (*Bounded MCP Servers*) is what the orchestrator coordinates across. Pattern 18 (*The Harness as Self-Observing State Machine*) is the workflow definition that runs on the durable substrate; it governs the orchestrator's behaviour the same way it governs other agents — and watches its decisions for refinement opportunities. Pattern 19 (*The Cockpit*) is where humans observe and intervene in the orchestrator's decisions. Pattern 20 (*Team Topology and Bounded Context Alignment*) is what the orchestrator must respect when routing work to humans: routing to "the team that owns this context" requires the orchestrator to know which team owns which context.
 
----
+-----
 
-## Pattern 22: Heuristics as Explicit Artifacts
+## Pattern 17: Heuristics as Explicit Artifacts
 
-*Status: in progress.*
+*Status: in construction.*
 
 ### Context
 
@@ -1362,7 +1163,7 @@ The heuristics are not optional. Slice boundaries cannot be inferred without rul
 
 ### Problem
 
-The dominant practice in agentic systems is to bake heuristics into agent prompts. The slice-discovery agent's prompt explains what to look for: "paragraphs that share data and predicates are likely to belong to the same slice; XCTL between paragraphs typically marks a bounded-context transition; ..." The tier-classification agent's prompt encodes the thresholds: "if cyclomatic complexity is over X and coupling is over Y, classify as tier 3..."
+The dominant practice in agentic systems is to bake heuristics into agent prompts. The slice-discovery agent's prompt explains what to look for: "paragraphs that share data and predicates are likely to belong to the same slice; XCTL between paragraphs typically marks a bounded-context transition; …" The tier-classification agent's prompt encodes the thresholds: "if cyclomatic complexity is over X and coupling is over Y, classify as tier 3…"
 
 This works briefly and fails as the system scales. The failures are characteristic:
 
@@ -1371,7 +1172,7 @@ This works briefly and fails as the system scales. The failures are characterist
 - **Audit trail breaks.** When an agent makes a decision and a reviewer asks "why?", the agent cites its reasoning in natural language, but the heuristic it applied is not a named artifact. The reasoning is post-hoc rationalisation of prompt-embedded knowledge, not citation of a queryable rule.
 - **Composition fails.** When two agents must apply the same heuristic — slice-discovery and slice-validation, for instance — the heuristic must be duplicated across prompts. Drift between the copies is inevitable.
 
-The deeper failure is treating heuristics as implicit context rather than as first-class artifacts. The compiler principle (Pattern 8) articulates that deterministic decisions belong in deterministic infrastructure; heuristics are deterministic decisions, but they have been hiding in probabilistic prompt content.
+The deeper failure is treating heuristics as implicit context rather than as first-class artifacts. The compiler principle (Pattern 6) articulates that deterministic decisions belong in deterministic infrastructure; heuristics are deterministic decisions, but they have been hiding in probabilistic prompt content.
 
 ### Forces
 
@@ -1389,15 +1190,35 @@ Treat heuristics as first-class queryable artifacts, not as implicit knowledge i
 - **Version and validation status** — when the heuristic was introduced, when it was last refined, what evidence validated it.
 - **Observability hooks** — what telemetry the heuristic emits when applied.
 
-Specialised agents access the catalog through queries: a slice-discovery agent encountering an XCTL queries `heuristics:by-cue("XCTL", context:current_tier)` and receives the relevant heuristics with their weights. The agent applies the heuristics, emits a reasoning record (Pattern 25) citing which heuristics were applied with which evidence, and the audit trail is intact.
+Specialised agents access the catalog through queries: a slice-discovery agent encountering an XCTL queries `heuristics:by-cue("XCTL", context:current_tier)` and receives the relevant heuristics with their weights. The agent applies the heuristics, emits a reasoning record (Pattern 18) citing which heuristics were applied with which evidence, and the audit trail is intact.
 
-The catalog itself is built with the same compiler discipline as the rest of the modernization pipeline. Heuristic definitions live in structured files (YAML, JSON, or domain-specific schema); validators enforce required fields; versioning is git-native; refinements go through review like any other architectural change. The catalog is queryable through an MCP server (Pattern 19): agents discover heuristics through tool calls, not through prompt content.
+The catalog itself is built with the same compiler discipline as the rest of the modernization pipeline. Heuristic definitions live in structured files (YAML, JSON, or domain-specific schema); validators enforce required fields; versioning is git-native; refinements go through review like any other architectural change. The catalog is queryable through an MCP server (Pattern 15): agents discover heuristics through tool calls, not through prompt content.
 
-Refinement happens through structured evolution. When the harness's self-observation (Pattern 23) detects that a heuristic is producing high error rates in a specific context, it surfaces the heuristic for review. An architect (or a retrospective agent operating under human authorisation) refines the heuristic — adjusts weights, narrows conditions of application, adds new evidence types — and the refinement is recorded. The next time the heuristic is applied, agents see the refined version.
+Refinement happens through structured evolution. When the harness's self-observation (Pattern 18) detects that a heuristic is producing high error rates in a specific context, it surfaces the heuristic for review. An architect (or a retrospective agent operating under human authorisation) refines the heuristic — adjusts weights, narrows conditions of application, adds new evidence types — and the refinement is recorded. The next time the heuristic is applied, agents see the refined version.
 
-The heuristic catalog is itself a substrate that the compiler architecture treats as first-class, alongside the graph (Pattern 3), the IR (Pattern 9), and the domain ontology (Pattern 5). Documentation emitters (Pattern 15) can render the catalog as documentation: which heuristics exist, what they decide, what their evidence weights are, what their refinement history is. The catalog becomes legible to humans without requiring them to read agent prompts.
+The heuristic catalog is itself a substrate that the compiler architecture treats as first-class, alongside the graph (Pattern 3), the IR (Pattern 7), and the domain ontology (Pattern 4). Documentation emitters (Pattern 9) can render the catalog as documentation: which heuristics exist, what they decide, what their evidence weights are, what their refinement history is. The catalog becomes legible to humans without requiring them to read agent prompts.
 
-Catalog entries themselves can be partially derived from operational history. Uberto Barbini has reported experimenting with generating rule files for AI assistants from git history and pull-request comments — the team's own corrective behaviour over time becomes input to the rules the next agent applies. The same idea operates at platform scale here: when reviewers reject scaffolds or flag candidates with consistent rationale, that rationale is signal about which heuristics need refinement or which new heuristics need authoring. The retrospective agent (Pattern 23) can consume PR conversation telemetry as one of its evidence streams, surfacing candidate catalog updates that an architect then validates. The lesson does not stay in the head of the reviewer who wrote the comment; it propagates into the catalog.
+Catalog entries themselves can be partially derived from operational history. Uberto Barbini has reported experimenting with generating rule files for AI assistants from git history and pull-request comments — the team's own corrective behaviour over time becomes input to the rules the next agent applies. The same idea operates at platform scale here: when reviewers reject scaffolds or flag candidates with consistent rationale, that rationale is signal about which heuristics need refinement or which new heuristics need authoring. The retrospective agent (Pattern 18) can consume PR conversation telemetry as one of its evidence streams, surfacing candidate catalog updates that an architect then validates. The lesson does not stay in the head of the reviewer who wrote the comment; it propagates into the catalog.
+
+### The layered structure of the catalog
+
+The heuristic catalog is not flat. It has four layers organised by stability — by how rarely each layer changes, and by which engagements have authority to change it. Each layer constrains the layer below; each layer is fed by promotion from the layer below.
+
+**Universal heuristics** are substrate-agnostic and target-agnostic. They encode the antipattern categories the catalog is built against, the meta-rules about how heuristics are structured, the cross-cutting evidence weights that hold regardless of legacy stack or modernization target. Universal heuristics change rarely; changes are reviewed centrally and propagate across every engagement that consumes the catalog.
+
+**Substrate-specific heuristics** are calibrated to a particular legacy stack. The CICS COBOL substrate has its own L2 catalog: pattern detectors for conversational shapes (LINK/XCTL chains, COMMAREA conversations, pseudo-conversational TRANSID cycles), for transactional shapes (SYNCPOINT scope, deferred-commit wizards, latent sagas), for routing shapes, for domain-shape recovery from data layer evidence. A PL/I substrate or an RPG substrate would have its own catalog, structurally parallel but populated with different patterns. Substrate-specific heuristics are sharpened per engagement and curated by substrate experts; they change at the cadence of accumulating substrate experience.
+
+**Target-specific heuristics** are calibrated to a particular target architecture. The Wolverine + C# target has its own rules: when a `LatentSaga` pattern in L2 projects to a `Saga` in L3, when it projects to a `StatefulFlow + SingleCommand`, when it projects to choreographed events. A Java + Axon target would have different projection rules consuming the same substrate-specific L2 patterns. Target-specific heuristics evolve with the target ecosystem — when Wolverine introduces a new construct, the target layer extends; when the target stack itself changes, the target layer is replaced wholesale.
+
+**Engagement-specific heuristics** are the volatile layer. Each engagement accumulates overrides: this specific customer's domain has vocabulary the canonical ontology doesn't yet cover; this specific codebase has an idiom the substrate catalog hasn't seen; this specific architect made a non-canonical projection decision that needs to be recorded with its justification. Engagement-specific heuristics live for the duration of one engagement and serve one customer's modernization.
+
+Promotion gates connect the layers. When an engagement-specific override appears repeatedly across engagements with consistent justification, it becomes a candidate for promotion to substrate-specific or target-specific status. When a substrate-specific pattern proves substrate-agnostic — when the same shape recurs in PL/I and RPG with structurally equivalent dynamics — it becomes a candidate for promotion to universal status. The promotion is not automatic; it is a review event with explicit governance, the same way changes to the canonical layers themselves are reviewed.
+
+The promotion mechanism is what lets the catalog learn. Without it, engagement-specific lessons stay engagement-specific and the modernization team starts each new engagement from the same baseline. With it, the catalog absorbs accumulated experience: the team's expertise about how CICS conversations recover, how Wolverine targets render, how specific customer domains pattern, gets crystallised into the catalog as durable artifacts that compound across engagements.
+
+The layering also clarifies who has authority. Engagement-specific changes are made by the engagement team and require only engagement-level approval. Substrate-specific changes require substrate-expert curation. Target-specific changes require target-architecture review. Universal changes require central review with cross-engagement evidence. Each layer's stability is proportional to the breadth of its consumers and the cost of getting it wrong.
+
+This layered structure is what distinguishes the heuristic catalog from a flat configuration file. Configuration files don't learn — they're updated. The catalog learns because its promotion gates make learning visible, reviewable, and reversible. When a promoted heuristic turns out to be substrate-specific after all (it appeared universal because the first three substrates that triggered it happened to share an idiom), demotion is possible — the heuristic moves back to substrate-specific and stops constraining engagements that should never have been bound by it.
 
 ### Consequences
 
@@ -1411,589 +1232,705 @@ The cost is the discipline of structured heuristic authoring. Heuristics that wo
 
 There is also a discovery cost. When a new kind of decision arises (a new agentic capability needs to make a new kind of judgment), the team must decide what heuristics apply and add them to the catalog. This work is more visible and slower than adding sentences to prompts. The visibility is the point.
 
-The principle is genuinely first-mover. The compiler principle (Pattern 8) articulates the broader division between deterministic and probabilistic work; this pattern operationalises the deterministic side specifically for the case of decision heuristics. No catalog the field has produced articulates "heuristics as queryable, versionable artifacts" as an explicit pattern. The closest precedents — rule engines in business systems, ML feature stores, OPA policy as code — solve adjacent problems in adjacent domains. Applying the discipline to agentic decision-making is the contribution.
+Adjacent disciplines have solved related problems: rule engines (Drools, Camunda) in business systems articulate decision logic as data; OPA / Rego articulates policy as code with versioning and audit; ML feature stores treat feature definitions as queryable artifacts. These are precedents the pattern stands on rather than departures from. What this catalog contributes is the application of the same discipline specifically to *agentic decision-making in modernization* — the rules agents apply when classifying paragraphs, proposing slice boundaries, scoring ontology candidates, detecting anti-corruption layer points. The territory is new; the underlying principle (decision rules as queryable, versionable artifacts) is not.
 
 ### Related patterns
 
-Pattern 8 (*The Compiler Principle*) is the broader principle this pattern operationalises — deterministic decisions live in deterministic infrastructure. Pattern 7 (*Vertical Slice Discovery*) is one of the principal consumers — slice-boundary heuristics live in the catalog. Pattern 10 (*Tier-Aware Scaffolding*) consumes tier-classification heuristics. Pattern 17 (*Hypothesis-Driven Verification*) consumes divergence-categorisation heuristics. Pattern 19 (*Bounded MCP Servers*) hosts the heuristic catalog as a queryable capability. Pattern 23 (*The Harness as Self-Observing State Machine*) detects when heuristics need refinement based on operational evidence. Pattern 25 (*Reasoning Telemetry as First-Class Output*) cites which heuristics each agent applied.
+Pattern 6 (*The Compiler Principle*) is the broader principle this pattern operationalises — deterministic decisions live in deterministic infrastructure. Pattern 5 (*Vertical Slice Discovery*) is one of the principal consumers — slice-boundary heuristics live in the catalog. Pattern 8 (*Tier-Aware Scaffolding*) consumes tier-classification heuristics. Pattern 14 (*Hypothesis-Driven Verification*) consumes divergence-categorisation heuristics. Pattern 15 (*Bounded MCP Servers*) hosts the heuristic catalog as a queryable capability. Pattern 18 (*The Harness as Self-Observing State Machine*) detects when heuristics need refinement based on operational evidence, and its reasoning telemetry layer cites which heuristics each agent applied.
 
----
+-----
 
-## Pattern 23: The Harness as Self-Observing State Machine
+## Pattern 18: The Harness as Self-Observing State Machine
 
-*Status: working.*
+*Status: prototype-validated. (Harness and self-observation: validated. Retrospective agent and reasoning telemetry: in construction.)*
 
 ### Context
 
-An agentic system producing C# code from COBOL inside a complex multi-stage process: ingestion, analysis, scaffold rendering, paragraph translation, verification, gate transitions, eventual cutover. Each stage has prerequisites and postconditions. The agents must operate within these constraints across the entire workflow. Over time, the harness accumulates operational history: which gates fired, which transitions were taken, which paths were never explored, which states agents got stuck in.
+An agentic system performing modernization work over weeks or months. Agents make many decisions: which slice to work on next, which heuristic to apply, when to escalate, when to retry, when to abandon a candidate. The system must remain governable across the entire span — humans must be able to intervene, decisions must be auditable, the work must converge rather than drift.
+
+The system also has to *learn*. The same kinds of agentic decisions recur across many slices, many bounded contexts, many engagements. If every decision is independent, every engagement starts from zero. If the system observes its own behaviour and feeds those observations back into refinement, the work compounds.
+
+The decisions themselves have to be examinable. When a human reviewer asks "why did the agent choose this translation rather than that one," the answer should not be lost. Without traceable reasoning, debugging is forensic — reconstructing intent from outcomes — rather than direct.
 
 ### Problem
 
-The dominant instinct in agentic systems is to multiply agents — more specialised agents, more coordination layers, hierarchies and swarms. The framing is: *if one agent is good, many agents are better.* In my experience this is the wrong direction. What produces tractable modernization is not more agents but **better harness**: more deterministic constraints, more verifiable invariants, more explicit gates, less informal coordination between agents. Harness engineering is the discipline most underdeveloped in current agentic systems for software work.
+Three failure modes recur in agentic platforms that operate without the discipline this pattern names.
 
-The concrete failure mode: early versions of agentic systems use prompt engineering to tell the agents what to do at each stage. This fails as work scales. Agents drift, edge cases multiply, prompts grow into unmaintainable artifacts. Telling agents what not to do in natural-language instructions is advisory; the agents treat the instructions as suggestions. The result: candidates that match dev-time verification but are architectural disasters — code that works but is structured terribly, handlers that do the right thing through paths no human would maintain. Behavioural equivalence is necessary but not sufficient.
+The first failure is governance through prompts. The agents are told what to do in natural language: "respect the scaffold boundaries; do not modify the architectural skeleton; escalate to human when uncertain." Prompts are advisory; the agents treat them as suggestions when convenient, and the violations are detected only post-hoc through review.
 
-A second problem emerges once the harness exists. Without explicit observation of its own operation, the harness degrades silently. Gates calibrate wrong — never failing (useless) or always failing (blocking legitimate work). Transitions become over-engineered for cases that never arise. Cycles develop because gate criteria don't give agents enough signal to decide. Escalation rates climb because gates that should be automatable are not. The traditional response — periodic manual review — is slow, subjective, and becomes infeasible as the harness grows.
+The second failure is opacity about behaviour. The platform produces work, but the *patterns* in how that work was produced — which gates the agents trip most often, which transitions stall, which escalations recur — are invisible. The platform cannot improve because it cannot see itself. Engineering teams optimise based on intuition rather than evidence.
+
+The third failure is opacity about reasoning. Even when the *what* of agentic decisions is recorded, the *why* is lost. The agent chose a particular translation; the trace doesn't say why. The agent rejected an alternative; the trace doesn't say what alternative or why. When the same decision is revisited weeks later, the rationale must be reconstructed rather than retrieved.
+
+All three failures share a root: agentic behaviour that should be *constitutional, observable, and explainable* is instead *advisory, opaque, and silent*.
 
 ### Forces
 
-The agents need substantial freedom inside each stage to translate paragraphs, refine candidates, iterate against verification. They need strict constraints between stages to prevent architectural drift, premature promotion, bypass of human review. Free-form prose can't enforce strict constraints reliably. Strict constraints implemented as rigid procedure prevent useful agentic exploration.
+Agentic systems must be both flexible (so agents can do useful work the architects didn't anticipate in detail) and constrained (so agents don't violate architectural invariants the modernization depends on). The flexibility lives in *what* the agents do within a step; the constraint lives in *which steps* are valid and *which conditions* must hold at every transition.
 
-A second tension applies to the harness itself: it is operational infrastructure that should be stable (constant changes produce churn that propagates to agents, humans, and tooling) and living infrastructure that should evolve as the engagement teaches what works (refusing to refine it produces a calcified workflow that no longer fits the work). Stability and responsiveness are both real concerns.
+The platform must operate at long time scales: weeks for a single slice through its full lifecycle, months for a bounded context through full modernization, years for a substantial mainframe estate. Across that span, conditions change — model versions evolve, tool implementations shift, organisational priorities reshape. The platform's behaviour must remain coherent regardless.
+
+Self-observation is itself an architectural decision. Observing the platform's behaviour costs storage, query infrastructure, retention discipline. The benefit accrues over time — refinements based on operational evidence compound over engagements — but the upfront cost is real and the value is deferred.
+
+Observation also creates pressure. Once agents are evaluated against specific measures — gate passage rates, heuristic application frequency, reasoning trace quality — Goodhart's law applies immediately: when a measure becomes a target, it ceases to be a good measure. Reasoning traces can be performed; gates can be pattern-matched without genuine engagement; metrics can be optimised without the underlying behaviour improving. The self-observation must anticipate this pressure rather than ignore it.
 
 ### Pattern
 
-Implement the modernization workflow as a typed state machine in code. Each step has a defined entry condition, a defined exit condition, and a set of agents authorised to operate inside that step. Transitions happen through gates — pre-tool-use hooks check prerequisites, post-tool-use hooks check invariants. Inside a step, agents have substantial freedom; between steps, the state machine is determinate.
+The pattern has three parts that compose into one architectural commitment: a constitutional harness, a self-observation layer over that harness, and a reasoning telemetry layer over each decision.
 
-Enforce the state machine through GitHub-native infrastructure: branch protection rules, required status checks, issue templates, GitHub Actions. Each project has a `scaffold-meta.json` file that defines the workflow constitution: which steps exist, what gates apply, who has authority for which transitions.
+#### Part 1: The harness as typed state machine with hook-based guards
 
-The harness also observes itself. Collect structured telemetry on every gate evaluation, every transition, every escalation, every cycle through a state. Make the telemetry queryable and analyzable. Analyze continuously to detect inefficiencies: *gate hit rate* (gates that never fail are candidates for removal; gates that always fail are candidates for recalibration), *path frequency* (transitions that are never taken are candidates for removal; transitions that dominate suggest the harness should be simplified around them), *cycle detection* (cycles longer than threshold suggest gates don't provide enough signal for agents to decide), *time-in-state distribution* (states with disproportionate time spent suggest poorly-defined work or unclear exit criteria), *escalation rate* (rising escalation rates at a particular gate suggest the gate isn't decidable automatically and should be redesigned).
+Build the agentic workflow as a typed state machine in code, not as natural-language instructions. States are explicit (`SliceProposed`, `ScaffoldRendered`, `TranslationCandidate`, `TwinPassed`, `TwinFailed`, `WitnessDeployed`, `Certified`, `DarkLaunched`, `Cutover`). Transitions are explicit (which states can follow which). Each transition has a guard that runs as code — not as a prompt, not as an advisory note — and the transition only fires if the guard returns true.
 
-A retrospective agent processes the telemetry continuously and proposes refinements: gates to remove, gates to recalibrate, transitions to add or remove, states to consolidate, escalation criteria to revise. Each proposal carries its evidence — observations grounding it, change proposed, predicted impact. Humans validate refinements through the cockpit (Pattern 25). Approved changes update the harness definition; the approval itself is recorded with evidence and predicted outcome. If the predicted outcome doesn't materialize, the retrospective agent surfaces the discrepancy.
+The guards encode constitutional invariants. The agent cannot modify the scaffold's immutable fields (defined in `scaffold-meta.json`, per-project, validated at every PreToolUse hook). The agent cannot promote a translation that hasn't passed Twin Verification (Pattern 13). The agent cannot escalate to deployment without explicit human approval at the certification gate. The constitution is enforced as code; the agent's instructions don't have to be trusted because the harness doesn't allow violations.
 
-In Rosetta, this is called the harness. The harness is what governs the agents — not prompts, not goodwill, not human supervision at every step. Birgitta Böckeler's framing of guides (artifacts that steer before action) and sensors (checks that observe after action) describes the harness's structure. Nick Tune's framing of workflow as code, with transitions as events, describes its implementation.
+PreToolUse and PostToolUse hooks fire around every tool invocation. PreToolUse hooks check whether the proposed action is permitted in the current state; PostToolUse hooks verify that the action's effects respect the constitutional contract. Both hooks have full access to the workflow's state, the agent's history, the scaffold metadata, and the heuristic catalog (Pattern 17). They are not lightweight check-and-pass mechanisms; they are where constitutional enforcement actually lives.
 
-The harness also enforces a discipline on the unit of agent-produced change. Uberto Barbini's *one prompt, one commit* principle — the agent never commits its own work; commits are atomic units that the developer (or, at platform scale, a gated reviewer or automated invariant check) authorises after inspection — applies directly here. At individual-developer scale, the commit is a unit of human control over agent output. At platform scale, the same principle holds with a different surface: each agent-produced change is a candidate that passes through gates (Pattern 23), invariant checks (Pattern 8), and verification (Patterns 16, 17) before it becomes part of the system. The principle is the same: the agent proposes; the harness (or the human, when the harness defers) disposes. The commit is never a side effect of agent execution.
+Human governance gates are first-class states that agents *cannot transition out of without explicit human action*. The state machine encodes this as agent-inaccessible transitions — only specific external authority (a human approving through the cockpit, Pattern 19) can move the workflow forward from these states. The agent can prepare the work for review, can articulate why the work is ready, can request the gate's opening; but it cannot open the gate itself. Issue templates and labels function as human workflow triggers: when an agent's work is ready for review, an issue is created from a template that specifies what the human is being asked to decide.
 
-The harness must also recognise characteristic execution-time failure modes — patterns Barbini has named at the developer scale that recur at platform scale (see *Agent execution failure modes* in the glossary). *Loop of death* — the agent fixes A, breaks B; fixes B, breaks A — surfaces in the harness as cycle detection in the telemetry: when the same paragraph or scaffold enters and exits the same gate repeatedly, the harness escalates rather than letting the agent thrash. *Misunderstanding the requirement* — the agent works on the wrong part of the code — surfaces as scaffold boundary violations: when an agent attempts edits outside its authorised scope, the PreToolUse hook blocks the call. *Desperate changes* — the agent escalates beyond its scope when blocked — surfaces as invariant violations: when an agent attempts to modify the scaffold contract itself or reach into another bounded context, the harness rejects the attempt and records the escalation as evidence for heuristic refinement (Pattern 22). The taxonomy is operationally useful: each failure mode has a specific detection mechanism and a specific corrective response.
+GitHub-native primitives complement code-level enforcement. Branch protection ensures generated code cannot be merged without passing required status checks. GitHub Actions execute deterministic validations (does the project compile, do the tests pass, does the scaffold's hash match the expected metadata). Required reviewers attach to specific labels: certification PRs require an architect, dark launch PRs require a designated approver. The GitHub layer is not the only enforcement, but it is the layer most engineers already understand, which makes the harness legible to developers without requiring them to learn new tooling.
 
----
+#### Part 2: Self-observation as architectural property
 
-**📐 FIGURE 23.1 — *The harness as self-observing state machine: stages, gates, transitions, and refinement loop***
+Once the harness exists, observe it. Every state transition emits a structured event: which state was entered, which guard was evaluated, which heuristic was applied, what evidence the agent cited, how long the agent spent in the previous state. Every gate evaluation emits a record: which gate, what condition, what outcome, what data the gate consulted. Every escalation emits a record: which agent escalated, what condition triggered it, what authority resolved it.
 
-*Diagram showing the modernization workflow as a typed state machine with a feedback loop. Top half: States (left to right): Discovery → Analysis → Scaffold Rendering → Paragraph Translation → Dev Verification → Production Verification → Cutover. Between states: gate boxes with check icons indicating pre/post hooks. Annotations on transitions: required status checks, human approval gates, automated invariant checks. Sub-region inside each state shows "agents have freedom here" with a small swarm icon. Above the diagram: the harness definition file (`scaffold-meta.json`) shown as the source of truth for the state machine. Below: GitHub-native enforcement (branch protection, required checks, Actions) shown as the runtime layer. Bottom half: telemetry pipeline collecting gate evaluations, transitions, cycles, time-in-state metrics, feeding a retrospective agent that proposes refinements; refinement proposals route to humans via cockpit (Pattern 25) for validation; approved refinements update the harness definition. Style: horizontal flow at top with clear state boundaries and visible gate mechanisms; feedback loop at bottom showing self-observation cycle. Goal: reader sees that the workflow is determinate at the level of stages, agentic within each stage, and continuously refined based on its own operational evidence.*
+The records accumulate as queryable telemetry — not as logs intended for human reading, but as structured events intended for analytical query. The harness's own behaviour becomes inspectable through the same kinds of queries the modernization uses for the legacy code: aggregate, filter, group, correlate, surface patterns.
 
----
+What the queries surface drives refinement. If a particular gate is failing 40% of the time and most failures are recovered through a specific kind of retry, the gate's logic should be adjusted: either tightened (the agent should not have proposed something that fails this often) or relaxed (the gate is over-strict for current evidence). If a heuristic from the catalog (Pattern 17) is being cited but the resulting decisions are reversed 30% of the time, the heuristic needs refinement. If certain state transitions are stalling repeatedly with humans not responding, the routing to humans needs investigation — perhaps the gate is being routed to the wrong team (Pattern 20), or the artifacts the human needs to decide are not surfacing correctly through the cockpit (Pattern 19).
+
+A retrospective agent runs over the accumulated telemetry, surfacing candidate refinements: heuristics that need reweighting, gates that need tightening, transitions that need additional guards, agent roles whose escalation patterns suggest they need narrower scope. The retrospective agent does not apply refinements autonomously — it surfaces them to architects through the cockpit, with evidence, and architects validate or reject. The refinement loop is human-gated. The substrate of evidence is automated.
+
+Goodhart pressure applies the moment self-observation becomes evaluative. If the harness optimises for gate passage rates, agents will learn to produce candidates that pass gates without doing the underlying work. If it optimises for heuristic application frequency, agents will cite heuristics performatively. If it optimises for reasoning trace richness, agents will produce verbose reasoning traces that don't reflect actual reasoning.
+
+The mitigation is layered:
+
+- **Action-and-outcome is the primary signal.** Reasoning traces and heuristic citations are *supplementary*; what the agent actually produced, and how that production performed against ground truth (Pattern 13's Legacy Twin, Pattern 14's Witness in production), is the authoritative signal. Outcome metrics are harder to game than process metrics.
+- **The retrospective agent reads telemetry as evidence, not as performance.** When patterns appear that suggest gaming — convergent reasoning-trace shapes that don't track outcome quality, heuristic citations that don't correlate with the heuristic's actual evidentiary basis — those patterns themselves become surfaceable as concerns to architects.
+- **Self-observation is observed by architects, not just by retrospective agents.** The cockpit (Pattern 19) surfaces self-observation summaries to architects regularly; humans look at the telemetry directly. The Goodhart pressure on the retrospective agent itself is checked by direct human inspection of the underlying telemetry.
+
+The pattern does not eliminate Goodhart pressure — it cannot. Any measure can be gamed by sufficiently capable agents. The pattern names the pressure and structures the observation to anticipate it.
+
+#### Part 3: Reasoning telemetry as first-class signal
+
+Each agentic decision emits a structured reasoning record alongside its action. The record cites which substrates the agent consulted (graph nodes, IR elements, ontology terms, semantic index matches), which heuristics from the catalog it applied with what weights, which alternatives it considered and why it rejected them, what evidence supported the chosen path.
+
+The records live in observability infrastructure designed for queryable analytical workloads — the same kind of infrastructure that handles production telemetry generally, not bespoke agent-specific logging. This integration matters: reasoning telemetry becomes part of the broader operational observability story, queryable with the same tools the engineering team uses for performance debugging, security investigation, and incident response.
+
+What this enables: agentic behaviour becomes inspectable at the decision level. When a human reviewer asks "why did the agent choose this translation," the agent's reasoning record is the answer — not reconstructed from prompts and outputs, but retrieved from a queryable telemetry store. Patterns across decisions become surfaceable: which heuristics from the catalog are most frequently applied, where ontology terms are repeatedly cited as ambiguous, where escalations to humans concentrate, where alternative-considered counts spike (suggesting genuine uncertainty rather than mechanical decision).
+
+The interpretability caveat is essential, however. Reasoning telemetry surfaces what the agent *reports* about its decision-making. This is not necessarily what the agent's underlying computation actually did. Research on LLM faithfulness (Lanham et al. on chain-of-thought faithfulness; work from Anthropic and DeepMind on model self-explanation) suggests that LLM-emitted reasoning traces frequently rationalize rather than reflect — the model emits a plausible explanation post-hoc rather than reporting its actual internal state.
+
+Reasoning telemetry is therefore valuable as *supplementary* signal, not as authoritative ground truth. The primary signal remains action and outcome: what the agent did, and how it performed against deterministic ground truth (Twin Verification, Witness in production). Reasoning telemetry adds context for human review, supports pattern detection by the retrospective agent, captures the agent's articulated rationale for audit purposes — but it does not displace action-and-outcome as the authoritative basis for decisions about the agent's behaviour. When reasoning trace and outcome diverge — when an agent confidently articulates an approach that consistently fails verification — outcome wins; the trace becomes another diagnostic input, not a rebuttal.
 
 ### Consequences
 
-The agents operate inside a cage of deterministic rules. The cage is enabling: inside it, agents have substantial freedom; outside it, they can't make architectural decisions, promote work to production, or bypass human review. Failures are localised — when something goes wrong, the audit shows which gate failed, which transition was attempted, which invariant was violated.
+Agentic behaviour becomes governable as architecture rather than as supervision. Architectural invariants survive regardless of which agent runs, which model version is deployed, which prompt is active. The harness is the contract; agents operate within it; humans approve at gates the harness defines.
 
-The harness evolves with the work. Inefficiencies surface explicitly with evidence rather than being absorbed quietly by frustrated developers. The state machine matures as the engagement teaches what works. Operators see the harness as a living artifact, not a static deliverable. The audit trail extends to the harness itself — compliance reviewers in regulated industries can demonstrate not only that the workflow followed the rules, but that the rules themselves are continually validated against the work. The system becomes self-improving without becoming self-modifying — humans remain in the loop for structural changes.
+The platform observes its own behaviour. Engineering decisions about which agents to refine, which heuristics to update, which gates to adjust become evidence-based — the telemetry shows where the system is working and where it is not. Refinement compounds across engagements rather than starting from intuition each time.
 
-The cost is engineering discipline. The state machine has to actually be implemented in code, with real types and real validation. Hooks have to actually check what they claim to check. The GitHub-native infrastructure has to be configured for each project consistently. Prose-based governance is cheaper to write but doesn't survive contact with real workloads. The telemetry pipeline and analysis layer add their own engineering cost — structured observation requires the harness to be instrumented at design time, not retrofitted. The retrospective agent itself is a non-trivial system — pattern detection over long-running workflows is its own engineering problem. The proposed refinements need to be validated against more than just the metrics they're calibrated against, or the harness optimizes for the wrong things.
+Reasoning becomes legible. Audit conversations move from "reconstruct what the agent must have been thinking" to "retrieve what the agent said it was thinking, and compare to what it actually produced." The discrepancies become first-class signal — when the trace says one thing and the outcome says another, the divergence is itself informative.
 
-Harness engineering remains the discipline most underdeveloped in current agentic systems for software work. The default assumption — that agents can be trusted to make sensible decisions inside whatever loose framing they're given — fails as the work scales. The work the field is doing on agent multiplication is largely the wrong investment; the work the field needs is investment in harnesses. Self-observation is what allows the harness to remain calibrated to reality as the work evolves rather than becoming a calcified workflow that no longer fits.
+Three classes of cost are real and persistent:
+
+- **The state machine and hook discipline must be maintained continuously.** As the workflow evolves, the state machine evolves with it. New states, new transitions, new guards, new hooks. The cost is engineering work that does not produce new features but produces continued governability.
+- **Self-observation infrastructure has real cost.** Storage for telemetry, query infrastructure, retention policy, the retrospective agent itself, the cockpit surfaces that present self-observation summaries. None is large in isolation; all add up across the lifetime of the modernization platform.
+- **Reasoning telemetry pays a per-decision cost.** Every agentic decision emits a structured record. The volume can be significant — large modernizations involve millions of agentic decisions over their lifetime. The retention and query infrastructure must scale to this volume; the integration with broader observability tooling has to be operationally sustainable.
+
+The Goodhart pressure does not go away. The mitigations described above reduce its impact but cannot eliminate it. Architects working with this pattern must remain alert to the pattern of convergent agent behaviour that looks too good to be honest — and must be willing to revise gates, heuristics, and telemetry schemas when gaming is suspected. The pattern is not a one-time architecture; it is an ongoing practice.
+
+The interpretability limit also persists. Reasoning telemetry will always be the agent's report about itself, not direct observation of the agent's computation. Architects working with this pattern must internalise that the telemetry is one source of evidence, not the truth, and must weight it accordingly when making judgments about agentic behaviour.
+
+The pattern's first two parts (the harness as constitutional state machine; the harness as observable substrate) are validated in the Rosetta prototype. The third part (reasoning telemetry as integrated signal) is in active construction — the telemetry schema is designed, the integration with broader observability infrastructure is being built, the retrospective agent's analytical capabilities over reasoning telemetry are being implemented. The pattern is reported as *prototype-validated* with these components called out as *in construction* because the architectural decision (treating reasoning as queryable telemetry rather than as prompt-time context) is validated through the rest of the pattern's operation; the specific machinery to operationalise it at scale is what's being built.
+
+Charity Majors' framing of production telemetry as the specification informs this pattern in foundational ways. Birgitta Böckeler's harness engineering vocabulary — feedforward guides, feedback sensors, harnessability — informs the constitutional dimension. What this catalog contributes is the synthesis: the harness as architecture, self-observation as queryable property, reasoning as first-class telemetry, all composed into one ongoing practice. Self-observing systems exist in adjacent disciplines (eBPF for kernel observability, distributed tracing in microservices); the application to agentic modernization platforms is what is articulated here.
 
 ### Related patterns
 
-Pattern 8 (*The Compiler Principle*) provides the underlying motivation: governance is deterministic infrastructure that constrains probabilistic work. Pattern 19 (*Bounded MCP Servers*) is the architectural decomposition the harness governs over. Pattern 20 (*The Orchestration Layer Above Bounded Capabilities*) operates inside the harness's gates. Pattern 21 (*Durable Agentic Workflows*) produces the durable execution trace from which telemetry is drawn. Pattern 24 (*Reasoning Telemetry as First-Class Output*) provides the agent-side counterpart — telemetry of agent reasoning that complements telemetry of harness operation. Pattern 25 (*The Cockpit*) is where humans interact with the harness's gates and validate proposed refinements. Pattern 26 (*Spec Deltas as the Unit of Review*) is one of the artifacts the harness's gates can require.
+Pattern 6 (*The Compiler Principle*) is the broader principle this pattern operationalises in the governance layer — agentic decisions live within deterministic harness constraints. Pattern 15 (*Bounded MCP Servers*) is what the harness governs at the capability layer; pattern 16 (*Durable Orchestration*) is what coordinates across capabilities and runs the harness as a long-lived workflow on durable infrastructure. Pattern 17 (*Heuristics as Explicit Artifacts*) is what the agents query when deciding, and what the retrospective agent refines based on this pattern's telemetry. Pattern 19 (*The Cockpit*) is the human-experience surface over the harness — where humans observe agentic behaviour, approve at gates, validate refinement candidates the retrospective agent surfaces, and inspect reasoning telemetry directly. Pattern 20 (*Team Topology and Bounded Context Alignment*) determines which humans the gates route to. The *Agent Army* antipattern names what happens when scale is pursued through agent multiplication rather than harness engineering.
 
----
+-----
 
-## Pattern 24: Reasoning Telemetry as First-Class Output
+## Pattern 19: The Cockpit
 
-*Status: in progress.*
+*Status: in construction.*
 
 ### Context
 
-An agentic system where agents make decisions continuously: classifying paragraphs, proposing slices, translating COBOL, validating verification verdicts. The decisions are recorded — the cockpit (Pattern 25) shows what was decided, the audit trail shows when. But knowing *what* an agent decided is only part of the question; sometimes what matters is *how* the agent reached the decision.
+A modernization platform where many agents do work across many slices, generating substantial output every day. Humans participate at specific gates: validating slice boundaries, approving scaffold variants, certifying behavioural equivalence, authorising deployment. The humans cannot — and should not — read every line of generated code; their attention is the scarcest resource in the platform.
+
+The platform must surface what humans need to decide, with the evidence to decide it, at the moment the decision is needed. Anything less wastes human attention. Anything more drowns it.
+
+There is also a structural problem the cockpit has to address. Modernization decisions accumulate across the engagement: which bounded contexts were identified, which slices were defined, which scaffolds were chosen, which translations were approved, which heuristics were applied, which gates were tripped, which divergences were accepted as intentional. The accumulation is the modernization's living architecture. But without a way to review the *deltas* — what changed since last week, what the agents proposed today, what's queued for review — the humans interact with the accumulation as a flat document instead of as an evolving system.
 
 ### Problem
 
-Decision visibility is not reasoning visibility. Two agents can reach the same decision through very different reasoning processes. One reasons carefully, considers alternatives, weighs evidence; the other pattern-matches superficially and arrives at the answer that happened to fit. Both produce the same observable output, but the quality of the work is different. Without visibility into reasoning, the system can't distinguish — which means it can't audit, can't learn, can't improve.
+Without a designed human surface, the cockpit collapses into one of two failure modes.
 
-The problem becomes critical in regulated domains. Compliance reviewers don't just need to verify that a decision was made correctly; they need to verify that the decision-making process was sound. *"The agent decided X"* is insufficient; *"the agent considered alternatives Y and Z, weighed them against criteria A, B, C, and reached X with confidence N"* is what compliance requires.
+The first is *log fatigue*: the platform produces logs, dashboards, notification streams, all of which the human reviewer is expected to monitor. The signal-to-noise ratio collapses; humans miss what matters because everything looks like it matters. Engagement reviews degrade into "let me catch up on three weeks of notifications," which means decisions go unreviewed.
+
+The second is *opacity*: the platform makes decisions internally and surfaces only summaries to humans. The humans are expected to trust the summaries because the underlying evidence is too dense to review. Trust erodes when summaries turn out to be wrong, and the humans can't see *why* a decision was made, only *that* it was made. Audit conversations become forensic rather than direct.
+
+The deeper problem is that the cockpit's job is volume discipline, not visibility maximisation. The instinct to surface "everything that happened" is wrong. The right discipline is to surface *only what requires a decision*, with *only the evidence the decision needs*, at *only the moment the decision is needed*. Everything else is noise.
+
+A specific symptom of getting this wrong: spec deltas (changes to behavioural specifications, architectural commitments, ontology vocabulary, heuristic catalog) get buried in commit history. The team can see *that* something changed but cannot easily see *what* the architectural significance is. Reviewers approve scaffolds without seeing the architectural decisions those scaffolds embody. Architects discover during retrospectives that decisions they would have intervened in were made and committed weeks earlier, with no signal to flag the moment of decision.
 
 ### Forces
 
-LLM reasoning is naturally opaque — the model produces outputs without exposing intermediate state. Asking the model to explain its reasoning post-hoc produces rationalizations that may or may not reflect what actually happened during inference. Asking the model to expose reasoning during inference (chain-of-thought, scratchpad approaches) produces traces that are useful but expensive in tokens and not always faithful to internal state.
+Human attention is scarce and expensive; the platform's output is abundant and cheap. The asymmetry must shape the cockpit's architecture — every interaction surface costs human attention, and the cockpit must ration that cost ruthlessly.
 
-The system needs reasoning visibility that's structured (queryable, analyzable), reliable (faithfully reflecting how decisions were reached), and affordable (not requiring 10x token budgets). Achieving all three is its own design problem.
+But humans also need *enough* context to decide well. Decisions made on summaries-without-evidence are worse than decisions made on no summary at all, because they feel informed but aren't. The cockpit must provide *just enough* evidence to ground each decision — and *no more*.
+
+Spec deltas are a specific case of the broader tension. Surface every change and the volume drowns reviewers. Surface only summaries and the architectural significance is lost. The right discipline is to surface deltas that *change the modernization's architectural commitments*, with the underlying diff available on request but not surfaced by default.
 
 ### Pattern
 
-Treat reasoning telemetry as a first-class output of every agentic decision, not as a debugging afterthought. Each decision carries a structured record: what evidence was considered, what alternatives were evaluated, what heuristics were applied, what confidence was assigned, what tools were consulted in the process. The record is structured (typed schema, queryable), not free-form prose.
+Build the cockpit as the human-experience layer over the entire platform. Its job is to surface, at the right moment, the artifacts a human needs to decide — and to make decisions easy when the evidence is in front of the reviewer.
 
-Generate the reasoning record explicitly. When an agent classifies a paragraph as tier 2, the record captures: which structural signals contributed (cyclomatic complexity, coupling, change frequency), what tier candidates were considered (the agent didn't just pick tier 2; it evaluated tier 1, 2, and 3 and picked tier 2 over the alternatives), with what relative confidence, and citing what evidence. The record exists alongside the decision, not as a separate artifact.
+Specifically, the cockpit surfaces:
 
-Make reasoning queryable across decisions. *"Show me all decisions where the agent considered tier 1 but chose tier 2 with low confidence"* should be answerable. *"Show me decisions where the agent's confidence was below threshold"* should be queryable. *"Show me decisions where the reasoning trace cited a particular heuristic"* should produce a list.
+- **Graph decisions** — bounded context boundaries the discovery layer proposes, with the structural and behavioural evidence supporting each. Architects can accept, refine, or reject; the reasoning is captured.
+- **Translation candidates** — agentic translations of paragraphs, with the side-by-side diff against the legacy and the Twin Verification (Pattern 13) verdict. Reviewers approve, request alternatives, or escalate.
+- **Gate transitions** — the harness's (Pattern 18) state transitions, especially those that require human gating. The reviewer sees what state the workflow is in, what's pending, what evidence the agents have prepared.
+- **Spec deltas** — changes to behavioural specifications (Pattern 14), architectural commitments (Pattern 7), ontology vocabulary (Pattern 4), heuristic catalog (Pattern 17), bounded context structure. Each delta surfaces with: what the change is, what evidence supported it, which agent (or which human) proposed it, what the architectural significance is. The delta is reviewable, dismissible, or escalable; significant deltas can be tagged for inclusion in periodic architectural reviews.
+- **Audit trail** — the historical record of decisions: which agent did what, when, citing which heuristics, with what evidence. Queryable, filterable, exportable for compliance review.
+- **Diff views** — side-by-side, three-way, structural comparisons. Different reviewers need different lenses; the cockpit supports them all without prescribing.
+- **Documentation re-renders** — the C4 model views, aggregate maps, context maps, ER diagrams (Pattern 9) regenerated whenever the substrates change. Reviewers see the architectural shape, not just the code shape.
 
-Use the reasoning telemetry for retrospective learning. A retrospective agent analyzes patterns in the reasoning across many decisions: which heuristics correlate with later corrections, which evidence types are most predictive of correct decisions, which kinds of reasoning lead agents into cycles. The patterns inform refinements to agent prompting, tooling, or scaffolding.
+#### The Alignment Record
+
+The cockpit's audit trail surface materializes as a specific artifact at each significant decision: the **Alignment Record**. Where a spec delta captures *what changed*, an Alignment Record captures *what was decided, by whom, against what evidence, under what constraints*.
+
+An Alignment Record is created at each architectural decision point and carries the essential fields a decision must capture to remain auditable:
+
+- A reference to the AsIs evidence that grounded the decision — the recovered use case, the L2 patterns detected, the source provenance trail.
+- The ToBe outcome — the architectural pattern selected, the tier chosen, the seam drawn, the module assigned.
+- The ontology version (Pattern 17) under which the decision was made — so that future engagements can identify which heuristics constrained the choice.
+- The agent or agents that proposed candidates, and the alternatives they considered before the chosen path.
+- The human who approved, with their reasoning when an override was applied.
+- The attestation contract — what behavioural equivalence the oracle (Pattern 13) and Witness (Pattern 14) must subsequently verify.
+
+The Alignment Record is the cockpit's most consequential artifact. It is not just an audit log entry — it is the working contract between recovery and generation, the input that feeds Pattern 17's promotion gates, and the evidence trail that lets a regulator, an auditor, or a future modernization team retrace exactly why a decision was reached.
+
+The Alignment Record is also where the AsIs/ToBe ownership discipline (introduced in the architectural interlude) becomes operationally visible. Each record names which substrates were AsIs (deterministic, evidence-bearing) and which were ToBe (deliberative, judgment-bearing). When a decision is challenged later, the record makes clear what was discovered versus what was chosen — and which side of that line a particular dispute lives on.
+
+The cockpit surfaces Alignment Records the same way it surfaces other decisions: at the moment the human is asked to validate them, with the evidence in front of them, with the option to dive into specifics on demand. Once approved, the record becomes immutable: the architectural decision it captured is preserved as a fact about the engagement, not as a state that can drift silently. Future revisions are themselves new Alignment Records that supersede previous ones — the trail compounds rather than collapses.
+
+The cockpit is not a one-size-fits-all surface. Different reviewers need different views — architects look at strategic decisions and spec deltas; developers look at translation candidates and Twin Verification verdicts; operators look at gate transitions and rollout status; compliance reviewers look at the audit trail. The cockpit supports these roles with role-specific views over the same substrates, not with separate tools each role must learn.
+
+The spec delta surface deserves particular discipline. Deltas should be batched into reviewable units, not surfaced individually as they happen — the reviewer should see "the architectural significance of yesterday's work," not a constant stream of micro-changes. Significance is itself a judgment the cockpit must make: trivial deltas (formatting changes, comment updates) should not surface; significant deltas (a new bounded context, an ontology refinement, a heuristic update, an aggregate boundary change) should. The line between trivial and significant is heuristic and evolves with engagement experience; it is itself a catalog entry (Pattern 17) subject to refinement.
+
+In Rosetta, the cockpit is Rosetta Studio. It surfaces all of the above through a unified interface, with role-aware views and configurable subscriptions to specific delta categories.
 
 ### Consequences
 
-The system becomes auditable at the level of reasoning, not just at the level of outputs. Compliance reviewers in regulated domains can verify that decision processes are sound, not just that decisions are correct. Retrospective analysis becomes possible because reasoning is captured in structured form, not lost between sessions.
+Human attention is spent on decisions, not on monitoring. The cockpit's job is to make the right artifact appear at the right moment; the reviewer's job is to engage with the artifact, not to discover what artifacts exist. Decision quality improves because reviewers have the evidence in front of them; decision latency drops because the right decision-maker is notified when their input is needed.
 
-The agents themselves benefit from explicit reasoning. The act of generating the structured trace forces the agent to articulate its reasoning, which tends to improve decision quality (a phenomenon documented in chain-of-thought prompting). Decisions made with explicit reasoning records are, on average, more careful than decisions made without them.
+Spec deltas remain reviewable rather than disappearing into commit history. Architectural commitments don't drift without the architect noticing; ontology refinements don't slip through without validation; heuristic updates surface for review before they propagate through the agent population. The modernization's architecture stays governable as it evolves.
 
-The cost is the token and engineering overhead. Reasoning telemetry adds tokens to every decision; the structured schema must be designed and maintained; the queryable storage must be operationalized. Some decisions don't benefit from extensive reasoning capture (trivial classification with high confidence); the system must distinguish so it doesn't pay the cost everywhere.
+Audit conversations become direct rather than forensic. When a regulator or auditor asks "why was this decision made," the cockpit can show: the artifact that surfaced, the evidence presented, the reviewer who approved, the rationale captured. The trail is reconstructible because it was constructed at the moment of decision, not assembled later.
 
-The faithfulness question — whether the reasoning trace reflects the agent's actual decision process or is post-hoc rationalization — remains open. Different prompting strategies produce different fidelity profiles. The pattern is in active development; how to operationalize the trace generation reliably is part of what's being tested.
+The cost is the discipline of *not surfacing more than needed*. Every surface is a temptation to add more information, more notifications, more dashboards. The cockpit's quality is in what it omits as much as in what it presents. This requires ongoing curation, evidence-based pruning, and a willingness to remove features that nobody uses.
+
+A second cost is the integration burden. The cockpit consumes evidence from every other part of the platform — the graph, the IR, the harness, the heuristic catalog, the Twin, Witness, the orchestrator. Each integration must be designed, maintained, and evolved as the underlying systems change. The cockpit is structurally a downstream consumer of the entire platform; its release cadence must accommodate that dependency.
+
+The cockpit's status is *in construction*. The principle is validated — humans engaging with curated decision surfaces is more effective than humans engaging with raw output — but the operational machinery to do this consistently across the full range of decisions is still being built. The hardest parts (significance heuristics for spec deltas, role-aware view configuration, multi-modal diff rendering) are works in progress; the parts that exist today are sufficient to demonstrate the value but not yet sufficient to fully realise it.
 
 ### Related patterns
 
-Pattern 23 (*The Harness as State Machine*) governs when reasoning capture is required. Pattern 20 (*Harness Self-Observation and Refinement*) consumes reasoning telemetry as input to its analysis of agent behavior across the workflow. Pattern 25 (*The Cockpit*) is where humans review reasoning traces alongside decisions when intervention is needed.
+Pattern 7 (*The Intermediate Representation*) provides the architectural commitments the cockpit surfaces as spec deltas. Pattern 9 (*Pluggable Emitters*) renders documentation views the cockpit displays. Pattern 13 (*Twin Verification*) provides translation candidate verdicts. Pattern 14 (*Hypothesis-Driven Verification*) provides production-derived specifications and divergence categorisations. Pattern 15 (*Bounded MCP Servers*) is what the cockpit queries to access platform state. Pattern 17 (*Heuristics as Explicit Artifacts*) provides the significance heuristics the cockpit applies when batching spec deltas. Pattern 18 (*The Harness as Self-Observing State Machine*) provides gate transitions and reasoning telemetry the cockpit surfaces for human review. Pattern 20 (*Team Topology and Bounded Context Alignment*) determines which roles see which views. The *Agent Army* antipattern names the volume problem the cockpit's discipline is designed to address.
 
----
+-----
 
-## Pattern 25: The Cockpit
+## Pattern 20: Team Topology and Bounded Context Alignment
 
-*Status: in progress.*
+*Status: prototype-validated.*
 
 ### Context
 
-An agentic modernization platform with a typed harness, bounded MCP servers, an orchestration layer, and verification machinery. The agents produce work continuously; the platform records every decision. Humans must review certain decisions, approve certain transitions, intervene when something goes wrong. The amount of activity is too large for ad-hoc oversight.
+A modernization engagement with a strategic capability map (Pattern 1), bounded contexts identified, scaffolds chosen, governance machinery operational. The platform can generate, verify, and govern modernized code at scale. What remains under-articulated is *who* operates the modernization — the team structure, the ownership boundaries, the handoff between legacy and modernized sides, and the relationship between the modernization team and the vendor providing the platform.
+
+Most modernization writing treats team structure as a downstream concern: get the architecture right and the team structure will follow. This is wrong. Conway's Law applies whether the modernization acknowledges it or not: the system's structure will mirror the team's communication structure. If the team structure is wrong, the modernization will silently reshape bounded contexts to match it, undoing the strategic recovery work.
 
 ### Problem
 
-Without a visible operational surface where humans can see what the agents are doing, intervention happens only when something has already gone wrong. Routine decisions that should have human authorisation pass through the harness without review because the human didn't know they were happening. Audit trails exist but are post-hoc; they document what happened, not what was about to happen.
+Three failure modes dominate when team structure is unaddressed.
 
-Agentic systems without a visible cockpit are systems that will eventually produce harm. Not because the agents are malicious, but because invisible work scales badly. When humans can't see what's happening, they can't intervene. When they can't intervene, the agents end up making decisions humans should have made.
+The first is *misaligned ownership*. The bounded contexts identified through strategic recovery don't map cleanly to existing teams. The modernization either reshapes the contexts to fit current team boundaries (preserving the legacy's accidental structure under a modern surface) or reshapes the team boundaries to fit the contexts (organisationally disruptive, often resisted, often impossible in the short term). Without explicit design, the team defaults to whichever is operationally easier in the moment, accumulating debt either way.
+
+The second is *missing legacy-side ownership*. The modernized C# has a team; the legacy mainframe also has a team, often with different reporting lines, different release cadences, different cultural norms. During the dual-run period (months or years), these teams must coordinate continuously: bug fixes that need replication across both sides, behavioural divergences that need triage, capability changes that need synchronised rollout. Without explicit handoff design, coordination devolves into ad-hoc channels — Slack threads, recurring meetings, individual heroics — and the work that depends on coordination stalls.
+
+The third is *vendor relationship ambiguity*. The modernization platform is typically provided by a vendor partner (in Rosetta's case, Microsoft via the SMM AIM offering). The vendor is not part of the customer's team but is operationally essential — they own the platform, evolve it, support engagements, provide expertise the customer doesn't have. Without explicit framing, the relationship oscillates between "vendor as supplier" (transactional, friction-prone) and "vendor as embedded team" (high coordination cost, unclear accountability). Neither extreme works for multi-year modernizations.
 
 ### Forces
 
-Routine decisions should not require human attention; if they did, the system would be no better than a manual process. Critical decisions must require human attention; if they didn't, the system would lack accountability. The boundary between routine and critical depends on context: a transition that is routine in one phase becomes critical in another. The cockpit must accommodate this without forcing a fixed taxonomy.
+Conway's Law operates regardless of intent — Melvin Conway's 1968 observation that organizations design systems whose structure mirrors their communication structure has been validated repeatedly across software engineering. In modernization, the force is asymmetric: the modernized system inherits the team's communication structure, but the legacy system already encodes a *historical* team structure that may differ from current organization. The modernization is the moment of explicit choice about which structure persists.
+
+Team boundaries must align with bounded context boundaries to maintain the strategic recovery's integrity. But team boundaries are organisationally expensive to change — they involve reporting lines, performance evaluation, career paths, and political capital. Aligning teams to ideal contexts is sometimes impossible; aligning contexts to existing teams undermines the modernization's value.
+
+The legacy-modernized handoff is structurally complex. Two teams, two stacks, two release cadences, two sets of operational practices. The handoff is not a one-time event at cutover — it's a continuous coordination over the duration of the dual-run period.
 
 ### Pattern
 
-Build a dedicated operational surface — a cockpit — where humans see what the agents are doing, validate decisions the graph has surfaced, approve transitions between harness states, review diffs between generated C# and original COBOL, intervene when verification finds something the agents can't resolve.
+Apply the team-topology framework (Skelton and Pais, *Team Topologies*, 2019) to the modernization. Three team types compose the modernization's organizational structure:
 
-The cockpit surfaces, at minimum:
+- **Stream-aligned teams** own bounded contexts and have end-to-end responsibility for delivering business value through them. In modernization, one stream-aligned team per major bounded context cluster (claims, underwriting, billing). Each team operates its modernized contexts in production and is the authority for capability evolution within those contexts.
+- **Platform teams** provide internal services and capabilities that stream-aligned teams consume. The modernization toolchain, cloud infrastructure, observability stack, security tooling. Platform teams reduce cognitive load on stream-aligned teams by offering well-defined services with clear interfaces. The vendor partner providing the modernization platform is structurally an external platform team — the customer's internal platform team is the integration surface to the vendor.
+- **Enabling teams** transfer expertise into stream-aligned teams without taking ownership. In modernization, enabling teams typically operate at the boundary between legacy operations and modernized development, transferring institutional knowledge in both directions until the modernized team can operate the system independently. Enabling teams are time-bounded; their goal is to make themselves unnecessary.
 
-- **Graph decisions** — when the analysis surfaces a bounded context, the architect sees the proposed boundary with the source evidence that supports it.
-- **Translation candidates** — when agents produce candidate C#, a reviewer sees the COBOL on one side, the candidate on the other, the verification verdict, the test cases exercised.
-- **Gate transitions** — when the harness reaches a gate requiring human authority, the relevant human sees the request with the evidence package the harness has assembled.
-- **Spec deltas** — when a change to the system has been articulated as a structured delta (Pattern 26), the reviewer reads the delta to understand intent, with code-level details available but not the unit of review.
-- **Audit trail** — every decision by every agent and every human, traceable later for compliance, debugging, or learning.
-- **Diff views** — side-by-side comparison between original and generated code, with source coordinates linking the two.
+The bounded context map (Pattern 1's capability mapping, refined through Patterns 3 and 4) becomes the input to team boundary design. Where bounded contexts and existing teams misalign, the modernization makes the misalignment explicit: either the team boundaries evolve to match the contexts (planned organizational change, with timeline and authority), or specific contexts are bridged by enabling teams during the transition (with explicit exit criteria for when the enabling team disbands), or the misalignment is documented as accepted debt (with explicit acknowledgment that this context will not realise the benefits the strategic recovery promised).
 
-In Rosetta, this cockpit is called Studio. It sits above the harness (which handles governance at the deterministic level) and provides governance at the human-experience level.
+The legacy-modernized handoff is structured through enabling teams and explicit ownership transitions:
 
----
+- During strategic recovery, the legacy operations team contributes domain knowledge to the modernization team through enabling-team facilitation. The legacy team knows how the system behaves under load, what the operational quirks are, where the historical incidents accumulated.
+- During tactical generation and verification, the modernization team consumes the legacy team's domain knowledge but does not yet own the modernized system in production.
+- During dual-run, both teams operate their respective sides with explicit coordination protocols. The cockpit (Pattern 19) surfaces divergences to both teams; the orchestrator (Pattern 16) routes work to the team that owns the affected context.
+- At cutover, ownership transfers from legacy team to modernized team for the specific bounded context. The legacy team's responsibility shrinks as cutover progresses. The enabling team facilitates the transfer and disbands when no longer needed.
 
-**📐 FIGURE 25.1 — *The cockpit: human authorisation surface for agentic work***
+The vendor relationship is explicit and bounded. The vendor (Microsoft, in Rosetta's case) is a platform team external to the customer. The customer's internal platform team is the integration surface — they consume the vendor's platform, escalate issues, provide feedback, participate in roadmap shaping. Stream-aligned teams consume platform capabilities through the internal platform team, not directly from the vendor. This avoids the failure modes of both supplier-vendor (transactional friction at every escalation) and embedded-vendor (accountability blur, coordination tax).
 
-*Mockup-style diagram showing a cockpit UI sketch (not pixel-perfect, but suggestive of the layout). Top bar: harness state indicator showing current stage with progress through the workflow. Left panel: queue of pending decisions awaiting human attention — each item shows the decision type, the agent that surfaced it, the urgency. Center panel: detail view of a selected decision — for example, a translation candidate with COBOL on the left, candidate C# on the right, verification verdict at the bottom, source provenance links inline. Right panel: evidence package — what the harness assembled to support this decision (graph nodes touched, IR fragments produced, related decisions). Bottom bar: action buttons — Approve, Reject, Request More Info, Escalate. Annotations: "humans authorise; agents execute" in a corner. Style: clean operational dashboard sketch, suggestive of real UI without claiming to be the final design. Goal: reader understands what the cockpit looks like and what unit of human action it supports.*
-
----
+The harness (Pattern 18) and the cockpit (Pattern 19) make team-context alignment operationally legible. When an agent needs human approval at a gate, the harness routes the work to the team that owns the affected context — not to a generic queue, not to whoever is on call. The routing is configured per bounded context and is part of the modernization's architectural metadata. The cockpit surfaces decisions to the relevant team, not to all teams. Team boundaries become enforceable through tooling rather than aspirational in documentation.
 
 ### Consequences
 
-Humans operate the agentic system with authority and visibility. Routine work flows; critical decisions surface. The audit trail is operational, not just retrospective — humans can follow the system's reasoning forward, not just backward. Modernizations in regulated industries become operable because compliance reviewers can verify any decision the system made.
+Bounded contexts and team ownership stay aligned. Strategic recovery's value survives organizational reality because the organizational reality has been designed alongside the architecture. Conway's Law works in the modernization's favour: the team structure reinforces the bounded contexts rather than undermining them.
 
-The cost is the cockpit itself. Building a UX appropriate for agentic systems is its own discipline — different from traditional system UIs in grammar, not just in surface. Traditional UIs surface state and let users command; agentic UIs surface decisions and let users authorise. The unit of human action changes. Designing for it is ongoing work.
+The legacy-modernized handoff has explicit structure. Both teams know what they're responsible for at each stage, who escalates what to whom, when ownership transfers. The dual-run period (Pattern 22) becomes operationally manageable because coordination has design rather than being improvised.
 
-Studio in Rosetta today is in an early form. The schema for what it must surface is clear; the UX is still evolving. I'm building it as the platform matures, learning what reviewers actually need by watching how they use early versions.
+The vendor relationship has explicit shape. The customer's internal platform team owns the integration with the vendor; stream-aligned teams consume capabilities without bilateral vendor coordination. Vendor evolution (new platform features, deprecations, version upgrades) flows through one channel rather than disrupting every stream-aligned team.
+
+The cost is upfront design and ongoing maintenance of the team-context map. The map is not static — bounded contexts evolve as understanding sharpens, team structures evolve as people move and priorities shift. Keeping the map current requires deliberate work; letting it drift undoes the pattern's value within months.
+
+A second cost is organizational. The pattern often surfaces the truth that current team structure is not aligned with the bounded contexts the modernization needs. This can require organizational changes that are politically expensive — reorganizing teams, shifting reporting lines, redefining career paths. The pattern surfaces the need; the organization must decide whether to pay the cost.
+
+The pattern is *prototype-validated* in a specific sense. The Skelton-Pais framework is established practice with substantial industry validation. Rosetta's own team structure follows the pattern — modernization team as stream-aligned, internal platform team integrating with Microsoft as external platform team, enabling team facilitating legacy-modernized handoff in the prototype's exercises. The pattern has not yet been tested against the scale and political complexity of a real customer modernization at full enterprise scope; that test is part of the next phase.
+
+Matthew Skelton and Manuel Pais's *Team Topologies* (2019) is the canonical source for the team-type framework. Melvin Conway's 1968 paper "How Do Committees Invent?" remains the foundational text on socio-technical alignment. What this catalog contributes is the application of the team-topology framework specifically to mainframe modernization — the legacy-modernized handoff as enabling-team work, the vendor relationship as external platform team, the team-context routing through harness and cockpit as enforcement mechanism. The principle is established; the modernization-specific application is what's articulated here.
 
 ### Related patterns
 
-Pattern 23 (*The Harness as State Machine*) is what the cockpit operates above. Pattern 19 (*Bounded MCP Servers*) is what feeds the cockpit's data. Pattern 4 (*Source Provenance Discipline*) is what makes diff views possible. Pattern 26 (*Spec Deltas as the Unit of Review*) is consumed in the cockpit's review interface.
+Pattern 1 (*Business-Aligned Capability Strategy*) provides the capability map that feeds team-context design. Pattern 3 (*The Graph as Projection*) and Pattern 4 (*Domain Ontology as Independent Substrate*) refine the bounded context boundaries the team structure aligns to. Pattern 15 (*Bounded MCP Servers*) is the platform-team surface that internal platform teams own and stream-aligned teams consume. Pattern 16 (*Durable Orchestration*) routes work to the team that owns each context. Pattern 18 (*The Harness as Self-Observing State Machine*) enforces team-context alignment at gate transitions. Pattern 19 (*The Cockpit*) surfaces decisions to the team that owns the affected context. Pattern 21 (*Rollout and Cutover*) sequences ownership transfer from legacy team to modernized team at bounded context granularity. Pattern 22 (*Dual-Run Coexistence*) is the period during which legacy and modernized teams coordinate most intensively.
 
----
+-----
 
-## Pattern 26: Spec Deltas as the Unit of Review
+## Pattern 21: Rollout and Cutover at Bounded Context Granularity
 
-*Status: next.*
+*Status: prototype-validated.*
 
 ### Context
 
-A system being modernized or evolving post-modernization, where changes are continuously produced — by agents, by humans, or in collaboration. Each change has implementation artifacts (modified code, new tests, updated configurations). Reviewers must understand each change well enough to approve its promotion. The volume of changes is too high for full code-level review of every one, but consequential enough that approval can't be skipped.
+A modernization where bounded contexts have been generated, verified through Twin Verification (Pattern 13) and Hypothesis-Driven Verification (Pattern 14), and are ready for deployment. The legacy mainframe is still running and processing real business traffic. The modernization must move from "modernized C# exists and behaves correctly in test" to "modernized C# is the production system for this bounded context" without interrupting business operations or losing transactional integrity.
+
+The legacy and the modernized system will coexist during the transition. Some bounded contexts will be on the modernized side while others remain on the legacy. Some traffic will route to one, some to the other, sometimes shadowed for validation, sometimes split for incremental confidence. The coexistence period may last days for a small bounded context, months for a large one, years across the full modernization estate.
 
 ### Problem
 
-AI-generated output has a volume problem. Agents tend to produce more — more documentation, more alternatives, more justifications, more context — than reviewers can process. The economics is asymmetric: generation scales with compute, review scales with human attention. A modernization that generates 50 slice analyses per day saturates reviewers if each is 5 pages; the same modernization generating 50 single-page deltas remains tractable. *More is not better. Less is better.*
+The default failure mode is "big bang" cutover: at a planned moment, traffic switches from legacy to modernized across the entire system. Big bang cutovers are catastrophic because the modernization's verification is inherently incomplete (no test coverage matches production scope) and the rollback path requires reversing a system-wide change under operational pressure. Outages cascade because dependencies fail in unexpected ways; rollback is messy because data has already been written to the modernized side; customer-visible impact is severe because the failure surface is the entire system.
 
-Without an artifact that articulates the change in terms of the system's requirements, reviewers reconstruct intent from code. This forces them to operate at the wrong level: they're reading diffs of implementation when what they need to know is *what requirements changed and why*. The review becomes detailed in the wrong sense — granular about implementation, vague about intent. Combined with AI's volume tendency, this produces a workflow where reviewers face thousands of lines of code changes per change set, with intent buried somewhere in the diff.
+A second failure is "all or nothing per bounded context": even if cutover happens per bounded context rather than per system, each context's cutover is itself a big bang within its scope. The transition for that context is sudden, and the same failure modes apply at smaller scale.
 
-The instinct to capture intent through commit messages or PR descriptions is fragile. Those are textual, inconsistent, optional, and not validatable against the code. A commit message can claim the change does one thing while the code does another, and nothing in the workflow catches the discrepancy.
+A third failure is missing rollback infrastructure. Many modernizations plan the forward path carefully and treat rollback as theoretical. When divergence is detected post-cutover, the team discovers that rolling back requires data movement and contract reversal they hadn't designed for. The rollback path is unrehearsed and unsafe.
 
 ### Forces
 
-Implementation is the operational truth — the code that will actually run. But reviewers are not always implementers; they need to understand the *what* and the *why* of a change without reconstructing the *how*. Capturing intent separately from code duplicates work if done manually. Skipping the duplication leaves reviewers to derive intent themselves, which is slow, error-prone, and inconsistent.
+The modernization team needs deployment confidence to grow incrementally as evidence accumulates. The business needs the modernized system to handle real production traffic without interruption. The operations team needs clear rollback paths if anything goes wrong. Regulatory environments often require explicit cutover plans, evidence-based progression, and documented rollback procedures.
 
-The captured intent must be structured enough to be validated against the code, accessible enough that humans read it quickly, and durable enough that the history of intents tells the system's evolution.
+Cutover speed and cutover safety pull in opposite directions. Fast cutover gets the modernization to value sooner; slow cutover reduces risk. The right answer is not on either extreme — it's progressive cutover with explicit safety gates at every stage.
 
 ### Pattern
 
-For each change to the system, produce two synchronised artifacts: the implementation change (code) and a *spec delta* — a structured document that articulates which requirements changed, what is added, what is removed, what is modified. The spec delta is the primary unit of review. Reviewers understand the change by reading the delta; implementation details are available if needed, but they are not the unit of review.
+Treat rollout and cutover as a first-class engagement design concern. Cutover happens at bounded context granularity — never at the whole-system scope — with explicit progression through five stages:
 
-The delta is structured, not narrative. It uses a defined format — sections for added requirements, removed requirements, modified requirements, with each item linked to the parts of the implementation that realise it. The structure allows two things narrative descriptions can't: validation that the delta and the code reflect the same change, and aggregation of deltas across time to produce a history of how the system evolved at the requirement level.
+1. **Parallel run** — modernized C# deployed alongside legacy, both processing real traffic, results compared continuously through Witness (Pattern 14). No production decisions depend on modernized output yet. The goal is to accumulate evidence that the modernized side handles real traffic correctly.
 
-Generation of the delta is part of the change workflow, not an afterthought. When an agent produces a change, the agent also produces the delta. When a human produces a change, the workflow requires the delta before merge. The harness (Pattern 23) can enforce this: a gate that requires the spec delta to exist and to be validated against the implementation before promotion.
+2. **Shadow validation** — modernized C# receives every input the legacy receives but its outputs are discarded for business purposes. The comparison continues but at higher volume and broader scope. Shadow validation surfaces divergences that parallel run missed because of scope; it stress-tests the modernized system at full production load without business impact.
 
-The discipline generalises beyond review: AI output must be sized for human consumption rates throughout the modernization. A pattern catalog that generates 5-page analyses for every slice fails not because the analyses are wrong, but because no architect can read them. A modernization that produces 100 reasoning records per day fails by saturation, not by error. Spec deltas are the operational realisation of this discipline at the review surface; the principle — *output volume is itself an architectural concern* — applies everywhere AI generates content for human consumption.
+3. **Incremental routing** — a small percentage of real traffic (typically starting at 1% or 5%) is routed to the modernized side as the authoritative response. Legacy still receives and processes the same traffic in parallel for divergence detection. The percentage grows as evidence accumulates — 1%, 5%, 25%, 50% — with explicit hold-points where evidence is reviewed before progression.
+
+4. **Canary monitoring** — at each percentage threshold, monitoring intensifies: divergence rates, error rates, latency distributions, downstream system behaviour. The modernized side is the canary; if metrics degrade, traffic returns to legacy automatically.
+
+5. **Cutover** — modernized C# becomes the authoritative production system for the bounded context. Legacy continues to receive traffic in shadow mode for some retention period (typically 30-90 days) as final divergence detection. After the retention period, legacy traffic stops.
+
+6. **Decommission** — legacy code for the cutover bounded context is removed from active deployment. Source code is archived (it remains part of the historical record and the audit trail). The bounded context's modernization is complete.
+
+Rollback rehearsal is required before cutover. The team explicitly tests the rollback path in pre-production: shutdown of modernized side, restoration of full legacy authority, reconciliation of any data written to modernized side during the test window. The rollback must work end-to-end in pre-production before cutover is authorized in production. Untested rollback paths are not rollback paths; they are aspirations.
+
+The harness (Pattern 18) encodes the stages as a state machine with explicit gates between them. The progression from parallel-run to shadow-validation to incremental-routing requires explicit human approval at each transition; the agent prepares the evidence for the gate, the human reviews and approves. Cockpit (Pattern 19) surfaces the evidence: divergence rates by category, error rates, latency distributions, business metrics. The decision to progress is human; the evidence to ground it is agentic.
+
+For systems with many bounded contexts (typical of mainframe modernizations), cutovers are sequenced rather than parallel. The capability map (Pattern 1) and team topology (Pattern 20) inform the sequence: high-business-value contexts cut over earlier (to deliver value faster), commodity contexts cut over later (lower risk, less business pressure), tightly-coupled contexts cut over together (to avoid integration complexity across the cut boundary).
 
 ### Consequences
 
-Reviewers operate at the right level. Review becomes faster because reviewers don't reconstruct intent; the delta provides it directly. The system's history becomes legible — a new contributor can read the sequence of deltas to understand how the requirements evolved, rather than archaeologising commits to infer the same. Compliance reviewers in regulated environments have explicit records of what each change was meant to accomplish.
+Cutover risk is bounded by bounded context size, not system size. A divergence detected during incremental routing affects a small percentage of traffic for a single bounded context; rollback restores that bounded context's traffic to legacy while the rest of the system continues unaffected. The blast radius of any failure is contained.
 
-The volume discipline pays back across the whole modernization workflow. Fewer artifacts produced, denser information per artifact, structured for human scanning rates — these are properties that compound. A modernization that respects human consumption rates remains tractable as it scales; one that doesn't saturates its reviewers and stalls at the bottleneck of attention.
+Evidence accumulates progressively. By the time cutover happens, the modernized side has processed real production traffic at scale, with divergences detected and resolved at each stage. Confidence is grounded in operational evidence rather than in test coverage.
 
-The traceability deepens. Each delta links to its implementation, which through source provenance (Pattern 4) links back to the legacy or the design that motivated it. The whole chain — from original requirement, through implementation, through delta, through any subsequent revision — is queryable.
+Rollback is real, not theoretical. The team has practiced the rollback procedure end-to-end; the operations team knows what to do if a post-cutover divergence appears; the data reconciliation path is designed and tested. Rollback becomes an operational option, not a crisis response.
 
-The cost is the discipline of keeping deltas synchronised with code. This isn't free. Generating useful deltas requires that someone or something understands the change well enough to articulate its intent in structured form. For agent-produced changes, this means the agent's workflow includes delta generation, and the generation has to be reliable. For human-produced changes, this means contributors learn to write deltas, and the workflow requires them. Either way, the synchronisation cost is real and ongoing.
+The cost is engagement duration. Progressive cutover takes longer than big bang — months of dual-run per bounded context, with the legacy remaining operational throughout. The infrastructure to support dual-run (routing layers, divergence detection, reconciliation tooling) must be designed and built; this is the work Pattern 22 (*Dual-Run Coexistence*) addresses.
 
-The pay-off justifies the cost when the system is consequential enough that review matters and complex enough that intent isn't obvious from code. For research prototypes that pivot frequently, deltas may be overhead. For production systems in regulated industries that must demonstrate change control, deltas may be the most important artifact in the workflow.
+The cost is also operational complexity during the transition. Two systems running in parallel for months or years is harder than one system. The team's attention is split between modernizing new contexts and operating the cutover contexts. The capability map (Pattern 1) and the sequencing it informs help manage this — sequencing cutovers so that operational burden never exceeds team capacity.
 
-This pattern is designed but not yet built in Rosetta. The principle (review at the level of intent, not implementation) is consistent with the prototype's broader posture (governance through structured artifacts, not through prose). What remains to be tested is whether the operational machinery to generate and validate deltas reliably can be built, and whether reviewers find them useful enough to justify the engineering cost.
+The five-stage progression is what's validated in Rosetta's prototype. Real engagement experience may teach that some stages can collapse (shadow validation may not be necessary for low-risk commodity contexts) or expand (a high-criticality core differentiator may need finer-grained percentage increments). The pattern is the principle of explicit-staged progression with rollback rehearsal; the specific stages are a starting point.
+
+Sam Newman's *Monolith to Microservices* (Newman, 2019) and the broader microservices migration literature articulate similar progressive deployment patterns. Martin Fowler's strangler fig (Fowler, 2004) is the architectural ancestor. What this catalog contributes is the framing of progressive cutover at *bounded context granularity* specifically — not per-feature, not per-service, but per the strategic bounded contexts that the modernization has invested in identifying. The bounded context is what the business recognizes as a coherent capability; cutting over at that granularity is what makes the modernization legible to stakeholders.
 
 ### Related patterns
 
-Pattern 23 (*The Harness as State Machine*) is what enforces the requirement that changes produce deltas. Pattern 25 (*The Cockpit*) is where reviewers consume deltas. Pattern 18 (*Behavioural Specifications Grown from Production*) produces a different kind of specification artifact — those grown from production behaviour, where deltas articulate intent of changes. The two specification patterns are complementary: deltas describe intended change, behavioural specifications describe observed system behaviour.
+Pattern 1 (*Business-Aligned Capability Strategy*) determines cutover sequencing — high-value capabilities first. Pattern 13 (*Twin Verification*) is the dev-mode gate before any cutover stage begins. Pattern 14 (*Hypothesis-Driven Verification*) is the production-mode evidence engine that grades divergences during cutover stages. Pattern 18 (*The Harness as Self-Observing State Machine*) encodes the cutover stages as a workflow with explicit human gates. Pattern 19 (*The Cockpit*) surfaces cutover evidence for human review. Pattern 20 (*Team Topology and Bounded Context Alignment*) determines which team owns each cutover and ownership transfer. Pattern 22 (*Dual-Run Coexistence*) is the infrastructure pattern that supports the dual-run period this pattern operates over.
 
----
+-----
 
+## Pattern 22: Dual-Run Coexistence: CDC, Reconciliation, and the Bridge Period
 
-## Pattern 27: Rollout and Cutover at Bounded Context Granularity
-
-*Status: working.*
+*Status: in construction.*
 
 ### Context
 
-A modernization that has produced one or more bounded contexts of modernized code, verified against the Legacy Twin (Pattern 16), validated for behavioural equivalence (Pattern 17), and gated through the harness (Pattern 23). The team must now deploy the modernized contexts into production, route traffic to them, and eventually decommission the legacy contexts they replace. The transition is incremental — running both systems in parallel while traffic shifts — and culminates in cutover, when the modernized system becomes the authoritative system of record.
+A modernization that has chosen progressive cutover (Pattern 21) rather than big bang. For weeks or months per bounded context, legacy and modernized systems both operate against the same business operations. The systems share data (or maintain corresponding copies), serve overlapping user populations, and must produce mutually consistent results.
 
-The transition is the moment of truth for the modernization. Up to this point, the work was internal: discovery, generation, verification. From this point on, every decision affects production. Errors are observable. Customers feel the consequences. Regulators take notice.
-
-### Problem
-
-Two failure modes dominate this stage. The first is big-bang cutover: shutting down the legacy and bringing up the modernized system in a single deployment window. The team prepares for months, runs migrations overnight, and discovers in the morning that something is wrong. Rollback is difficult because the legacy may have been decommissioned; forward fixes are difficult because production traffic is now exposing edge cases the team hadn't anticipated. The system either limps along while the team patches in production or has to be reverted at high cost.
-
-The second failure mode is naive strangler fig: extracting endpoints one at a time, with each endpoint routed independently. The endpoint granularity is too fine. Endpoints that share business logic, data, or transactional boundaries end up split across modernized and legacy systems in ways that violate consistency. The team discovers mid-rollout that "modernize one endpoint at a time" doesn't compose because the endpoints aren't actually independent units.
-
-The deeper failure is choosing the wrong unit of rollout. Programs are too internal — users don't experience programs. Endpoints are too narrow — they don't carry the consistency boundaries the business depends on. Bounded contexts are the right unit: they are operationally meaningful (one capability the business recognises), consistent (the aggregates inside them maintain invariants together), and decomposable (their command/event surface is the public contract).
-
-### Forces
-
-The transition cannot be instantaneous; it spans weeks to months during which legacy and modernized must coexist. But the transition cannot be arbitrary either — it must preserve consistency, support rollback, expose evidence about whether the modernized system is performing correctly. The mechanism must accommodate progress (traffic shifting from legacy to modernized) and reversibility (traffic shifting back if problems emerge).
-
-Customers experience capabilities, not bounded contexts. A capability — process insurance claim, settle trade, generate report — typically spans one or more bounded contexts. Rollout granularity must align with capabilities so that customers see coherent behaviour: a capability is either served by the legacy or by the modernized system, not split mid-flow.
-
-Regulated industries impose additional constraints. Cutover events must be auditable: which context was switched, when, by whom, with what evidence supporting the decision. Rollback procedures must be tested before they are needed. The system must remain in a known-good state at every moment of the transition.
-
-### Pattern
-
-Roll out at bounded context granularity. Each bounded context goes through its own rollout phase, culminating in its own cutover. The order of bounded contexts is determined by the capability map (Pattern 1) — strategic-core capabilities receive the most preparation and deliver the most business value early; commodity capabilities follow with lighter ceremony.
-
-For each bounded context, the rollout proceeds in phases:
-
-- **Parallel run** — the modernized context runs alongside the legacy context. Production traffic is processed by both. Witness (Pattern 17) compares outputs in real time, surfacing divergences for review. No customer impact yet — the modernized context's outputs are observed but not used.
-- **Shadow validation** — over a period of days to weeks (proportional to capability importance), the parallel run accumulates evidence. Divergences are categorised and addressed. The team builds confidence that the modernized context produces correct outputs across the full traffic shape, not just the dev-time corpus.
-- **Incremental routing** — a routing layer (typically API gateway, transaction router, or message bus topology) begins directing a fraction of traffic to the modernized context as authoritative. The percentage starts small (1%, 5%, 10%) and grows as evidence accumulates. Customers on the modernized path receive its outputs; the legacy continues to process the rest.
-- **Canary monitoring** — during incremental routing, Witness watches for divergences between the modernized context's behaviour and historical baselines. Anomalies trigger automated reduction of the routed percentage or full rollback to legacy.
-- **Cutover** — when evidence supports full traffic on the modernized context (typically: parallel run with zero unexplained divergences for N days, canary percentage at 100% for M days, business sign-off), the bounded context cuts over. The legacy context stops receiving new traffic.
-- **Legacy retention period** — the legacy context remains available for some period after cutover (weeks to months) as comparison reference. Post-cutover divergence detection runs against it; rollback to legacy remains possible if a previously-undetected issue emerges.
-- **Decommission** — when the retention period passes without incident and confidence is high, the legacy context is decommissioned. Its resources are reclaimed; its data is archived per compliance requirements.
-
-The routing layer is itself a first-class artifact. It implements anti-corruption (Evans, 2003) between modernized and legacy contexts during the transition — translating vocabularies, mediating protocols, isolating each side from the other's accidents. When all contexts have cut over, the routing layer's translation work is complete and it can be simplified or retired.
-
-Cutover readiness is gate-driven, not calendar-driven. The harness (Pattern 23) holds the cutover transition as a state with explicit prerequisites: Twin Verification (Pattern 16) stable for the required duration, Witness reports clean, business approval recorded, rollback procedure tested. Cutover happens when prerequisites are met; cutover does not happen when they are not, regardless of project pressure.
-
-Rollback is rehearsed before it is needed. The team practices rolling back from cutover to legacy in non-production environments, documents the procedure, and validates that data written to the modernized system during the rollout period can be reconciled with legacy state. A rollback that has not been tested is not a rollback; it is a hope.
-
-Within a bounded context's rollout, the team must also decide the *order* in which capabilities migrate. Nick Tune has named two opposing strategies: *Migrate Reads First*, which unblocks downstream consumers quickly by routing query paths to the modernized system while writes continue against the legacy; and *Migrate Writes First*, which unblocks new use cases that depend on the modernized write model. The choice is strategic — driven by which downstream pressure dominates — not technical. Definitions and pointers are in the glossary.
-
-### Consequences
-
-Risk distributes across the transition. Each bounded context is a small bet rather than the entire modernization. Problems surface in one context at a time and are addressed without affecting the rest of the rollout. The aggregate risk across the modernization is the sum of per-context risks, which is much smaller than the risk of a single big-bang cutover.
-
-Business value delivers incrementally. The first cut-over context delivers value as soon as its rollout completes — typically months before the full modernization. Subsequent contexts add value progressively. The customer does not wait until everything is migrated to see returns.
-
-Operational evidence accumulates. By the time the last context cuts over, the team has rehearsed cutover multiple times, validated their playbook against multiple capabilities, refined Witness and the routing layer through actual operational experience. The final cutover is informed by the prior ones, not improvised.
-
-The cost is the routing layer and the discipline of phased rollout. The routing infrastructure must be designed, built, and operated; the phased process must be followed; the rollback procedures must be tested. None of this is free. Compared to a single big-bang attempt, however, the phased approach is dramatically lower risk and dramatically more predictable.
-
-Martin Fowler's *StranglerFigApplication* essay (Fowler, 2004) articulates the canonical incremental replacement pattern this catalog applies. Sam Newman's elaboration in *Monolith to Microservices* (Newman, 2019) extends the pattern with operational detail. What this catalog contributes is the granularity choice — bounded context as unit of rollout — which aligns Fowler's strangler fig with DDD's strategic design. The granularity is where the technique becomes specifically applicable to mainframe modernization, where endpoint-level granularity is too fine for the consistency boundaries that matter and program-level granularity is too coarse for incremental delivery.
-
-### Related patterns
-
-Pattern 1 (*Business-Aligned Capability Strategy*) determines the order in which bounded contexts roll out. Pattern 16 (*Twin Verification*) validates each context before its parallel run begins. Pattern 17 (*Hypothesis-Driven Verification*) operates Witness during the rollout, categorising divergences and surfacing them for review. Pattern 23 (*The Harness as Self-Observing State Machine*) holds rollout and cutover as harness states with explicit gates. Pattern 25 (*The Cockpit*) is where humans observe rollout progress and authorise cutover transitions. Pattern N2 (*Dual-Run Coexistence*) provides the data-layer infrastructure that sustains parallel run across legacy and modernized contexts. Pattern 12 (*Commands and Events as Logical Boundary*) ensures that bounded contexts on opposite sides of the rollout boundary continue to communicate through their established contracts.
-
----
-
-## Pattern 28: Dual-Run Coexistence: CDC, Reconciliation, and the Bridge Period
-
-*Status: in progress.*
-
-### Context
-
-A mainframe modernization in its rollout phase (Pattern 27): bounded contexts are migrating one at a time, with parallel run periods where modernized and legacy systems coexist. The legacy continues to be authoritative for contexts not yet cut over; the modernized system is authoritative for contexts that have cut over; some contexts are in shadow validation or incremental routing, neither fully legacy nor fully modernized. The coexistence is not transient — it spans weeks to months, sometimes longer.
-
-This coexistence period is operationally distinct from both the pre-modernization state (legacy alone) and the post-modernization state (modernized alone). It has its own architectural requirements that neither end-state addresses, and modernization teams that fail to design for it find themselves improvising during the most fragile phase of the migration.
+The dual-run is unavoidable for any modernization at meaningful scale. The infrastructure to support it is what this pattern addresses.
 
 ### Problem
 
-Modernization teams design the *target state* carefully but the *transition state* poorly. The architecture diagrams show the modernized system; the cutover plan covers the day of the switch; the legacy decommissioning is scheduled. The coexistence period — the weeks or months between first context cutover and last context cutover — is treated as a transitional inconvenience rather than as an architectural concern in its own right.
+Naive dual-run produces three categories of failure.
 
-The consequences are operational. Data written to the legacy must reach the modernized system in near-real-time, or modernized contexts read stale state and produce wrong answers. Data written to the modernized system must propagate back to the legacy where the legacy still serves dependent contexts, or those contexts diverge. State changes must be observable across both systems for audit and debugging. Failures in either system must be detected and reconciled before they accumulate into unrecoverable divergence.
+The first is *data drift*: legacy and modernized systems both write to their respective data stores, and over time the stores diverge. Some divergence is expected (the modernized side may have richer schemas, may capture new metadata, may store data in different forms); some is dangerous (the same business operation produces different financial balances on each side, leading to reconciliation failures and audit issues). Without explicit synchronization, the divergence accumulates silently until reconciliation reveals it.
 
-Without explicit dual-run architecture, teams improvise. They build ad-hoc data pipelines, write reconciliation scripts when production exposes drift, patch failed propagations manually. Each improvisation works in the immediate case and fails in the next case the team didn't anticipate. The cost accumulates; trust in the modernization erodes; rollback becomes increasingly attractive because the team has lost confidence that the dual-run is correct.
+The second is *write conflicts*: when both legacy and modernized sides accept writes for the same business operation, the order of writes matters and may differ between sides. The customer updates their address on the legacy mainframe at the same moment a system process updates it on the modernized side; both writes succeed, but the final state may differ. Resolution requires explicit conflict resolution rules; without them, the systems can become permanently inconsistent.
 
-The deeper failure is treating data layer migration as an afterthought. The modernization patterns above (Parts I-III) address how to migrate code; data layer migration has been the least articulated territory in modernization practice. Bringing data forward — keeping it consistent during dual-run, reconciling drift, deciding which side is authoritative for which data at which stage — deserves its own discipline.
+The third is *vocabulary mismatch at the boundary*: legacy and modernized systems use different vocabulary for the same concepts. The legacy calls a record `CUST-MAST-REC`; the modernized side calls it `Customer`. The legacy stores dates as `YYYYMMDD` integers; the modernized side stores them as ISO 8601 timestamps. Every integration point requires translation; without explicit translation infrastructure, the translation logic scatters across application code and becomes unmaintainable.
 
 ### Forces
 
-Both systems must remain operationally consistent during dual-run. Customers using the modernized system must see the same business state customers using the legacy system see; if Alice's account balance reads as $1,000 in the legacy and $950 in the modernized system, the modernization has lost integrity, regardless of how correctly each system processed its individual transactions.
+Both systems must function for the duration of dual-run. The business cannot wait for the modernization to complete before deriving value; it cannot accept periods of system unavailability. The legacy must continue working as it has been; the modernized side must work correctly against real traffic.
 
-The data layer is heterogeneous. The legacy mainframe runs DB2, VSAM files, IMS hierarchies, generation data groups, sequential files on tape. The modernized system runs PostgreSQL, SQL Server, event streams, document stores. Replication must bridge the heterogeneity without losing the semantics of either side.
+Data must remain consistent enough that business operations don't fail. Perfect consistency at every instant is too expensive (would require distributed transactions across legacy and modernized data stores, which most legacy stacks don't support); zero consistency is unacceptable (the business depends on records matching). The right answer is a controlled level of eventual consistency with explicit reconciliation infrastructure.
 
-The direction of data flow is not constant. During the early rollout phase, most data flows legacy → modernized (legacy is authoritative, modernized is observing). During incremental routing, both directions are active (each side is authoritative for the contexts it owns). Near cutover completion, most data flows modernized → legacy (modernized is authoritative, legacy is reference). The infrastructure must support all three regimes and transitions between them.
+Synchronization mechanisms have engineering cost and operational risk. Each mechanism (CDC streams, outbox-pattern dual-writes, periodic batch reconciliation) has its own failure modes. The mechanisms must be chosen per data domain based on the consistency requirement, the legacy stack's capabilities, and the operational budget.
 
 ### Pattern
 
-Treat the dual-run period as a first-class architectural phase with its own infrastructure. Three categories of mechanism, applied as needed per bounded context:
+Build dual-run infrastructure that addresses the three failure modes explicitly.
 
-**Change Data Capture (CDC)** captures changes in the legacy data stores and replicates them into the modernized system. The mechanism varies by store: DB2 publishes change logs that can be consumed by IBM InfoSphere CDC, Oracle GoldenGate, or Debezium-style readers; VSAM changes are captured through journaling; IMS changes through DPROP or equivalent. The captured stream is transformed and applied to the modernized side's storage — sometimes 1:1, often with reshape (the legacy's denormalised tables become the modern's normalised tables, or vice versa). Latency targets depend on consistency requirements: sub-second for tightly coupled contexts; minutes for reference data; nightly batch for analytical capabilities.
+For data consistency, use **Change Data Capture (CDC)** as the default mechanism: changes on the legacy side stream to the modernized side; changes on the modernized side stream back to the legacy. The CDC mechanism depends on the legacy stack — IBM InfoSphere CDC for DB2, Oracle GoldenGate for Oracle, Debezium-style readers for systems where direct stream capture is available, journaling-based readers for VSAM, DPROP or equivalent for IMS. The choice of mechanism is per legacy data store; the architecture above the mechanism is the same.
 
-CDC is one of two integration shapes available during dual-run. The alternative, which Nick Tune has called *Application-level Events*, captures changes inside the legacy application code and emits them as semantically rich domain events rather than as storage-layer change records. The trade-off is real: CDC is easier to instrument on legacy and captures every modification, but leaks the legacy's storage model into downstream consumers; application-level events carry richer context and avoid that coupling, but require intervention in legacy code. The choice is per data domain. The glossary entry *CDC vs Application-level Events* gives definitions and pointers.
+For write authority, define **per-domain ownership** with explicit transition: at any time during dual-run, one side is the authoritative source for each data domain. The authority may transfer at cutover stages — initially legacy is authoritative, then writes flow to modernized side with legacy receiving the CDC stream, then modernized becomes fully authoritative. The transition is explicit, scheduled, communicated to all consumers. Bidirectional writes during the transition are minimized; where they are necessary, conflict resolution rules are defined upfront (last-write-wins, business-rule-based merge, escalation to human).
 
-**Dual-write strategies** apply when modernized writes must reflect into the legacy because the legacy still serves dependent contexts. Three patterns dominate:
-- *Synchronous dual-write* — the modernized code writes to both stores in the same transaction. Strong consistency, but fragile: any failure in the legacy fails the modernized transaction.
-- *Asynchronous dual-write through queue* — the modernized code writes locally and enqueues a propagation message; a consumer applies the change to the legacy. Eventually consistent, more resilient, but introduces propagation lag the consuming contexts must tolerate.
-- *Outbox-pattern dual-write* — the modernized code writes locally to its store and to an outbox table in the same transaction; a separate process drains the outbox into a queue or directly into the legacy. Reliable, transactional, well-understood; this is the recommended default.
+For dual-write scenarios within the modernized side, use the **transactional outbox pattern**: writes to the local data store and outbound events are committed in a single transaction; a separate process publishes events from the outbox. This pattern, well-supported by frameworks like Wolverine in .NET, prevents the inconsistency window between data update and event publication that would otherwise compromise CDC reliability.
 
-**Reconciliation procedures** detect and remediate drift between the two sides. Reconciliation runs continuously (sampling reads on both sides and comparing) or on schedule (comparing complete tables nightly), depending on capability criticality. When drift is detected, the response is determined by ownership: if the legacy still owns the data, modernized state is corrected from legacy; if modernized owns it, legacy is corrected from modernized. Reconciliation is not just diff detection — it includes remediation playbooks for the discovered drift, and metrics that track drift rates over time.
+For vocabulary translation, use **bridge APIs** that wrap legacy data access and translate at the boundary. The bridge API is structurally an anti-corruption layer (Pattern 10's Evans-derived translation discipline) applied at the data plane rather than at the application plane. The bridge translates legacy schemas into canonical ubiquitous language (Pattern 4) on read; it translates canonical language back to legacy schemas on write. The translation logic lives in one place rather than scattered through application code; both legacy-aware and modernized consumers can use the bridge.
 
-**Bridge APIs** translate between legacy and modernized vocabularies when contexts on each side must communicate during the transition. The bridge implements anti-corruption (Evans, 2003) — it speaks the legacy's protocol on one side and the modernized's protocol on the other, preserving each context's vocabulary. As contexts cut over, the bridge's translation surface shrinks; eventually it can be retired.
+For reconciliation, build **continuous and scheduled reconciliation**. Continuous reconciliation samples writes on both sides and compares them in near-real-time; divergences surface as alerts. Scheduled reconciliation runs periodically (nightly, end-of-month, end-of-quarter) and compares larger windows of data; the granularity depends on the business cadence. Each reconciliation run produces a divergence report; each divergence has a remediation playbook specific to its data domain. Witness (Pattern 14) provides the underlying machinery; reconciliation is a specialized application of the same evidence-capture infrastructure.
 
-The state of authority is explicit per data domain. The dual-run architecture documents, for each data domain (customers, accounts, transactions, products, ...), which side is currently authoritative and which side is replicating. The authority transitions are scheduled: customers become modernized-authoritative on date X; accounts on date Y; transactions on date Z. The schedule aligns with bounded-context cutover (Pattern 27).
-
-Witness (Pattern 17) monitors the dual-run continuously. Output divergences are categorised: legitimate state drift (one side correctly received an update the other side missed), expected behavioural difference (the modernized system deliberately produces different output than the legacy in a specific case), or unexpected divergence (something is wrong and requires investigation). The categorisation surfaces problems early enough to remediate before cutover.
+The bridge period — the full duration of dual-run for a bounded context — is a designed operational state, not a transition to be minimized. Some bridge periods are weeks (small, low-risk bounded contexts); some are months (large core-differentiator contexts requiring extended validation); some are years (estate-wide modernizations where the cutover wave is itself long). The infrastructure must support all of these durations without operational degradation.
 
 ### Consequences
 
-The dual-run period becomes manageable rather than chaotic. Data flows are designed, not improvised. Drift is detected automatically, not discovered through customer complaints. The team has confidence that the modernized system's state remains consistent with the legacy's throughout the migration.
+The dual-run becomes operationally credible. Data stays consistent within explicit tolerance; vocabulary translates at the boundary rather than scattering through application code; reconciliation surfaces divergences early enough to remediate before audit exposure. The progressive cutover (Pattern 21) becomes possible at scale because the infrastructure to support it exists.
 
-Cutover becomes operationally safer. By the time a bounded context cuts over, its data has been flowing through CDC for weeks; reconciliation has verified consistency continuously. Cutover is the formal recognition of a state that has already been operating, not a leap of faith.
+Cutover risk decreases because the dual-run period has surfaced and remediated divergences in advance. By the time a bounded context cuts over, the team has weeks or months of evidence that the modernized side handles its data correctly under real production load. Confidence is grounded in operational evidence rather than in pre-deployment testing.
 
-Rollback remains feasible throughout dual-run. Because data flows both ways during the transition, rolling back a context to legacy is mechanically possible — the legacy has been receiving updates that occurred during the modernized period.
+The cost is the dual-run infrastructure itself — CDC pipelines, bridge APIs, outbox processors, reconciliation jobs, remediation playbooks. This is substantial engineering work that delivers no direct business value (it exists only to enable the cutover, after which it is decommissioned). For organizations that have done many migrations, the infrastructure can be reused across projects, amortizing the cost; for first-time modernizers, it is engagement-specific investment.
 
-The cost is the dual-run infrastructure itself: CDC pipelines per data domain, outbox-pattern implementations in modernized code, reconciliation jobs with their own schedules and alerting, bridge APIs with their own operational concerns. For systems with dozens of data domains, the infrastructure is substantial. It amortises across the dual-run period; it is wasted if the modernization tries to skip it and improvise.
+The cost is also operational complexity during the bridge. Two systems running in parallel with continuous synchronization and reconciliation requires operational attention: monitoring the CDC streams, triaging reconciliation divergences, responding to bridge API failures. The operations team must be staffed for this complexity for the full duration of the bridge.
 
-There is also a cost in latency tolerance. Dual-run introduces propagation lag — sub-second to nightly — that the modernized code must tolerate. Contexts requiring strictly consistent reads across data domains may need to wait until both sides cut over before they can rely on the modernized system fully.
+The pattern is *in construction*. The principles (CDC for synchronization, transactional outbox for dual-write integrity, bridge APIs for vocabulary translation, continuous and scheduled reconciliation for divergence detection) are established in the broader microservices and integration literature. Their composition specifically for mainframe modernization dual-run, with the CDC mechanism choices calibrated to legacy stacks and the reconciliation tied into Witness's evidence engine, is what's being built in the Rosetta prototype.
 
-Martin Kleppmann's *Designing Data-Intensive Applications* (Kleppmann, 2017) provides the canonical treatment of replication, consistency, and dual-write trade-offs. Pat Helland's work on eventual consistency (Helland, 2007) informs the consistency-model choices. CDC patterns have been in industry practice for decades. What this catalog contributes is the framing of the dual-run period as a first-class architectural phase in mainframe modernization specifically, with explicit data-authority schedules, reconciliation discipline, and bridge APIs as anti-corruption infrastructure — not as ad-hoc improvisation.
+This pattern addresses what Nick Tune has documented as the synchronization antipatterns that wreck incremental migrations when applied naively: *Bi-directional Model Sync* (both sides translating to each other's models continuously, fragile and resistant to retirement), *Asymmetrical Validation* (modernized side enforcing stricter rules than legacy holds historically), *Tri-directional Sync* (multiple legacy systems compounding the synchronization complexity). The corrective is structural: define data authority per domain on an explicit schedule, use bridge APIs (anti-corruption layers) to translate rather than synchronize models, resist the instinct to keep all sides equally authoritative throughout the transition. Definitions and pointers to Tune's articulation are in the glossary and antipatterns sections.
+
+Pat Helland's *Life Beyond Distributed Transactions* (Helland, 2007) informs the explicit eventual-consistency framing. The CDC pattern itself has decades of articulation in data integration literature (Kimball and Caserta, 2004; subsequent work in stream processing). The transactional outbox pattern is canonical microservices engineering (Richardson, *Microservices Patterns*, 2018). What this catalog contributes is the synthesis specifically for mainframe modernization dual-run, with the calibration to specific legacy stacks (DB2, VSAM, IMS) and the integration with Witness (Pattern 14) as the evidence layer for reconciliation.
 
 ### Related patterns
 
-Pattern 27 (*Rollout and Cutover at Bounded Context Granularity*) is the operational frame this pattern serves — dual-run is what sustains the parallel run periods that rollout requires. Pattern 17 (*Hypothesis-Driven Verification*) monitors the dual-run, detecting drift and categorising divergences. Pattern 4 (*Source Provenance Discipline*) extends through CDC — every change in the modernized system traces back to the legacy source that originated it. Pattern A (*Transactional Boundaries as First-Class Migration Concern*) determines the consistency model for dual-write per context. Pattern 12 (*Commands and Events as Logical Boundary*) provides the logical contracts that the bridge APIs translate.
+Pattern 4 (*Domain Ontology as Independent Substrate*) provides the canonical vocabulary that bridge APIs translate to and from. Pattern 10 (*Commands and Events as Logical Boundary*) is the architectural pattern bridge APIs implement at the data plane. Pattern 14 (*Hypothesis-Driven Verification*) is the evidence engine that reconciliation depends on. Pattern 18 (*The Harness as Self-Observing State Machine*) encodes the bridge period as a long-lived workflow state. Pattern 19 (*The Cockpit*) surfaces reconciliation divergences for human triage. Pattern 20 (*Team Topology and Bounded Context Alignment*) determines which team owns each bridge API and reconciliation job. Pattern 21 (*Rollout and Cutover at Bounded Context Granularity*) is the operational frame this pattern serves. The *Synchronisation antipatterns* in the antipatterns section name what this pattern is correcting.
 
----
+-----
 
 # Antipatterns
 
----
-
-**🎨 INFOGRAPHIC AP — *The antipatterns and their correctives***
-
-*Style: editorial infographic, single-page format. The antipatterns arranged as panels around a central visual. Each panel: antipattern name in bold, one-sentence summary, and an arrow pointing to the corrective pattern(s) numbered. Center: a small visual representing "what the field has been doing" vs "what the patterns correct" — perhaps two side-by-side schematics, one labelled "drift," one labelled "discipline." Earth-tone palette matching the cover. Goal: reader gets a one-page reference that maps every antipattern to its corrective patterns. Useful for review at end of catalog.*
-
----
-
 A pattern catalog is most useful when it names what it's built against. The antipatterns below are failure modes the field has encountered, articulated briefly. Naming them helps clarify what the patterns above are correcting.
 
-**Jobol.** Generated C# that has been mechanically translated from COBOL but retains COBOL's structure, idioms, and shape. The result reads like COBOL written in C# syntax: deeply nested control flow, primitive obsession, monolithic procedural style. The compiler principle (Pattern 8) and tier-aware scaffolding (Pattern 10) are correctives.
+**Jobol.** Generated C# that has been mechanically translated from COBOL but retains COBOL's structure, idioms, and shape. The result reads like COBOL written in C# syntax: deeply nested control flow, primitive obsession, monolithic procedural style. The compiler principle (Pattern 6) and tier-aware scaffolding (Pattern 8) are correctives.
 
-**Silent semantics loss.** A modernization that produces syntactically reasonable C# but loses behavioural detail in the translation. Edge cases, error paths, transactional guarantees disappear quietly. The user doesn't know until production reveals the loss. The legacy as oracle (Pattern 2) and Twin Verification (Pattern 16) are correctives.
+**Silent semantics loss.** A modernization that produces syntactically reasonable C# but loses behavioural detail in the translation. Edge cases, error paths, transactional guarantees disappear quietly. The user doesn't know until production reveals the loss. The legacy as oracle (Pattern 2) and Twin Verification (Pattern 13) are correctives.
 
-**False clean code.** Generated C# that follows modern idioms (dependency injection, clean architecture, async/await) without preserving the legacy's actual behaviour. The code looks like what a senior developer would write today; it just doesn't do what the legacy does. Hypothesis-driven verification (Pattern 17) is the corrective: behavioural equivalence is the standard, not aesthetic alignment with current best practice.
+**False clean code.** Generated C# that follows modern idioms (dependency injection, clean architecture, async/await) without preserving the legacy's actual behaviour. The code looks like what a senior developer would write today; it just doesn't do what the legacy does. Hypothesis-driven verification (Pattern 14) is the corrective: behavioural equivalence is the standard, not aesthetic alignment with current best practice.
 
-**Frozen architecture.** A modernization that lifts the legacy's architectural decisions into the modernized system, treating them as preserved value rather than as historical artifacts. The result is modern code with thirty-year-old architectural commitments embedded in it. In DDD terms, this is failing to perform strategic design — accepting whatever bounded contexts the legacy implicitly created, whatever subdomain types the legacy implicitly chose, whatever was once core that has since become commodity. Pluggable emitters (Pattern 11) and tier-aware scaffolding (Pattern 10, grounded in Evans' core/supporting/generic typology) make architectural decisions explicit and replaceable.
+**Frozen architecture.** A modernization that lifts the legacy's architectural decisions into the modernized system, treating them as preserved value rather than as historical artifacts. The result is modern code with thirty-year-old architectural commitments embedded in it. In DDD terms, this is failing to perform strategic design — accepting whatever bounded contexts the legacy implicitly created, whatever subdomain types the legacy implicitly chose, whatever was once core that has since become commodity. Pluggable emitters (Pattern 9) and tier-aware scaffolding (Pattern 8, grounded in Evans' core/supporting/generic typology) make architectural decisions explicit and replaceable.
 
 **Vendor oracle.** Trusting a single vendor's tooling as the authoritative ground truth for the modernization. When the vendor's tool produces output, the modernization treats that output as correct. The vendor becomes the oracle, displacing the legacy itself. The legacy as oracle (Pattern 2) inverts this: the legacy is the truth source, and any tool — vendor or otherwise — is verified against it.
 
-**Behavioural equivalence without ontology.** A modernization that achieves perfect behavioural fidelity to the legacy — Twin Verification passes, Hypothesis-Driven Verification confirms, every gate in the harness is green — and yet produces a modernized system that inherits the legacy's ontological confusion. Three definitions of "active customer" survive the cut. Two interpretations of "balance" remain incompatible. Vocabulary that meant one thing in 1992 still means another in 2008, now expressed in clean modern code that makes the confusion harder to detect. The modernization is technically successful and fundamentally broken. In DDD terms, the modernization preserved tactical implementations but never established a ubiquitous language; the result is a modernized polyglot, fluent in three dialects of the same domain, mastering none. Anthony Alcaraz's argument applies with force: the orchestration is fine, the grounding is missing, the output is confidently wrong. The legacy as oracle (Pattern 2) is necessary but not sufficient; *Domain Ontology as Independent Substrate* (Pattern 5) is the corrective. Behavioural equivalence preserves what the legacy does. Ontology decides what the legacy *should have been about* — and the modernization team has to answer that question independently.
+**Behavioural equivalence without ontology.** A modernization that achieves perfect behavioural fidelity to the legacy — Twin Verification passes, Hypothesis-Driven Verification confirms, every gate in the harness is green — and yet produces a modernized system that inherits the legacy's ontological confusion. Three definitions of "active customer" survive the cut. Two interpretations of "balance" remain incompatible. Vocabulary that meant one thing in 1992 still means another in 2008, now expressed in clean modern code that makes the confusion harder to detect. The modernization is technically successful and fundamentally broken. In DDD terms, the modernization preserved tactical implementations but never established a ubiquitous language; the result is a modernized polyglot, fluent in three dialects of the same domain, mastering none. Anthony Alcaraz's argument applies with force: the orchestration is fine, the grounding is missing, the output is confidently wrong. The legacy as oracle (Pattern 2) is necessary but not sufficient; *Domain Ontology as Independent Substrate* (Pattern 4) is the corrective. Behavioural equivalence preserves what the legacy does. Ontology decides what the legacy *should have been about* — and the modernization team has to answer that question independently.
 
-**Synchronisation antipatterns during incremental migration.** Three failure modes recur when incremental migration is overlaid on a real legacy landscape, all documented by Nick Tune. *Bi-directional Model Sync* keeps a legacy entity and a modernized entity in continuous round-trip synchronisation, with each side's invariants having to survive translation through the other's model; the arrangement is fragile and resists retirement. *Asymmetrical Validation* compounds the problem: the modernized side enforces stricter rules than the legacy, while the legacy holds years of data that does not satisfy those rules, producing chronic drift the team cannot resolve without amnesty or backfill. *Tri-directional Sync* is the combinatorial form: when the migration is overlaid on a landscape that already contains multiple legacy systems with overlapping data, the team must build and operate not two synchronisation flows but six, twelve, or more. The corrective is structural: define data authority per domain on an explicit schedule (Pattern 28), use anti-corruption layers (Pattern 12) to translate vocabularies rather than synchronise models, and resist the instinct to keep all sides equally authoritative throughout the transition. Definitions and pointers are in the glossary.
+**Synchronisation antipatterns during incremental migration.** Three failure modes recur when incremental migration is overlaid on a real legacy landscape, all documented by Nick Tune. *Bi-directional Model Sync* keeps a legacy entity and a modernized entity in continuous round-trip synchronisation, with each side's invariants having to survive translation through the other's model; the arrangement is fragile and resists retirement. *Asymmetrical Validation* compounds the problem: the modernized side enforces stricter rules than the legacy, while the legacy holds years of data that does not satisfy those rules, producing chronic drift the team cannot resolve without amnesty or backfill. *Tri-directional Sync* is the combinatorial form: when the migration is overlaid on a landscape that already contains multiple legacy systems with overlapping data, the team must build and operate not two synchronisation flows but six, twelve, or more. The corrective is structural: define data authority per domain on an explicit schedule (Pattern 22), use anti-corruption layers (Pattern 10) to translate vocabularies rather than synchronise models, and resist the instinct to keep all sides equally authoritative throughout the transition. Definitions and pointers are in the glossary.
 
-**Agent army.** An agentic system that scales by multiplying agents — more specialised agents, more coordination layers, hierarchies, swarms, agentic mesh. The instinct is *if one agent is good, many agents are better*. The operational failure is twofold. First, coordination overhead grows faster than capability — the system spends more compute on agents talking to each other than on doing the work. Second, the army generates vast volumes of output: documentation, code, alternatives, justifications, reasoning records. The volume saturates the reviewers downstream; humans cannot consume at the rate the agents produce. The modernization stalls at the bottleneck of cognitive load, not at any technical limit. The corrective is structural: build a harness (Pattern 23), not an army. The discipline of deterministic constraints, verifiable invariants, and explicit gates produces tractable modernization; more agents do not. Spec deltas (Pattern 26) operationalise the volume discipline at the review surface — fewer artifacts, denser articulation. *More is not better. Less is better.*
+**Agent army.** An agentic system that scales by multiplying agents — more specialised agents, more coordination layers, hierarchies, swarms, agentic mesh. The instinct is *if one agent is good, many agents are better*. The operational failure is twofold. First, coordination overhead grows faster than capability — the system spends more compute on agents talking to each other than on doing the work. Second, the army generates vast volumes of output: documentation, code, alternatives, justifications, reasoning records. The volume saturates the reviewers downstream; humans cannot consume at the rate the agents produce. The modernization stalls at the bottleneck of cognitive load, not at any technical limit. The corrective is structural: build a harness (Pattern 18), not an army. The discipline of deterministic constraints, verifiable invariants, and explicit gates produces tractable modernization; more agents do not. Spec deltas (Pattern 19) operationalise the volume discipline at the review surface — fewer artifacts, denser articulation. *More is not better. Less is better.*
 
----
+**Naive self-observation.** A harness that observes itself but does so naively — measuring gate passage rates, heuristic application frequency, agent confidence scores — and treating those measurements as ground truth. Goodhart's law applies immediately: when a measure becomes a target, it ceases to be a good measure. Agents that learn what the harness watches learn to produce signals that look good without doing the underlying work. Heuristic gaming, confidence inflation, gate-shape pattern-matching, reasoning-trace performance — each is a predictable consequence of self-observation that doesn't anticipate being gamed. The corrective is the layered observation that Pattern 18 (*The Harness as Self-Observing State Machine*) describes: action-and-outcome as primary signal, reasoning telemetry as supplementary, and continuous detection of divergence between the two. The harness must expect to be gamed, and must watch for the signature of gaming, not just for the metrics that an honest agent would produce honestly. A harness that watches outcomes can catch a heuristic that no longer measures what it was meant to measure; a harness that only watches the heuristic itself cannot.
 
-**📊 TABLE AP.1 — *Antipatterns and their corrective patterns***
+-----
 
-*Two-column reference table. Left column: antipattern name and brief summary (one phrase). Right column: corrective pattern numbers and names with brief explanation of how each pattern protects against the antipattern. Rows: Jobol → Pattern 8, 10; Silent semantics loss → Pattern 2, 16; False clean code → Pattern 17; Frozen architecture → Pattern 10, 11; Vendor oracle → Pattern 2; Behavioural equivalence without ontology → Pattern 2, 5; Synchronisation antipatterns during incremental migration → Pattern 12, 28; Agent army → Pattern 23, 26. Style: clean reference table with row banding. Goal: when reviewer encounters an antipattern in practice, they can find the patterns that correct it without re-reading the catalog.*
+**Antipatterns and corrective patterns reference table:**
 
----
+| Antipattern                                                  | Corrective patterns                                                                |
+|--------------------------------------------------------------|------------------------------------------------------------------------------------|
+| Jobol                                                        | Pattern 6 (Compiler Principle); Pattern 8 (Tier-Aware Scaffolding)                 |
+| Silent semantics loss                                        | Pattern 2 (Legacy as Oracle); Pattern 13 (Twin Verification)                       |
+| False clean code                                             | Pattern 14 (Hypothesis-Driven Verification)                                        |
+| Frozen architecture                                          | Pattern 8 (Tier-Aware Scaffolding); Pattern 9 (Pluggable Emitters)                 |
+| Vendor oracle                                                | Pattern 2 (Legacy as Oracle)                                                       |
+| Behavioural equivalence without ontology                     | Pattern 2 (Legacy as Oracle); Pattern 4 (Domain Ontology as Independent Substrate) |
+| Synchronisation antipatterns during incremental migration    | Pattern 10 (Commands and Events); Pattern 22 (Dual-Run Coexistence)                |
+| Agent army                                                   | Pattern 18 (The Harness); Pattern 19 (The Cockpit)                                 |
+| Naive self-observation                                       | Pattern 18 (The Harness as Self-Observing State Machine)                           |
 
----
+-----
 
 # Glossary
 
-Definitions of the DDD and modernization terms used throughout the catalog. Where a concept has been more thoroughly developed in canonical sources, the definition includes a pointer for further reading.
+**Agent execution failure modes.** Three characteristic patterns of agent misbehaviour during execution, named by Uberto Barbini at the individual-developer scale and recurring at platform scale. *Loop of death*: the agent fixes one issue and breaks another, oscillating indefinitely. *Misunderstanding the requirement*: the agent works on the wrong part of the code, often because of poor naming or duplicated logic — a problem that gets worse, not better, with AI, which makes code quality and DDD discipline more important rather than less. *Desperate changes*: when the agent cannot find a solution within the current constraints, it escalates — rewriting large parts of the system, ignoring design rules, even modifying external libraries. The corrective in all three cases is structural: detect the failure mode (cycle detection, scaffold-boundary violation, invariant violation) and intervene, rather than letting the agent continue. *See Uberto Barbini, *Process Over Magic: Beyond Vibe Coding* (2026); related to Pattern 18 (The Harness as Self-Observing State Machine) and Pattern 17 (Heuristics as Explicit Artifacts).*
 
-**Agent execution failure modes.** Three characteristic patterns of agent misbehaviour during execution, named by Uberto Barbini at the individual-developer scale and recurring at platform scale. *Loop of death*: the agent fixes one issue and breaks another, oscillating indefinitely. *Misunderstanding the requirement*: the agent works on the wrong part of the code, often because of poor naming or duplicated logic — a problem that gets worse, not better, with AI, which makes code quality and DDD discipline more important rather than less. *Desperate changes*: when the agent cannot find a solution within the current constraints, it escalates — rewriting large parts of the system, ignoring design rules, even modifying external libraries. The corrective in all three cases is structural: detect the failure mode (cycle detection, scaffold-boundary violation, invariant violation) and intervene, rather than letting the agent continue. *See Uberto Barbini, *Process Over Magic: Beyond Vibe Coding* (2026); related to Pattern 23 (The Harness as Self-Observing State Machine) and Pattern 22 (Heuristics as Explicit Artifacts).*
+**Aggregate.** A cluster of domain objects treated as a single unit for state changes, with invariants that hold across the cluster. Vaughn Vernon's *Implementing Domain-Driven Design* (2013) elaborates the consistency boundary discipline. *Related to Pattern 7 (The Intermediate Representation) and Pattern 11 (Transactional Boundaries).*
 
-**Aggregate.** In DDD tactical design, a cluster of domain objects (entities and value objects) treated as a single unit for the purposes of data changes. The aggregate has a root that mediates external access; invariants on the aggregate hold across the cluster. *See Evans 2003, Chapter 6; Vernon 2013, Chapter 10.*
+**Alignment Record.** A first-class artifact created at each architectural decision point in the modernization, capturing what was decided, by whom, against what evidence, under what constraints. Fields include reference to AsIs evidence, ToBe outcome (architectural pattern, tier, seam, module), ontology version, agents and alternatives considered, the human who approved with reasoning where overrides applied, and the attestation contract the oracle must verify. The Alignment Record is the working contract between recovery and generation, the input that feeds promotion gates in the heuristic catalog, and the evidence trail that lets regulators, auditors, or future modernization teams retrace why a decision was reached. *Related to Pattern 17 (Heuristics as Explicit Artifacts) and Pattern 19 (The Cockpit).*
 
-**Anti-corruption layer.** A translation layer between two bounded contexts (or between a modernized system and a legacy system) that prevents concepts from one polluting the model of the other. The anti-corruption layer is itself a bounded context, with the responsibility of speaking both vocabularies and translating between them. *See Evans 2003, Chapter 14.*
+**Anti-corruption layer.** Eric Evans' term for a translation layer that prevents legacy concepts from polluting the modernized domain model. The layer is structurally a bounded context with a single responsibility — protect the modernized side from inheriting whatever the legacy still calls things. *See Evans, *Domain-Driven Design* (2003); related to Pattern 10 (Commands and Events as Logical Boundary), Pattern 12 (Transitional Architecture), and Pattern 22 (Dual-Run Coexistence).*
 
-**Asymmetrical Validation.** A migration antipattern in which the modernized system enforces stricter validation than the legacy, while the legacy holds years of data that does not satisfy those rules. Synchronisation between the two sides repeatedly fails on data the legacy considers valid and the modernized side rejects, producing chronic drift and operational burden. *See Nick Tune, [legacy-modernization.io](https://legacy-modernization.io); related to the *Behavioural Equivalence Without Ontology* antipattern.*
+**Asymmetrical Validation.** A synchronisation antipattern in incremental migrations where the modernized side enforces stricter validation rules than the legacy holds historically. Years of legacy data fail the modernized rules; the team faces chronic drift it cannot resolve without amnesty or backfill. *See Nick Tune, [legacy-modernization.io](https://legacy-modernization.io); related to Pattern 22 (Dual-Run Coexistence).*
 
-**Autonomous Bubble.** A variant of the Bubble pattern in which the new subsystem holds its own local data store, populated asynchronously from legacy events through an anti-corruption layer. Unlike a pure Bubble, the autonomous bubble can fulfil reads without calling back into the legacy, which decouples its runtime from legacy availability and performance. *See Nick Tune, [legacy-modernization.io](https://legacy-modernization.io); related to Pattern 14 (Transitional Architecture) and Pattern 12 (Commands and Events as Logical Boundary).*
+**AsIs / ToBe ownership discipline.** The third foundation across the catalog (alongside the three-layer recovery architecture and source provenance discipline). AsIs is the recovered specification — evidence about what the legacy actually does, owned by deterministic infrastructure (parsers, pattern detectors, heuristic catalog). ToBe is the target design — judgment about how the legacy should be expressed in the modernized architecture, owned jointly by agents, the ontology, and humans. The Intermediate Representation (Pattern 7) is the bridge contract; decisions are made in ToBe, not in IR. Where the dichotomy collapses, the catalog's structural commitments collapse with it. *Introduced in the Architectural Interlude; referenced from Pattern 6 (The Compiler Principle), Pattern 13 (Twin Verification), Pattern 18 (The Harness as Self-Observing State Machine), and Pattern 19 (The Cockpit).*
 
-**Bi-directional Model Sync.** A migration antipattern in which a legacy entity and a modernized entity are kept in continuous synchronisation across both directions of writes. The arrangement is fragile because each side's invariants must round-trip through the other's model; semantic mismatches surface as recurrent drift, and the synchronisation becomes load-bearing infrastructure that resists retirement. *See Nick Tune, [legacy-modernization.io](https://legacy-modernization.io); related to the *Behavioural Equivalence Without Ontology* antipattern.*
+**Autonomous Bubble.** A variant of the Bubble pattern in which the new subsystem holds its own local data store, populated asynchronously from legacy events through an anti-corruption layer. Unlike a pure Bubble, the autonomous bubble can fulfil reads without calling back into the legacy, which decouples its runtime from legacy availability and performance. *See Nick Tune, [legacy-modernization.io](https://legacy-modernization.io); related to Pattern 12 (Transitional Architecture) and Pattern 10 (Commands and Events as Logical Boundary).*
 
-**Bounded context.** An explicit boundary within which a particular domain model applies. Inside the boundary, terms have a single meaning; across boundaries, the same term may mean different things. The bounded context is the central unit of strategic design in DDD. *See Evans 2003, Chapter 14; Martin Fowler's BoundedContext entry.*
+**Bi-directional Model Sync.** A synchronisation antipattern in incremental migrations where legacy and modernized entities are kept in continuous round-trip synchronisation, with each side's invariants having to survive translation through the other's model. The arrangement is fragile and resists retirement. *See Nick Tune, [legacy-modernization.io](https://legacy-modernization.io); related to Pattern 22 (Dual-Run Coexistence).*
 
-**Bubble.** A migration pattern in which a new subsystem is built with a clean target domain model and accesses legacy data exclusively through an anti-corruption layer, without local persistence and without synchronisation. The bubble eventually "pops" when the legacy data store is retired. Useful when the target model can be designed independently but the underlying data must remain in the legacy during the transition. *See Nick Tune, [legacy-modernization.io](https://legacy-modernization.io); related to Pattern 14 (Transitional Architecture).*
+**Bounded context.** DDD's term for explicit boundaries within which a particular domain model applies. Inside the boundary, vocabulary is precise and the model is consistent. Across the boundary, different bounded contexts may use the same word for different concepts. *See Eric Evans, *Domain-Driven Design* (2003); related to most patterns in the catalog.*
 
-**CDC vs Application-level Events.** A migration design decision between capturing data changes at the storage layer (Change Data Capture) versus emitting domain events from within the legacy application code. CDC is easier to instrument on legacy systems and captures every modification, but it leaks the legacy's storage model into downstream consumers. Application-level events carry richer semantic context and avoid that coupling, but require intervention in legacy code. *See Nick Tune, [legacy-modernization.io](https://legacy-modernization.io); related to Pattern 28 (Dual-Run Coexistence) and Pattern 12 (Commands and Events as Logical Boundary).*
+**Bubble.** A migration pattern in which a new subsystem is built with a clean target domain model and accesses legacy data exclusively through an anti-corruption layer, without local persistence and without synchronisation. The bubble eventually "pops" when the legacy data store is retired. Useful when the target model can be designed independently but the underlying data must remain in the legacy during the transition. *See Nick Tune, [legacy-modernization.io](https://legacy-modernization.io); related to Pattern 12 (Transitional Architecture).*
 
-**Context map.** A representation of the relationships between bounded contexts in a system — which contexts share concepts, which translate between each other, which are upstream or downstream of others. *See Evans 2003, Chapter 14; Vernon 2013, Chapter 3.*
+**CDC vs Application-level Events.** Two distinct techniques for propagating state changes from legacy to modernized systems. *Change Data Capture (CDC)* reads transaction logs or journals at the data-store level — DB2 log readers, VSAM journaling, IMS DPROP — and emits change events without requiring legacy application code to be modified. *Application-level events* are emitted by instrumented legacy application code itself, typically as transactional outbox writes. CDC has lower legacy disruption but emits change-at-the-data-level which lacks domain context; application-level events carry richer intent but require legacy code changes. The choice is per data domain. *Related to Pattern 22 (Dual-Run Coexistence).*
 
-**Core domain.** The subdomain that differentiates the business — the part of the system that gives the organisation its competitive advantage. Strategic design focuses architectural investment on the core domain. *See Evans 2003, Chapter 15.*
+**Context map.** A DDD artifact articulating how bounded contexts relate — which integrate, which translate, which conflict, which share kernel concepts. Eric Evans introduced the concept; Vaughn Vernon and Nick Tune have elaborated it for modern practice. *See Evans (2003), Vernon (2013), Tune & Hirth's Bounded Context Canvas; related to Pattern 3 (The Graph as Projection) and Pattern 9 (Pluggable Emitters).*
 
-**Distillation.** The strategic design activity of separating the core domain from supporting and generic subdomains, articulating the canonical concepts and language of the core, and protecting it from being absorbed into commodity concerns. *See Evans 2003, Chapter 15.*
+**Conway's Law.** Melvin Conway's 1968 observation that organizations design systems whose structure mirrors their communication structure. The original formulation: "Any organization that designs a system (defined broadly) will produce a design whose structure is a copy of the organization's communication structure." The implication for modernization: bounded contexts that are designed without regard to team structure will be reshaped informally by team dynamics, often in ways that undermine the intended architecture. *See Conway, "How Do Committees Invent?", 1968; related to Pattern 20 (Team Topology and Bounded Context Alignment).*
 
-**Domain event.** A statement about something significant that happened in the domain, modelled as a first-class object. Domain events are immutable, named in past tense, and form the basis of event-driven architectures within DDD. *See Vernon 2013, Chapter 8.*
+**Core domain.** Eric Evans' classification for the subdomain that contains the strategic differentiators of the business — the parts of the system where investment compounds and where the business outperforms its competitors. *See Evans (2003); related to Pattern 1 (Business-Aligned Capability Strategy) and Pattern 8 (Tier-Aware Scaffolding).*
 
-**Drifting Domain Model.** The phenomenon in which the target domain model evolves *during* the migration itself, as the team's understanding sharpens through contact with the legacy and with domain experts. Concepts that started as one-to-one renames (Employee → Collaborator) end up restructured (Collaborator with one Profile and many Working Agreements, of which Contract is one subtype). The migration is not a translation; it is a re-articulation. *See Nick Tune, [legacy-modernization.io](https://legacy-modernization.io); related to Pattern 5 (Domain Ontology as Independent Substrate).*
+**Distillation.** Eric Evans' term for separating what is essential about the business from what is incidental about how the legacy happened to express it. Distillation is the work of recovering the canonical domain from accumulated implementation. *See Evans (2003); related to Pattern 4 (Domain Ontology as Independent Substrate).*
 
-**Event Storming.** A workshop technique developed by Alberto Brandolini for collaboratively recovering domain understanding through orange sticky notes representing domain events arranged on a timeline. Particularly useful for legacy archaeology and for establishing ubiquitous language with domain experts. *See Brandolini, *Introducing EventStorming*.*
+**Domain event.** A first-class artifact representing something observable that has happened in the domain — a customer registered, an order shipped, a payment settled. Events are immutable, named in past tense, and carry the data necessary to understand what happened. *See Evans (2003), Vernon (2013); related to Pattern 7 (The Intermediate Representation) and Pattern 10 (Commands and Events as Logical Boundary).*
 
-**Expose Legacy Asset.** A migration pattern in which functionality or data inside the legacy is made available to modernized subsystems through an explicit interface — typically a synchronous API or a stream of domain events — rather than through direct database access or in-process coupling. The interface serves as a stable contract while the legacy itself remains in place. *See Nick Tune, [legacy-modernization.io](https://legacy-modernization.io); related to Pattern 19 (Bounded MCP Servers) and Pattern 12 (Commands and Events as Logical Boundary).*
+**Drifting Domain Model.** Nick Tune's term for the phenomenon where the target domain model itself drifts during migration. Concepts that began as straightforward renames end up restructured as the team's understanding sharpens through contact with the legacy and with domain experts. The drift is not a failure mode but an expected consequence of learning; the modernization must accommodate it. *See Nick Tune, [legacy-modernization.io](https://legacy-modernization.io); related to Pattern 4 (Domain Ontology as Independent Substrate).*
 
-**Generic subdomain.** A subdomain that the business needs but does not differentiate on — typically capabilities that can be bought or built off-the-shelf (logging, authentication, reference data). Strategic design favours minimal investment in generic subdomains. *See Evans 2003, Chapter 15.*
+**Enabling team.** In the Skelton-Pais team-topology framework, a team that transfers expertise into stream-aligned teams without taking ownership. Enabling teams are time-bounded; their goal is to make themselves unnecessary. In mainframe modernization, enabling teams typically operate at the boundary between legacy operations and modernized development, transferring institutional knowledge in both directions until the modernized team can operate the system independently. *See Skelton & Pais, *Team Topologies*, 2019; related to Pattern 20 (Team Topology and Bounded Context Alignment).*
 
-**Hexagonal architecture.** A pattern (also called ports and adapters) in which the domain logic sits at the centre, surrounded by adapter layers that translate between the domain and external concerns (databases, APIs, UIs). Used in this catalog for tier-3 strategic core scaffolds. *See Alistair Cockburn's hexagonal architecture writings.*
+**Event Storming.** Alberto Brandolini's collaborative workshop technique for recovering domain understanding from systems and people. A room full of domain experts, developers, and operators map events, commands, and aggregates against shared vocabulary on a wall of sticky notes. Event Storming surfaces what no single participant knew alone. *See Brandolini, *Introducing EventStorming* (2013); related to Pattern 4 (Domain Ontology as Independent Substrate) and Pattern 5 (Vertical Slice Discovery).*
 
-**Migrate Reads First / Migrate Writes First.** Two opposite ordering strategies within an incremental migration of a single capability. *Reads first* migrates query paths to the modernized system while writes continue against the legacy, typically using events or CDC to keep the modernized read model fresh; it unblocks downstream consumers quickly. *Writes first* migrates the write path to the modernized system while reads continue against the legacy until the read model is ready; it unblocks new use cases that depend on the new write model. The choice is strategic, not technical: it depends on which downstream pressure dominates. *See Nick Tune, [legacy-modernization.io](https://legacy-modernization.io); related to Pattern 27 (Rollout and Cutover at Bounded Context Granularity).*
+**Expose Legacy Asset.** Nick Tune's term for the integration pattern in which the legacy publishes events that modernized subsystems consume as their integration surface. The legacy becomes a queryable asset rather than a direct integration target. *See Nick Tune, [legacy-modernization.io](https://legacy-modernization.io); related to Pattern 10 (Commands and Events as Logical Boundary) and Pattern 15 (Bounded MCP Servers).*
 
-**Republishing Legacy Events.** A migration technique in which an autonomous bubble (or equivalent transitional subsystem) consumes events from the legacy and re-emits them in the target domain vocabulary, allowing downstream consumers to decouple from the legacy model *before* the migration is complete. Consumers integrate against the canonical events from the start; the bubble bridges the vocabulary gap during transition. *See Nick Tune, [legacy-modernization.io](https://legacy-modernization.io); related to Pattern 12 (Commands and Events as Logical Boundary).*
+**Faithfulness (of reasoning traces).** The degree to which an LLM-emitted explanation of its reasoning reflects the actual computation that produced the decision. Research in this area (Lanham et al. on faithful chain-of-thought; broader work from Anthropic and DeepMind on model self-explanation) suggests that chain-of-thought traces frequently rationalize post-hoc rather than faithfully report internal state. The implication for modernization: reasoning telemetry from agents is valuable as supplementary signal and as input to retrospective analysis, but should not be treated as authoritative about why a decision was reached. The authoritative signal is action-and-outcome. *Related to Pattern 18 (The Harness as Self-Observing State Machine), specifically the reasoning telemetry section.*
 
-**Strategic design.** The level of DDD that addresses bounded contexts, subdomain types, context maps, and the distribution of architectural attention across the system. Strategic design happens at the system level. *See Evans 2003, Part IV.*
+**Generic subdomain.** Eric Evans' classification for capabilities the business needs but does not differentiate on — accounting, authentication, audit logging. Generic subdomains should be solved with off-the-shelf solutions, SaaS, or minimal custom code. *See Evans (2003); related to Pattern 1 (Business-Aligned Capability Strategy) and Pattern 8 (Tier-Aware Scaffolding).*
 
-**Subdomain types (core / supporting / generic).** Evans' typology for classifying parts of the domain by their relationship to business differentiation. Core subdomains differentiate; supporting subdomains support the core; generic subdomains are needed but undifferentiated. The typology drives architectural investment decisions. *See Evans 2003, Chapter 15.*
+**Goodhart's Law.** Charles Goodhart's observation, popularised in economics and later extended to general measurement theory: "When a measure becomes a target, it ceases to be a good measure." In agentic systems, Goodhart pressure is the default: agents evaluated against any specific measure (heuristic catalog satisfaction, gate passage rate, confidence score) will learn to optimize for the measure rather than for the underlying property the measure was meant to capture. The implication for modernization: self-observation in the harness must anticipate Goodhart pressure, distinguishing between honest signals from agents producing the right work and gamed signals from agents producing convincing artifacts of the right work without the underlying substance. *Related to Pattern 18 (The Harness as Self-Observing State Machine) and the *Naive self-observation* antipattern.*
 
-**Supporting subdomain.** A subdomain that supports the core but does not itself differentiate the business. Strategic design treats supporting subdomains as candidates for moderate investment — enough structure to evolve, not enough to over-engineer. *See Evans 2003, Chapter 15.*
+**Hexagonal architecture.** Alistair Cockburn's articulation of the ports-and-adapters pattern: the domain at the centre, with explicit ports through which external actors interact and adapters that translate between external protocols and internal domain operations. *See Cockburn (2005); related to Pattern 8 (Tier-Aware Scaffolding) and Pattern 9 (Pluggable Emitters).*
 
-**Tactical design.** The level of DDD that addresses aggregates, entities, value objects, domain events, repositories, services, and how each bounded context's domain model is structured internally. Tactical design happens at the bounded context level. *See Evans 2003, Parts I–III; Vernon 2013.*
+**IR-Domain and IR-Scaffold.** The two substrates that compose the Intermediate Representation (Pattern 7), separated by the same compiler discipline that governs the boundary between agentic and deterministic work. *IR-Domain* holds architectural intent — commands, events, handlers, aggregates, sagas, side-effect surfaces — as a typed model that agents reason about. *IR-Scaffold* holds the structural blueprint — class layouts, file paths, project structure, scaffold-meta constitutional contracts — as a deterministic projection from IR-Domain that agents do not modify. Architectural decisions live in IR-Domain; rendering errors live in IR-Scaffold; conflating the two is the most common way the compiler principle silently fails. *Related to Pattern 6 (The Compiler Principle), Pattern 7 (The Intermediate Representation), and Pattern 18 (The Harness as Self-Observing State Machine).*
 
-**Tri-directional Sync.** A migration antipattern that emerges when an incremental migration is overlaid on a landscape that already contains multiple legacy systems holding overlapping data. The "two-way sync" framing collapses: with three systems the team must build and operate six synchronisation flows; with four, twelve. The combinatorial cost is not a design failure but a mathematical consequence of incremental migration with pre-existing legacy plurality. *See Nick Tune, [legacy-modernization.io](https://legacy-modernization.io); related to the *Behavioural Equivalence Without Ontology* antipattern.*
+**Migrate Reads First / Migrate Writes First.** Two complementary strategies for sequencing data migration during dual-run. *Migrate Reads First* directs read traffic to the modernized side while writes continue on the legacy side; the modernized side reads through CDC-populated stores. *Migrate Writes First* directs write traffic to the modernized side; the legacy reads through reverse CDC. The choice depends on consistency requirements and which side has more sophisticated read patterns. *See microservices migration literature; related to Pattern 22 (Dual-Run Coexistence).*
 
-**Ubiquitous language.** The shared vocabulary of a domain, used consistently by domain experts, developers, and the system itself (in code, in conversations, in documentation). The ubiquitous language is established within a bounded context — the same term may have different ubiquitous languages in different contexts. *See Evans 2003, Chapter 2.*
+**Platform team.** In the Skelton-Pais team-topology framework, a team that provides internal services and capabilities that stream-aligned teams consume. Platform teams reduce cognitive load on stream-aligned teams by offering well-defined services with clear interfaces. In mainframe modernization, platform teams typically own the modernization toolchain, the cloud infrastructure, the observability stack, and the security tooling. The vendor partner providing the modernization platform (Microsoft via the AIM offering, in Rosetta's case) is structurally an external platform team. *See Skelton & Pais, *Team Topologies*, 2019; related to Pattern 20 (Team Topology and Bounded Context Alignment).*
 
-**Vertical slice.** A unit of work that crosses multiple architectural layers to deliver a single user-visible capability. In modernization, the vertical slice typically corresponds to a use case within a bounded context, framed by the aggregates it touches. The slice is the unit of agentic translation in this catalog.
+**Republishing Legacy Events.** Nick Tune's term for an autonomous bubble pattern in which a modernized subsystem consumes legacy events and re-emits them in the canonical target vocabulary, allowing downstream consumers to decouple from the legacy model before the migration is complete. *See Nick Tune, [legacy-modernization.io](https://legacy-modernization.io); related to Pattern 10 (Commands and Events as Logical Boundary).*
+
+**Strategic design.** Eric Evans' term for the upstream DDD work of identifying bounded contexts, establishing ubiquitous language, and articulating subdomain types. Strategic design determines what the system is *about*; tactical design determines *how* the system is built. *See Evans (2003); related to Part I of this catalog as a whole.*
+
+**Stream-aligned team.** In the Skelton-Pais team-topology framework, a team aligned to a flow of work — typically a business domain, a product, or a customer journey. Stream-aligned teams own one or more bounded contexts and have end-to-end responsibility for delivering business value through them. In mainframe modernization, stream-aligned teams are typically organised by business domain (claims, underwriting, billing, reporting) rather than by technical concern. *See Skelton & Pais, *Team Topologies*, 2019; related to Pattern 20 (Team Topology and Bounded Context Alignment).*
+
+**Subdomain types (core / supporting / generic).** Eric Evans' three-way classification of subdomains. Core subdomains contain strategic differentiators and deserve deep investment. Supporting subdomains are necessary for the core to function and deserve appropriate investment. Generic subdomains are commodity capabilities the business needs but does not differentiate on, and should be solved with minimal custom investment. *See Evans (2003); related to Pattern 1 (Business-Aligned Capability Strategy) and Pattern 8 (Tier-Aware Scaffolding).*
+
+**Supporting subdomain.** Eric Evans' classification for subdomains that are not strategic differentiators but are necessary for the core domain to function — order processing, inventory management, customer service. Supporting subdomains deserve more investment than generic ones but less than core. *See Evans (2003); related to Pattern 1 (Business-Aligned Capability Strategy) and Pattern 8 (Tier-Aware Scaffolding).*
+
+**Tactical design.** Eric Evans' term for the downstream DDD work of modelling aggregates, entities, value objects, domain events, repositories, and the implementation patterns that realise strategic design. Tactical design lives within bounded contexts that strategic design has established. *See Evans (2003); related to Part II of this catalog as a whole.*
+
+**Tri-directional Sync.** A synchronisation antipattern in incremental migrations where the team must build and operate synchronisation flows between three or more systems with overlapping data — typically when the modernization is overlaid on a landscape that already contains multiple legacy systems. The combinatorial explosion of synchronisation flows quickly becomes unmanageable. *See Nick Tune, [legacy-modernization.io](https://legacy-modernization.io); related to Pattern 22 (Dual-Run Coexistence).*
+
+**Ubiquitous language.** DDD's term for the shared vocabulary of the domain that the team and the system both speak. The ubiquitous language is established for each bounded context; the same word may mean different things in different contexts. Establishing and maintaining ubiquitous language is the foundational work of strategic design. *See Evans (2003); related to Pattern 4 (Domain Ontology as Independent Substrate).*
+
+**Vertical slice.** A unit of work that crosses multiple architectural layers to deliver a single user-visible capability. In modernization, the vertical slice typically corresponds to a use case within a bounded context, framed by the aggregates it touches. The slice is the unit of agentic translation in this catalog. *See Jimmy Bogard (2018), Steven Smith (2018); related to Pattern 5 (Vertical Slice Discovery) and Pattern 8 (Tier-Aware Scaffolding).*
 
 **For broader DDD reference**, accessible entry points include Vladik Khononov's *Learning Domain-Driven Design* (2021), the [DDD Crew GitHub repository](https://github.com/ddd-crew), and the [Bounded Context Canvas](https://github.com/ddd-crew/bounded-context-canvas) by Nick Tune and Krisztina Hirth. For deeper engagement, Eric Evans' original *Domain-Driven Design* (2003) and Vaughn Vernon's *Implementing Domain-Driven Design* (2013) remain the canonical sources.
 
----
+**For team-topology reference**, Matthew Skelton and Manuel Pais's *Team Topologies* (2019) is the canonical source. Melvin Conway's original 1968 paper "How Do Committees Invent?" remains the foundational text for the underlying observation.
+
+-----
 
 # Reference implementations in Rosetta
 
 The patterns above are written abstractly because principles outlive implementations. This section names the concrete technologies that realise each pattern in Rosetta today. It's a snapshot — as of early 2026 — and will date faster than the patterns themselves. When a technology changes, this section updates; the pattern bodies stay stable.
 
-Only patterns with concrete implementations today appear here. Patterns marked *next* are designed but not yet built, so they have no reference implementation to record.
+Only patterns with concrete implementations today appear here. Patterns marked *designed* are not yet built, so they have no reference implementation to record.
+
+The source provenance discipline (architectural interlude) is realised across all patterns through `source_file`, `start_line`, `end_line` fields on every graph node, carried forward into IR elements, generated C# (as comments and metadata), semantic index entries, and agent reasoning records. The discipline is implementation-wide, not pattern-specific.
 
 **Pattern 2 — The Legacy as Oracle**
+
 - Legacy compiler: Raincode (compiles COBOL to .NET IL)
 - Container runtime: Docker
 - Local execution: developer workstation, in-process invocation
 
 **Pattern 3 — The Graph as Projection**
+
 - Graph database: Neo4j
 - Schema: COBOL/CICS-specific property graph (programs, paragraphs, data structures, control flow, side effects, predicates, entry points)
 - Query language: Cypher
 - Ingestion: custom COBOL/CICS parser feeding the graph schema
-
-**Pattern 4 — Source Provenance Discipline**
-- Provenance fields: `source_file`, `start_line`, `end_line` on every node
-- Carried through: graph nodes, IR elements, generated C# (as comments and metadata)
-
-**Pattern 6 — The Graph and the Index as Complementary Substrates**
-- Graph: Neo4j (Pattern 3)
 - Semantic index: Azure AI Search
 - Embedding granularity: paragraph-level and program-level
 - Vocabulary inference from comments, display literals, naming conventions, IR
-- Synchronization: shared ingestion pipeline updates both substrates from the same source events
+- Synchronization: shared ingestion pipeline updates both graph and index from the same source events
 
-*Pattern 5 (Domain Ontology as Independent Substrate) is status next; vocabulary inference and similarity clustering from Pattern 6 are starting points but the ontology substrate itself is not yet built.*
+**Pattern 5 — Vertical Slice Discovery from Structural and Behavioural Signals**
 
-**Pattern 7 — Vertical Slice Discovery from Structural and Behavioural Signals**
 - Structural analysis: Cypher queries over the Neo4j graph
 - Behavioural signal (when available): observation telemetry from the Witness production layer
 - CICS-specific anchors: `RETURN TRANSID`/`COMMAREA` cycles as primary slice boundary signal
 
-**Pattern 8 — The Compiler Principle**
+**Pattern 6 — The Compiler Principle**
+
 - Deterministic emitter: Roslyn SyntaxFactory
-- Validation layer: architect review through Rosetta Studio (Pattern 24)
+- Validation layer: architect review through Rosetta Studio (Pattern 19)
 - Probabilistic layer: GitHub Copilot SDK-driven agents inside the rendered scaffold
 
-**Pattern 9 — The Intermediate Representation**
+**Pattern 7 — The Intermediate Representation**
+
 - IR name: WolverineIntentModel
 - Schema: typed C# classes representing commands, events, handlers, sagas, aggregates, side-effect surfaces
 - Grounding: each IR element references the graph nodes that derived it
 
-**Pattern 10 — Tier-Aware Scaffolding**
+**Pattern 8 — Tier-Aware Scaffolding**
+
 - Tier annotation: stored on bounded context nodes in the graph
 - Scaffold variants: VSA emitter (tier 0–1), hybrid emitter (tier 2), hexagonal emitter (tier 3)
 - Heuristic derivation: cyclomatic complexity, coupling, change frequency
 
-**Pattern 11 — Pluggable Emitters**
-- Current emitters: vertical slice (Wolverine), hexagonal (Wolverine with ports/adapters), hybrid (Wolverine with lightweight domain models)
-- Future targets under consideration: Jade (event-sourced workloads), Java (Spring Boot or Quarkus emitter)
+**Pattern 9 — Pluggable Emitters**
 
-**Pattern 12 — Commands and Events as Logical Boundary**
+- Current code emitters: vertical slice (Wolverine, C#), hexagonal (Wolverine with ports/adapters, C#), hybrid (Wolverine with lightweight domain models, C#)
+- Future code emitter targets under consideration: Jade (event-sourced workloads), Java (Spring Boot or Quarkus emitter)
+- Documentation emitters: *designed*, not yet built; planned to use the same Roslyn-based emitter infrastructure for diagram and markdown rendering
+
+**Pattern 10 — Commands and Events as Logical Boundary**
+
 - Framework: Wolverine for current implementations
 - Transactional guarantees: Wolverine transactional outbox preserves CICS-equivalent consistency semantics
 - In-process default: Wolverine handles dispatching synchronously when contexts share a process
 - Distributed extension: same command/event surface flows over messaging when contexts are extracted to services
 
-**Pattern 16 — Twin Verification**
+**Pattern 12 — Transitional Architecture: The Modular Monolith as Migration Vehicle**
+
+- Module boundary enforcement: `internal` access modifier + assembly boundaries (first layer); NetArchTest for architecture-rule enforcement (second layer); custom Roslyn analyzers for source-level diagnostics (third layer)
+
+**Pattern 13 — Twin Verification**
+
 - Local oracle: Raincode-compiled COBOL packaged as Docker container (Legacy Twin)
 - Comparison: in-process semantic comparison of outputs against the Legacy Twin
 - Test framework: xUnit
 - Inner loop: candidate generation → dual execution → semantic comparison → verdict in milliseconds
 
-**Pattern 17 — Hypothesis-Driven Verification**
+**Pattern 14 — Hypothesis-Driven Verification**
+
 - Framework: Witness (production-mode counterpart to Twin Verification)
 - Capture-replay lineage: pmilet/playback (open-source HTTP capture-replay middleware, 2016)
 - MCP integration: Witness MCP Server owns the evidence lifecycle
+- Behavioural specifications from production captures: *designed*, not yet built; planned as extension of Witness pattern-matching layer
 
-**Pattern 18 — Behavioural Specifications Grown from Production**
-- Status: designed, not yet built; planned as extension of Witness pattern-matching layer
+**Pattern 15 — Bounded MCP Servers**
 
-**Pattern 19 — Bounded MCP Servers**
 - Protocol: Model Context Protocol (MCP)
 - SDK: MCP SDK for .NET
 - Server count in current architecture: four (Discovery, Legacy, Twin, Witness)
 
-**Pattern 20 — The Orchestration Layer Above Bounded Capabilities**
+**Pattern 16 — Durable Orchestration Above Bounded Capabilities**
+
 - Orchestrating agent: Cortex (Rosetta-internal name)
 - Framework: Microsoft Agent Framework (MAF)
 - Retrospective layer: dedicated retrospective agent that learns across sessions
-
-**Pattern 21 — Durable Agentic Workflows**
 - Durable workflow infrastructure: Azure Durable Functions
 - Hosted agentic platform: Azure AI Foundry
 - GitHub-native gates: branch protection, required status checks, GitHub Actions, issue templates
-- Persistence layer for state, replay semantics for failed steps
 
-**Pattern 23 — The Harness as State Machine**
+**Pattern 17 — Heuristics as Explicit Artifacts**
+
+- Heuristic catalog: queryable schema with conditions of application, evidence weights, version status, observability hooks
+- Catalog hosting: served through a Discovery server tool (Pattern 15)
+- Refinement loop: telemetry from Pattern 18's self-observation layer feeds catalog evolution
+
+**Pattern 18 — The Harness as Self-Observing State Machine**
+
 - State machine implementation: typed C# (Microsoft Agent Framework)
 - Hooks: PreToolUse and PostToolUse hooks defined in code
 - Per-project contract: scaffold-meta.json
 - GitHub-native enforcement: branch protection rules, required status checks, GitHub Actions
+- Self-observation telemetry: structured records of every gate evaluation, transition, escalation, cycle
+- Retrospective agent: *in construction* — pattern detection over long-running workflows
+- Reasoning telemetry: *in construction* — structured records alongside each agentic decision, queryable through standard observability infrastructure
 
-**Pattern 20 — Harness Self-Observation and Refinement**
-- Status: designed, not yet built
+**Pattern 19 — The Cockpit**
 
-**Pattern 24 — Reasoning Telemetry as First-Class Output**
-- Telemetry schema: structured records alongside each agentic decision
-- Storage: queryable through standard observability infrastructure
-- Status: in active development as part of the broader observability work
-
-**Pattern 25 — The Cockpit**
 - Implementation: Rosetta Studio
-- Surfaces: graph decisions, translation candidates, gate transitions, spec deltas, audit trail, diff views
+- Surfaces: graph decisions, translation candidates, gate transitions, spec deltas, audit trail, diff views, documentation re-renders
+- Spec delta format: OpenSpec (or equivalent structured format) — *designed*, integration with the harness gate model planned
 
-**Pattern 26 — Spec Deltas as the Unit of Review**
-- Specification format: OpenSpec (or equivalent structured format)
-- Status: designed, not yet built; planned to integrate with the harness gate model
+**Pattern 20 — Team Topology and Bounded Context Alignment**
 
----
+- Mapping documentation: team-context mapping stored alongside bounded context definitions in the graph
+- Authority routing: harness gate metadata declares team or role required for each transition
+- Cockpit routing: Studio surfaces decisions to the relevant team based on the team-context mapping
 
-# Closing
+**Pattern 21 — Rollout and Cutover at Bounded Context Granularity**
 
-Twenty-eight patterns and seven antipatterns. The catalog isn't comprehensive — it's calibrated to what Project Rosetta has surfaced over a year of building. Other patterns exist in the field; some I haven't encountered yet, some I've encountered but not yet articulated, some are being articulated by others doing parallel work.
+- Routing layer: API gateway / message bus / transaction router depending on engagement
+- Cutover gate orchestration: Pattern 18 harness states encode parallel run, shadow validation, incremental routing, canary monitoring, cutover, retention, decommission
+- Rollback rehearsal: pre-production test of rollback procedure required before cutover gate clears
 
-The patterns above are reports from inside an experiment. Patterns marked *working* have been validated inside the Rosetta prototype. None has yet been applied to a real customer engagement — that's the next phase. Patterns marked *in progress* are being built. Patterns marked *next* are designed but not yet built — proposals based on validated principles, not commitments to construction.
+**Pattern 22 — Dual-Run Coexistence: CDC, Reconciliation, and the Bridge Period**
 
-I expect the catalog to evolve. Some patterns will sharpen with use. Some will turn out to be specific to CICS COBOL and not generalise. Some will be replaced by patterns I haven't yet found. The catalog as it stands is a snapshot of what the experiment has taught me at this moment.
+- CDC mechanisms: vary by legacy store — IBM InfoSphere CDC, Oracle GoldenGate, or Debezium-style readers for DB2; journaling for VSAM; DPROP or equivalent for IMS
+- Outbox-pattern dual-write: Wolverine transactional outbox (recommended default)
+- Reconciliation: continuous sampling and scheduled comparison, with remediation playbooks per data domain
+- Bridge APIs: anti-corruption translation layer between legacy and modernized vocabularies
 
-Lineage. The Gang of Four's *Design Patterns* (Gamma, Helm, Johnson, Vlissides, 1994) established the form this catalog follows. Eric Evans' *Domain-Driven Design* (2003) is the discipline this catalog applies to a territory where DDD is rarely attempted; Vaughn Vernon's *Implementing Domain-Driven Design* (2013) is the tactical reference that informs how the IR encodes aggregates and events. Michael Feathers' *Working Effectively with Legacy Code* is the foundation Pattern 2 stands on. Kent Beck's Exploristan framing is the methodological frame for the whole prototype. Alberto Brandolini's Event Storming is the workshop technique that complements Pattern 5's ontology recovery. Specific patterns owe debts to specific people — Charity Majors, Nick Tune, Jeremy Miller, Birgitta Böckeler, Anthony Alcaraz, Uberto Barbini — named in the body of the patterns where their contributions actually shaped the work. The catalog accumulates from work done in the open by many practitioners across the DDD and modernization communities; my contribution is organising what has helped me into a vocabulary that may help others bridge the two.
+-----
 
-If you're a DDD practitioner curious about how the discipline scales when AI assistance meets blackfield mainframe modernization, I'd be interested to hear which patterns resonate, which feel forced, what's missing. If you're a mainframe modernization practitioner less familiar with DDD, I'd be interested to hear whether the framing helps clarify what the work actually is, or whether it adds vocabulary without adding clarity. The catalog improves through use.
+# Closing: What the Catalog Claims
+
+Twenty-two patterns and nine antipatterns. The catalog isn't comprehensive — it's calibrated to what Project Rosetta has surfaced over a year of building. Other patterns exist in the field; some I haven't encountered yet, some I've encountered but not yet articulated, some are being articulated by others doing parallel work.
+
+Three claims hold the catalog together. Each is testable; each could be wrong.
+
+**The first claim is that mainframe modernization is, at its core, a Domain-Driven Design activity at scale.** Strategic design — recovering the domain, identifying bounded contexts, establishing ubiquitous language — is the work that determines whether the modernization delivers business value. Tactical design — aggregates, domain events, handlers — is the work that determines whether the modernized code is maintainable. The patterns in Parts I and II operationalise both. If this claim is right, modernizations that skip the DDD work will produce technically successful systems that fail commercially. If it's wrong, modernizations can succeed through behavioural fidelity alone.
+
+**The second claim is that AI assistance changes the economics of modernization but not its discipline.** What was previously infeasible at scale — recovering specifications from decade-old COBOL, generating idiomatic C# at paragraph granularity, verifying behavioural equivalence in tight inner loops — becomes tractable when agents handle the mechanical work. But the discipline that determines whether the modernization succeeds is the same as it was before agents existed: strategic design done well, tactical design grounded in canonical ontology, verification that grades against ground truth rather than against the team's own assumptions. The patterns in Parts III and IV are the discipline; the agents are the labour. If this claim is right, teams investing in agents without investing in discipline will produce faster modernizations that fail at the same rate as manual ones. If it's wrong, the agents themselves are enough.
+
+**The third claim is that harness engineering, not agent multiplication, is what makes agentic modernization work.** The default instinct in the field is to multiply agents — more specialised agents, more coordination layers, swarms, meshes. The patterns above argue the opposite direction. Better harness, more deterministic constraints, more verifiable invariants, fewer agents doing more focused work inside structured cages. If this claim is right, agent armies will plateau and harness-first systems will scale. If it's wrong, the field's current direction is correct and Rosetta's approach is a local maximum.
+
+None of these claims has been validated against a real customer engagement. That's the next phase.
+
+What I'd want to know if I were reading this catalog rather than writing it:
+
+- Which patterns survive contact with engagements at scale, and which collapse under the operational reality I haven't yet encountered?
+- Which patterns are specific to CICS COBOL and don't generalise to PL/I, RPG, Adabas Natural, or Java legacy?
+- Which patterns I've named as original are actually well-known in adjacent fields under different names, and which adjacent fields would teach me something the catalog is missing?
+- Which patterns interact in ways I haven't documented? The Related patterns sections trace pairwise interactions; the network structure is something else.
+
+The catalog has visible gaps I haven't filled. *One-shot data migration at cutover* is a pattern I've designed but deferred from this catalog — real engagements live or die on the discrete data migration at the cut moment, and what I've written so far doesn't reflect enough engagement experience to articulate it well. *Observability of the modernized system in production* — beyond Witness, beyond divergence detection, the steady-state observability story for the modernized C# itself — is a pattern this catalog gestures at through Pattern 14 but doesn't develop. *Test strategy for the modernized code* — how agent-generated tests fit, how Twin-anchored tests evolve when the legacy is decommissioned, how the test suite participates in the harness gates — is important enough to deserve its own pattern, but I don't yet have the validated experience to write it well. Future revisions of the catalog will address these.
+
+The catalog improves through use. If you've found a pattern that works where mine doesn't, I'd want to hear about it. If you've found a pattern of mine that fails under conditions I haven't anticipated, I'd want to hear about that too. The substrate this catalog stands on — the work of Evans, Vernon, Fowler, Newman, Brandolini, Brown, Majors, Tune, Miller, Böckeler, Alcaraz, Barbini, Skelton, Pais, and many others — has accumulated across decades through exactly this kind of exchange. Adding to it is what justifies the work.
+
+A note on what comes next. The Rosetta prototype enters customer engagements through Microsoft's SMM AIM offering during 2026. Whatever those engagements teach will revise this catalog. Some patterns will sharpen with use. Some will turn out to be specific to environments I haven't yet encountered. Some will be replaced by patterns I haven't yet found. The next version of this catalog will be honest about what changed and why.
+
+The methodology is stack-agnostic. The conviction is not.
 
 — Pierre

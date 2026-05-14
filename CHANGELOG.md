@@ -6,6 +6,47 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ---
 
+## [v0.5] — 2026
+
+### Structural consolidation — twenty-two patterns, new pattern, revised architecture
+
+Consolidated the catalog from twenty-eight patterns to twenty-two. Six patterns were merged into others or absorbed into the architectural interlude; one new pattern was added. The consolidation tightens the catalog: every remaining pattern carries more weight, cross-references are shorter, and the reader encounters less indirection.
+
+**Structural changes:**
+- Pattern count reduced from 28 to 22; all patterns renumbered accordingly
+- Pattern 4 (Source Provenance Discipline) absorbed into the architectural interlude as a cross-cutting discipline rather than a standalone pattern
+- Pattern 6 (The Graph and the Index as Complementary Substrates) merged into Pattern 3 (The Graph as Projection), which now covers both the structural graph and the semantic index as dual substrates
+- Patterns 15 (Architecture Documentation as Pluggable Emitter), 18 (Behavioural Specifications Grown from Production), 20 (The Orchestration Layer Above Bounded Capabilities), and 26 (Spec Deltas as the Unit of Review) consolidated into neighbouring patterns
+- New Pattern 20: *Team Topology and Bounded Context Alignment* — addresses Conway's Law, team ownership of bounded contexts, and the organisational counterpart to capability mapping, drawing on Skelton & Pais's team topology framework
+
+**Terminology changes:**
+- Status markers renamed: *working* → *prototype-validated*, *in progress* → *in construction*, *next* → *designed*
+- Updated status distribution: 15 prototype-validated, 6 in construction, 1 designed
+- Added explanatory note on what "prototype-validated" means and doesn't mean
+
+**Antipatterns:**
+- Antipattern count increased from 7 to 9
+- Added *Naive self-observation* antipattern (Goodhart's Law applied to harness self-observation)
+- Added *Agent army* antipattern (scaling by agent multiplication rather than harness engineering)
+- Added antipatterns-and-corrective-patterns reference table
+
+**Architectural interlude revised:**
+- Restructured from per-layer sections (L1/L2/L3) to integrated narrative
+- Added source provenance as cross-cutting discipline (absorbed from former Pattern 4)
+- Added AsIs/ToBe ownership discipline section
+
+**Other changes:**
+- Added Matthew Skelton and Manuel Pais to the contributors list
+- Added glossary entries: Conway's Law, Enabling team, Goodhart's Law
+- Expanded Alignment Record concept in the cockpit pattern
+- Removed visual/infographic placeholders throughout
+- Updated all cross-references to reflect new pattern numbering
+- Updated epub and pdf artifacts
+
+**Net effect:** ~810 lines removed, ~750 lines added. The catalog is shorter, denser, and better organised. Every pattern that was removed is preserved in the pattern or interlude that absorbed it.
+
+---
+
 ## [v0.4] — 2026
 
 ### Architectural Interlude added
