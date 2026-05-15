@@ -6,6 +6,43 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ---
 
+## [v0.6] — 2026
+
+### New part, new pattern — Safe Transition and Coexistence
+
+Added a fifth part to the catalog and a twenty-third pattern. The catalog now answers a question it previously left open: *when is the modernization of a bounded context done?* A new Part V groups the patterns that govern the disciplined movement of a bounded context from legacy authority to modernized authority, and the dual-run period during which both sides operate.
+
+**Structural changes:**
+- Pattern count increased from 22 to 23
+- New **Part V — Safe Transition and Coexistence**, between Part IV (Governance) and the Antipatterns section; the catalog is now five parts
+- Patterns 21 (*Rollout and Cutover at Bounded Context Granularity*) and 22 (*Dual-Run Coexistence*) regrouped from Part IV into Part V; Part IV (Governance) is now Patterns 15–20
+- New **Pattern 23: *Completion Criteria as Designed Property of Each Bounded Context*** — five-dimensional completion model (behavioural equivalence, coverage, ontological alignment, operational evidence, team-ownership transfer), calibrated per bounded context to tier and capability classification, declared during strategic recovery rather than judged at the end. Status: *designed*
+- Part V opens with a numbering note: Pattern 23 is presented first, then 21 and 22, reflecting the logical order in which they apply during transition (completion gates cutover, cutover gates coexistence)
+- Pattern 19 renamed: ***The Cockpit* → *The Control Plane*** — all references updated catalog-wide
+
+**Terminology and status:**
+- Subtitle updated: *"Twenty-two patterns where Domain-Driven Design meets blackfield mainframe modernization"* → *"Twenty-three patterns where Domain-Driven Design meets AI-assisted blackfield mainframe modernization"*
+- Status distribution updated: 15 prototype-validated, 6 in construction, **2 designed** (was 1) — Pattern 4 and the new Pattern 23
+- Reader's guide updated to four-part → five-part structure, with a note that the five parts mirror Rosetta's own stages
+
+**Reader's guide additions:**
+- Added Kent Beck's *3X framework* (Explore / Expand / Extract) to position the catalog explicitly in Explore
+- Added a motivation passage (Camus epigraph) on why the catalog exists — pushing back in writing against the assumption that mainframe modernization is straightforward
+
+**Substantive content expansions:**
+- Pattern 1 (*Business-Aligned Capability Strategy*): added the facilitation discipline — the capability map's value is the shared understanding it represents, not the document; added the supporting-subdomain strategy; full Conway's Law attribution
+- Pattern 2 (*The Legacy as Oracle*): added the *separation of powers* framing for the independent-oracle argument; added the *Big Ball of Mud* (Foote & Yoder) framing for ontological drift
+- Pattern 3 (*The Graph as Projection*): expanded the two-epistemologies argument; distinguished deterministic graph ingestion from stable-retrieval semantics for the index; added community-detection algorithm choice (Louvain / Leiden); expanded discriminator-field and context-map explanations; added the analysis-vs-interpretation distinction
+- Pattern 4 (*Domain Ontology as Independent Substrate*): expanded the substrate framing and the argument that the ontology is the most durable asset the modernization produces
+
+**Other changes:**
+- Updated all cross-references for the new pattern, part, and Pattern 19 rename
+- Updated epub and pdf artifacts
+
+**Net effect:** ~200 lines added, ~84 lines removed. The catalog gains a part and a pattern; the new material closes the completion-criteria gap and tightens several Part I patterns.
+
+---
+
 ## [v0.5] — 2026
 
 ### Structural consolidation — twenty-two patterns, new pattern, revised architecture
