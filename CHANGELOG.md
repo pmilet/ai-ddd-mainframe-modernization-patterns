@@ -6,6 +6,49 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ---
 
+## [v0.7] — 2026
+
+### Strategic spectrum, the Modernization Journey, and three new patterns
+
+The largest revision since the initial draft. The catalog gains a unifying narrative spine (*The Modernization Journey*), reframes itself around a *strategic spectrum* rather than an implicit rewrite default, retires the standalone Architectural Interlude, adds three patterns and a tenth antipattern, and closes with a new *Closing* section that states the catalog's three testable claims and its honest gaps.
+
+**Structural changes:**
+- Pattern count increased from 23 to 26; all patterns renumbered accordingly
+- New **Pattern 6: *Context Map for Modernization*** — Evans' seven relationship types applied across the modernization landscape, with the distinction between *durable* and *transitional* relationships and explicit retirement criteria for the transitional ones. Status: *designed*
+- New **Pattern 13: *Temporal Decoupling and Latency-Aware Data Access*** — added to Part II (Tactical Generation)
+- New **Pattern 26: *Replatform with Modern Facade*** — extends the catalog to the part of the spectrum where legacy code is preserved behind a generated facade rather than rewritten. Status: *designed*
+- *Transitional Architecture: The Modular Monolith as Migration Vehicle* relocated into Part V as **Pattern 22**, as the architectural vehicle the modernized side runs as during transition
+- **Architectural Interlude removed** — the three-layer recovery architecture, source-provenance discipline, AsIs/ToBe ownership, and scoping note are redistributed into the patterns and the new front matter rather than living as a standalone section
+- New top-level section **The Modernization Journey** (Understand / Generate / Verify / Govern / Transition / *The journey lands*) — a narrative spine that walks the five stages before the formal pattern catalog begins
+- Front matter restructured: *How to read this catalog* split into **Preface**, **Who this catalog is for**, **What this catalog covers — and what it doesn't**, **What kind of patterns these are**, and **How to read it**
+- New **Closing** section: *Three claims* (the catalog's three testable, falsifiable claims), *What the catalog does not yet do*, *How the catalog improves*, *A word to the three audiences*
+- Added a dedication
+
+**Part structure (renumbered):**
+- Part I — Strategic Recovery (Patterns 1–6)
+- Part II — Tactical Generation (Patterns 7–13)
+- Part III — Verification (Patterns 14–15)
+- Part IV — Governance (Patterns 16–21)
+- Part V — Safe Transition and Coexistence (Patterns 22–26)
+
+**Terminology and status:**
+- Subtitle updated: *"Twenty-three patterns…"* → *"Twenty-six patterns where Domain-Driven Design meets AI-assisted blackfield mainframe modernization"*
+- Status distribution updated: 15 prototype-validated, **7** in construction (was 6), **4** designed (was 2) — the new *designed* patterns are 6 and 26
+- New **strategic spectrum** framing introduced up front: modernization is not a synonym for rewrite — capabilities are placed on a spectrum of rewrite / replatform / reimagine / replace with SaaS / retire, and the catalog is explicit about its rewrite-heavy centre of gravity
+- **Specification-driven development (SDD)** introduced as the reimagination treatment: where the rest of the catalog treats the legacy as oracle, reimagination treats the spec as oracle (Twin Verification uncouples in this mode)
+
+**Antipatterns:**
+- Antipattern count increased from 9 to 10
+- Added ***Anemic Domain Model from Agentic Translation*** — the classic Anemic Domain Model failure (Fowler, 2003) recurring with new mechanics under AI assistance, with structural correctives in Patterns 8, 9, and 19
+
+**Other changes:**
+- Updated all cross-references for the new patterns, renumbering, and removed interlude
+- Updated epub and pdf artifacts
+
+**Net effect:** ~710 lines added, ~397 lines removed. The catalog gains a narrative spine and an honest map of the modernization spectrum it serves, three patterns close real gaps (relationship design, latency-aware data access, replatform/facade), and the new Closing section makes the catalog's claims falsifiable.
+
+---
+
 ## [v0.6] — 2026
 
 ### New part, new pattern — Safe Transition and Coexistence
