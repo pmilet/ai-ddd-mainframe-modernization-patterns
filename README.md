@@ -85,7 +85,7 @@ If you find patterns I haven't articulated, antipatterns I haven't named, or con
 
 ## About the author
 
-Pierre Milet Llobet is a software architect at Microsoft, with fifteen years of mainframe modernization experience. He came to mainframes as an outsider and learned the COBOL/CICS world the slow way — through migrations done before AI assistance was practical, when modernization was a matter of careful manual work. **Project Rosetta** is the experiment in what becomes possible when AI assistance changes that economics. The patterns here are reports from inside that experiment.
+Pierre Milet Llobet is a software architect at Microsoft, with 30+ years of software engineering experience and fifteen years of mainframe modernization. He came to mainframes as an outsider and learned the COBOL/CICS world the slow way — through migrations done before AI assistance was practical, when modernization was a matter of careful manual work. **Project Rosetta** is the experiment in what becomes possible when AI assistance changes that economics. The patterns here are reports from inside that experiment.
 
 He writes about modernization, AI-assisted software engineering, and Domain-Driven Design under the [LegacyLabs](https://www.linkedin.com/newsletters/legacy-labs-7317839126702055426/) name on LinkedIn.
 
