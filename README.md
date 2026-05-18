@@ -5,7 +5,7 @@
 [![Status](https://img.shields.io/badge/status-draft%20v0.8-orange)](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases)
 [![License](https://img.shields.io/badge/license-CC%20BY%204.0-blue)](LICENSE)
 
-Twenty-eight patterns where Domain-Driven Design meets AI-assisted blackfield mainframe modernization. Some are exercised inside the Rosetta prototype; others are reasoned forward from validated principles, with each pattern's body stating which. None has yet been applied to a real customer engagement — that's the next phase, not yet started.
+Twenty-eight patterns where Domain-Driven Design meets AI-assisted blackfield mainframe modernization. Some are exercised inside the Rosetta prototype; others are reasoned forward from validated principles, with each pattern's body stating which.
 
 This is the long version of what I've been writing about on LinkedIn under the [LegacyLabs](https://www.linkedin.com/newsletters/legacy-labs-7317839126702055426/) name. The shorter posts and newsletter there were the introduction.
 
