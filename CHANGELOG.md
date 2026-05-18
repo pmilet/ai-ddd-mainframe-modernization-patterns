@@ -6,6 +6,48 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ---
 
+## [v0.8] — 2026
+
+### Verification matures into a full part, the status-marker system retired, third thesis named
+
+A structural revision focused on the Verification part and on how the catalog signals confidence. Part III grows from two patterns to five — gaining behavioural-specification inference, data-drift verification, and the relocated completion-criteria pattern — and the per-pattern status-marker system is retired in favour of confidence stated in prose inside each pattern body. The Preface gains a third thesis (structural vs prescriptive harness) and a third audience (AI engineers).
+
+**Structural changes:**
+- Pattern count increased from 26 to 28; all patterns from 16 onward renumbered accordingly
+- New **Pattern 16: *Behavioural Specification Inference from Production Corpus*** — added to Part III (Verification)
+- New **Pattern 17: *Data Drift Analysis and Verification*** — added to Part III (Verification)
+- *Completion Criteria as Designed Property of Each Bounded Context* relocated from Part V into Part III as **Pattern 18**, reframed as a verification concern (the evidence a bounded context is *done*) declared during strategic recovery
+- **Part III — Verification** expands from Patterns 14–15 to Patterns 14–18 — verification becomes a developed part rather than a two-pattern bridge
+- **Part IV** renamed: *Governance* → ***Governance and Operating Discipline***; now Patterns 19–24
+- Part V (Safe Transition and Coexistence) renumbered to Patterns 25–28
+- New section after Antipatterns: **Pattern engagement across the modernization spectrum**
+- Closing section restructured: *Three claims* / *What comes next* / *A word to the three audiences*
+
+**Part structure (renumbered):**
+- Part I — Strategic Recovery (Patterns 1–6)
+- Part II — Tactical Generation (Patterns 7–13)
+- Part III — Verification (Patterns 14–18)
+- Part IV — Governance and Operating Discipline (Patterns 19–24)
+- Part V — Safe Transition and Coexistence (Patterns 25–28)
+
+**Terminology and status:**
+- Subtitle updated: *"Twenty-six patterns…"* → *"Twenty-eight patterns where Domain-Driven Design meets AI-assisted blackfield mainframe modernization"*
+- **Per-pattern status-marker system retired** — the *prototype-validated / in construction / designed* labels, the status-distribution sentence, and the standalone `*Status:*` lines are removed catalog-wide. Maturity is now carried in prose within each pattern body (Context, Consequences) and summarised once in the Preface's *Maturity* note, framed against Kent Beck's 3X (the catalog is in Explore). The status table is removed from the README accordingly
+
+**Preface and front matter:**
+- Added a **third thesis**: the deterministic substrates *are* the conceptual model agents work within — the distinction between *prescriptive harness* (state machines, hooks, gates) and *structural harness* (typed scaffolds, IR, ontology, tests), crediting Birgitta Böckeler's harness-engineering writing; structural harness argued to be the larger, more underestimated investment
+- Added a **third audience**: *AI engineers working at the frontier of agentic coding*, alongside DDD and mainframe practitioners
+- Added Chris Richardson's stance — human understanding as a *purpose*, not a fallback for AI failure
+- Lineage expanded with Vlad Khononov and Pramod Sadalage; Pattern 4 develops the canonical ontology as Published Language bridging deterministic infrastructure and probabilistic agents (Evans, 2026)
+
+**Other changes:**
+- Updated all cross-references for the two new patterns, the relocation, and the renumbering
+- Updated epub and pdf artifacts
+
+**Net effect:** ~807 lines added, ~730 lines removed. Verification stops being the catalog's thinnest part; confidence moves from a label the reader filters on to an argument the reader weighs; the Preface names the harness thesis the rest of the catalog had been assuming.
+
+---
+
 ## [v0.7] — 2026
 
 ### Strategic spectrum, the Modernization Journey, and three new patterns
