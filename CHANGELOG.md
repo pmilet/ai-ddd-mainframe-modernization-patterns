@@ -6,6 +6,25 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ---
 
+## [v0.9] — 2026
+
+### README restructured around an executive-summary entrance; front-matter polish
+
+A presentation-focused revision. The README opens with a short executive summary of content and audience instead of leading with maturity framing; Kent Beck's 3X framework now anchors the **Maturity** section rather than the introduction, and the duplicated maturity language between the two has been removed. The manuscript's front matter is tidied.
+
+**README:**
+- Entrance rewritten as a concise executive summary (content and audience), followed by a brief scope sketch; the unvalidated-engagement disclosure removed from the intro
+- Kent Beck's **3X** framing relocated to lead the **Maturity** section; cross-section repetition de-duplicated
+- Maturity wording clarified: patterns "not yet run against real **production** code"
+- Author bio updated: 30+ years of software engineering experience alongside fifteen years of mainframe modernization
+
+**Manuscript:**
+- Dedication reworded
+- Figure-plate caption alt-text removed across all plates for cleaner rendering
+- PDF and EPUB regenerated
+
+---
+
 ## [v0.8] — 2026
 
 ### Verification matures into a full part, the status-marker system retired, third thesis named

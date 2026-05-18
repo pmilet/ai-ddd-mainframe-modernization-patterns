@@ -2,7 +2,7 @@
 
 ## A Pattern Catalog from Project Rosetta
 
-[![Status](https://img.shields.io/badge/status-draft%20v0.8-orange)](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases)
+[![Status](https://img.shields.io/badge/status-draft%20v0.9-orange)](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases)
 [![License](https://img.shields.io/badge/license-CC%20BY%204.0-blue)](LICENSE)
 
 A pattern catalog for AI-assisted modernization of COBOL/CICS mainframe systems, read through a Domain-Driven Design lens — written for DDD practitioners, mainframe modernization practitioners, and AI engineers working at the frontier of agentic coding.
@@ -17,8 +17,8 @@ This is the long version of what I've been writing about on LinkedIn under the [
 
 | Format | Description |
 |--------|-------------|
-| 📄 [**PDF**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v0.8/AI-Assisted.Domain-Driven.Mainframe.Modernization.pdf) | Full catalog, print-friendly |
-| 📱 [**EPUB**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v0.8/AI-Assisted.Domain-Driven.Mainframe.Modernization.epub) | E-reader format (Kindle, Kobo, Apple Books) |
+| 📄 [**PDF**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v0.9/AI-Assisted.Domain-Driven.Mainframe.Modernization.pdf) | Full catalog, print-friendly |
+| 📱 [**EPUB**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v0.9/AI-Assisted.Domain-Driven.Mainframe.Modernization.epub) | E-reader format (Kindle, Kobo, Apple Books) |
 | 📝 [**Markdown source**](AI-Assisted%20Domain-Driven%20Mainframe%20Modernization.md) | Read directly on GitHub |
 
 ---

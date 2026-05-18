@@ -6,13 +6,13 @@
 
 -----
 
-![*The Rosetta Stone — three scripts, one decree. Modernization is a translation from one running system to another, with meaning preserved.*](images/plate-i-journey.png)
+*For Cristina,*  
+*who has listened patiently to every turn of this thinking,*  
+*and given me the spirit to follow it through.*
 
 -----
 
-*For Cristina,*  
-*who has listened patiently to my long thinking*  
-*and given me the energy and spirit to pursue it.*
+![](images/plate-i-journey.png)
 
 -----
 
@@ -69,7 +69,7 @@ A note for readers tracking the AI-engineering frontier. The catalog engages at 
 
 -----
 
-![*The journey at a glance: the legacy, the five stops between, the modernized system.*](images/plate-journey-opener.png)
+![](images/plate-journey-opener.png)
 
 -----
 
@@ -129,7 +129,7 @@ The journey lands when the modernized system reaches production, delivers early 
 
 -----
 
-![*The work of recovery: naming the capabilities, consulting the legacy, bounding the contexts.*](images/plate-i-recovery.png)
+![](images/plate-i-recovery.png)
 
 -----
 
@@ -530,7 +530,7 @@ Pattern 1 (*Business-Aligned Capability Strategy*) determines which capabilities
 
 -----
 
-![*The compiler principle: deterministic infrastructure on the left, probabilistic agent work on the right, the architectural commitment between them.*](images/plate-iii-compiler.png)
+![](images/plate-iii-compiler.png)
 
 -----
 
@@ -974,7 +974,7 @@ Pattern 11 (*Commands and Events as Logical Boundary*) provides the implementati
 
 -----
 
-![*Twin verification: the legacy on the left, the candidate on the right, the instruments of comparison between them.*](images/plate-iv-twin.png)
+![](images/plate-iv-twin.png)
 
 -----
 
@@ -1286,7 +1286,7 @@ Pattern 1 (*Business-Aligned Capability Strategy*) provides the capability class
 
 -----
 
-![*Discipline as infrastructure: the harness, the gate, the catalog of rules.*](images/plate-iv-governance.png)
+![](images/plate-iv-governance.png)
 
 -----
 
@@ -1786,7 +1786,7 @@ Pattern 1 (*Business-Aligned Capability Strategy*) provides the capability map t
 
 -----
 
-![*The legacy, the bridge, the modernized system — coexistence as a designed state with an end.*](images/plate-v-coexistence.png)
+![](images/plate-v-coexistence.png)
 
 -----
 
@@ -2072,7 +2072,7 @@ Pattern 1 (*Business-Aligned Capability Strategy*) is what determines whether fa
 
 -----
 
-![*Three of the failure modes the catalog is built against: Jobol, frozen architecture, silent semantics loss.*](images/plate-antipatterns.png)
+![](images/plate-antipatterns.png)
 
 -----
 
@@ -2401,7 +2401,7 @@ The source provenance discipline (see The Modernization Journey) is realised acr
 
 -----
 
-![*The journey at a glance: the legacy, the five archways from rough to refined, the bridge, the modernized system.*](images/plate-closing.png)
+![](images/plate-closing.png)
 
 -----
 
