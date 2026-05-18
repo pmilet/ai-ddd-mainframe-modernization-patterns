@@ -41,7 +41,7 @@ It stands on shoulders — Eric Evans, Vaughn Vernon, Martin Fowler, Sam Newman,
 
 Kent Beck's **3X** framework names three modes of software work: **Explore** — search for something that works, where most bets fail and learning is the only reliable return; **Expand** — scale what worked once demand is real; **Extract** — flatten costs once the shape is stable. This catalog is Explore, deliberately and entirely.
 
-It is an early articulation, not a manual for proven practice. Some patterns are exercised inside the Rosetta prototype with concrete implementation behind them; others are reasoned forward from validated principles — the architecture is grounded, but the specific pattern has not yet been run against real code. Each pattern's body says which, in prose, rather than through a status label. No pattern has yet been put under load by a real customer engagement at production scale — in 3X terms that is Expand, the next phase, not this one.
+It is an early articulation, not a manual for proven practice. Some patterns are exercised inside the Rosetta prototype with concrete implementation behind them; others are reasoned forward from validated principles — the architecture is grounded, but the specific pattern has not yet been run against real production code. Each pattern's body says which, in prose, rather than through a status label. No pattern has yet been put under load by a real customer engagement at production scale — in 3X terms that is Expand, the next phase, not this one.
 
 ---
 
