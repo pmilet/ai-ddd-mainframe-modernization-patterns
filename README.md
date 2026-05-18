@@ -5,7 +5,7 @@
 [![Status](https://img.shields.io/badge/status-draft%20v0.8-orange)](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases)
 [![License](https://img.shields.io/badge/license-CC%20BY%204.0-blue)](LICENSE)
 
-Twenty-eight patterns where Domain-Driven Design meets AI-assisted blackfield mainframe modernization. Some are exercised inside the Rosetta prototype; others are reasoned forward from validated principles, with each pattern's body stating which.
+Kent Beck's **3X** framework names three modes of software work: **Explore** — search for something that works, where most bets fail and learning is the only reliable return; **Expand** — scale what worked once demand is real; **Extract** — flatten costs once the shape is stable. This catalog is Explore, deliberately and entirely: twenty-eight patterns where Domain-Driven Design meets AI-assisted blackfield mainframe modernization, none yet put under load by a real customer engagement at production scale. That is Expand — the next phase, not this one.
 
 This is the long version of what I've been writing about on LinkedIn under the [LegacyLabs](https://www.linkedin.com/newsletters/legacy-labs-7317839126702055426/) name. The shorter posts and newsletter there were the introduction.
 
@@ -37,7 +37,7 @@ It stands on shoulders — Eric Evans, Vaughn Vernon, Martin Fowler, Sam Newman,
 
 ## Maturity
 
-This catalog is an early articulation, not a manual for proven practice. Some patterns are exercised inside the Rosetta prototype with concrete implementation behind them; others are reasoned forward from validated principles — the architecture is grounded, but the specific pattern has not yet been run against real code. Each pattern's body says which, in prose, rather than through a status label. No pattern here has been put under load by a real customer engagement at production scale — that is the next phase. In Kent Beck's 3X terms, the catalog is in **Explore**.
+This catalog is an early articulation, not a manual for proven practice. Some patterns are exercised inside the Rosetta prototype with concrete implementation behind them; others are reasoned forward from validated principles — the architecture is grounded, but the specific pattern has not yet been run against real code. Each pattern's body says which, in prose, rather than through a status label.
 
 ---
 
