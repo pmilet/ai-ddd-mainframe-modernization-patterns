@@ -1,9 +1,9 @@
 {
-  "date": "1970-01-01",
-  "taken_at": "1970-01-01T00:00:00Z",
-  "repo": "owner/repo",
+  "date": "2026-05-19",
+  "taken_at": "2026-05-19T10:34:30Z",
+  "repo": "pmilet/ai-ddd-mainframe-modernization-patterns",
   "repo_stats": {
-    "stars": 0,
+    "stars": 2,
     "forks": 0,
     "watchers": 0
   },
@@ -14,9 +14,18 @@
     "unique_cloners": 0
   },
   "releases": {
-    "count": 0,
-    "total_downloads": 0,
-    "assets": []
+    "count": 7,
+    "total_downloads": 9,
+    "assets": [
+      {
+        "name": "AI-Assisted.Domain-Driven.Mainframe.Modernization.pdf",
+        "downloads": 8
+      },
+      {
+        "name": "AI-Assisted.Domain-Driven.Mainframe.Modernization.epub",
+        "downloads": 1
+      }
+    ]
   },
   "daily": {
     "views": [],
