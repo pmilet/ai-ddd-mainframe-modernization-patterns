@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pattern Catalog — Metrics</title>
+  <style>
+    :root {
+      --bg: #FBF8F3;
+      --ink: #4A4458;
+      --muted: #7A6E80;
+      --rule: #DCD5C8;
+      --card: #FFFFFC;
+      --accent-blue: #4A7BA1;
+      --accent-sage: #6B8C5A;
+      --accent-peach: #C97A4A;
+      --accent-rose: #B26565;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1f1d24;
+        --ink: #E8E4EC;
+        --muted: #9A91A4;
+        --rule: #3A3640;
+        --card: #2A2832;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, system-ui, sans-serif;
+      margin: 0;
+      padding: 2rem;
+      line-height: 1.5;
+      max-width: 1200px;
+      margin-inline: auto;
+    }
+    header { margin-bottom: 2.5rem; }
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin: 0 0 0.25rem 0;
+      letter-spacing: -0.01em;
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    .meta a {
+      color: var(--muted);
+      text-decoration: underline;
+      text-decoration-color: var(--rule);
+      text-underline-offset: 3px;
+    }
+    .meta a:hover { color: var(--ink); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 1.25rem 1.5rem;
+    }
+    .card h2 {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 0.75rem 0;
+    }
+    .big {
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 2.25rem;
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+    .sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+    .breakdown {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+    .breakdown li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.35rem 0;
+      border-bottom: 1px dotted var(--rule);
+      list-style: none;
+    }
+    .breakdown li:last-child { border-bottom: none; }
+    .breakdown .name {
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 0.85rem;
+      color: var(--ink);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin-right: 1rem;
+    }
+    .breakdown .val {
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    ul { padding: 0; margin: 0; }
+    .spark { margin-top: 0.5rem; width: 100%; height: 60px; display: block; }
+    .spark-line { fill: none; stroke-width: 1.5; }
+    .spark-fill { opacity: 0.15; }
+    .spark-blue .spark-line, .spark-blue .spark-fill { stroke: var(--accent-blue); fill: var(--accent-blue); }
+    .spark-sage .spark-line, .spark-sage .spark-fill { stroke: var(--accent-sage); fill: var(--accent-sage); }
+    .spark-peach .spark-line, .spark-peach .spark-fill { stroke: var(--accent-peach); fill: var(--accent-peach); }
+    .pill {
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--rule);
+      border-radius: 9999px;
+      margin-left: 0.5rem;
+    }
+    .empty {
+      color: var(--muted);
+      font-style: italic;
+      font-size: 0.85rem;
+    }
+    footer {
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--rule);
+      color: var(--muted);
+      font-size: 0.75rem;
+      text-align: center;
+    }
+    .err {
+      background: #FBE7E5;
+      color: #8B2A1F;
+      padding: 1rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+    @media (prefers-color-scheme: dark) {
+      .err { background: #3a2a28; color: #f0c7c0; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Pattern Catalog — Metrics</h1>
+  <div class="meta">
+    <span id="repo-name">…</span>
+    · last snapshot <span id="last-updated">…</span>
+    · <a href="https://github.com/" id="repo-link">view on GitHub →</a>
+  </div>
+</header>
+
+<div id="error" class="err" style="display:none"></div>
+
+<main class="grid" id="grid"></main>
+
+<footer>
+  Snapshotted daily at 06:00 UTC by GitHub Actions.
+  Repo traffic data is limited to the last 14 days by GitHub.
+  Download counts are cumulative all-time per asset.
+</footer>
+
+<script>
+  // ---------- helpers ----------
+  const fmt = n => (n ?? 0).toLocaleString('en-US');
+  const fmtDate = iso => {
+    if (!iso) return '—';
+    const d = new Date(iso);
+    return d.toLocaleString('en-GB', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+  };
+  const $ = sel => document.querySelector(sel);
+  const el = (tag, props = {}, ...kids) => {
+    const e = document.createElement(tag);
+    Object.entries(props).forEach(([k, v]) => {
+      if (k === 'class') e.className = v;
+      else if (k === 'html') e.innerHTML = v;
+      else e.setAttribute(k, v);
+    });
+    kids.forEach(k => e.append(k?.nodeType ? k : document.createTextNode(String(k))));
+    return e;
+  };
+  const showErr = msg => {
+    const e = $('#error');
+    e.textContent = msg;
+    e.style.display = 'block';
+  };
+
+  // ---------- sparkline (vanilla SVG, no library) ----------
+  function sparkline(values, klass) {
+    const w = 280, h = 60, p = 4;
+    if (!values || values.length < 2) return el('div', { class: 'empty' }, 'Not enough data yet.');
+    const max = Math.max(...values, 1);
+    const min = 0;
+    const range = max - min || 1;
+    const step = (w - p * 2) / (values.length - 1);
+    const pts = values.map((v, i) => {
+      const x = p + i * step;
+      const y = h - p - ((v - min) / range) * (h - p * 2);
+      return `${x.toFixed(1)},${y.toFixed(1)}`;
+    });
+    const fillPath = `M${pts[0]} L ${pts.join(' L ')} L ${w - p},${h - p} L ${p},${h - p} Z`;
+    const linePath = `M ${pts.join(' L ')}`;
+    const svg = `<svg class="spark ${klass}" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none">
+      <path class="spark-fill" d="${fillPath}"/>
+      <path class="spark-line" d="${linePath}"/>
+    </svg>`;
+    const wrap = document.createElement('div');
+    wrap.innerHTML = svg;
+    return wrap.firstChild;
+  }
+
+  // ---------- rendering ----------
+  function render(current, history) {
+    const grid = $('#grid');
+    grid.innerHTML = '';
+
+    const repo = current.repo || 'unknown/repo';
+    $('#repo-name').textContent = repo;
+    $('#last-updated').textContent = fmtDate(current.taken_at);
+    $('#repo-link').href = `https://github.com/${repo}`;
+
+    // --- Card 1: Total downloads + per-asset breakdown ---
+    {
+      const card = el('div', { class: 'card' });
+      card.append(el('h2', {}, 'Total downloads'));
+      card.append(el('div', { class: 'big' }, fmt(current.releases?.total_downloads)));
+      card.append(el('div', { class: 'sub' },
+        `Across ${current.releases?.count ?? 0} release${current.releases?.count === 1 ? '' : 's'}`));
+      const ul = el('ul', { class: 'breakdown' });
+      const assets = current.releases?.assets || [];
+      if (assets.length === 0) {
+        ul.append(el('li', { class: 'empty' }, 'No release assets yet.'));
+      } else {
+        assets.slice(0, 8).forEach(a => {
+          const li = el('li');
+          li.append(el('span', { class: 'name', title: a.name }, a.name));
+          li.append(el('span', { class: 'val' }, fmt(a.downloads)));
+          ul.append(li);
+        });
+      }
+      card.append(ul);
+      grid.append(card);
+    }
+
+    // --- Card 2: Downloads over time (sparkline of total_downloads from history) ---
+    {
+      const card = el('div', { class: 'card' });
+      card.append(el('h2', {}, 'Downloads over time'));
+      const series = history.map(h => h.releases?.total_downloads || 0);
+      const latest = series[series.length - 1] ?? 0;
+      const earliest = series[0] ?? 0;
+      const delta = latest - earliest;
+      card.append(el('div', { class: 'big' }, delta >= 0 ? `+${fmt(delta)}` : fmt(delta)));
+      card.append(el('div', { class: 'sub' },
+        `since ${history[0]?.date || '—'} (${history.length} snapshot${history.length === 1 ? '' : 's'})`));
+      card.append(sparkline(series, 'spark-blue'));
+      grid.append(card);
+    }
+
+    // --- Card 3: Views (14 days, GitHub-provided) ---
+    {
+      const card = el('div', { class: 'card' });
+      card.append(el('h2', {}, 'Views', el('span', { class: 'pill' }, 'last 14d')));
+      card.append(el('div', { class: 'big' }, fmt(current.traffic_14d?.views)));
+      card.append(el('div', { class: 'sub' },
+        `${fmt(current.traffic_14d?.unique_visitors)} unique visitors`));
+      const daily = (current.daily?.views || []).map(d => d.count);
+      card.append(sparkline(daily, 'spark-sage'));
+      grid.append(card);
+    }
+
+    // --- Card 4: Stars ---
+    {
+      const card = el('div', { class: 'card' });
+      card.append(el('h2', {}, 'Stars'));
+      card.append(el('div', { class: 'big' }, fmt(current.repo_stats?.stars)));
+      card.append(el('div', { class: 'sub' },
+        `${fmt(current.repo_stats?.forks)} forks · ${fmt(current.repo_stats?.watchers)} watching`));
+      const starHistory = history.map(h => h.repo_stats?.stars || 0);
+      card.append(sparkline(starHistory, 'spark-peach'));
+      grid.append(card);
+    }
+
+    // --- Card 5: Top referrers (14 days) ---
+    {
+      const card = el('div', { class: 'card' });
+      card.append(el('h2', {}, 'Top referrers', el('span', { class: 'pill' }, 'last 14d')));
+      const refs = current.referrers || [];
+      const ul = el('ul', { class: 'breakdown' });
+      if (refs.length === 0) {
+        ul.append(el('li', { class: 'empty' }, 'No referrer data yet.'));
+      } else {
+        refs.slice(0, 8).forEach(r => {
+          const li = el('li');
+          li.append(el('span', { class: 'name', title: r.referrer }, r.referrer));
+          li.append(el('span', { class: 'val' }, `${fmt(r.count)} (${fmt(r.uniques)})`));
+          ul.append(li);
+        });
+      }
+      card.append(ul);
+      card.append(el('div', { class: 'sub' }, 'Views (unique visitors)'));
+      grid.append(card);
+    }
+
+    // --- Card 6: Clones ---
+    {
+      const card = el('div', { class: 'card' });
+      card.append(el('h2', {}, 'Clones', el('span', { class: 'pill' }, 'last 14d')));
+      card.append(el('div', { class: 'big' }, fmt(current.traffic_14d?.clones)));
+      card.append(el('div', { class: 'sub' },
+        `${fmt(current.traffic_14d?.unique_cloners)} unique cloners`));
+      const daily = (current.daily?.clones || []).map(d => d.count);
+      card.append(sparkline(daily, 'spark-blue'));
+      grid.append(card);
+    }
+  }
+
+  // ---------- load ----------
+  // Both JSON files sit two directories up from this dashboard:
+  //   docs/dashboard/index.html → ../../_metrics/current.json
+  // The relative path keeps the dashboard portable across forks.
+  Promise.all([
+    fetch('../../_metrics/current.json').then(r => r.ok ? r.json() : Promise.reject(`current.json: ${r.status}`)),
+    fetch('../../_metrics/snapshots.json').then(r => r.ok ? r.json() : Promise.reject(`snapshots.json: ${r.status}`))
+  ]).then(([current, history]) => {
+    render(current, history);
+  }).catch(err => {
+    showErr(`Couldn't load metrics: ${err}. The first snapshot is taken once the workflow runs (manually triggerable from the Actions tab, or wait until 06:00 UTC).`);
+  });
+</script>
+
+</body>
+</html>

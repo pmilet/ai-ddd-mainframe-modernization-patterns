@@ -1,0 +1,130 @@
+name: metrics-snapshot
+
+# Runs every day at 06:00 UTC, and on-demand via the Actions UI.
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write   # needed to commit the snapshot back to the repo
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Take snapshot
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          mkdir -p _metrics
+
+          api() { gh api -H "Accept: application/vnd.github+json" "$1"; }
+
+          DATE="$(date -u +%Y-%m-%d)"
+          TS="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+
+          # --- Repo metadata: stars, forks, watchers, default branch ---
+          REPO_JSON="$(api "/repos/$REPO")"
+          STARS="$(echo "$REPO_JSON"     | jq '.stargazers_count')"
+          FORKS="$(echo "$REPO_JSON"     | jq '.forks_count')"
+          WATCHERS="$(echo "$REPO_JSON"  | jq '.subscribers_count')"
+
+          # --- Traffic (last 14 days, daily granularity) ---
+          VIEWS_JSON="$(api "/repos/$REPO/traffic/views")"
+          CLONES_JSON="$(api "/repos/$REPO/traffic/clones")"
+
+          VIEWS_14D="$(echo "$VIEWS_JSON"   | jq '.count')"
+          UNIQUES_14D="$(echo "$VIEWS_JSON" | jq '.uniques')"
+          CLONES_14D="$(echo "$CLONES_JSON" | jq '.count')"
+          CLONE_UNIQUES_14D="$(echo "$CLONES_JSON" | jq '.uniques')"
+
+          # --- Referrers and popular paths (last 14 days, top 10) ---
+          REFERRERS_JSON="$(api "/repos/$REPO/traffic/popular/referrers")"
+          PATHS_JSON="$(api "/repos/$REPO/traffic/popular/paths")"
+
+          # --- Releases: sum downloads per asset ---
+          RELEASES_JSON="$(api "/repos/$REPO/releases?per_page=100")"
+          RELEASES_COUNT="$(echo "$RELEASES_JSON" | jq 'length')"
+          ASSETS="$(echo "$RELEASES_JSON" | jq '[
+            .[] | .assets[] |
+            {name: .name, downloads: .download_count, release: ($_release // "")}
+          ]' --arg _release "")"
+          # Group by asset name and sum
+          ASSET_TOTALS="$(echo "$RELEASES_JSON" | jq '
+            [.[] | .assets[] | {name: .name, downloads: .download_count}] |
+            group_by(.name) |
+            map({name: .[0].name, downloads: (map(.downloads) | add)}) |
+            sort_by(-.downloads)
+          ')"
+          TOTAL_DOWNLOADS="$(echo "$ASSET_TOTALS" | jq '[.[].downloads] | add // 0')"
+
+          # --- Build today's snapshot ---
+          SNAPSHOT="$(jq -n \
+            --arg date "$DATE" \
+            --arg ts "$TS" \
+            --arg repo "$REPO" \
+            --argjson stars "$STARS" \
+            --argjson forks "$FORKS" \
+            --argjson watchers "$WATCHERS" \
+            --argjson views_14d "$VIEWS_14D" \
+            --argjson uniques_14d "$UNIQUES_14D" \
+            --argjson clones_14d "$CLONES_14D" \
+            --argjson clone_uniques_14d "$CLONE_UNIQUES_14D" \
+            --argjson total_downloads "$TOTAL_DOWNLOADS" \
+            --argjson releases_count "$RELEASES_COUNT" \
+            --argjson assets "$ASSET_TOTALS" \
+            --argjson views_daily "$(echo "$VIEWS_JSON"   | jq '.views')" \
+            --argjson clones_daily "$(echo "$CLONES_JSON" | jq '.clones')" \
+            --argjson referrers "$REFERRERS_JSON" \
+            --argjson paths "$PATHS_JSON" \
+            '{
+              date: $date,
+              taken_at: $ts,
+              repo: $repo,
+              repo_stats: { stars: $stars, forks: $forks, watchers: $watchers },
+              traffic_14d: {
+                views: $views_14d,
+                unique_visitors: $uniques_14d,
+                clones: $clones_14d,
+                unique_cloners: $clone_uniques_14d
+              },
+              releases: { count: $releases_count, total_downloads: $total_downloads, assets: $assets },
+              daily: { views: $views_daily, clones: $clones_daily },
+              referrers: $referrers,
+              paths: $paths
+            }'
+          )"
+
+          # --- Write current.json (overwrites) ---
+          echo "$SNAPSHOT" | jq '.' > _metrics/current.json
+
+          # --- Update snapshots.json (append; replace today if it exists) ---
+          if [ -f _metrics/snapshots.json ]; then
+            jq --argjson new "$SNAPSHOT" --arg today "$DATE" '
+              map(select(.date != $today)) + [$new] | sort_by(.date)
+            ' _metrics/snapshots.json > _metrics/snapshots.tmp.json
+            mv _metrics/snapshots.tmp.json _metrics/snapshots.json
+          else
+            echo "[$SNAPSHOT]" | jq '.' > _metrics/snapshots.json
+          fi
+
+          echo "--- Snapshot summary ---"
+          echo "Date: $DATE  |  Stars: $STARS  |  Total downloads: $TOTAL_DOWNLOADS"
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _metrics/current.json _metrics/snapshots.json
+          if git diff --cached --quiet; then
+            echo "No changes."
+          else
+            git commit -m "metrics: snapshot $(date -u +%Y-%m-%d)"
+            git push
+          fi
