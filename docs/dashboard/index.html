@@ -274,6 +274,37 @@
       grid.append(card);
     }
 
+    // --- Card 2b: Downloads per day (deltas between consecutive snapshots) ---
+    {
+      const card = el('div', { class: 'card' });
+      card.append(el('h2', {}, 'Downloads per day'));
+      // History is order-sensitive for deltas. Sort by .date
+      // (YYYY-MM-DD — sorts chronologically as a string, and the
+      // workflow keeps exactly one entry per date), taken_at as
+      // tiebreaker only if a date is somehow missing.
+      const ordered = [...history].sort((a, b) =>
+        String(a.date || a.taken_at).localeCompare(String(b.date || b.taken_at)));
+      const totals = ordered.map(h => h.releases?.total_downloads || 0);
+      // Cumulative counts only ever rise, so each delta is that day's
+      // net new downloads. A negative value (asset deleted/reset) is
+      // shown as-is rather than hidden.
+      const deltas = totals.slice(1).map((v, i) => v - totals[i]);
+      if (deltas.length === 0) {
+        card.append(el('div', { class: 'big' }, '—'));
+        card.append(el('div', { class: 'sub' },
+          'Needs a second snapshot — the first daily delta appears after the next 06:00 UTC run.'));
+      } else {
+        const last = deltas[deltas.length - 1];
+        const fromDate = ordered[ordered.length - 2]?.date || '—';
+        const toDate = ordered[ordered.length - 1]?.date || '—';
+        card.append(el('div', { class: 'big' }, last >= 0 ? `+${fmt(last)}` : fmt(last)));
+        card.append(el('div', { class: 'sub' },
+          `${fromDate} → ${toDate} · ${deltas.length} day${deltas.length === 1 ? '' : 's'} tracked`));
+        card.append(sparkline(deltas, 'spark-blue'));
+      }
+      grid.append(card);
+    }
+
     // --- Card 3: Views (14 days, GitHub-provided) ---
     {
       const card = el('div', { class: 'card' });
