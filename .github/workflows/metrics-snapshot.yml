@@ -36,17 +36,24 @@ jobs:
           WATCHERS="$(echo "$REPO_JSON"  | jq '.subscribers_count')"
 
           # --- Traffic (last 14 days, daily granularity) ---
-          VIEWS_JSON="$(api "/repos/$REPO/traffic/views")"
-          CLONES_JSON="$(api "/repos/$REPO/traffic/clones")"
+          # NOTE: the traffic endpoints map to GitHub's "Administration"
+          # permission, which the built-in GITHUB_TOKEN cannot be granted
+          # (no `administration` key exists in the workflow permissions
+          # block). Without a PAT these calls return HTTP 403, so we let
+          # them fail soft: the rest of the snapshot (downloads, stars,
+          # forks) is still written. The Views / Clones / Referrers cards
+          # stay empty until a PAT is wired into GH_TOKEN.
+          VIEWS_JSON="$(api "/repos/$REPO/traffic/views" 2>/dev/null   || echo '{}')"
+          CLONES_JSON="$(api "/repos/$REPO/traffic/clones" 2>/dev/null || echo '{}')"
 
-          VIEWS_14D="$(echo "$VIEWS_JSON"   | jq '.count')"
-          UNIQUES_14D="$(echo "$VIEWS_JSON" | jq '.uniques')"
-          CLONES_14D="$(echo "$CLONES_JSON" | jq '.count')"
-          CLONE_UNIQUES_14D="$(echo "$CLONES_JSON" | jq '.uniques')"
+          VIEWS_14D="$(echo "$VIEWS_JSON"   | jq '.count   // 0')"
+          UNIQUES_14D="$(echo "$VIEWS_JSON" | jq '.uniques // 0')"
+          CLONES_14D="$(echo "$CLONES_JSON" | jq '.count   // 0')"
+          CLONE_UNIQUES_14D="$(echo "$CLONES_JSON" | jq '.uniques // 0')"
 
           # --- Referrers and popular paths (last 14 days, top 10) ---
-          REFERRERS_JSON="$(api "/repos/$REPO/traffic/popular/referrers")"
-          PATHS_JSON="$(api "/repos/$REPO/traffic/popular/paths")"
+          REFERRERS_JSON="$(api "/repos/$REPO/traffic/popular/referrers" 2>/dev/null || echo '[]')"
+          PATHS_JSON="$(api "/repos/$REPO/traffic/popular/paths" 2>/dev/null || echo '[]')"
 
           # --- Releases: sum downloads per asset ---
           RELEASES_JSON="$(api "/repos/$REPO/releases?per_page=100")"
@@ -79,8 +86,8 @@ jobs:
             --argjson total_downloads "$TOTAL_DOWNLOADS" \
             --argjson releases_count "$RELEASES_COUNT" \
             --argjson assets "$ASSET_TOTALS" \
-            --argjson views_daily "$(echo "$VIEWS_JSON"   | jq '.views')" \
-            --argjson clones_daily "$(echo "$CLONES_JSON" | jq '.clones')" \
+            --argjson views_daily "$(echo "$VIEWS_JSON"   | jq '.views  // []')" \
+            --argjson clones_daily "$(echo "$CLONES_JSON" | jq '.clones // []')" \
             --argjson referrers "$REFERRERS_JSON" \
             --argjson paths "$PATHS_JSON" \
             '{
