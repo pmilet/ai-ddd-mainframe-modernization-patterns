@@ -16,6 +16,7 @@ The catalog leaves draft. The Rosetta Stone analogy — previously a prose parag
 - New opening epigraph: the Rosetta Stone framing rendered as a six-line verse, placed before the dedication
 - The "*The name Project Rosetta is deliberate…*" paragraph removed from the Preface (its meaning now carried by the epigraph)
 - PDF and EPUB regenerated
+- Post-release fix: the Journey and Antipatterns chapter-opener plates were transposed in the initial v1.0 build; corrected source images regenerated and the v1.0 release assets replaced in place
 
 **README:**
 - Status badge changed from `draft v0.9` (orange) to `v1.0` (green) — out of draft, first stable release
