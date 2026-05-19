@@ -6,6 +6,23 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ---
 
+## [v1.0] — 2026
+
+### First stable release; Rosetta Stone framing recast as an opening epigraph
+
+The catalog leaves draft. The Rosetta Stone analogy — previously a prose paragraph inside the Preface explaining why the project is named *Project Rosetta* — is lifted to the front matter as a short verse epigraph that opens the book, set immediately before the dedication. The explanatory paragraph is removed from the Preface so the framing is stated once, as an inscription, rather than argued in exposition.
+
+**Manuscript:**
+- New opening epigraph: the Rosetta Stone framing rendered as a six-line verse, placed before the dedication
+- The "*The name Project Rosetta is deliberate…*" paragraph removed from the Preface (its meaning now carried by the epigraph)
+- PDF and EPUB regenerated
+
+**README:**
+- Status badge changed from `draft v0.9` (orange) to `v1.0` (green) — out of draft, first stable release
+- PDF and EPUB download links point to the `v1.0` release
+
+---
+
 ## [v0.9] — 2026
 
 ### README restructured around an executive-summary entrance; front-matter polish

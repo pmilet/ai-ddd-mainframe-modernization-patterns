@@ -6,6 +6,15 @@
 
 -----
 
+*The Rosetta Stone recovered a lost language*  
+*by setting one text in three scripts —*  
+*from hieroglyphic to demotic to Greek.*  
+*Project Rosetta does the same with legacy systems:*  
+*meaning is recovered through triangulation,*  
+*not through translation alone.*
+
+-----
+
 *For Cristina,*  
 *who has listened patiently to every turn of this thinking,*  
 *and given me the spirit to follow it through.*
@@ -19,8 +28,6 @@
 ## Preface
 
 This catalog documents twenty-eight patterns I've discovered building Project Rosetta, a research prototype for AI-assisted modernization of COBOL/CICS mainframe systems. It follows the structure popularised by the Gang of Four's *Design Patterns* (Gamma, Helm, Johnson, Vlissides, 1994) — each pattern named, situated in its context, articulated as a solution to a recurring problem with its forces, consequences, and relationships. The form is established; what's specific here is the territory.
-
-The name *Project Rosetta* is deliberate. The Rosetta Stone made ancient Egyptian readable by presenting the same decree in three scripts — hieroglyphic, demotic, Greek — and allowing meaning to be recovered through triangulation. Project Rosetta does the same with legacy mainframe systems: the COBOL source, the structural graph, the domain ontology, and the intermediate representation are different representations of the same system, and meaning is recovered through triangulation between them. The legacy is not abandoned and rewritten; it is read, understood, and translated — with the running system as oracle and the substrates as the parallel inscriptions that let understanding survive the translation.
 
 These patterns are not stable. They change when I read them. A conversation with a peer challenges a consequence I thought was obvious; Rosetta's prototype teaches something the architectural reasoning hadn't anticipated. The catalog is an essay — a sustained attempt to crystallise what I am learning through a form that forces precision and invites disagreement. If you read a pattern and think I have the forces wrong, or missed a consequence, or named something that does not match what you have seen in the field — that response is the work functioning as it should.
 
