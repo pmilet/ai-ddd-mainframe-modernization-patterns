@@ -334,11 +334,11 @@
 
   // ---------- load ----------
   // Both JSON files sit two directories up from this dashboard:
-  //   docs/dashboard/index.html → ../../_metrics/current.json
+  //   docs/dashboard/index.html → ../../metrics/current.json
   // The relative path keeps the dashboard portable across forks.
   Promise.all([
-    fetch('../../_metrics/current.json').then(r => r.ok ? r.json() : Promise.reject(`current.json: ${r.status}`)),
-    fetch('../../_metrics/snapshots.json').then(r => r.ok ? r.json() : Promise.reject(`snapshots.json: ${r.status}`))
+    fetch('../../metrics/current.json').then(r => r.ok ? r.json() : Promise.reject(`current.json: ${r.status}`)),
+    fetch('../../metrics/snapshots.json').then(r => r.ok ? r.json() : Promise.reject(`snapshots.json: ${r.status}`))
   ]).then(([current, history]) => {
     render(current, history);
   }).catch(err => {

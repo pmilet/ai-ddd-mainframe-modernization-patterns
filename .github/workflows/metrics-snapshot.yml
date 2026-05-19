@@ -22,7 +22,7 @@ jobs:
           REPO: ${{ github.repository }}
         run: |
           set -euo pipefail
-          mkdir -p _metrics
+          mkdir -p metrics
 
           api() { gh api -H "Accept: application/vnd.github+json" "$1"; }
 
@@ -124,16 +124,16 @@ jobs:
           )"
 
           # --- Write current.json (overwrites) ---
-          echo "$SNAPSHOT" | jq '.' > _metrics/current.json
+          echo "$SNAPSHOT" | jq '.' > metrics/current.json
 
           # --- Update snapshots.json (append; replace today if it exists) ---
-          if [ -f _metrics/snapshots.json ]; then
+          if [ -f metrics/snapshots.json ]; then
             jq --argjson new "$SNAPSHOT" --arg today "$DATE" '
               map(select(.date != $today)) + [$new] | sort_by(.date)
-            ' _metrics/snapshots.json > _metrics/snapshots.tmp.json
-            mv _metrics/snapshots.tmp.json _metrics/snapshots.json
+            ' metrics/snapshots.json > metrics/snapshots.tmp.json
+            mv metrics/snapshots.tmp.json metrics/snapshots.json
           else
-            echo "[$SNAPSHOT]" | jq '.' > _metrics/snapshots.json
+            echo "[$SNAPSHOT]" | jq '.' > metrics/snapshots.json
           fi
 
           echo "--- Snapshot summary ---"
@@ -143,7 +143,7 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add _metrics/current.json _metrics/snapshots.json
+          git add metrics/current.json metrics/snapshots.json
           if git diff --cached --quiet; then
             echo "No changes."
           else
