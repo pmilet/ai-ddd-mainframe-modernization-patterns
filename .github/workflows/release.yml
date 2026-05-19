@@ -1,0 +1,25 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create release with book files
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            AI-Assisted.Domain-Driven.Mainframe.Modernization.pdf
+            AI-Assisted.Domain-Driven.Mainframe.Modernization.epub
+          generate_release_notes: false
+          body_path: CHANGELOG.md
