@@ -6,6 +6,28 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ---
 
+## [v1.1] — 2026
+
+### Pattern 3 rewritten around GraphRAG; operational evidence as first-class L1 input
+
+A substantive content revision focused on Pattern 3 (*The Graph as Projection*). The pattern is reframed around **GraphRAG** as its named architectural ancestor — Microsoft's research initiative and Anthony Alcaraz's *agentic GraphRAG* framing are credited explicitly as the lineage this catalog instantiates for legacy mainframe modernization. The L1/L2 graph-layer model is sharpened, the AST → property-graph derivation is made explicit (ANTLR named as the typical tool), and operational artifacts (SMF records, CICS CSD/RDO transaction maps, JCL job streams) are promoted to first-class L1 inputs alongside source. The copy-paste-programming argument for semantic similarity is made concrete with a `B100-VALIDATE-CUSTOMER` / `C100-VERIFY-CLIENT` example. A Cypher query example shows how the two substrates compose at retrieval time. Chris Richardson's fabrication-failure observation is named directly. Cross-references are updated to point at Pattern 6, Pattern 19, Pattern 21, and Pattern 22.
+
+**Manuscript:**
+- Pattern 3 (*The Graph as Projection*) substantially rewritten — opens with a million-line-of-COBOL framing, names the substrate question, threads GraphRAG as the pattern lineage, makes the L1/L2 distinction structural rather than incidental, and treats SMF / CSD / RDO / JCL as L1 inputs
+- Added concrete Cypher example showing a hybrid graph-traversal-into-index-retrieval composed as one query
+- Reframed *Consequences* around the substrate as a navigable lens for human comprehension, with agents translating intention into queries the substrates serve
+- Source provenance reframed as a structural property of both substrates, not a discipline bolted on
+- Glossary additions: **Embedding**, **Semantic index**, **Vector database** — the implementation vocabulary Pattern 3 now uses directly
+- PDF and EPUB regenerated
+
+**README:**
+- Status badge bumped from `v1.0` to `v1.1`
+- PDF and EPUB download links point to the `v1.1` release
+
+**Net effect:** ~45 lines added, ~28 lines removed in the manuscript. Pattern 3 stops being a generic dual-substrate argument and becomes a named instance of a recognised pattern (GraphRAG) calibrated to mainframe modernization, with the operational artifacts that mainframe estates actually produce as evidence brought into the substrate explicitly.
+
+---
+
 ## [v1.0] — 2026
 
 ### First stable release; Rosetta Stone framing recast as an opening epigraph
