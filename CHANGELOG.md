@@ -6,6 +6,31 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ---
 
+## [v1.3] — 2026
+
+### Pattern-language craft named in the Preface; cross-pattern semantics sharpened across Patterns 4, 5, 6, 19, and 28
+
+A substantive content revision that strengthens the Preface's framing and tightens the relationships *between* patterns rather than rewriting any one of them. The Preface gains two notes: one on what pattern languages are *for* — naming recurring forms so the long, multi-team work of modernization becomes a tractable shared conversation, the elephant addressable one named bite at a time (Alexander; Gamma, Helm, Johnson, Vlissides, 1994) — and a second epistemic note on the catalog itself doing vocabulary work, choosing words for a territory (mainframe modernization × AI engineering × contemporary DDD) where the names are still being settled. Four cross-pattern semantic links are made first-class: **published languages already exist in the legacy, undeclared** (Pattern 4) and the **ACL is the runtime artifact of a transitional published language** with its own lifecycle (Pattern 28) — recovery, defensive, bridging, authority shift, decommission; **the side-effect surface of a slice is its candidate seam set, viewed from outside** (Pattern 5) and **slices that share side-effects belong to the same bounded context** — side-effect clustering as boundary evidence complementary to vocabulary clustering (Pattern 6); **Conway's Law as the origin condition of bounded contexts in a legacy mainframe** — context recovery reframed as organisational archaeology (Pattern 19). A published-language *strategy table* is added to Pattern 4: generic subdomains *adopt* an industry standard (NAICS, FIBO, ACORD, GS1, ISO), core subdomains *invent*, supporting subdomains *adapt*.
+
+**Manuscript:**
+- Preface — new paragraph on pattern languages as shared, unambiguous vocabulary for multi-team modernization (Alexander; GoF, 1994); the "elephant becomes addressable, one named bite at a time" framing
+- Preface — new epistemic note that the catalog is shaping the vocabulary, not just the patterns; explicit acknowledgement that some terms here will persist and others will be replaced as the field converges
+- Pattern 4 (*Domain Ontology as Independent Substrate*) — added: **published languages already exist in the legacy, undeclared** (DCLGEN copybooks, COMMAREA layouts, batch-step file formats, queue message schemas fit Evans' definition exactly); recovery is the first move, formalisation the second
+- Pattern 4 — added: **published-language strategy by subdomain type** — generic→adopt, core→invent, supporting→adapt; strategic-design choice (Pattern 1) and downstream determinant of Pattern 9 scaffold
+- Pattern 5 (*Slice and Seam Discovery*) — sharpened: **the side-effect surface of a slice is its candidate seam set, viewed from outside** (same set of points described from slice interior and exterior respectively)
+- Pattern 6 (*Context Map for Modernization*) — added: bounded-context boundaries recovered from *multiple* signals — side-effect clustering as boundary evidence complementary to vocabulary clustering; operational coupling matters as much as linguistic alignment
+- Pattern 19 (*Team Topology and Bounded Context Alignment*) — added: **Conway's Law as the origin condition** of bounded contexts in the legacy; the implicit published languages of Pattern 4 are the protocols the original teams negotiated; context recovery reframed as organisational archaeology
+- Pattern 28 (*Dual-Run Coexistence*) — added: **the ACL is the runtime artifact of a transitional published language**, with a lifecycle — discovery, defensive, bridging, authority shift, decommission; a bridge API that does not eventually retire signals an incomplete modernization or a misjudged boundary
+- PDF and EPUB regenerated
+
+**README:**
+- Status badge bumped from `v1.2` to `v1.3`
+- PDF and EPUB download links point to the `v1.3` release
+
+**Net effect (excluding typographic normalisation):** ~+15 lines added, ~−1 removed. Seven new paragraphs, no structural changes, pattern count remains 28; no renumbering, no new parts. The catalog stops treating the *relationships* between patterns as implicit and names them: side-effects show up as both seams (5) and boundaries (6); published languages show up as both pre-existing legacy artifacts (4) and the protocols ACLs operationalise during transition (28); Conway's Law shows up both backward (as the system that laid down the implicit contexts) and forward (as the system that will lay down the next ones).
+
+---
+
 ## [v1.2] — 2026
 
 ### Pattern 5 widened to *Slice and Seam Discovery*; Pattern 4 reframed around language and published-language taxonomies
