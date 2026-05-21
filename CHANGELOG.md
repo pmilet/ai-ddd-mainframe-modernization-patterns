@@ -6,6 +6,30 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ---
 
+## [v1.2] — 2026
+
+### Pattern 5 widened to *Slice and Seam Discovery*; Pattern 4 reframed around language and published-language taxonomies
+
+A substantive content revision focused on the strategic-recovery patterns. Pattern 5 is renamed and rebuilt from *Vertical Slice Discovery* to ***Slice and Seam Discovery from Structural and Behavioural Signals*** — the pattern now produces *paired* outputs from one shared multi-signal pipeline: **slices** (semantic units of value, what to migrate) and **seams** (technical intervention points, where to cut in). Michael Feathers' seam concept (*Working Effectively with Legacy Code*, 2004) is brought in as named lineage; Ian Ferri & Rob Coggrave's *Uncovering the Seams in Mainframes for Incremental Modernisation* (martinfowler.com, 2024) supplies the eight-type mainframe seam typology — two external (batch input, API access) and six internal (data interactions, DB readers, DB writers, batch pipeline step handoff, data characteristic, downstream processing handoff). Pattern 4 (*Domain Ontology as Independent Substrate*) is rewritten around DDD as a discipline about language: Evans' distinction between **ubiquitous language** (within a bounded context) and **published language** (between contexts, *Domain-Driven Design* p. 330) is made first-class, and industry taxonomies — **BIAN, FIBO, ACORD, GS1, NAICS** — are introduced as canonical published-language examples and treated as a strategic-design choice.
+
+**Manuscript:**
+- Pattern 5 renamed *Vertical Slice Discovery* → ***Slice and Seam Discovery from Structural and Behavioural Signals***; produces paired outputs (slice maps, seam-typology tables, dependency overlays) from one pipeline; signal sources grow from five to six (semantic similarity from Pattern 3's index added as its own signal); four *good-seam criteria* (observable, divertable, externally usable, funnel-like) made explicit; integration patterns each seam uses — Event Interception, Legacy Mimic, Extract Product Lines, Dark Launching, Canary Release — credited to Newman *et al.*'s *Patterns of Legacy Displacement* (martinfowler.com); Eric Holden's *Eating the Elephant* credited for programme-mobilisation framing
+- Pattern 4 substantially rewritten — Context reframed around DDD as a discipline about language; **published language** introduced as first-class, distinct from ubiquitous language, with industry taxonomies as canonical examples; Forces enumerates four recovery input classes (domain experts, business artifacts, industry taxonomies, operational knowledge); substrate reframed as cognitive infrastructure supporting *knowledge crunching*, *disambiguation*, *boundary evidence*, and *debt management* (technical and cognitive debt distinguished); independence reframed as separation of concern, not infrastructure (implemented within the same GraphRAG substrate as Pattern 3); closing scope note acknowledging seam discovery will be named as its own pattern in a forthcoming revision
+- Pattern 3 (*The Graph as Projection*): vocabulary recovery deferred from Pattern 3 to Pattern 4; *Related patterns* updated to acknowledge semantic similarity now feeds seam discovery in addition to slice discovery
+- Preface: new paragraph naming what this catalog is and isn't — explicit acknowledgement that the work links three fast-moving traditions (AI engineering for agentic coding, contemporary DDD, legacy modernization), with Feathers, Fowler's strangler fig, Newman, Tune, Ferri & Coggrave, and Holden named as the literatures being drawn together
+- Lineage roll-call in *How to read this catalog* extended: Feathers, Ferri, Coggrave, Holden added
+- Glossary: new entry ***Seam*** (Feathers; Ferri & Coggrave's eight-type mainframe typology and four good-seam criteria); cross-references in *Vertical slice* and *Event Storming* entries updated to *Slice and Seam Discovery*
+- Cross-references to the former *Vertical Slice Discovery* updated catalog-wide (Patterns 1, 3, 16, 21; pattern-engagement spectrum table; antipattern reference table; Reference Implementations section)
+- PDF and EPUB regenerated
+
+**README:**
+- Status badge bumped from `v1.1` to `v1.2`
+- PDF and EPUB download links point to the `v1.2` release
+
+**Net effect (excluding typographic normalisation):** ~+180 lines added, ~−95 removed; net ~+85 lines of real content. Concentration in Pattern 5 (paired slice/seam discovery) and Pattern 4 (published language and industry taxonomies). Pattern count remains 28; no renumbering, no new parts. Pattern 5 stops being a slice-only discovery and becomes the joint discovery of *what to migrate* and *where to intervene*; Pattern 4 stops treating ontology as a data-model concern and names language — ubiquitous within a context, published between them — as the substrate the modernization is building.
+
+---
+
 ## [v1.1] — 2026
 
 ### Pattern 3 rewritten around GraphRAG; operational evidence as first-class L1 input
