@@ -25,7 +25,11 @@ This is the long version of what I've been writing about on LinkedIn under the [
 
 ## What this catalog is
 
-A pattern catalog for AI-assisted modernization of COBOL/CICS mainframe systems, written through a Domain-Driven Design lens. The thesis: **AI-assisted mainframe modernization is, at its core, a Domain-Driven Design activity at scale**. AI agents accelerate the mechanical parts; humans direct the strategic ones; the boundary between agentic and human work is itself an architectural commitment that needs explicit design.
+A pattern catalog for AI-assisted modernization of COBOL/CICS mainframe systems, written through a Domain-Driven Design lens. The territory is **blackfield**: existing systems where the original engineers have moved on, documentation is lost, and domain knowledge has decayed into operational dialect — the harder case beyond brownfield, where understanding itself has to be recovered.
+
+The catalog has two theses. **First: AI-assisted mainframe modernization is, at its core, a Domain-Driven Design activity at scale.** AI agents accelerate the mechanical parts; humans direct the strategic ones; the boundary between agentic and human work is itself an architectural commitment that needs explicit design. **Second: modernization at scale is architectural reasoning under load, and AI agents reason better over architectural projections than over source code** — a property graph, a canonical ontology, an intermediate representation, a tier-aware scaffold. The deterministic substrates the catalog builds are themselves the conceptual model agents work within.
+
+**Modernization is not a synonym for rewrite.** The catalog supports a strategic spectrum — rewrite, replatform with modern facade, reimagine from specifications, replace with SaaS, retire — and Pattern 1 (*Business-Aligned Capability Strategy*) is where the per-capability decision lives. The estate's technology profile after modernization is heterogeneous by design, calibrated to per-capability economics.
 
 The catalog is a mix of three kinds of patterns:
 
@@ -33,7 +37,7 @@ The catalog is a mix of three kinds of patterns:
 - **Adapted patterns** — established practices applied to mainframe modernization with explicit recalibration
 - **DDD re-articulations** — canonical DDD patterns recast through the lens of legacy mainframe modernization
 
-It stands on shoulders — Eric Evans, Vaughn Vernon, Martin Fowler, Sam Newman, Alberto Brandolini, Vlad Khononov, Cyrille Martraire, Birgitta Böckeler, Charity Majors, Nick Tune, Uberto Barbini, Kent Beck, Matthew Skelton, Manuel Pais, Pramod Sadalage — and names them as it builds.
+It stands on shoulders — Eric Evans, Vaughn Vernon, Martin Fowler, Sam Newman, Michael Feathers, Alberto Brandolini, Vlad Khononov, Cyrille Martraire, Birgitta Böckeler, Charity Majors, Nick Tune, Uberto Barbini, Kent Beck, Matthew Skelton, Manuel Pais, Pramod Sadalage, Ian Ferri, Rob Coggrave, Eric Holden — and names them as it builds.
 
 ---
 
