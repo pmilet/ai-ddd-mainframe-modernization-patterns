@@ -6,6 +6,34 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ---
 
+## [v2.0] — 2026
+
+### Retitled *Agentic Domain-Driven Mainframe Modernization*; Pattern 6 rebuilt as a temporal, three-population context map; a *Further Reading* chapter added
+
+A major release. The catalog is **retitled from *AI-Assisted Domain-Driven Mainframe Modernization* to *Agentic Domain-Driven Mainframe Modernization*** — a change of identity, not just of words. The cover, the citation, the repository's manuscript filename, and the release assets all carry the new name. "AI-assisted" is retained as a *descriptive* phrase where it names the activity (the two theses, the epigraph, the per-capability strategy table); what changed is the book's own name. The release also lands the largest single-pattern expansion since v1.1 and the catalog's first dedicated bibliography. Pattern 6 (*Context Map for Modernization*) is rebuilt around three ideas that were previously implicit: the context map is **temporal** (relationship types change as contexts transition, each stage named with the criterion for moving to the next), it is **populated by three distinct kinds of bounded context simultaneously** — modernized business contexts, agentic-platform contexts (Pattern 19's MCP servers and the LLMs themselves, treated as bounded contexts in the canonical Evans sense, citing Evans' *Context Mapping with an AI-based Component*, 2026), and external-vocabulary contexts (NAICS, BIAN, FIBO, ACORD, GS1) — and it is **readable as a migration plan**, since each Evans relationship type implies a specific operational pattern, so sequencing the migration becomes sequencing the transitional relationships. The transitional-vs-durable distinction is made first-class: every transitional relationship (ACL, bridge API, conformist accommodation) carries a named retirement criterion, turning transitional architecture from "a fog into a backlog."
+
+**Manuscript:**
+- **Retitled** *AI-Assisted Domain-Driven Mainframe Modernization* → ***Agentic Domain-Driven Mainframe Modernization*** (title page, running identity, citation block; manuscript file renamed accordingly)
+- Preface — new opening paragraph framing the book as the long form of the argument the author makes at the start of every engagement, against the promise that the hard part can be skipped ("feed in the COBOL, receive clean Java")
+- Preface — new paragraph on **DDD as the most underestimated discipline in software**, with Jacob Burckhardt's "the essence of tyranny is the denial of complexity" recast for modernization: the complexity of a forty-year-old system is not an obstacle to the work, it *is* the thing being modernized; the catalog as an argument against silver bullets
+- Pattern 6 (*Context Map for Modernization*) — substantially expanded: the context map made **temporal** (relationship types transition through stages with explicit move-on criteria), **three-population** (business / agentic-platform / external-vocabulary contexts on one map; LLM-as-bounded-context citing Evans, 2026), and **derivable as a migration plan** (each Evans relationship type → its operational pattern in Patterns 11/24/27/28); transitional-vs-durable distinction with per-relationship retirement criteria made first-class; default failure modes named (inherited conformist, accidental shared kernel, separate-ways-treated-as-failure, immortal ACLs, fully-connected mesh); subdomain identity established as the constraint on which relationship types are coherent
+- Pattern 15 (*Hypothesis-Driven Verification*) — new subsection ***Verifying boundaries, not only behaviour***: the linguistic bounded-context test made an agentic verification assessment that checks a candidate boundary's vocabulary against the ontology, surfacing where terms stay coherent, shift at the edge (confirming the boundary), or shift within it (contradicting it) — consumed by Pattern 6 as a boundary signal
+- New chapter ***Further reading*** — the catalog's first dedicated bibliography, grouping cited works by the three traditions (Domain-Driven Design; AI engineering for agentic systems; Legacy and mainframe modernization) plus *Adjacent and supporting* and *Community resources*, with a candid note that bibliographic detail is orienting rather than citation-precise
+- Systematic **inline glossary hyperlinks** added throughout the manuscript (`[bounded contexts]`, `[ubiquitous language]`, `[anti-corruption layer]`, `[strangler fig]`, `[tactical design]`, and many more linking to their glossary anchors)
+- PDF and EPUB regenerated under the new title
+
+**README:**
+- Title and citation retitled to *Agentic Domain-Driven Mainframe Modernization*
+- Status badge bumped from `v1.3` to `v2.0`
+- Download links and asset filenames updated to `v2.0` and `Agentic.Domain-Driven.Mainframe.Modernization.{pdf,epub}`; Markdown-source link updated to the renamed manuscript
+
+**LICENSE:**
+- Citation block retitled to *Agentic Domain-Driven Mainframe Modernization*
+
+**Net effect (excluding typographic normalisation):** ~+222 lines added, ~−137 removed; net ~+85 lines of real content. Concentration in Pattern 6 (temporal, three-population, migration-plan context map), the new *Further Reading* chapter, and two new Preface paragraphs; the remainder is inline glossary linking. Pattern count remains 28; no renumbering, no new parts. The major-version bump reflects the retitling — readers citing a v1.x edition are citing a differently-named book — together with a new top-level chapter and the largest pattern expansion since the GraphRAG rewrite.
+
+---
+
 ## [v1.3] — 2026
 
 ### Pattern-language craft named in the Preface; cross-pattern semantics sharpened across Patterns 4, 5, 6, 19, and 28

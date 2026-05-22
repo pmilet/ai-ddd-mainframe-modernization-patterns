@@ -1,8 +1,8 @@
-# AI-Assisted Domain-Driven Mainframe Modernization
+# Agentic Domain-Driven Mainframe Modernization
 
 ## A Pattern Catalog from Project Rosetta
 
-[![Status](https://img.shields.io/badge/status-v1.3-brightgreen)](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases)
+[![Status](https://img.shields.io/badge/status-v2.0-brightgreen)](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases)
 [![License](https://img.shields.io/badge/license-CC%20BY%204.0-blue)](LICENSE)
 
 A pattern catalog for AI-assisted modernization of COBOL/CICS mainframe systems, read through a Domain-Driven Design lens — written for DDD practitioners, mainframe modernization practitioners, and AI engineers working at the frontier of agentic coding.
@@ -17,9 +17,9 @@ This is the long version of what I've been writing about on LinkedIn under the [
 
 | Format | Description |
 |--------|-------------|
-| 📄 [**PDF**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.3/AI-Assisted.Domain-Driven.Mainframe.Modernization.pdf) | Full catalog, print-friendly |
-| 📱 [**EPUB**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.3/AI-Assisted.Domain-Driven.Mainframe.Modernization.epub) | E-reader format (Kindle, Kobo, Apple Books) |
-| 📝 [**Markdown source**](AI-Assisted%20Domain-Driven%20Mainframe%20Modernization.md) | Read directly on GitHub |
+| 📄 [**PDF**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v2.0/Agentic.Domain-Driven.Mainframe.Modernization.pdf) | Full catalog, print-friendly |
+| 📱 [**EPUB**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v2.0/Agentic.Domain-Driven.Mainframe.Modernization.epub) | E-reader format (Kindle, Kobo, Apple Books) |
+| 📝 [**Markdown source**](Agentic%20Domain-Driven%20Mainframe%20Modernization.md) | Read directly on GitHub |
 
 ---
 
@@ -107,7 +107,7 @@ You are free to share and adapt the material for any purpose, even commercially,
 
 If you reference this catalog in academic, professional, or commercial work, please cite as:
 
-> Milet Llobet, P. (2026). *AI-Assisted Domain-Driven Mainframe Modernization: A Pattern Catalog from Project Rosetta*. LegacyLabs. https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns
+> Milet Llobet, P. (2026). *Agentic Domain-Driven Mainframe Modernization: A Pattern Catalog from Project Rosetta*. LegacyLabs. https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns
 
 ---
 
