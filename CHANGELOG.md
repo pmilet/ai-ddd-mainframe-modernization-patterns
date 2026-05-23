@@ -6,11 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ---
 
-## [v2.0] — 2026
+## [v1.0.14] — 2026
 
 ### Retitled *Agentic Domain-Driven Mainframe Modernization*; Pattern 6 rebuilt as a temporal, three-population context map; a *Further Reading* chapter added
 
-A major release. The catalog is **retitled from *AI-Assisted Domain-Driven Mainframe Modernization* to *Agentic Domain-Driven Mainframe Modernization*** — a change of identity, not just of words. The cover, the citation, the repository's manuscript filename, and the release assets all carry the new name. "AI-assisted" is retained as a *descriptive* phrase where it names the activity (the two theses, the epigraph, the per-capability strategy table); what changed is the book's own name. The release also lands the largest single-pattern expansion since v1.1 and the catalog's first dedicated bibliography. Pattern 6 (*Context Map for Modernization*) is rebuilt around three ideas that were previously implicit: the context map is **temporal** (relationship types change as contexts transition, each stage named with the criterion for moving to the next), it is **populated by three distinct kinds of bounded context simultaneously** — modernized business contexts, agentic-platform contexts (Pattern 19's MCP servers and the LLMs themselves, treated as bounded contexts in the canonical Evans sense, citing Evans' *Context Mapping with an AI-based Component*, 2026), and external-vocabulary contexts (NAICS, BIAN, FIBO, ACORD, GS1) — and it is **readable as a migration plan**, since each Evans relationship type implies a specific operational pattern, so sequencing the migration becomes sequencing the transitional relationships. The transitional-vs-durable distinction is made first-class: every transitional relationship (ACL, bridge API, conformist accommodation) carries a named retirement criterion, turning transitional architecture from "a fog into a backlog."
+A major release. The catalog is **retitled from *AI-Assisted Domain-Driven Mainframe Modernization* to *Agentic Domain-Driven Mainframe Modernization*** — a change of identity, not just of words. The cover, the citation, the repository's manuscript filename, and the release assets all carry the new name. "AI-assisted" is retained as a *descriptive* phrase where it names the activity (the two theses, the epigraph, the per-capability strategy table); what changed is the book's own name. The release also lands the largest single-pattern expansion since v1.0.11 and the catalog's first dedicated bibliography. Pattern 6 (*Context Map for Modernization*) is rebuilt around three ideas that were previously implicit: the context map is **temporal** (relationship types change as contexts transition, each stage named with the criterion for moving to the next), it is **populated by three distinct kinds of bounded context simultaneously** — modernized business contexts, agentic-platform contexts (Pattern 19's MCP servers and the LLMs themselves, treated as bounded contexts in the canonical Evans sense, citing Evans' *Context Mapping with an AI-based Component*, 2026), and external-vocabulary contexts (NAICS, BIAN, FIBO, ACORD, GS1) — and it is **readable as a migration plan**, since each Evans relationship type implies a specific operational pattern, so sequencing the migration becomes sequencing the transitional relationships. The transitional-vs-durable distinction is made first-class: every transitional relationship (ACL, bridge API, conformist accommodation) carries a named retirement criterion, turning transitional architecture from "a fog into a backlog."
 
 **Manuscript:**
 - **Retitled** *AI-Assisted Domain-Driven Mainframe Modernization* → ***Agentic Domain-Driven Mainframe Modernization*** (title page, running identity, citation block; manuscript file renamed accordingly)
@@ -24,17 +24,17 @@ A major release. The catalog is **retitled from *AI-Assisted Domain-Driven Mainf
 
 **README:**
 - Title and citation retitled to *Agentic Domain-Driven Mainframe Modernization*
-- Status badge bumped from `v1.3` to `v2.0`
-- Download links and asset filenames updated to `v2.0` and `Agentic.Domain-Driven.Mainframe.Modernization.{pdf,epub}`; Markdown-source link updated to the renamed manuscript
+- Status badge bumped from `v1.0.13` to `v1.0.14`
+- Download links and asset filenames updated to `v1.0.14` and `Agentic.Domain-Driven.Mainframe.Modernization.{pdf,epub}`; Markdown-source link updated to the renamed manuscript
 
 **LICENSE:**
 - Citation block retitled to *Agentic Domain-Driven Mainframe Modernization*
 
-**Net effect (excluding typographic normalisation):** ~+222 lines added, ~−137 removed; net ~+85 lines of real content. Concentration in Pattern 6 (temporal, three-population, migration-plan context map), the new *Further Reading* chapter, and two new Preface paragraphs; the remainder is inline glossary linking. Pattern count remains 28; no renumbering, no new parts. The major-version bump reflects the retitling — readers citing a v1.x edition are citing a differently-named book — together with a new top-level chapter and the largest pattern expansion since the GraphRAG rewrite.
+**Net effect (excluding typographic normalisation):** ~+222 lines added, ~−137 removed; net ~+85 lines of real content. Concentration in Pattern 6 (temporal, three-population, migration-plan context map), the new *Further Reading* chapter, and two new Preface paragraphs; the remainder is inline glossary linking. Pattern count remains 28; no renumbering, no new parts. The retitling means readers citing an earlier-numbered edition are citing a differently-named book — and the release also lands a new top-level chapter and the largest pattern expansion since the GraphRAG rewrite.
 
 ---
 
-## [v1.3] — 2026
+## [v1.0.13] — 2026
 
 ### Pattern-language craft named in the Preface; cross-pattern semantics sharpened across Patterns 4, 5, 6, 19, and 28
 
@@ -52,14 +52,14 @@ A substantive content revision that strengthens the Preface's framing and tighte
 - PDF and EPUB regenerated
 
 **README:**
-- Status badge bumped from `v1.2` to `v1.3`
-- PDF and EPUB download links point to the `v1.3` release
+- Status badge bumped from `v1.0.12` to `v1.0.13`
+- PDF and EPUB download links point to the `v1.0.13` release
 
 **Net effect (excluding typographic normalisation):** ~+15 lines added, ~−1 removed. Seven new paragraphs, no structural changes, pattern count remains 28; no renumbering, no new parts. The catalog stops treating the *relationships* between patterns as implicit and names them: side-effects show up as both seams (5) and boundaries (6); published languages show up as both pre-existing legacy artifacts (4) and the protocols ACLs operationalise during transition (28); Conway's Law shows up both backward (as the system that laid down the implicit contexts) and forward (as the system that will lay down the next ones).
 
 ---
 
-## [v1.2] — 2026
+## [v1.0.12] — 2026
 
 ### Pattern 5 widened to *Slice and Seam Discovery*; Pattern 4 reframed around language and published-language taxonomies
 
@@ -76,14 +76,14 @@ A substantive content revision focused on the strategic-recovery patterns. Patte
 - PDF and EPUB regenerated
 
 **README:**
-- Status badge bumped from `v1.1` to `v1.2`
-- PDF and EPUB download links point to the `v1.2` release
+- Status badge bumped from `v1.0.11` to `v1.0.12`
+- PDF and EPUB download links point to the `v1.0.12` release
 
 **Net effect (excluding typographic normalisation):** ~+180 lines added, ~−95 removed; net ~+85 lines of real content. Concentration in Pattern 5 (paired slice/seam discovery) and Pattern 4 (published language and industry taxonomies). Pattern count remains 28; no renumbering, no new parts. Pattern 5 stops being a slice-only discovery and becomes the joint discovery of *what to migrate* and *where to intervene*; Pattern 4 stops treating ontology as a data-model concern and names language — ubiquitous within a context, published between them — as the substrate the modernization is building.
 
 ---
 
-## [v1.1] — 2026
+## [v1.0.11] — 2026
 
 ### Pattern 3 rewritten around GraphRAG; operational evidence as first-class L1 input
 
@@ -98,14 +98,14 @@ A substantive content revision focused on Pattern 3 (*The Graph as Projection*).
 - PDF and EPUB regenerated
 
 **README:**
-- Status badge bumped from `v1.0` to `v1.1`
-- PDF and EPUB download links point to the `v1.1` release
+- Status badge bumped from `v1.0.10` to `v1.0.11`
+- PDF and EPUB download links point to the `v1.0.11` release
 
 **Net effect:** ~45 lines added, ~28 lines removed in the manuscript. Pattern 3 stops being a generic dual-substrate argument and becomes a named instance of a recognised pattern (GraphRAG) calibrated to mainframe modernization, with the operational artifacts that mainframe estates actually produce as evidence brought into the substrate explicitly.
 
 ---
 
-## [v1.0] — 2026
+## [v1.0.10] — 2026
 
 ### First stable release; Rosetta Stone framing recast as an opening epigraph
 
@@ -115,15 +115,15 @@ The catalog leaves draft. The Rosetta Stone analogy — previously a prose parag
 - New opening epigraph: the Rosetta Stone framing rendered as a six-line verse, placed before the dedication
 - The "*The name Project Rosetta is deliberate…*" paragraph removed from the Preface (its meaning now carried by the epigraph)
 - PDF and EPUB regenerated
-- Post-release fix: the Journey and Antipatterns chapter-opener plates were transposed in the initial v1.0 build; corrected source images regenerated and the v1.0 release assets replaced in place
+- Post-release fix: the Journey and Antipatterns chapter-opener plates were transposed in the initial v1.0.10 build; corrected source images regenerated and the v1.0.10 release assets replaced in place
 
 **README:**
-- Status badge changed from `draft v0.9` (orange) to `v1.0` (green) — out of draft, first stable release
-- PDF and EPUB download links point to the `v1.0` release
+- Status badge changed from `draft v1.0.9` (orange) to `v1.0.10` (green) — out of draft, first stable release
+- PDF and EPUB download links point to the `v1.0.10` release
 
 ---
 
-## [v0.9] — 2026
+## [v1.0.9] — 2026
 
 ### README restructured around an executive-summary entrance; front-matter polish
 
@@ -142,7 +142,7 @@ A presentation-focused revision. The README opens with a short executive summary
 
 ---
 
-## [v0.8] — 2026
+## [v1.0.8] — 2026
 
 ### Verification matures into a full part, the status-marker system retired, third thesis named
 
@@ -184,7 +184,7 @@ A structural revision focused on the Verification part and on how the catalog si
 
 ---
 
-## [v0.7] — 2026
+## [v1.0.7] — 2026
 
 ### Strategic spectrum, the Modernization Journey, and three new patterns
 
@@ -227,7 +227,7 @@ The largest revision since the initial draft. The catalog gains a unifying narra
 
 ---
 
-## [v0.6] — 2026
+## [v1.0.6] — 2026
 
 ### New part, new pattern — Safe Transition and Coexistence
 
@@ -264,7 +264,7 @@ Added a fifth part to the catalog and a twenty-third pattern. The catalog now an
 
 ---
 
-## [v0.5] — 2026
+## [v1.0.5] — 2026
 
 ### Structural consolidation — twenty-two patterns, new pattern, revised architecture
 
@@ -305,7 +305,7 @@ Consolidated the catalog from twenty-eight patterns to twenty-two. Six patterns 
 
 ---
 
-## [v0.4] — 2026
+## [v1.0.4] — 2026
 
 ### Architectural Interlude added
 
@@ -322,21 +322,21 @@ Added a new section between Part I and Part II: *Architectural Interlude — The
 
 ---
 
-## [v0.3.1] — 2026
+## [v1.0.3] — 2026
 
 ### Housekeeping — README and repository hygiene
 
-Updated README to reflect the v0.3 release and improved repository setup.
+Updated README to reflect the v1.0.2 release and improved repository setup.
 
 **Changes:**
-- Updated status badge from `draft v0.1` to `draft v0.3`
-- Updated PDF and EPUB download links to point to v0.3 release assets on GitHub
+- Updated status badge from `draft v1.0.0` to `draft v1.0.2`
+- Updated PDF and EPUB download links to point to v1.0.2 release assets on GitHub
 - Added Uberto Barbini to the contributors list in the README
 - Added `.gitignore` to exclude `.claude/` directory from version control
 
 ---
 
-## [v0.3] — 2026
+## [v1.0.2] — 2026
 
 ### Uberto Barbini's contributions integrated
 
@@ -351,7 +351,7 @@ Integrated Uberto Barbini's work on agent execution discipline and failure modes
 
 ---
 
-## [v0.2] — 2026
+## [v1.0.1] — 2026
 
 ### Structural revision — Appendix B removed, migration vocabulary integrated
 
@@ -371,7 +371,7 @@ Removed the standalone Appendix B (Legacy Migration Patterns reference catalog) 
 
 ---
 
-## [v0.1] — 2026
+## [v1.0.0] — 2026
 
 ### Initial draft
 
