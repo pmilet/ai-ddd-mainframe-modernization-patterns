@@ -6,6 +6,31 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ---
 
+## [v1.0.15] — 2026
+
+### Part II ("Tactical Generation") rebuilt around what decomposition introduces; the compiler principle, the IR, and the distribution patterns substantially deepened
+
+A substantive content revision concentrated in Part II. The part gains an explicit *two-movement* framing — *generation* (Patterns 7–10: how aggregates, events, and handlers are produced and rendered) and *what decomposition introduces* (Patterns 11–13: the costs of splitting a co-located legacy into separately-deployed contexts). Two patterns are renamed to say what they are about, and the three tactical-distribution patterns are rewritten to treat the distributed system as a thing the modernization *creates*, not merely inherits. The Preface gains a standing "living essay" status note. Pattern 6 is sharpened with the concrete mainframe signature of each Evans relationship type.
+
+**Manuscript:**
+- Preface — new ***Status of this draft*** note up front: the catalog is a *living essay of first learnings, to be refined*, every claim a hypothesis offered to be tested, the version's date marking where the thinking stands rather than where it ends
+- Part II opener — rewritten around **two movements**: *generation* (the compiler principle divides deterministic from probabilistic work, the IR is the contract, tier-aware scaffolding picks the architecture, pluggable emitters render it) and *what decomposition introduces* (logical boundary, transactional guarantees, the network), naming why the three distribution patterns exist
+- **Pattern 7 (*The Compiler Principle*)** — Context and Problem substantially expanded: *LLMs as compilers, not interpreters* named as the converged community position (economic, architectural, and operational lessons); determinism reframed as imposed **by construction vs. by rejection**; the finding that the **harness around a model can swing benchmark results 30–50 points** — reliability is a property of the architecture, not the model; prompts are advisory, not contracts
+- **Pattern 8 (*The Intermediate Representation*)** — new third tension (**authorship**: judgement to be frozen vs. mechanical structure); a full **worked example** — a `2100-VALIDATE-CLAIM` paragraph projected to an IR-DOMAIN `HandlerIntent` (serialized YAML the architect reviews and freezes) and the IR-SCAFFOLD C# shell it deterministically projects; IR-Domain made explicitly *commitment-encoding* (`HandlerIntent`→VSA, `PortIntent`→Hexagonal, `SagaIntent`→event-driven)
+- **Pattern 11** — renamed *Commands and Events as Logical Boundary, Independent of Physical Deployment* → ***Commands and Events as the Logical Boundary***; rebuilt around **modular-monolith-first** plus an **agentic evolution loop** (probabilistic proposal → human-on-the-loop approval → deterministic execution), with the logical boundary, enforced by construction, as what makes physical re-topology *safe*
+- **Pattern 12 (*Transactional Boundaries*)** — agents reframed as a **panel of expert advisors, not decision-makers**, their tasks placed on the deterministic-probabilistic spectrum (advisory analysis vs. fully deterministic IR validation); *saga* and *Wolverine* glossary links added
+- **Pattern 13** — renamed *Temporal Decoupling and Latency-Aware Data Access* → ***Distribution Introduces a Network***; rebuilt around **Deutsch's fallacies of distributed computing** (1994), with the *reliability* dimension (timeout-as-designed-value, retry-only-where-idempotent, circuit breakers/bulkheads, explicit handling of the indeterminate outcome) made co-equal with latency; the **chatty cursor** recast as the N+1 ancestor; a two-level agent analysis (tactical pattern-matching inspection + advisory reasoning) naming Polly and Dapr-style resiliency
+- **Pattern 6 (*Context Map for Modernization*)** — each Evans relationship type given its concrete **mainframe signature** (shared copybook → shared kernel; `EXEC CICS LINK`/`START` → customer-supplier; COMMAREA/channel → published language; flat-file/MQ → ACL; shared VSAM/DB2 → the hardest boundary); three-population framing trimmed toward business contexts and their durable external-vocabulary relationships; new context-map diagram
+- PDF and EPUB regenerated
+
+**README:**
+- Status badge bumped from `v1.0.14` to `v1.0.15`
+- PDF and EPUB download links point to the `v1.0.15` release
+
+**Net effect:** ~+371 lines added, ~−260 removed in the manuscript. Concentration in Part II — the compiler principle, the intermediate representation, and the three distribution patterns (11–13) — plus the Preface status note and Pattern 6's mainframe signatures. Pattern count remains 28; no renumbering, no new parts. Part II stops treating the distributed system as inherited and names it as something the modernization builds: the logical boundary that makes topology evolution safe, the transactional guarantees that must be carried deliberately across it, and the network whose two fallacies — latency and reliability — must be engineered rather than assumed away.
+
+---
+
 ## [v1.0.14] — 2026
 
 ### Retitled *Agentic Domain-Driven Mainframe Modernization*; Pattern 6 rebuilt as a temporal, three-population context map; a *Further Reading* chapter added
