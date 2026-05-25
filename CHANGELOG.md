@@ -6,6 +6,30 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ---
 
+## [v1.0.16] — 2026
+
+### Pattern 14 (*Twin Verification*) deepened: choosing the comparison plane — command vs. fidelity — and faithfulness made representational, not only semantic
+
+A focused content revision in Part III. Pattern 14 (*Twin Verification*) gains an explicit treatment of a problem the original framing glossed: once the modern target is more than a transliteration of the legacy, "run both against the same inputs and compare outputs" hides a real impedance mismatch. A CICS transaction is driven by a flat COMMAREA and mutated VSAM/DB2 state; a Wolverine vertical slice is driven by typed commands and expresses itself as domain events. They cannot be compared without a translation layer — an anti-corruption layer — and *which side it wraps* determines the vocabulary equivalence is judged in. The pattern now names two comparison planes and argues a complete verification story uses both.
+
+**Manuscript:**
+- **Pattern 14 (*Twin Verification*)** — Context generalised so the verified unit varies *with altitude*: early on a single translated paragraph, later the end-to-end behaviour of a whole [vertical slice](#gl-vertical-slice) as paragraphs assemble into a feature
+- Forces — faithfulness reframed as not only **semantic** but **representational**: the legacy and the modern target rarely speak the same language, so the comparison cannot happen until the team decides *in which representation* equivalence is judged, a decision that shapes both what the verification proves and what the test corpus is worth once the legacy is gone
+- New ***Choosing the comparison plane*** subsection:
+  - the **command plane** (the primary one, implemented in Rosetta) — the ACL wraps the *Twin*, the test corpus is authored as typed commands with expected events, comparison happens in the surviving [ubiquitous language](#gl-ubiquitous-language); it outlives oracle retirement and seeds the Pattern 16 behavioural specs, and the COMMAREA-shaped translation is quarantined on the side scheduled for deletion (the difference between an anti-corruption layer and *Jobol*)
+  - the **fidelity plane** (planned) — driven by *real captured COMMAREA traffic* rather than fabricated input, closing the dangerous gap where translating a command *down* into a COMMAREA manufactures assumption-laden bytes; replays production-recorded inputs through Twin and slice and compares in the legacy's observable projection, catching the undocumented quirks no authored test would encode; outbound projection deliberately lossy in the safe direction (richer modern output = intended divergence)
+  - one transitional ACL serves both planes and the Pattern 27 dual-run boundary, and like every transitional structure is built to be removed; the intended-vs-real divergence call is framed as the expert-advisor work of Patterns 12–13 turned on the diff — the agent makes the judgement *affordable* across thousands of fields; the human ratifies
+- New diagram `diagram-twin-planes.png`
+- PDF and EPUB regenerated
+
+**README:**
+- Status badge bumped from `v1.0.15` to `v1.0.16`
+- PDF and EPUB download links point to the `v1.0.16` release
+
+**Net effect:** ~+16/−2 lines in the manuscript, concentrated entirely in Pattern 14. Pattern count remains 28; no renumbering, no structural change. The verification story stops assuming the legacy and the modern target are directly comparable and names the anti-corruption layer the comparison actually runs through — making explicit that *which vocabulary equivalence is judged in* is a design decision, that authored command-plane tests and replayed fidelity-plane tests answer two different questions, and that the corpus authored in the surviving language is what remains when the oracle retires.
+
+---
+
 ## [v1.0.15] — 2026
 
 ### Part II ("Tactical Generation") rebuilt around what decomposition introduces; the compiler principle, the IR, and the distribution patterns substantially deepened
