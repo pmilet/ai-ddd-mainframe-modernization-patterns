@@ -6,6 +6,36 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ---
 
+## [v1.0.19] — 2026
+
+### Transition patterns deepened (the *double jump*, the polyglot facade) and Related-patterns sections rewritten as reasoned prose throughout; theses expanded from two to five
+
+The largest revision since the verification pass. Three threads run through it. First, the catalog's **transitional and replatform patterns (27, 28)** gain the operational depth they were thin on — the *double jump* (changing platform and location at once) is named as a discipline and an antipattern, the dual-run's replication transport and consistency boundaries are made explicit, and the modern-facade strategy is grounded in the polyglot reality of cloud-native estates and a named external precision argument. Second, the **Related-patterns section of nearly every pattern** is rewritten from a flat list of one-line cross-references into reasoned prose that explains *direction* — what each pattern draws on upstream, what it feeds downstream, and which cluster it coordinates. Third, the Preface's framing is widened: the catalog now states **five theses, not two**, naming the GraphRAG substrate as a cornerstone spanning the whole journey and transitional architecture as a first-class, built-to-be-dismantled concern.
+
+**Manuscript:**
+- **Preface — five theses, not two** — a fourth thesis (the GraphRAG substrate, property graph plus canonical ontology, is the cornerstone the whole modernization stands on from discovery to cutover, not a Part I artifact left behind) and a fifth (transitional architecture is a first-class design concern whose defining discipline is being progressively dismantled, never maintained as a permanent end)
+- **Pattern 27 (*Dual-Run Coexistence*) retitled** — *CDC, Reconciliation, and the Bridge Period* → *Replication, Reconciliation, and the Double Jump* — and substantially deepened: latency and replication volume named as the dominant constraints; the durable, ordered, replayable **event-streaming log** (Kafka, Event Hubs) as replication transport, with an explicit distinction from *event sourcing*; distributed transactions across the on-prem/cloud boundary treated as **prohibited** (eventual consistency and saga compensation instead); and **the double jump** — never change platform and location in one move; modernize to an on-prem cloud-native architecture first, learn real behaviour, then decide cloud moves on evidence (Azure Arc as the bridge)
+- **Pattern 28 (*Replatform with Modern Facade*) deepened** — the cloud-native environment is **polyglot by nature**, so a recompiled, well-encapsulated COBOL capability is just another good citizen; the facade's outward role named in DDD terms (**open host service** publishing a **published language**, not only an inward-facing ACL); a new *.NET-native advantage* subsection (Raincode IL compilation enabling in-process integration, an interception architecture, and **surgical in-process rewrites** of hot spots bounded by a verifiable contract against the legacy oracle); and Darius Blasband's precision-and-scale argument against AI transliteration
+- **Pattern 22 (*The Harness*) reframed around rails, sensors, memory** — the harness analogised to what a good developer needs (guardrails they cannot cross, fast feedback, a memory of *why*), made executable; Birgitta Böckeler's **sensor / cadence** vocabulary (computational vs. inferential sensors, run live / in-pipeline / on a slow schedule); Nick Tune's typed-tools-over-prose framing (a prompt is advice an agent can ignore; a guard is a wall)
+- **Pattern 24 (*Team Topology*) — the AMET** — the **Architecture Modernization Enabling Team** (Tune & da Silva) named, with its facilitate-not-mandate, time-bounded remit; and the **surviving-capability** outcome: what an engagement leaves behind is the *capability to keep modernizing* (the agentic pipeline graduating into an *architecture operating model*), the organisational form of Pattern 18's evolving-architecture thesis
+- **Pattern 21 (*Heuristics*)** — Álvaro Mateos's *design the terrain, not the workflow* (desire paths paved into the heuristic catalog), with the catalog's correction that the deterministic terrain is designed up front and only the paths across it are allowed to emerge
+- **Pattern 23 (*The Control Plane*)** — the **Alignment Record** placed in lineage as an architecture decision record (Nygard, 2011) specialized for modernization: same Context/Decision/Consequences spine, co-produced rather than human-authored (agent proposes with evidence, human ratifies)
+- **Pattern 26 (*Rollout and Cutover*)** — a third reframing idea (moving an area to the modern world need not mean rewriting it — preserve, replace, or retire are equally legitimate); and a *cutover removes the safety net* framing that names it as the one act without a fallback
+- **Related-patterns sections rewritten throughout** — Patterns 1–28's cross-reference paragraphs recast from flat lists into directional prose (upstream sources / downstream consumers / coordinated cluster), with several cross-reference number corrections folded in
+- **New antipattern — *The double jump*** (now eleven antipatterns), added to the antipatterns reference table
+- **New glossary entries** — *agents as expert advisors*, *AMET*, *event sourcing* (distinguished from event-streaming-as-transport), and *hooks (PreToolUse / PostToolUse)*; the *Alignment Record* entry expanded with its ADR lineage
+- **Citation correction** — *Patterns of Legacy Displacement* reattributed from "Newman *et al.*" to **Ian Cartwright, Rob Horn & James Lewis** (martinfowler.com, 2021–2024), corrected in-text and in the bibliography; new bibliography entry for Darius Blasband / Raincode
+- **Closing chapter** — the speculative *What comes next* section removed; the closing reflection expanded with a passage on what "settled" means in a field moving under our feet: convergence (deterministic structure around probabilistic agents, verification against the running legacy, bounded tool surfaces, harness over multiplication, human judgement on the loop) is the signal, the durable asset is the *capability*, and the goal is an adaptive, open-standard, lock-in-free architecture that survives tool turnover
+- PDF and EPUB regenerated
+
+**README:**
+- Status badge bumped from `v1.0.18` to `v1.0.19`
+- PDF and EPUB download links point to the `v1.0.19` release
+
+**Net effect:** ~+103/−61 lines in the manuscript. Pattern count remains 28; antipatterns rise from ten to **eleven** with the addition of *the double jump*. The revision concentrates new depth in the transition Part (Patterns 27–28) and the governance Part (Patterns 21–24), widens the Preface from two theses to five, and — across the whole catalog — converts the Related-patterns sections from reference lists into prose that explains how each pattern sits in the dependency graph, while correcting the *Patterns of Legacy Displacement* attribution.
+
+---
+
 ## [v1.0.18] — 2026
 
 ### Part openers rewritten for accessibility: each of the five Parts now leads with a plain-language framing of the problem before invoking pattern numbers
