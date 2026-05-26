@@ -6,6 +6,33 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ---
 
+## [v1.0.17] — 2026
+
+### Epistemic honesty pass across Parts III–IV: Witness marked as designed-not-built, candidate vs. full patterns named, and the verification cluster's expert-advisor discipline made explicit
+
+A cross-cutting revision that sharpens what the catalog claims and how confidently. Three threads run through it. First, an *epistemic-status* pass: the Preface now distinguishes patterns that have recurred in the building (Rosetta-exercised) from *candidate patterns* reasoned forward from principle, and reframes a pattern's concreteness as a signal of how far its learning has travelled. Second, **Witness** — the production-mode verification layer — is consistently reframed as *designed but not yet built* wherever the prose had drifted into present-tense "it verifies / it owns." Third, the Part III verification patterns gain an explicit articulation of the *measurement-is-deterministic, interpretation-is-advisory* split the rest of the catalog already turns on, plus a sweep of pattern cross-reference renumbering corrections.
+
+**Manuscript:**
+- **Preface** — two new framing paragraphs: *not every pattern has earned the name* (Rosetta-exercised patterns vs. candidate patterns awaiting field confirmation, with the Consequences section read as the status marker); and *concreteness as signal* — abstract patterns mean "the principle is known, the specifics are still emerging," not a chapter left thin
+- **Witness reframed as planned throughout** — Pattern 2's pipeline note, Pattern 14, Pattern 15 ("designed as the production-mode counterpart… not yet built"), Pattern 19's four-server description, Pattern 26 (parallel-run / reconciliation), and the appendix all now say Witness is *designed*/*intended*, not running
+- **Pattern 4 (*Domain Ontology as Independent Substrate*)** — Gruber's (1993) formal definition of *ontology* added (a formal, explicit specification of a shared conceptualisation); new *ontology IS code* framing after Tony Seale (2026) — the ontology is machine-checkable (satisfiability, entailment tests, contradiction-as-failed-build) and governed through the harness (Pattern 22), which can gate a change that fails its checks
+- **Part III opener** — rewritten to name verification's *four axes* and its **boundary**: verification establishes what is *true* of the running system, not what it *ought* to become (descriptive vs. normative); and the cluster-wide *measurement deterministic / interpretation advisory* discipline stated up front
+- **Pattern 16 (*Behavioural Specification Inference*)** — a full **worked example** (a savings-account overdraft-fee signature carried through all four stages into a domain-language Given-When-Then); the **descriptive-vs-normative** distinction (a captured behaviour the business may want to *retire*, routed to Pattern 1 rather than silently encoded); and a **silent-coverage-risk** paragraph (an inferred suite is a floor, not a ceiling — corpus coverage must be measured, not assumed)
+- **Pattern 17 (*Data Drift Analysis*)** — new *measurement-deterministic, interpretation-advisory* paragraph (agents triage drift against the Pattern 15 taxonomy, propose per-field epsilons, read temporal discrepancies; humans ratify); and a **remediation-per-category** paragraph (each drift class implies its own correction, and the cost rises with how long it ran undetected — the economic argument for snapshot cadence)
+- **Pattern 18 (*Completion Criteria*)** — reframed from *"is it done?"* to *"is it good enough to hand off?"*: a living architecture is never finished, perfection is asymptotic, so the six dimensions become *quality indicators measured against declared thresholds*, not pass/fail facts; operational evidence requires a **full business cycle** (month-end, quarter close, year-end), not a fixed window; new agent-as-advisor paragraph
+- **Pattern 21 (*Heuristics as Explicit Artifacts*)** — conditions of application written in the **ontology's vocabulary** (Pattern 4), coupling the two substrates; an open design question on the **shape** of a heuristic — a deterministic *envelope* wrapping a probabilistic *core* (a versioned prompt fragment) where the judgement cannot reduce to weights; the heuristic schema named as a **published language**
+- **Pattern 19** — Evans *Domain Navigator* citation tightened (domainlanguage.com, January 2026); **Pattern 22** — eval-suite-gap discussion tightened, "architectural commitment" wording
+- Pattern cross-reference **renumbering corrections** throughout (e.g. 25→22, 26→24, 19→16, 20→17) and several heading-level fixes (`###` → `####`)
+- PDF and EPUB regenerated
+
+**README:**
+- Status badge bumped from `v1.0.16` to `v1.0.17`
+- PDF and EPUB download links point to the `v1.0.17` release
+
+**Net effect:** ~+65/−35 lines in the manuscript, spread across the Preface, Pattern 4, the Part III opener, and Patterns 16–22 rather than concentrated in one pattern. Pattern count remains 28; no new patterns, no structural change. The revision lowers the catalog's epistemic temperature where it had run hot — Witness stops being described as if it already runs, candidate patterns are named as such, and the verification cluster's claim is bounded to what measurement can establish — while raising precision where it matters: a formal definition of ontology, a worked behavioural-inference example, and the explicit expert-advisor split (deterministic measurement, advisory interpretation, human ratification) carried consistently through Patterns 16, 17, and 18.
+
+---
+
 ## [v1.0.16] — 2026
 
 ### Pattern 14 (*Twin Verification*) deepened: choosing the comparison plane — command vs. fidelity — and faithfulness made representational, not only semantic
