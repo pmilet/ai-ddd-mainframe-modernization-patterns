@@ -6,6 +6,28 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ---
 
+## [v1.0.18] — 2026
+
+### Part openers rewritten for accessibility: each of the five Parts now leads with a plain-language framing of the problem before invoking pattern numbers
+
+A readability pass across the five Part-introduction sections. Each opener previously led with dense, cross-reference-heavy prose — naming bounded contexts, substrates, and pattern numbers before the reader had been told, in plain terms, *what the Part is for*. The revised openers state the human problem first — what question the Part answers and why it matters to the business — and only then connect it to the catalog's machinery. The technical claims are unchanged; what changed is the order and register in which they arrive.
+
+**Manuscript:**
+- **Part I opener (Strategic Recovery)** — recast around the question every modernization must answer first: *what does this system actually do, and what business capabilities does it divide into?* Frames the legacy as the only honest source of truth (retired designers, stale docs, millions of lines) and the discovery-scales/judgement-stays-human split in concrete terms
+- **Part II opener (Tactical Generation)** — reframed around the single discipline of keeping machine work and judgement work apart: a deterministic toolchain renders the skeleton, agents fill business logic within boundaries they cannot move; second half foregrounds the *costs decomposition introduces* (in-process calls, all-or-nothing transactions, no network) as guarantees the new system must engineer deliberately
+- **Part III opener (Verification)** — opens with *how do you know the rebuilt system is correct?* and the absent-specification problem, casting the legacy as the answer key; the four comparison levels (inner-loop, production, behavioural-spec, data-drift) described in plain terms; the *measurement-automated / judgement-human* and *true-vs-ought* boundaries kept
+- **Part IV opener (Governance)** — reframed around the sponsor's question — *who is in control of this?* — with the rules-as-enforced-code (not polite prompt instructions), human-only gates, self-observation, and recorded reasoning stated as answers to it
+- **Part V opener (Safe Transition)** — opens on the hardest moment: switching to the new system without breaking the business; cutover-as-sequence-not-event and coexistence-as-designed-operating-state framed before the dependency on the four prior Parts
+- PDF and EPUB regenerated
+
+**README:**
+- Status badge bumped from `v1.0.17` to `v1.0.18`
+- PDF and EPUB download links point to the `v1.0.18` release
+
+**Net effect:** ~+18/−14 lines in the manuscript, confined entirely to the five Part-opener framing sections. Pattern count remains 28; no patterns added, removed, or renumbered, and no structural change. The revision is purely a register-and-ordering shift — leading each Part with the business problem in plain language before the catalog's vocabulary and cross-references — lowering the barrier to entry for readers arriving from outside the DDD or mainframe communities without altering any technical claim.
+
+---
+
 ## [v1.0.17] — 2026
 
 ### Epistemic honesty pass across Parts III–IV: Witness marked as designed-not-built, candidate vs. full patterns named, and the verification cluster's expert-advisor discipline made explicit
