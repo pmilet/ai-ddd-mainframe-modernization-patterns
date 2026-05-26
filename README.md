@@ -7,7 +7,7 @@
 
 A pattern catalog for AI-assisted modernization of COBOL/CICS mainframe systems, read through a Domain-Driven Design lens — written for DDD practitioners, mainframe modernization practitioners, and AI engineers working at the frontier of agentic coding.
 
-Twenty-eight patterns and ten antipatterns, organised across strategic domain recovery, tactical code generation, verification, governance, and the safe transition of bounded contexts from legacy to modernized authority. They come from Project Rosetta, a working experiment in what AI assistance changes about modernization economics.
+Twenty-eight patterns and eleven antipatterns, organised across strategic domain recovery, tactical code generation, verification, governance, and the safe transition of bounded contexts from legacy to modernized authority. They come from Project Rosetta, a working experiment in what AI assistance changes about modernization economics.
 
 This is the long version of what I've been writing about on LinkedIn under the [LegacyLabs](https://www.linkedin.com/newsletters/legacy-labs-7317839126702055426/) name. The shorter posts and newsletter there were the introduction.
 
@@ -27,7 +27,7 @@ This is the long version of what I've been writing about on LinkedIn under the [
 
 A pattern catalog for AI-assisted modernization of COBOL/CICS mainframe systems, written through a Domain-Driven Design lens. The territory is **blackfield**: existing systems where the original engineers have moved on, documentation is lost, and domain knowledge has decayed into operational dialect — the harder case beyond brownfield, where understanding itself has to be recovered.
 
-The catalog has two theses. **First: AI-assisted mainframe modernization is, at its core, a Domain-Driven Design activity at scale.** AI agents accelerate the mechanical parts; humans direct the strategic ones; the boundary between agentic and human work is itself an architectural commitment that needs explicit design. **Second: modernization at scale is architectural reasoning under load, and AI agents reason better over architectural projections than over source code** — a property graph, a canonical ontology, an intermediate representation, a tier-aware scaffold. The deterministic substrates the catalog builds are themselves the conceptual model agents work within.
+The catalog has five theses. **First: AI-assisted mainframe modernization is, at its core, a Domain-Driven Design activity at scale.** AI agents accelerate the mechanical parts; humans direct the strategic ones; the boundary between agentic and human work is itself an architectural commitment that needs explicit design. **Second: modernization at scale is architectural reasoning under load, and AI agents reason better over architectural projections than over source code** — a property graph, a canonical ontology, an intermediate representation, a tier-aware scaffold. **Third: those deterministic substrates are themselves the conceptual model agents work within**, not merely inputs they consume. **Fourth: the GraphRAG substrate — the property graph and canonical ontology, queried together — is the cornerstone the whole modernization stands on, from first discovery to final cutover, not a Part I artifact the later parts leave behind.** **Fifth: transitional architecture is a first-class design concern whose defining discipline is being progressively dismantled** — coexistence is a deliberate, engineered operating state, never a permanent end.
 
 **Modernization is not a synonym for rewrite.** The catalog supports a strategic spectrum — rewrite, replatform with modern facade, reimagine from specifications, replace with SaaS, retire — and Pattern 1 (*Business-Aligned Capability Strategy*) is where the per-capability decision lives. The estate's technology profile after modernization is heterogeneous by design, calibrated to per-capability economics.
 
@@ -59,7 +59,7 @@ The catalog is organised in five Parts:
 - **Part IV — Governance and Operating Discipline** (Patterns 19–24): how the modernization stays coherent across the agentic system and the teams that operate around it
 - **Part V — Safe Transition and Coexistence** (Patterns 25–28): the disciplined movement of bounded contexts from legacy authority to modernized authority, and the dual-run period during which both sides operate
 
-Plus ten antipatterns naming the failure modes the patterns are built against.
+Plus eleven antipatterns naming the failure modes the patterns are built against.
 
 ---
 
