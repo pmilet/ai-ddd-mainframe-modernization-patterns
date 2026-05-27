@@ -6,6 +6,31 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ---
 
+## [v1.0.20] — 2026
+
+### Punctuation normalized catalog-wide (em-dash → comma), a sixth strategic dimension (*boundary recoverability*), and the tests-as-tables / sensor-limits literature folded in
+
+A copy-edit pass with substantive seams. The dominant change is mechanical and runs the length of the book: the parenthetical em-dash — used heavily as a rhetorical beat — is replaced almost everywhere with a comma, so the prose reads in a quieter, less staccato register without any change of meaning. Threaded through that pass are a handful of real content additions, all converging on the same idea from two directions: that recovering a clean boundary is not always possible, and that automated checks can mislead. Pattern 1 gains a sixth profiling dimension; the verification and harness patterns gain the *tests-as-tables-of-cases* discipline and explicit cautions from recent (2026) writing by Matteo Vaccari and Birgitta Böckeler. The front matter is also re-cut: the old *Three kinds of patterns* / *Maturity* labelled blocks are folded into a single *Pattern shape* note and a tightened epistemic-status passage.
+
+**Manuscript:**
+- **Catalog-wide punctuation pass** — the parenthetical em-dash replaced with a comma throughout the book (preface, journey chapter, all five Parts, antipatterns, references); a stylistic register shift, not a meaning change, and the source of most of the line churn
+- **Pattern 1 (*Business-Aligned Capability Strategy*) — a sixth dimension, *boundary recoverability*** — alongside strategic value, volatility, criticality, maintenance cost, and team maturity, the architect now asks whether a capability's bounded-context structure can actually be recovered from the legacy cleanly enough for the chosen strategy to work; like team maturity it is a *constraint* that can pull a strategy *down* the spectrum (a strategic-but-unrecoverable capability routes to replatform-with-facade rather than rewrite, to avoid *Jobol* / *Frozen Architecture*); "five dimensions" updated to "six" throughout the pattern, including the strategy table's new framing paragraph and the "thirty-two cells" → "sixty-four cells" note
+- **Pattern 16 (test corpus) — the tabular evidence form** — a new passage on emitting each scenario as a *tabular row* (one column per input, one per observable output) alongside its Given/When/Then prose, so coverage grows by adding rows and any later agent's silent alteration of an assertion shows up as a visible data diff; placed in lineage with Matteo Vaccari's *Test-Driven Development Reimagined* (2026), Ward Cunningham's Fit, Emily Bache's *Test Desiderata 2.0*, and Ivett Ordög's *Approved Scenarios*
+- **Pattern 22 (*The Harness*) — sensor-limits cautions** — Birgitta Böckeler's warning that sensors can produce *"a false sense of security and an illusion of quality,"* and Vaccari's *"AI changes both tests and code, destroying our confidence"* as the reason the deterministic/probabilistic split is enforced infrastructure (the sensors live where the agent cannot rewrite them in the same turn it rewrites the code they govern); plus Böckeler's observation that deterministic metrics give lacklustre signal until an inferential review reads them in context (the P17-computational / P15–P16-inferential layering)
+- **Verification cluster** — the advisory shape of the agent-as-expert-advisor reframed around Böckeler's *appropriate-vs-not* (not *good-vs-bad*): a coupling hub may be a flaw or a deliberate contract, a divergence a defect or an intended improvement, and only human context decides which
+- **Antipattern *Naive self-observation*** — sharpened with Vaccari's failure mode: an agent that writes the verification alongside the implementation, then later changes both together, leaving a green check that no longer means what it did
+- **Front matter re-cut** — the labelled *Three kinds of patterns* and *Maturity* blocks folded into a single *Pattern shape* note (Context / Problem / Forces / Pattern / Consequences / Related patterns); the prerequisites note tightened ("applies DDD; it does not teach it"); the epistemic-status passage rewritten around *candidate vs. full* patterns as an earlier-not-weaker claim
+- **Further Reading** — new entries for Matteo Vaccari (*Test-Driven Development Reimagined*, Thoughtworks 2026), Emily Bache (*Test Desiderata 2.0*), Ward Cunningham (*Fit*), and Ivett Ordög (*Approved Scenarios*) — the tests-as-tables-of-cases lineage
+- PDF and EPUB regenerated
+
+**README:**
+- Status badge bumped from `v1.0.19` to `v1.0.20`
+- PDF and EPUB download links point to the `v1.0.20` release
+
+**Net effect:** ~+707/−704 lines in the manuscript, but the figure overstates the substance: the overwhelming majority is the one-for-one em-dash→comma swap rewriting whole paragraph lines. Pattern count remains 28; antipatterns remain eleven (none added or removed). The real content delta is small and focused — a sixth strategic dimension in Pattern 1, the tabular-test discipline and two recent practitioner cautions (Vaccari, Böckeler) in the verification and harness patterns, and a front-matter consolidation — set against a book-wide punctuation normalization that touches nearly every paragraph.
+
+---
+
 ## [v1.0.19] — 2026
 
 ### Transition patterns deepened (the *double jump*, the polyglot facade) and Related-patterns sections rewritten as reasoned prose throughout; theses expanded from two to five
