@@ -5,9 +5,13 @@
 [![Status](https://img.shields.io/badge/status-v1.0.20-brightgreen)](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases)
 [![License](https://img.shields.io/badge/license-CC%20BY%204.0-blue)](LICENSE)
 
-A pattern catalog for AI-assisted modernization of COBOL/CICS mainframe systems, read through a Domain-Driven Design lens — written for DDD practitioners, mainframe modernization practitioners, and AI engineers working at the frontier of agentic coding.
+Mainframe modernization is usually treated as a code problem. It's a domain problem — the richest business logic in the enterprise, buried in decades of COBOL, waiting to be recovered. Domain-Driven Design was built for exactly that. The two have rarely met.
 
-Twenty-eight patterns and eleven antipatterns, organised across strategic domain recovery, tactical code generation, verification, governance, and the safe transition of bounded contexts from legacy to modernized authority. They come from Project Rosetta, a working experiment in what AI assistance changes about modernization economics.
+The hard part of modernizing a mainframe was never translating the COBOL. It's recovering what the system *means* — the business concepts the code accumulated and never wrote down. That is a domain problem before it is a code problem, and it is precisely what DDD was made for.
+
+This catalog is for doing exactly that: twenty-eight patterns and an antipatterns chapter for AI-assisted modernization of COBOL/CICS mainframe systems, read through a Domain-Driven Design lens — with AI agents working inside a harness rather than driving the work. The patterns name the recurring problems and the solutions worth trying, so hard-won lessons become transmissible — codified in a form that invites discussion and debate rather than prescribing a recipe.
+
+They come from Project Rosetta, a working experiment in what AI assistance changes about modernization economics, and are written for DDD practitioners, mainframe modernization practitioners, and AI engineers working at the frontier of agentic coding.
 
 This is the long version of what I've been writing about on LinkedIn under the [LegacyLabs](https://www.linkedin.com/newsletters/legacy-labs-7317839126702055426/) name. The shorter posts and newsletter there were the introduction.
 
@@ -25,19 +29,13 @@ This is the long version of what I've been writing about on LinkedIn under the [
 
 ## What this catalog is
 
-A pattern catalog for AI-assisted modernization of COBOL/CICS mainframe systems, written through a Domain-Driven Design lens. The territory is **blackfield**: existing systems where the original engineers have moved on, documentation is lost, and domain knowledge has decayed into operational dialect — the harder case beyond brownfield, where understanding itself has to be recovered.
+The territory is **blackfield**: not just existing systems, but existing systems where understanding itself has been lost — the original engineers have moved on, documentation is gone, and domain knowledge has decayed into operational dialect. That is the harder case beyond brownfield, and it is why recovery comes before generation: you cannot modernize what no one can still explain.
 
 The catalog has five theses. **First: AI-assisted mainframe modernization is, at its core, a Domain-Driven Design activity at scale.** AI agents accelerate the mechanical parts; humans direct the strategic ones; the boundary between agentic and human work is itself an architectural commitment that needs explicit design. **Second: modernization at scale is architectural reasoning under load, and AI agents reason better over architectural projections than over source code** — a property graph, a canonical ontology, an intermediate representation, a tier-aware scaffold. **Third: those deterministic substrates are themselves the conceptual model agents work within**, not merely inputs they consume. **Fourth: the GraphRAG substrate — the property graph and canonical ontology, queried together — is the cornerstone the whole modernization stands on, from first discovery to final cutover, not a Part I artifact the later parts leave behind.** **Fifth: transitional architecture is a first-class design concern whose defining discipline is being progressively dismantled** — coexistence is a deliberate, engineered operating state, never a permanent end.
 
 **Modernization is not a synonym for rewrite.** The catalog supports a strategic spectrum — rewrite, replatform with modern facade, reimagine from specifications, replace with SaaS, retire — and Pattern 1 (*Business-Aligned Capability Strategy*) is where the per-capability decision lives. The estate's technology profile after modernization is heterogeneous by design, calibrated to per-capability economics.
 
-The catalog is a mix of three kinds of patterns:
-
-- **Original patterns** — practices that emerged from building Project Rosetta and that the field has not yet articulated as patterns in their own right
-- **Adapted patterns** — established practices applied to mainframe modernization with explicit recalibration
-- **DDD re-articulations** — canonical DDD patterns recast through the lens of legacy mainframe modernization
-
-It stands on shoulders — Eric Evans, Vaughn Vernon, Martin Fowler, Sam Newman, Michael Feathers, Alberto Brandolini, Vlad Khononov, Cyrille Martraire, Birgitta Böckeler, Charity Majors, Nick Tune, Uberto Barbini, Kent Beck, Matthew Skelton, Manuel Pais, Pramod Sadalage, Ian Ferri, Rob Coggrave, Eric Holden — and names them as it builds.
+Every pattern follows the same shape — **Context, Problem, Forces, Pattern, Consequences, Related patterns** — and each names its own lineage as it goes: some practices emerged from building Project Rosetta; some adapt established practice to mainframe modernization with explicit recalibration; some recast canonical DDD patterns through a legacy lens. The catalog stands on shoulders — Eric Evans, Vaughn Vernon, Martin Fowler, Sam Newman, Michael Feathers, Alberto Brandolini, Vlad Khononov, Cyrille Martraire, Birgitta Böckeler, Matteo Vaccari, Charity Majors, Nick Tune, Uberto Barbini, Kent Beck, Matthew Skelton, Manuel Pais, Pramod Sadalage, Ian Ferri, Rob Coggrave, Eric Holden — and names them as it builds.
 
 ---
 
@@ -45,7 +43,7 @@ It stands on shoulders — Eric Evans, Vaughn Vernon, Martin Fowler, Sam Newman,
 
 Kent Beck's **3X** framework names three modes of software work: **Explore** — search for something that works, where most bets fail and learning is the only reliable return; **Expand** — scale what worked once demand is real; **Extract** — flatten costs once the shape is stable. This catalog is Explore, deliberately and entirely.
 
-It is an early articulation, not a manual for proven practice. Some patterns are exercised inside the Rosetta prototype with concrete implementation behind them; others are reasoned forward from validated principles — the architecture is grounded, but the specific pattern has not yet been run against real production code. Each pattern's body says which, in prose, rather than through a status label. No pattern has yet been put under load by a real customer engagement at production scale — in 3X terms that is Expand, the next phase, not this one.
+It is a working hypothesis, not a manual for proven practice. Some patterns are exercised inside the Rosetta prototype with concrete implementation behind them — patterns in the full sense, recurring in the building. Others are reasoned forward from validated principles — the architecture is grounded, but the specific pattern has not yet been run against real production code. Each pattern's body says where it sits on that line, in prose, rather than through a status label; **a candidate pattern is not a weaker claim, it is an earlier one.** No pattern has yet been put under load by a real customer engagement at production scale — in 3X terms that is Expand, the next phase, not this one. Each pattern invites disagreement.
 
 ---
 
