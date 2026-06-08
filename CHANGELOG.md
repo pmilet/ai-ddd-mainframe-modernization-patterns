@@ -6,6 +6,44 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ---
 
+## [v1.2] — 2026
+
+### A companion essay added, *Where the Agent Ends and the Architect Begins*; the catalog's preface compressed back from five theses to two (with a third underneath); spelling normalized to British English; antipatterns trimmed from eleven to ten
+
+The first release where the project ships two books rather than one. The new **companion essay**, *Agentic Domain-Driven Modernization: Where the Agent Ends and the Architect Begins*, is a short, principles-first argument that sits behind the catalog: the domain at the centre, Gregor Hohpe's architect's elevator with agents on every floor, Kent Beck's 3X model placing this work declaredly in Explore, and the question that gives the essay its subtitle running through every chapter. Where the catalog names twenty-eight situated patterns, the essay reasons in plain prose about why a method ought to work, deliberately keeping examples generic so the argument outlives any specific tool. The two are designed to be read together but stand alone.
+
+The catalog itself also moves. The Preface is rewritten: the five-thesis framing that had grown across recent revisions is compressed back to **two theses with a third underneath**, the line of argument re-anchored on Domain-Driven Design and architectural projections, with the structural-vs-prescriptive harness distinction made explicit and Birgitta Böckeler's harness-engineering vocabulary named for it. Spelling is normalised to British English throughout (*modernisation*, *catalogue*, *organising*); inline glossary anchors are added on first DDD-term mentions. The antipatterns chapter is trimmed from eleven to ten — *the double jump* (added in v1.0.19) is folded back into the surrounding transition prose rather than carried as its own named failure mode.
+
+**Companion essay (new):**
+- **Six Parts, sixteen chapters, plus Prologue, Antipatterns appendix, and Glossary** — Part I (*Why the Domain, Not the Code*), Part II (*The Agent on Every Floor*), Part III (*Explore Before You Productize*), Part IV (*Proving You Did Not Break It*), Part V (*Living with Two Systems*), Part VI (*From Explore to Expand*)
+- **Two axes, one centre** — the domain as the centre; Hohpe's architect's elevator (penthouse to engine room) and Beck's 3X model (Explore, Expand, Extract) as the two borrowed axes that organise the argument
+- **The transitive chain** — articulated as the verification spine of the essay (old vs. faithful replica, replica vs. specification, specification vs. new system); behaviour as executable specification; black-box parity and the law of order
+- **Antipatterns appendix** — twelve compact antipattern statements (the relocation trap, refactor first the net later, the double jump, the choice disguised as a finding, the ratification that resolves doubts, the silent loss of semantics, the parities that compare too much / too little, the carving that splits the state, the cutover with faith, switching off the oracle too soon, productizing in Explore), each one paragraph
+- **Glossary** — agent, architect's elevator, transitive chain, cutover, double jump, executable specification, fidelity, invariant, ubiquitous language, mechanism, recovered model, oracle, black-box parity, provenance, faithful replica, shadow, strangler
+- **No images by design** — the essay is text-only and platform-neutral; tools are mentioned only as examples of an idea, never as the idea itself
+- PDF and EPUB generated as `Agentic.Domain-Driven.Mainframe.Modernization-Essay.{pdf,epub}`
+
+**Manuscript (catalog):**
+- **Preface compressed — five theses back to two (with a third underneath)** — first thesis: AI-assisted mainframe modernisation is at its core a DDD activity at scale; second: modernisation at scale is architectural reasoning under load, and agents reason better over architectural projections than over source code; a third claim underneath naming the deterministic substrates as the conceptual model agents work within, with the **prescriptive harness vs. structural harness** distinction made explicit (Pattern 22 vs. Patterns 4, 7, 8, 9) and Birgitta Böckeler credited as having named the distinction most clearly
+- **Spelling normalised to British English catalog-wide** — *modernization* → *modernisation*, *catalog* → *catalogue*, *organising* / *recognise* / *behaviour* / *favour* throughout preface, journey chapter, all five Parts, antipatterns, glossary, and reference-implementation appendix; book title and asset filenames retain American spelling for stable URLs
+- **Inline glossary anchors** — first DDD-term mentions in the Preface now link to their glossary entries (`[bounded contexts](#gl-bounded-context)`, `[ubiquitous language](#gl-ubiquitous-language)`, `[strategic design](#gl-strategic-design)`, `[tactical design](#gl-tactical-design)`, `[hook](#gl-hook)`, etc.), so readers entering the book mid-text can resolve vocabulary without flipping to the glossary
+- **Antipatterns trimmed from eleven to ten** — *the double jump* (added as its own antipattern in v1.0.19) is folded back into the transition prose of Pattern 27 rather than carried as a stand-alone antipattern; the reference table reflects the reduced count
+- **Three kinds of patterns framing restored** — *Original patterns / Adapted patterns / DDD re-articulations* returns in the *How to read this catalogue* section (it had been folded into a single *Pattern shape* note in v1.0.20), naming each pattern's lineage as a property the reader can use up front
+- **Reading guidance tightened** — the *Maturity* note now leads with Kent Beck's 3X (Explore / Expand / Extract) and states plainly that the catalog is in Explore; the *Pattern shape* note (Context / Problem / Forces / Pattern / Consequences / Related patterns) is retained as a separate item; the *Heterogeneous targets* paragraph keeps the per-bounded-context language/runtime/database/architecture decision
+- PDF and EPUB regenerated
+
+**README:**
+- Status badge bumped from `v1.0.20` to `v1.2`
+- PDF and EPUB download links point to the `v1.2` release
+- Download section restructured into two tables — *Pattern catalog* (PDF / EPUB / Markdown) and *Companion essay* (PDF / EPUB / Markdown), each table introduced by a one-line description of what the book is
+- New intro paragraph announces the companion essay and how to read the two together (essay for the argument, catalog for the patterns)
+- Theses-count line corrected from *five theses* to *two theses with a third underneath* to match the new preface
+- Antipattern count corrected from *eleven* to *ten*
+
+**Net effect:** the catalog manuscript moves by ~+810/−974 lines, of which the largest share is the British-English spelling pass and the Preface compression, with the rest distributed across glossary-anchor additions, the antipattern trim, and the *Three kinds of patterns* framing restoration. A new manuscript of ~459 lines ships as the companion essay. Pattern count remains **28**; antipatterns go from eleven to **ten**; theses go from five to **two (with a third underneath)**; the project's catalog becomes a two-book project — the situated pattern catalog and the principles-first essay behind it.
+
+---
+
 ## [v1.0.20] — 2026
 
 ### Punctuation normalized catalog-wide (em-dash → comma), a sixth strategic dimension (*boundary recoverability*), and the tests-as-tables / sensor-limits literature folded in

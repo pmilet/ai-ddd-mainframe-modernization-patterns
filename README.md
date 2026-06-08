@@ -2,7 +2,7 @@
 
 ## A Pattern Catalog from Project Rosetta
 
-[![Status](https://img.shields.io/badge/status-v1.0.20-brightgreen)](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases)
+[![Status](https://img.shields.io/badge/status-v1.2-brightgreen)](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases)
 [![License](https://img.shields.io/badge/license-CC%20BY%204.0-blue)](LICENSE)
 
 Mainframe modernization is usually treated as a code problem. It's a domain problem — the richest business logic in the enterprise, buried in decades of COBOL, waiting to be recovered. Domain-Driven Design was built for exactly that. The two have rarely met.
@@ -13,17 +13,29 @@ This catalog is for doing exactly that: twenty-eight patterns and an antipattern
 
 They come from Project Rosetta, a working experiment in what AI assistance changes about modernization economics, and are written for DDD practitioners, mainframe modernization practitioners, and AI engineers working at the frontier of agentic coding.
 
+A shorter **companion essay**, *Where the Agent Ends and the Architect Begins*, runs alongside the catalog. It is the principles-first argument behind the patterns: the domain at the centre, the architect's elevator with agents on every floor, and Kent Beck's 3X model placing this work declaredly in Explore. Where the catalog names twenty-eight situated patterns, the essay reasons in plain prose about why a method ought to work and where the agent ends and the architect begins. Read the essay for the argument; read the catalog for the patterns.
+
 This is the long version of what I've been writing about on LinkedIn under the [LegacyLabs](https://www.linkedin.com/newsletters/legacy-labs-7317839126702055426/) name. The shorter posts and newsletter there were the introduction.
 
 ---
 
 ## Download
 
+**Pattern catalog** — twenty-eight patterns, an antipatterns chapter, reference implementations.
+
 | Format | Description |
 |--------|-------------|
-| 📄 [**PDF**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.0.20/Agentic.Domain-Driven.Mainframe.Modernization.pdf) | Full catalog, print-friendly |
-| 📱 [**EPUB**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.0.20/Agentic.Domain-Driven.Mainframe.Modernization.epub) | E-reader format (Kindle, Kobo, Apple Books) |
+| 📄 [**PDF**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2/Agentic.Domain-Driven.Mainframe.Modernization.pdf) | Full catalog, print-friendly |
+| 📱 [**EPUB**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2/Agentic.Domain-Driven.Mainframe.Modernization.epub) | E-reader format (Kindle, Kobo, Apple Books) |
 | 📝 [**Markdown source**](Agentic%20Domain-Driven%20Mainframe%20Modernization.md) | Read directly on GitHub |
+
+**Companion essay** — *Where the Agent Ends and the Architect Begins.* The principles-first argument that sits behind the patterns.
+
+| Format | Description |
+|--------|-------------|
+| 📄 [**PDF**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2/Agentic.Domain-Driven.Mainframe.Modernization-Essay.pdf) | Companion essay, print-friendly |
+| 📱 [**EPUB**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2/Agentic.Domain-Driven.Mainframe.Modernization-Essay.epub) | E-reader format (Kindle, Kobo, Apple Books) |
+| 📝 [**Markdown source**](Agentic%20Domain-Driven%20Mainframe%20Modernization-Essay.md) | Read directly on GitHub |
 
 ---
 
@@ -31,7 +43,7 @@ This is the long version of what I've been writing about on LinkedIn under the [
 
 The territory is **blackfield**: not just existing systems, but existing systems where understanding itself has been lost — the original engineers have moved on, documentation is gone, and domain knowledge has decayed into operational dialect. That is the harder case beyond brownfield, and it is why recovery comes before generation: you cannot modernize what no one can still explain.
 
-The catalog has five theses. **First: AI-assisted mainframe modernization is, at its core, a Domain-Driven Design activity at scale.** AI agents accelerate the mechanical parts; humans direct the strategic ones; the boundary between agentic and human work is itself an architectural commitment that needs explicit design. **Second: modernization at scale is architectural reasoning under load, and AI agents reason better over architectural projections than over source code** — a property graph, a canonical ontology, an intermediate representation, a tier-aware scaffold. **Third: those deterministic substrates are themselves the conceptual model agents work within**, not merely inputs they consume. **Fourth: the GraphRAG substrate — the property graph and canonical ontology, queried together — is the cornerstone the whole modernization stands on, from first discovery to final cutover, not a Part I artifact the later parts leave behind.** **Fifth: transitional architecture is a first-class design concern whose defining discipline is being progressively dismantled** — coexistence is a deliberate, engineered operating state, never a permanent end.
+The catalog has two theses. **First: AI-assisted mainframe modernization is, at its core, a Domain-Driven Design activity at scale.** AI agents accelerate the mechanical parts; humans direct the strategic ones; the boundary between agentic and human work is itself an architectural commitment that needs explicit design. **Second: modernization at scale is architectural reasoning under load, and AI agents reason better over architectural projections than over source code** — a property graph, a canonical ontology, an intermediate representation, a tier-aware scaffold. A third claim runs underneath both: those deterministic substrates are themselves the conceptual model agents work within, not merely inputs they consume — and so the structural harness (the typed scaffold, IR, ontology, tests) is the larger investment, not the prompts.
 
 **Modernization is not a synonym for rewrite.** The catalog supports a strategic spectrum — rewrite, replatform with modern facade, reimagine from specifications, replace with SaaS, retire — and Pattern 1 (*Business-Aligned Capability Strategy*) is where the per-capability decision lives. The estate's technology profile after modernization is heterogeneous by design, calibrated to per-capability economics.
 
@@ -57,7 +69,7 @@ The catalog is organised in five Parts:
 - **Part IV — Governance and Operating Discipline** (Patterns 19–24): how the modernization stays coherent across the agentic system and the teams that operate around it
 - **Part V — Safe Transition and Coexistence** (Patterns 25–28): the disciplined movement of bounded contexts from legacy authority to modernized authority, and the dual-run period during which both sides operate
 
-Plus eleven antipatterns naming the failure modes the patterns are built against.
+Plus ten antipatterns naming the failure modes the patterns are built against.
 
 ---
 
