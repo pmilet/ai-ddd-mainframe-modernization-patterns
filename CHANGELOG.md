@@ -6,6 +6,37 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ---
 
+## [v1.2.1] — 2026
+
+### Companion essay retitled *The Rosetta Conjecture*, rewritten around a tighter central metaphor, and translated into Spanish and French — the project now ships in three languages
+
+A focused release on the companion essay. The essay loses its old subtitle-as-title (*Where the Agent Ends and the Architect Begins*) and gains a new shape: ***The Rosetta Conjecture: Domain-Driven Agentic Modernization***. The Rosetta image that had been an aside in the catalog is promoted to the essay's organising metaphor — the legacy system as the cryptic script whose scribes have left, the running production behaviour as the living Coptic that lets the dead script be read, the oracle as the only interlocutor that remains. The argument is the same — domain at the centre, architect's elevator with agents on every floor, 3X placing this work in Explore — but the prose is rebuilt around the metaphor and tightened substantially.
+
+Alongside the rewrite, the essay is published in **three languages** for the first time: English, Spanish, and French. The project's pattern catalog remains English-only; the translations are scoped to the essay because the essay is the principles-first piece that travels furthest without the situated vocabulary of the catalog.
+
+**Companion essay (essay-only release):**
+- **Retitled** *The Rosetta Conjecture* (subtitle *Domain-Driven Agentic Modernization*); the prior title *Where the Agent Ends and the Architect Begins* is retired — the architect/agent boundary remains a thread through the argument, no longer the title
+- **Rewritten around the Rosetta metaphor** — Champollion deciphering Egyptian through living Coptic stands in for recovering a dead COBOL domain through the still-running system; the oracle is named as the living language that outlasted its scribes; the conjecture framing is made explicit ("a reasoned hypothesis about how it ought to be done … a conjecture that asks to be walked, not believed")
+- **Tightened from ~459 to ~259 lines** — same six-part argument, shorter prose; tools (compilers, frameworks, graphs, agents) reaffirmed as examples of ideas, never the ideas themselves
+- **CardDemo named as the running example** — AWS's openly published mainframe-modernization sample (31 COBOL programs, copybooks, batch + CICS) is adopted as the concrete substrate the essay returns to chapter after chapter; the credit-cycle vs. carried-balance quirk is flagged as the kind of thing the method recovers faithfully but does not dare correct on its own
+- **Spanish edition added** — *La Conjetura de Rosetta: Modernización agéntica dirigida por el dominio* — full translation, native typography
+- **French edition added** — *La Conjecture de Rosetta : Modernisation agentique dirigée par le domaine* — full translation, native typography
+- Three sets of PDF and EPUB generated as `The.Rosetta.Conjecture.{pdf,epub}`, `La.Conjetura.de.Rosetta.{pdf,epub}`, `La.Conjecture.de.Rosetta.{pdf,epub}`
+- The v1.2 essay binaries (`Agentic.Domain-Driven.Mainframe.Modernization-Essay.{md,pdf,epub}`) are removed from the working tree
+
+**Manuscript (catalog):**
+- No content changes. PDF and EPUB are unchanged from v1.2 and re-shipped in v1.2.1 so the README's download links resolve to a single release.
+
+**README:**
+- Status badge bumped from `v1.2` to `v1.2.1`
+- Catalog PDF and EPUB download links point to the `v1.2.1` release
+- Companion-essay download section restructured: a single 3×3 *Language × Format* table (English / Spanish / French × PDF / EPUB / Markdown) replaces the prior single-language table, with native-language labels (*Source* / *Fuente* / *Source*)
+- Intro paragraph announcing the companion essay updated to name the new title and the three language editions, and to surface the essay's one-line epigraph (*modernizing is not translating code; it is recovering the domain*) in place of the previous architect/agent callback
+
+**Net effect:** the catalog is structurally unchanged at v1.2.1 — twenty-eight patterns, ten antipatterns, two theses (with a third underneath). The companion essay is **renamed, rewritten around a single metaphor, compressed to about 57% of its prior length, and translated into Spanish and French**. The project ships in three languages for the first time, with translation scoped deliberately to the essay (the catalog stays English-only).
+
+---
+
 ## [v1.2] — 2026
 
 ### A companion essay added, *Where the Agent Ends and the Architect Begins*; the catalog's preface compressed back from five theses to two (with a third underneath); spelling normalized to British English; antipatterns trimmed from eleven to ten

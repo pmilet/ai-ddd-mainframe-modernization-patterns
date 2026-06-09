@@ -2,7 +2,7 @@
 
 ## A Pattern Catalog from Project Rosetta
 
-[![Status](https://img.shields.io/badge/status-v1.2-brightgreen)](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases)
+[![Status](https://img.shields.io/badge/status-v1.2.1-brightgreen)](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases)
 [![License](https://img.shields.io/badge/license-CC%20BY%204.0-blue)](LICENSE)
 
 Mainframe modernization is usually treated as a code problem. It's a domain problem — the richest business logic in the enterprise, buried in decades of COBOL, waiting to be recovered. Domain-Driven Design was built for exactly that. The two have rarely met.
@@ -13,7 +13,7 @@ This catalog is for doing exactly that: twenty-eight patterns and an antipattern
 
 They come from Project Rosetta, a working experiment in what AI assistance changes about modernization economics, and are written for DDD practitioners, mainframe modernization practitioners, and AI engineers working at the frontier of agentic coding.
 
-A shorter **companion essay**, *Where the Agent Ends and the Architect Begins*, runs alongside the catalog. It is the principles-first argument behind the patterns: the domain at the centre, the architect's elevator with agents on every floor, and Kent Beck's 3X model placing this work declaredly in Explore. Where the catalog names twenty-eight situated patterns, the essay reasons in plain prose about why a method ought to work and where the agent ends and the architect begins. Read the essay for the argument; read the catalog for the patterns.
+A shorter **companion essay**, *The Rosetta Conjecture: Domain-Driven Agentic Modernization*, runs alongside the catalog and is now available in **English, Spanish, and French**. It is the principles-first argument behind the patterns: the domain at the centre, the architect's elevator with agents on every floor, and Kent Beck's 3X model placing this work declaredly in Explore. Where the catalog names twenty-eight situated patterns, the essay reasons in plain prose about why a method ought to work — *modernizing is not translating code; it is recovering the domain.* Read the essay for the argument; read the catalog for the patterns.
 
 This is the long version of what I've been writing about on LinkedIn under the [LegacyLabs](https://www.linkedin.com/newsletters/legacy-labs-7317839126702055426/) name. The shorter posts and newsletter there were the introduction.
 
@@ -25,17 +25,17 @@ This is the long version of what I've been writing about on LinkedIn under the [
 
 | Format | Description |
 |--------|-------------|
-| 📄 [**PDF**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2/Agentic.Domain-Driven.Mainframe.Modernization.pdf) | Full catalog, print-friendly |
-| 📱 [**EPUB**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2/Agentic.Domain-Driven.Mainframe.Modernization.epub) | E-reader format (Kindle, Kobo, Apple Books) |
+| 📄 [**PDF**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.1/Agentic.Domain-Driven.Mainframe.Modernization.pdf) | Full catalog, print-friendly |
+| 📱 [**EPUB**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.1/Agentic.Domain-Driven.Mainframe.Modernization.epub) | E-reader format (Kindle, Kobo, Apple Books) |
 | 📝 [**Markdown source**](Agentic%20Domain-Driven%20Mainframe%20Modernization.md) | Read directly on GitHub |
 
-**Companion essay** — *Where the Agent Ends and the Architect Begins.* The principles-first argument that sits behind the patterns.
+**Companion essay** — *The Rosetta Conjecture: Domain-Driven Agentic Modernization.* The principles-first argument that sits behind the patterns, available in three languages.
 
-| Format | Description |
-|--------|-------------|
-| 📄 [**PDF**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2/Agentic.Domain-Driven.Mainframe.Modernization-Essay.pdf) | Companion essay, print-friendly |
-| 📱 [**EPUB**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2/Agentic.Domain-Driven.Mainframe.Modernization-Essay.epub) | E-reader format (Kindle, Kobo, Apple Books) |
-| 📝 [**Markdown source**](Agentic%20Domain-Driven%20Mainframe%20Modernization-Essay.md) | Read directly on GitHub |
+| Language | PDF | EPUB | Markdown |
+|----------|-----|------|----------|
+| **English** — *The Rosetta Conjecture* | 📄 [PDF](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.1/The.Rosetta.Conjecture.pdf) | 📱 [EPUB](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.1/The.Rosetta.Conjecture.epub) | 📝 [Source](The%20Rosetta%20Conjecture.md) |
+| **Español** — *La Conjetura de Rosetta* | 📄 [PDF](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.1/La.Conjetura.de.Rosetta.pdf) | 📱 [EPUB](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.1/La.Conjetura.de.Rosetta.epub) | 📝 [Fuente](La%20Conjetura%20de%20Rosetta.md) |
+| **Français** — *La Conjecture de Rosetta* | 📄 [PDF](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.1/La.Conjecture.de.Rosetta.pdf) | 📱 [EPUB](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.1/La.Conjecture.de.Rosetta.epub) | 📝 [Source](La%20Conjecture%20de%20Rosetta.md) |
 
 ---
 
