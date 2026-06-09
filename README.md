@@ -13,7 +13,7 @@ This catalog is for doing exactly that: twenty-eight patterns and an antipattern
 
 They come from Project Rosetta, a working experiment in what AI assistance changes about modernization economics, and are written for DDD practitioners, mainframe modernization practitioners, and AI engineers working at the frontier of agentic coding.
 
-A shorter **companion essay**, *The Rosetta Conjecture: Domain-Driven Agentic Modernization*, runs alongside the catalog and is now available in **English, Spanish, and French**. It is the principles-first argument behind the patterns: the domain at the centre, the architect's elevator with agents on every floor, and Kent Beck's 3X model placing this work declaredly in Explore. Where the catalog names twenty-eight situated patterns, the essay reasons in plain prose about why a method ought to work — *modernizing is not translating code; it is recovering the domain.* Read the essay for the argument; read the catalog for the patterns.
+Alongside the catalog there is now a companion book in its own right: ***The Rosetta Conjecture: Domain-Driven Agentic Modernization***, published in **English, Spanish, and French**. The title is its argument. Champollion did not decipher Egyptian by re-reading the dead script; he reached it through Coptic, the living form of the same language that had outlived its scribes. A legacy system is the cryptic script: the authors are gone, the documentation lies, the code is mute. But the system has not died — it still runs, still behaves, still speaks every day in production. That living behaviour is the Coptic, and the essay names it the **oracle**. The essay reasons from principles rather than cataloguing — six Parts, sixteen chapters, an antipatterns appendix and a glossary, with AWS's openly published CardDemo as the one running example throughout. Read the essay for **why a method ought to work**; read the catalog for **the patterns it ships when it does**. *Modernizing is not translating code; it is recovering the domain.*
 
 This is the long version of what I've been writing about on LinkedIn under the [LegacyLabs](https://www.linkedin.com/newsletters/legacy-labs-7317839126702055426/) name. The shorter posts and newsletter there were the introduction.
 
@@ -21,7 +21,11 @@ This is the long version of what I've been writing about on LinkedIn under the [
 
 ## Download
 
-**Pattern catalog** — twenty-eight patterns, an antipatterns chapter, reference implementations.
+Two books ship from this repository. They are designed to be read together but each stands alone.
+
+### 📘 Pattern catalog &nbsp;·&nbsp; *Agentic Domain-Driven Mainframe Modernization*
+
+*Twenty-eight patterns, ten antipatterns, reference implementations. The situated reference: each pattern names a recurring problem in mainframe modernization read through a DDD lens — Context, Problem, Forces, Pattern, Consequences, Related patterns — so hard-won lessons become transmissible.* &nbsp; **English.**
 
 | Format | Description |
 |--------|-------------|
@@ -29,13 +33,17 @@ This is the long version of what I've been writing about on LinkedIn under the [
 | 📱 [**EPUB**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.1/Agentic.Domain-Driven.Mainframe.Modernization.epub) | E-reader format (Kindle, Kobo, Apple Books) |
 | 📝 [**Markdown source**](Agentic%20Domain-Driven%20Mainframe%20Modernization.md) | Read directly on GitHub |
 
-**Companion essay** — *The Rosetta Conjecture: Domain-Driven Agentic Modernization.* The principles-first argument that sits behind the patterns, available in three languages.
+### 📕 Companion essay &nbsp;·&nbsp; *The Rosetta Conjecture*
+
+*Domain-Driven Agentic Modernization. The principles-first argument behind the catalog: six Parts, sixteen chapters, an antipatterns appendix and a glossary, with CardDemo as the one running example throughout. Reasoned in plain prose, deliberately tool-agnostic — tools appear only as examples of ideas, never as the ideas themselves.* &nbsp; **English, Spanish, French.**
 
 | Language | PDF | EPUB | Markdown |
 |----------|-----|------|----------|
-| **English** — *The Rosetta Conjecture* | 📄 [PDF](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.1/The.Rosetta.Conjecture.pdf) | 📱 [EPUB](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.1/The.Rosetta.Conjecture.epub) | 📝 [Source](The%20Rosetta%20Conjecture.md) |
-| **Español** — *La Conjetura de Rosetta* | 📄 [PDF](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.1/La.Conjetura.de.Rosetta.pdf) | 📱 [EPUB](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.1/La.Conjetura.de.Rosetta.epub) | 📝 [Fuente](La%20Conjetura%20de%20Rosetta.md) |
-| **Français** — *La Conjecture de Rosetta* | 📄 [PDF](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.1/La.Conjecture.de.Rosetta.pdf) | 📱 [EPUB](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.1/La.Conjecture.de.Rosetta.epub) | 📝 [Source](La%20Conjecture%20de%20Rosetta.md) |
+| 🇬🇧 **English** — *The Rosetta Conjecture* | 📄 [PDF](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.1/The.Rosetta.Conjecture.pdf) | 📱 [EPUB](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.1/The.Rosetta.Conjecture.epub) | 📝 [Source](The%20Rosetta%20Conjecture.md) |
+| 🇪🇸 **Español** — *La Conjetura de Rosetta* | 📄 [PDF](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.1/La.Conjetura.de.Rosetta.pdf) | 📱 [EPUB](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.1/La.Conjetura.de.Rosetta.epub) | 📝 [Fuente](La%20Conjetura%20de%20Rosetta.md) |
+| 🇫🇷 **Français** — *La Conjecture de Rosetta* | 📄 [PDF](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.1/La.Conjecture.de.Rosetta.pdf) | 📱 [EPUB](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.1/La.Conjecture.de.Rosetta.epub) | 📝 [Source](La%20Conjecture%20de%20Rosetta.md) |
+
+**Where to start.** If you are new to the project, *The Rosetta Conjecture* is the shorter book and frames the argument; the catalog then makes that argument operational across twenty-eight situated patterns. If you are already convinced by the principles and looking for the recurring solutions, start with the catalog. The cross-references go both ways.
 
 ---
 
@@ -115,9 +123,15 @@ You are free to share and adapt the material for any purpose, even commercially,
 
 ## Citation
 
-If you reference this catalog in academic, professional, or commercial work, please cite as:
+If you reference this work in academic, professional, or commercial writing, please cite the volume you draw on:
+
+**Pattern catalog:**
 
 > Milet Llobet, P. (2026). *Agentic Domain-Driven Mainframe Modernization: A Pattern Catalog from Project Rosetta*. LegacyLabs. https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns
+
+**Companion essay:**
+
+> Milet Llobet, P. (2026). *The Rosetta Conjecture: Domain-Driven Agentic Modernization*. LegacyLabs. https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns
 
 ---
 
