@@ -6,6 +6,35 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ---
 
+## [v1.2.5] — 2026
+
+### Companion essay deepened — a new opening chapter (*The graveyard has names*), chapter 10 split into context-map and tactical-design, *Recover, then triage* added, chapter numbers retired, cover image added, British-English typography pass across all three languages
+
+A substantive revision of *The Rosetta Conjecture*, applied in lockstep to the English, Spanish, and French editions. The essay grows by one chapter at the front (*The graveyard has names* / *El cementerio tiene nombres* / *Le cimetière a des noms*) — an opening that names the human stakes before the method starts — and the chapter that previously bridged Part I into Part II (*From the recovered domain to the target architecture*) is split into two distinct chapters: **The target context map** (strategic projection) and **Tactical design of the core** (where aggregates, invariants, and policies live). A new section, **Recover, then triage**, is appended to the *Recovering the domain* chapter to name the act of deciding what to keep, replace, or retire after the domain is known but before the architecture is drawn. Numbered chapter headings (`1.`, `2.`, … `17.`) are retired in favour of titled chapters; the *Appendix A / Appendix B* labels are dropped from the antipatterns and glossary headings; a cover image is added; YAML front-matter sets `lang: en-GB` (and equivalents) so curly typographic quotes render correctly throughout. The catalog itself is unchanged.
+
+**Companion essay (essay-only release, all three languages):**
+- **New opening chapter — *The graveyard has names*** — a short prelude before *The relocation trap* that names the human dimension of decade-old systems still in production (the engineers who left, the silent invariants the code carries, the dead scribes whose Coptic is still readable in running behaviour); inserted in all three editions with native phrasing
+- **Chapter 10 split into two** — what was *From the recovered domain to the target architecture* (single chapter) becomes ***The target context map*** (the strategic projection of bounded contexts, their relationships, and per-context modernization strategy) and ***Tactical design of the core*** (aggregates, invariants, policies, and ports inside the contexts the recovery placed at the centre); the seam between Part I and Part II is now explicit
+- **New section — *Recover, then triage*** — appended to *Recovering the domain*, naming the per-capability keep / replace / retire / replatform decision as a deliberate triage act that follows recovery, not a step that absorbs it
+- **Chapter numbers retired** — the `1.` through `17.` numeric prefixes on chapter headings are removed across all three editions; chapters carry their titles only, matching the catalog's heading style and freeing the table of contents from fixed numbering as chapters are added
+- **Appendix labels dropped** — *Appendix A. Antipatterns* / *Apéndice A. Antipatrones* / *Annexe A. Antipatrons* and *Appendix B. Glossary* / *Apéndice B. Glosario* / *Annexe B. Glossaire* lose their appendix prefix and become titled sections (*Antipatterns*, *Glossary* and their translated equivalents)
+- **Cover image added** — `ChatGPT_Image_17_jun_2026__17_22_16.png` placed at the top of all three editions
+- **YAML front-matter for British-English typography** — `title`, `subtitle`, `author`, `date`, and `lang: en-GB` (and `lang: es` / `lang: fr` for the translations) added so curly typographic quotes (’ instead of ', “…” instead of "…") render correctly throughout; the French edition in particular gains thousands of `l’`/`d’` curly elisions
+- **`{.unnumbered}` markers** on *About this book* / *Sobre este libro* / *À propos de ce livre* and on the *Prologue* / *Prólogo* / *Prologue* so they sit outside the chapter numbering even though numbering is otherwise retired
+- Three sets of PDF and EPUB regenerated as `The.Rosetta.Conjecture.{pdf,epub}`, `La.Conjetura.de.Rosetta.{pdf,epub}`, `La.Conjecture.de.Rosetta.{pdf,epub}`
+
+**Manuscript (catalog):**
+- No content changes. PDF and EPUB are unchanged from v1.2.1 and re-shipped in v1.2.5 so the README's download links resolve to a single release.
+
+**README:**
+- Status badge bumped from `v1.2.1` to `v1.2.5`
+- Catalog PDF and EPUB download links point to the `v1.2.5` release
+- Companion-essay PDF and EPUB download links (English, Spanish, French) point to the `v1.2.5` release
+
+**Net effect:** the catalog is structurally unchanged at v1.2.5 — twenty-eight patterns, ten antipatterns, two theses (with a third underneath). The companion essay gains **two new chapters** (*The graveyard has names* at the front; the split of chapter 10 yielding *The target context map* and *Tactical design of the core*) and one new section (*Recover, then triage*), retires numbered chapter headings and appendix labels, gains a cover image and British-English typography across all three editions. Approximate manuscript delta across the three essay markdowns: ~+1,200/−400 lines, of which the largest share is the curly-quote / `lang: en-GB` typography pass — most heavily in the French edition.
+
+---
+
 ## [v1.2.1] — 2026
 
 ### Companion essay retitled *The Rosetta Conjecture*, rewritten around a tighter central metaphor, and translated into Spanish and French — the project now ships in three languages
