@@ -6,6 +6,33 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ---
 
+## [v1.2.6] — 2026
+
+### Companion essay glossary deepened — four new strategic DDD patterns added (Shared Kernel, Customer/Supplier, Conformist, Separate Ways); ACL and Published Language definitions rewritten; CardDemo's strategic maps name Identity & Access as the carved-out generic; Spanish edition filename adopts the *Conjectura* spelling
+
+A focused revision of *The Rosetta Conjecture*, applied in lockstep to the English, Spanish, and French editions. The glossary's strategic-DDD coverage moves from "the ones the chapter happens to use" to "the canonical Evans set": **Shared Kernel**, **Customer/Supplier**, **Conformist**, and **Separate Ways** are added as first-class entries alongside the already-present Anti-corruption Layer, Open Host Service, Published Language and Context Map — so a reader who arrives mid-book can resolve the full strategic vocabulary without leaving the essay. Two existing entries are sharpened: the **Anti-corruption Layer** is reframed as "a layer the consuming context raises to translate any other context's model into its own" (with the legacy-system use named as the most frequent application rather than the definition), and **Published Language** is clarified as "the language of the contract, not the contract itself", usually paired with an Open Host Service. The CardDemo running example also moves: in **step 5/11** (the recovered as-is map) the orange / blue / grey colour-as-triage is now spelled out by name — account servicing, transaction posting and card servicing as the core; customer, interest, inquiry, billing and reporting as the supporting band; **identity and access** named as the single generic; and in **step 7/11** (the target map) identity and access is carved out early and replaced by a hosted service consumed behind an anti-corruption layer, making three triage moves visible on the same picture (rewrite the core, encapsulate the stable, buy the generic). The catalog itself is unchanged.
+
+**Companion essay (essay-only release, all three languages):**
+- **Four new glossary entries** — **Shared Kernel (SK)**: a subset of the model two contexts share and maintain in common, reserved for what truly must be identical on both sides because it couples; **Customer/Supplier**: a relationship where downstream is customer and upstream is supplier, negotiating priorities and commitments; **Conformist**: the downstream context adopts the upstream model as-is without translating — cheap and honest when the other model is good, the opposite of raising an ACL; **Separate Ways**: the decision not to integrate two contexts and to duplicate the little that is needed, when integrating costs more than it is worth
+- **Anti-corruption Layer (ACL) — definition rewritten** — from "a layer that translates between the new model and the old system" (legacy-specific) to "a layer a consuming context raises to translate any other context's model into its own, so that the foreign shape does not contaminate it" (strategic-DDD general), with the legacy-protection use now named as the most frequent application in this book rather than the definition itself
+- **Published Language (PL) — definition rewritten** — from "an explicit, stable contract with which two contexts communicate" to "a shared, well-documented language, usually paired with an Open Host Service, that serves as the common medium in which two contexts communicate — the language of the contract, not the contract itself", so the OHS pairing and the language-vs-contract distinction become explicit
+- **CardDemo step 5/11 — the recovered as-is map** — the colour-as-triage line is expanded from generic ("the core of servicing and posting") to specific: **account servicing, transaction posting, and card servicing** as the orange core; **customer, interest, inquiry, billing, and reporting** as the blue supporting band; **identity and access** named as the single grey generic — the names readers will reuse in the target map
+- **CardDemo step 7/11 — the target context map** — adds the third triage move that step 5 introduces: identity and access, generic, is carved out early and replaced by a hosted service consumed behind an anti-corruption layer; the sentence now reads "three triage moves and three kinds of relationship, one domain" (was "three kinds of relationship, one domain") — the rewrite-core / encapsulate-stable / buy-generic split becomes visible on the map
+- **Spanish edition filename** — manuscript and binaries renamed from `La Conjetura de Rosetta.{md,pdf,epub}` to `La Conjectura de Rosetta.{md,pdf,epub}` for the in-repo files; release assets uploaded as `La.Conjectura.de.Rosetta.{pdf,epub}`. The rendered title on the cover page is unchanged (the YAML `title:` still reads "La conjetura de Rosetta")
+- Three sets of PDF and EPUB regenerated as `The.Rosetta.Conjecture.{pdf,epub}`, `La.Conjectura.de.Rosetta.{pdf,epub}`, `La.Conjecture.de.Rosetta.{pdf,epub}`
+
+**Manuscript (catalog):**
+- No content changes. PDF and EPUB are unchanged from v1.2.5 and re-shipped in v1.2.6 so the README's download links resolve to a single release.
+
+**README:**
+- Status badge bumped from `v1.2.5` to `v1.2.6`
+- Catalog PDF and EPUB download links point to the `v1.2.6` release
+- Companion-essay PDF, EPUB, and Markdown-source links (English, Spanish, French) point to the `v1.2.6` release; the Spanish row's link targets follow the renamed `La.Conjectura.de.Rosetta` asset names and the renamed `La%20Conjectura%20de%20Rosetta.md` source path
+
+**Net effect:** the catalog is structurally unchanged at v1.2.6 — twenty-eight patterns, ten antipatterns, two theses (with a third underneath). The companion essay gains **four new glossary entries** that complete the strategic-DDD vocabulary (Shared Kernel, Customer/Supplier, Conformist, Separate Ways), **sharpens two existing entries** (ACL and PL) so they read as strategic-DDD definitions rather than legacy-specific shortcuts, and **expands the CardDemo strategic maps** so the colour-as-triage now names specific contexts on the as-is map and makes the identity-and-access carve-out visible on the target map. Approximate manuscript delta across the three essay markdowns: ~+24/−6 lines each, dominated by the glossary additions; the Spanish edition is additionally renamed at the filename level.
+
+---
+
 ## [v1.2.5] — 2026
 
 ### Companion essay deepened — a new opening chapter (*The graveyard has names*), chapter 10 split into context-map and tactical-design, *Recover, then triage* added, chapter numbers retired, cover image added, British-English typography pass across all three languages

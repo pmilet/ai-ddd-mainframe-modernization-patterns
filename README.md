@@ -2,7 +2,7 @@
 
 ## A Pattern Catalog from Project Rosetta
 
-[![Status](https://img.shields.io/badge/status-v1.2.5-brightgreen)](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases)
+[![Status](https://img.shields.io/badge/status-v1.2.6-brightgreen)](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases)
 [![License](https://img.shields.io/badge/license-CC%20BY%204.0-blue)](LICENSE)
 
 Mainframe modernization is usually treated as a code problem. It's a domain problem — the richest business logic in the enterprise, buried in decades of COBOL, waiting to be recovered. Domain-Driven Design was built for exactly that. The two have rarely met.
@@ -39,8 +39,8 @@ Two books ship from this repository. They are designed to be read together but e
 
 | Format | Description |
 |--------|-------------|
-| 📄 [**PDF**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.5/Agentic.Domain-Driven.Mainframe.Modernization.pdf) | Full catalog, print-friendly |
-| 📱 [**EPUB**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.5/Agentic.Domain-Driven.Mainframe.Modernization.epub) | E-reader format (Kindle, Kobo, Apple Books) |
+| 📄 [**PDF**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.6/Agentic.Domain-Driven.Mainframe.Modernization.pdf) | Full catalog, print-friendly |
+| 📱 [**EPUB**](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.6/Agentic.Domain-Driven.Mainframe.Modernization.epub) | E-reader format (Kindle, Kobo, Apple Books) |
 | 📝 [**Markdown source**](Agentic%20Domain-Driven%20Mainframe%20Modernization.md) | Read directly on GitHub |
 
 ### 📕 Companion essay &nbsp;·&nbsp; *The Rosetta Conjecture*
@@ -49,9 +49,9 @@ Two books ship from this repository. They are designed to be read together but e
 
 | Language | PDF | EPUB | Markdown |
 |----------|-----|------|----------|
-| 🇬🇧 **English** — *The Rosetta Conjecture* | 📄 [PDF](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.5/The.Rosetta.Conjecture.pdf) | 📱 [EPUB](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.5/The.Rosetta.Conjecture.epub) | 📝 [Source](The%20Rosetta%20Conjecture.md) |
-| 🇪🇸 **Español** — *La Conjetura de Rosetta* | 📄 [PDF](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.5/La.Conjetura.de.Rosetta.pdf) | 📱 [EPUB](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.5/La.Conjetura.de.Rosetta.epub) | 📝 [Fuente](La%20Conjetura%20de%20Rosetta.md) |
-| 🇫🇷 **Français** — *La Conjecture de Rosetta* | 📄 [PDF](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.5/La.Conjecture.de.Rosetta.pdf) | 📱 [EPUB](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.5/La.Conjecture.de.Rosetta.epub) | 📝 [Source](La%20Conjecture%20de%20Rosetta.md) |
+| 🇬🇧 **English** — *The Rosetta Conjecture* | 📄 [PDF](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.6/The.Rosetta.Conjecture.pdf) | 📱 [EPUB](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.6/The.Rosetta.Conjecture.epub) | 📝 [Source](The%20Rosetta%20Conjecture.md) |
+| 🇪🇸 **Español** — *La Conjetura de Rosetta* | 📄 [PDF](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.6/La.Conjectura.de.Rosetta.pdf) | 📱 [EPUB](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.6/La.Conjectura.de.Rosetta.epub) | 📝 [Fuente](La%20Conjectura%20de%20Rosetta.md) |
+| 🇫🇷 **Français** — *La Conjecture de Rosetta* | 📄 [PDF](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.6/La.Conjecture.de.Rosetta.pdf) | 📱 [EPUB](https://github.com/pmilet/ai-ddd-mainframe-modernization-patterns/releases/download/v1.2.6/La.Conjecture.de.Rosetta.epub) | 📝 [Source](La%20Conjecture%20de%20Rosetta.md) |
 
 **Where to start.** If you are new to the project, *The Rosetta Conjecture* is the shorter book and frames the argument; the catalog then makes that argument operational across twenty-eight situated patterns. If you are already convinced by the principles and looking for the recurring solutions, start with the catalog. The cross-references go both ways.
 

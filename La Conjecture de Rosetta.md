@@ -413,7 +413,7 @@ La réécriture est réservée au code qui la mérite : le cœur du métier, où
 D’où l’inversion qui traverse tout le livre, vue depuis le portefeuille. De presque tout ce que vous récupérez, vous déciderez rationnellement de ne rien réécrire. Récupérer n’est pas le prélude obligé de la réécriture ; c’est ce qui vous permet de ne pas réécrire là où ce n’est pas le lieu, et de diriger chaque euro de reconception vers le seul endroit où il rapporte. Pour ce cœur que vous décidez bel et bien de réécrire, il est maintenant temps de décider l’architecture. Et là, enfin, l’architecte choisit. Son premier choix n’est pas un choix de code, c’est un choix de carte, et c’est le chapitre suivant. À partir d’ici, le reste du livre parle surtout de ce cœur ; l’encapsulé ne sort pas de l’histoire, il participe à la carte par son contrat et réapparaît chaque fois que le nouveau doit cohabiter avec lui.
 
 ::: {.carddemo step="5/11"}
-Élevé du graphe à la carte des contextes, voici ce que la récupération renvoie de CardDemo. Ce n'est pas un design, c'est un portrait : la structure telle que le système vivant la fait tourner aujourd'hui. Le cœur de tenue de comptes et de comptabilisation en orange ; le soutien, intérêt et sécurité, en bleu ; les rapports, génériques, en gris. Et en rouge le point chaud, le fichier des comptes réécrit par quatre contextes à la fois. La couleur est déjà le triage : l'orange se réécrit, le bleu s'encapsule, le gris s'achète.
+Élevé du graphe à la carte des contextes, voici ce que la récupération renvoie de CardDemo. Ce n'est pas un design, c'est un portrait : la structure telle que le système vivant la fait tourner aujourd'hui. Le cœur, tenue de comptes, comptabilisation des mouvements et tenue des cartes, en orange ; le soutien, où se rangent client, intérêt, consultation, facturation et rapports, en bleu ; identité et accès, le seul générique, en gris. Et en rouge le point chaud, le fichier des comptes réécrit par quatre contextes à la fois. La couleur est déjà le triage : l'orange se réécrit, le bleu s'encapsule, le gris s'achète.
 
 ![](cd-mapa-asis.png)
 
@@ -457,7 +457,7 @@ La carte objectif leur donne des contextes distincts au lieu d'un « compte » u
 :::
 
 ::: {.carddemo step="7/11"}
-CardDemo laisse voir la carte objectif en petit. Le cœur, tenue des comptes et comptabilisation des mouvements, est réécrit, et le point chaud du fichier des comptes se résout sur la carte avant de se résoudre dans le code : l'état du compte vient à n'avoir qu'un seul contexte propriétaire de son écriture, et les autres le consomment par contrat. La sécurité et l'intérêt, stables, restent encapsulés derrière un hôte ouvert avec son langage publié. Les rapports consomment en aval avec leur couche anticorruption. Trois types de relation, un seul domaine, et aucune de ces flèches n'était dictée.
+CardDemo laisse voir la carte objectif en petit. Le cœur, tenue des comptes et comptabilisation des mouvements, est réécrit, et le point chaud du fichier des comptes se résout sur la carte avant de se résoudre dans le code : l'état du compte vient à n'avoir qu'un seul contexte propriétaire de son écriture, et les autres le consomment par contrat. L'intérêt, stable, reste encapsulé derrière un hôte ouvert avec son langage publié. L'identité et l'accès, génériques, sont découpés tôt et remplacés par un service hébergé, consommé derrière une couche anticorruption. Les rapports consomment en aval avec leur propre couche anticorruption. Trois mouvements de triage et trois types de relation, un seul domaine, et aucune de ces flèches n'était dictée.
 
 ![](cd-mapa-objetivo.png)
 
@@ -728,7 +728,7 @@ Les antipatrons sont les erreurs que la méthode combat, rassemblées ici pour l
 
 **Chaîne transitive.** Stratégie de vérification qui évite de comparer le nouveau système au vieux en direct. Elle démontre des équivalences intermédiaires faciles, vieux avec réplique fidèle, réplique avec spécification, spécification avec nouveau système, et laisse la transitivité conclure l’équivalence finale.
 
-**Couche anticorruption (ACL).** Patron stratégique du DDD. Couche qui traduit entre le nouveau modèle et le vieux système pour que la forme du vieux ne contamine pas le nouveau.
+**Couche anticorruption (ACL).** Patron stratégique du DDD. Couche qu’un contexte consommateur dresse pour traduire dans son propre modèle celui de tout autre, afin que la forme étrangère ne le contamine pas. Dans ce livre, son usage le plus fréquent est de protéger le nouveau modèle de la forme du vieux système.
 
 **Contexte délimité (bounded context).** Frontière à l’intérieur de laquelle un modèle du domaine et son langage sont cohérents. Les coutures entre contextes sont là où l’on peut plus tard couper.
 
@@ -746,11 +746,19 @@ Les antipatrons sont les erreurs que la méthode combat, rassemblées ici pour l
 
 **Invariant.** Règle que le domaine doit toujours satisfaire. Part de l’espace du problème, elle survit à toute reconception.
 
-**Langage publié (PL).** Patron stratégique du DDD. Contrat explicite et stable par lequel deux contextes communiquent.
+**Langage publié (PL).** Patron stratégique du DDD. Langage partagé et bien documenté, généralement associé à un hôte ouvert, qui sert de medium commun dans lequel deux contextes communiquent. C’est la langue du contrat, non le contrat lui-même.
 
 **Langage omniprésent.** Vocabulaire partagé d’un contexte du domaine, dans lequel s’exprime la spécification, indépendant de la langue de tout système concret. Il y en a un par contexte délimité, non un global. Son indépendance est ce qui protège la liberté de reconception.
 
 **Carte des contextes.** Patron stratégique du DDD. Le plan des contextes délimités d’un parc et des relations entre eux. Dans cette méthode il y en a deux : la carte as-is récupérée, qui est une donnée, et la carte cible, qui est une décision.
+
+**Noyau partagé (Shared Kernel, SK).** Patron stratégique du DDD. Sous-ensemble du modèle que deux contextes partagent et maintiennent en commun, avec une coordination étroite. Il couple, on le réserve donc à ce qui doit vraiment être identique des deux côtés.
+
+**Client et fournisseur (Customer/Supplier).** Patron stratégique du DDD. Relation entre deux contextes où celui d’aval est client et celui d’amont fournisseur, négociant priorités et engagements.
+
+**Conformiste (Conformist).** Patron stratégique du DDD. Le contexte d’aval adopte le modèle d’amont tel quel, sans traduire. Bon marché et honnête quand le modèle d’autrui est bon ; le contraire de lever une couche anticorruption.
+
+**Voies séparées (Separate Ways).** Patron stratégique du DDD. Décision de ne pas intégrer deux contextes et de dupliquer le peu qu’il faut, quand intégrer coûte plus que ça ne vaut.
 
 **Mécanisme.** La plomberie qui fait fonctionner la logique sur une plateforme concrète. Espace de la vieille solution. C’est ce que vous avez le droit de changer, face à la logique métier, que vous devez préserver.
 

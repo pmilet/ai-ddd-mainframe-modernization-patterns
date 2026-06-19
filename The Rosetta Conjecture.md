@@ -413,7 +413,7 @@ Rewriting is reserved for the code that deserves it: the core of the business, w
 Hence the inversion that runs through the whole book, seen from the portfolio. Most of what you recover, you will rationally decide not to rewrite. Recovery is not the obligatory prelude to rewriting; it is what lets you not rewrite where it does not belong, and direct every euro of redesign to the one place where it pays off. For the core you do decide to rewrite, now it is time to decide the architecture. And there, at last, the architect chooses. Their first choice is not about code, it is about the map, and it is the next chapter. From here on, the rest of the book speaks mostly of that core; the encapsulated estate does not leave the story, it takes part in the map through its contract and reappears every time the new has to coexist with it.
 
 ::: {.carddemo step="5/11"}
-Lifted from graph to context map, this is what recovery returns of CardDemo. It is not a design, it is a portrait: the structure as the living system runs it today. The core of servicing and posting in orange; the supporting, interest and security, in blue; reports, generic, in grey. And in red the hotspot, the account file rewritten by four contexts at once. The colour is already the triage: orange is rewritten, blue is encapsulated, grey is bought.
+Lifted from graph to context map, this is what recovery returns of CardDemo. It is not a design, it is a portrait: the structure as the living system runs it today. The core, account servicing, transaction posting and card servicing, in orange; the supporting, where customer, interest, inquiry, billing and reporting sit, in blue; identity and access, the one generic, in grey. And in red the hotspot, the account file rewritten by four contexts at once. The colour is already the triage: orange is rewritten, blue is encapsulated, grey is bought.
 
 ![](cd-mapa-asis.png)
 
@@ -457,7 +457,7 @@ The target map gives them distinct contexts instead of a single "account" that l
 :::
 
 ::: {.carddemo step="7/11"}
-CardDemo shows the target map in miniature. The core, account servicing and transaction posting, is rewritten, and the account-file hotspot is resolved on the map before it is resolved in code: the account state comes to have a single context that owns its write, and the others consume it by contract. Security and interest, stable, stay encapsulated behind an open host with its published language. Reports consume downstream with their anticorruption layer. Three kinds of relationship, one domain, and none of those arrows was dictated.
+CardDemo shows the target map in miniature. The core, account servicing and transaction posting, is rewritten, and the account-file hotspot is resolved on the map before it is resolved in code: the account state comes to have a single context that owns its write, and the others consume it by contract. Interest, stable, stays encapsulated behind an open host with its published language. Identity and access, generic, is carved out early and replaced by a hosted service, consumed behind an anticorruption layer. Reports consume downstream through their own anticorruption layer. Three triage moves and three kinds of relationship, one domain, and none of those arrows was dictated.
 
 ![](cd-mapa-objetivo.png)
 
@@ -728,7 +728,7 @@ The antipatterns are the mistakes the method fights, gathered here to recognize 
 
 **Transitive chain.** A verification strategy that avoids comparing the new system with the old one directly. It proves easy intermediate equivalences, old with faithful replica, replica with specification, specification with new system, and lets transitivity conclude the final equivalence.
 
-**Anti-corruption layer (ACL).** A strategic DDD pattern. A layer that translates between the new model and the old system so that the shape of the old one does not contaminate the new.
+**Anti-corruption layer (ACL).** A strategic DDD pattern. A layer a consuming context raises to translate any other context's model into its own, so that the foreign shape does not contaminate it. In this book its most frequent use is to protect the new model from the shape of the old system.
 
 **Bounded context.** A boundary within which a model of the domain and its language are coherent. The seams between contexts are where you can later cut.
 
@@ -746,11 +746,19 @@ The antipatterns are the mistakes the method fights, gathered here to recognize 
 
 **Invariant.** A rule the domain must always satisfy. Part of the problem space, it survives any redesign.
 
-**Published language (PL).** A strategic DDD pattern. An explicit, stable contract with which two contexts communicate.
+**Published language (PL).** A strategic DDD pattern. A shared, well-documented language, usually paired with an open host service, that serves as the common medium in which two contexts communicate. It is the language of the contract, not the contract itself.
 
 **Ubiquitous language.** The shared vocabulary of a context of the domain, in which the specification is expressed, independent of the language of any concrete system. It is one per bounded context, not one global. Its independence is what protects the freedom to redesign.
 
 **Context map.** A strategic DDD pattern. The chart of an estate’s bounded contexts and of the relationships between them. In this method there are two: the recovered as-is map, which is data, and the target map, which is a decision.
+
+**Shared kernel (SK).** A strategic DDD pattern. A subset of the model that two contexts share and keep in common, with close coordination. It couples, so it is reserved for what truly must be identical in both.
+
+**Customer/Supplier.** A strategic DDD pattern. A relationship between two contexts in which the downstream is customer and the upstream is supplier, negotiating priorities and commitments.
+
+**Conformist.** A strategic DDD pattern. The downstream context adopts the upstream model as is, without translating. Cheap and honest when the other model is good; the opposite of raising an anticorruption layer.
+
+**Separate ways.** A strategic DDD pattern. The decision not to integrate two contexts and to duplicate the little that is needed, when integrating costs more than it is worth.
 
 **Mechanism.** The plumbing that makes the logic run on a concrete platform. Old solution space. It is what you have the right to change, as against the business logic, which you must preserve.
 

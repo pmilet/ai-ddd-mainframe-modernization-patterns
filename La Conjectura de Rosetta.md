@@ -370,7 +370,7 @@ El proceso de recuperación, en el método agéntico, reparte el trabajo según 
 El agente no lee los treinta y un programas en crudo. Razona sobre una proyección: un grafo donde cada programa y cada fichero es un nodo, y cada acceso es una arista. Sobre esa proyección, el hotspot no hay que buscarlo, emerge solo. Una consulta lo saca a la luz:
 
 ```cypher
-MATCH (p:Program)-[:WRITES]->(f:File {name: 'ACCTFILE'})
+MATCH (p:Program)-[:WRITES_FILE]->(f:File {name: 'ACCTFILE'})
 RETURN p.name AS programa
 ORDER BY programa
 ```
@@ -393,7 +393,7 @@ Con el dominio recuperado, retratado, marcado y con sus huecos señalados, el as
 Una vez recuperado el dominio, cuando por fin ves lo que tienes, la estrategia deja de ser una talla única y se vuelve un triaje, en términos llanos de Diseño Dirigido por el Dominio. **El dominio recuperado no es una lista de reescritura. Es el mapa con el que decides qué reescribir, qué encapsular y qué jubilar.** El mapa que acabas de recuperar ya trae la respuesta dibujada: el color es el triaje.
 
 ::: {.carddemo step="5/11"}
-Elevado el grafo a mapa de contextos, esto es lo que la recuperación devuelve de CardDemo. No es un diseño, es un retrato: la estructura tal como el sistema vivo la corre hoy. El núcleo de servicing y posting en naranja; el soporte, interés y seguridad, en azul; los informes, genéricos, en gris. Y en rojo el hotspot, el fichero de cuentas reescrito por cuatro contextos a la vez. El color ya es el triaje: naranja se reescribe, azul se encapsula, gris se compra.
+Elevado el grafo a mapa de contextos, esto es lo que la recuperación devuelve de CardDemo. No es un diseño, es un retrato: la estructura tal como el sistema vivo la corre hoy. El núcleo, servicing de cuentas, posting de movimientos y servicing de tarjetas, en naranja; el soporte, donde caen customer, interés, consulta, facturación e informes, en azul; identidad y acceso, el único genérico, en gris. Y en rojo el hotspot, el fichero de cuentas reescrito por cuatro contextos a la vez. El color ya es el triaje: naranja se reescribe, azul se encapsula, gris se compra.
 
 ![](cd-mapa-asis.png)
 
@@ -449,7 +449,7 @@ Las relaciones entre contextos tienen nombres, y usarlos disciplina el diseño. 
 Un ejemplo pequeño deja ver cómo se combinan estas relaciones sobre un solo dominio.
 
 ::: {.carddemo step="7/11"}
-CardDemo deja ver el mapa objetivo en pequeño. El núcleo, servicing de cuentas y posting de movimientos, se reescribe, y el hotspot del fichero de cuentas se resuelve en el mapa antes que en el código: el estado de la cuenta pasa a tener un solo contexto dueño de su escritura, y los demás lo consumen por contrato. La seguridad y el interés, estables, quedan encapsulados detrás de un host abierto con su lenguaje publicado. Los informes consumen aguas abajo con su capa anticorrupción. Tres tipos de relación, un solo dominio, y ninguna de esas flechas estaba dictada.
+CardDemo deja ver el mapa objetivo en pequeño. El núcleo, servicing de cuentas y posting de movimientos, se reescribe, y el hotspot del fichero de cuentas se resuelve en el mapa antes que en el código: el estado de la cuenta pasa a tener un solo contexto dueño de su escritura, y los demás lo consumen por contrato. El interés, estable, queda encapsulado detrás de un host abierto con su lenguaje publicado. La identidad y el acceso, genéricos, se recortan pronto y se sustituyen por un servicio hospedado, consumido tras una capa anticorrupción. Los informes consumen aguas abajo con su propia capa anticorrupción. Tres movimientos de triaje y tres tipos de relación, un solo dominio, y ninguna de esas flechas estaba dictada.
 
 ![](cd-mapa-objetivo.png)
 
@@ -724,7 +724,7 @@ Los antipatrones son los errores que el método combate, recogidos aquí para re
 
 **Cadena transitiva.** Estrategia de verificación que evita comparar el sistema nuevo con el viejo en directo. Demuestra equivalencias intermedias fáciles, viejo con réplica fiel, réplica con especificación, especificación con sistema nuevo, y deja que la transitividad concluya la equivalencia final.
 
-**Capa anticorrupción (ACL).** Patrón estratégico de DDD. Capa que traduce entre el modelo nuevo y el sistema viejo para que la forma del viejo no contamine el nuevo.
+**Capa anticorrupción (ACL).** Patrón estratégico de DDD. Capa que un contexto consumidor levanta para traducir a su propio modelo el de cualquier otro, de modo que la forma ajena no lo contamine. En este libro su uso más frecuente es proteger el modelo nuevo de la forma del sistema viejo.
 
 **Contexto delimitado (bounded context).** Frontera dentro de la cual un modelo del dominio y su lenguaje son coherentes. Las costuras entre contextos son donde más adelante se puede cortar.
 
@@ -742,11 +742,19 @@ Los antipatrones son los errores que el método combate, recogidos aquí para re
 
 **Invariante.** Regla que el dominio debe cumplir siempre. Parte del espacio del problema, sobrevive a cualquier rediseño.
 
-**Lenguaje publicado (PL).** Patrón estratégico de DDD. Contrato explícito y estable con el que dos contextos se comunican.
+**Lenguaje publicado (PL).** Patrón estratégico de DDD. Lenguaje compartido y bien documentado, normalmente emparejado con un host abierto, que sirve de medio común en que dos contextos se comunican. Es el idioma del contrato, no el contrato mismo.
 
 **Lenguaje ubicuo.** Vocabulario compartido de un contexto del dominio, en el que se expresa la especificación, independiente del idioma de cualquier sistema concreto. Es uno por contexto delimitado, no uno global. Su independencia es lo que protege la libertad de rediseño.
 
 **Mapa de contextos.** Patrón estratégico de DDD. El plano de los contextos delimitados de un parque y de las relaciones entre ellos. En este método hay dos: el mapa as-is recuperado, que es dato, y el mapa objetivo, que es decisión.
+
+**Núcleo compartido (Shared Kernel, SK).** Patrón estratégico de DDD. Subconjunto del modelo que dos contextos comparten y mantienen en común, con coordinación estrecha. Acopla, así que se reserva para lo que de verdad debe ser idéntico en los dos.
+
+**Cliente y proveedor (Customer/Supplier).** Patrón estratégico de DDD. Relación entre dos contextos en la que el de aguas abajo es cliente y el de aguas arriba proveedor, y negocian prioridades y compromisos.
+
+**Conformista (Conformist).** Patrón estratégico de DDD. El contexto de aguas abajo adopta el modelo del de aguas arriba tal cual, sin traducir. Barato y honesto cuando el modelo ajeno es bueno; lo contrario de levantar una capa anticorrupción.
+
+**Caminos separados (Separate Ways).** Patrón estratégico de DDD. Decisión de no integrar dos contextos y duplicar lo poco que haga falta, cuando integrar cuesta más de lo que vale.
 
 **Mecanismo.** La fontanería que hace funcionar la lógica sobre una plataforma concreta. Espacio de la solución vieja. Es lo que tienes derecho a cambiar, frente a la lógica de negocio, que debes preservar.
 
