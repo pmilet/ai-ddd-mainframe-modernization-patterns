@@ -1,6 +1,6 @@
 {
-  "date": "2026-07-16",
-  "taken_at": "2026-07-16T06:57:03Z",
+  "date": "2026-07-17",
+  "taken_at": "2026-07-17T06:55:03Z",
   "repo": "pmilet/ai-ddd-mainframe-modernization-patterns",
   "repo_stats": {
     "stars": 25,
@@ -15,11 +15,11 @@
   },
   "releases": {
     "count": 21,
-    "total_downloads": 284,
+    "total_downloads": 286,
     "assets": [
       {
         "name": "Agentic.Domain-Driven.Mainframe.Modernization.pdf",
-        "downloads": 125
+        "downloads": 126
       },
       {
         "name": "AI-Assisted.Domain-Driven.Mainframe.Modernization.pdf",
@@ -27,7 +27,7 @@
       },
       {
         "name": "The.Rosetta.Conjecture.pdf",
-        "downloads": 32
+        "downloads": 33
       },
       {
         "name": "Agentic.Domain-Driven.Mainframe.Modernization.epub",
