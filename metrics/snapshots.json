@@ -5146,5 +5146,89 @@
     },
     "referrers": [],
     "paths": []
+  },
+  {
+    "date": "2026-07-31",
+    "taken_at": "2026-07-31T07:07:17Z",
+    "repo": "pmilet/ai-ddd-mainframe-modernization-patterns",
+    "repo_stats": {
+      "stars": 25,
+      "forks": 2,
+      "watchers": 0
+    },
+    "traffic_14d": {
+      "views": 0,
+      "unique_visitors": 0,
+      "clones": 0,
+      "unique_cloners": 0
+    },
+    "releases": {
+      "count": 21,
+      "total_downloads": 292,
+      "assets": [
+        {
+          "name": "Agentic.Domain-Driven.Mainframe.Modernization.pdf",
+          "downloads": 130
+        },
+        {
+          "name": "AI-Assisted.Domain-Driven.Mainframe.Modernization.pdf",
+          "downloads": 42
+        },
+        {
+          "name": "The.Rosetta.Conjecture.pdf",
+          "downloads": 35
+        },
+        {
+          "name": "Agentic.Domain-Driven.Mainframe.Modernization.epub",
+          "downloads": 25
+        },
+        {
+          "name": "La.Conjetura.de.Rosetta.pdf",
+          "downloads": 21
+        },
+        {
+          "name": "La.Conjecture.de.Rosetta.pdf",
+          "downloads": 8
+        },
+        {
+          "name": "AI-Assisted.Domain-Driven.Mainframe.Modernization.epub",
+          "downloads": 7
+        },
+        {
+          "name": "La.Conjectura.de.Rosetta.pdf",
+          "downloads": 6
+        },
+        {
+          "name": "La.Conjetura.de.Rosetta.epub",
+          "downloads": 5
+        },
+        {
+          "name": "The.Rosetta.Conjecture.epub",
+          "downloads": 5
+        },
+        {
+          "name": "La.Conjecture.de.Rosetta.epub",
+          "downloads": 4
+        },
+        {
+          "name": "Agentic.Domain-Driven.Mainframe.Modernization-Essay.epub",
+          "downloads": 2
+        },
+        {
+          "name": "La.Conjectura.de.Rosetta.epub",
+          "downloads": 2
+        },
+        {
+          "name": "Agentic.Domain-Driven.Mainframe.Modernization-Essay.pdf",
+          "downloads": 0
+        }
+      ]
+    },
+    "daily": {
+      "views": [],
+      "clones": []
+    },
+    "referrers": [],
+    "paths": []
   }
 ]
