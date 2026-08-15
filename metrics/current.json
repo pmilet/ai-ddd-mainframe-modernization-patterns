@@ -1,6 +1,6 @@
 {
-  "date": "2026-08-14",
-  "taken_at": "2026-08-14T07:38:07Z",
+  "date": "2026-08-15",
+  "taken_at": "2026-08-15T06:44:52Z",
   "repo": "pmilet/ai-ddd-mainframe-modernization-patterns",
   "repo_stats": {
     "stars": 25,
@@ -15,11 +15,11 @@
   },
   "releases": {
     "count": 21,
-    "total_downloads": 293,
+    "total_downloads": 301,
     "assets": [
       {
         "name": "Agentic.Domain-Driven.Mainframe.Modernization.pdf",
-        "downloads": 131
+        "downloads": 132
       },
       {
         "name": "AI-Assisted.Domain-Driven.Mainframe.Modernization.pdf",
@@ -27,11 +27,11 @@
       },
       {
         "name": "The.Rosetta.Conjecture.pdf",
-        "downloads": 35
+        "downloads": 36
       },
       {
         "name": "Agentic.Domain-Driven.Mainframe.Modernization.epub",
-        "downloads": 25
+        "downloads": 26
       },
       {
         "name": "La.Conjetura.de.Rosetta.pdf",
@@ -39,7 +39,7 @@
       },
       {
         "name": "La.Conjecture.de.Rosetta.pdf",
-        "downloads": 8
+        "downloads": 9
       },
       {
         "name": "AI-Assisted.Domain-Driven.Mainframe.Modernization.epub",
@@ -47,26 +47,26 @@
       },
       {
         "name": "La.Conjectura.de.Rosetta.pdf",
+        "downloads": 7
+      },
+      {
+        "name": "The.Rosetta.Conjecture.epub",
         "downloads": 6
+      },
+      {
+        "name": "La.Conjecture.de.Rosetta.epub",
+        "downloads": 5
       },
       {
         "name": "La.Conjetura.de.Rosetta.epub",
         "downloads": 5
       },
       {
-        "name": "The.Rosetta.Conjecture.epub",
-        "downloads": 5
-      },
-      {
-        "name": "La.Conjecture.de.Rosetta.epub",
-        "downloads": 4
+        "name": "La.Conjectura.de.Rosetta.epub",
+        "downloads": 3
       },
       {
         "name": "Agentic.Domain-Driven.Mainframe.Modernization-Essay.epub",
-        "downloads": 2
-      },
-      {
-        "name": "La.Conjectura.de.Rosetta.epub",
         "downloads": 2
       },
       {
