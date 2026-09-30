@@ -1,6 +1,6 @@
 {
-  "date": "2026-09-29",
-  "taken_at": "2026-09-29T12:27:58Z",
+  "date": "2026-09-30",
+  "taken_at": "2026-09-30T12:13:19Z",
   "repo": "pmilet/ai-ddd-mainframe-modernization-patterns",
   "repo_stats": {
     "stars": 25,
@@ -15,11 +15,11 @@
   },
   "releases": {
     "count": 21,
-    "total_downloads": 310,
+    "total_downloads": 311,
     "assets": [
       {
         "name": "Agentic.Domain-Driven.Mainframe.Modernization.pdf",
-        "downloads": 136
+        "downloads": 137
       },
       {
         "name": "AI-Assisted.Domain-Driven.Mainframe.Modernization.pdf",
